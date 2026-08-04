@@ -82,7 +82,7 @@
   "zone": "SSC",
   "date": "May 16, 2026 20:00:50",
   "start_ms": 1778958050756,
-  "raid": null,
+  "raid": 2,
   "kills": 5,
   "wipes": 8,
   "players": 27
@@ -104,7 +104,7 @@
   "zone": "SSC",
   "date": "May 22, 2026 20:14:01",
   "start_ms": 1779477241187,
-  "raid": 1,
+  "raid": 2,
   "kills": 6,
   "wipes": 1,
   "players": 27
