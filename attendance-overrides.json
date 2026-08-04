@@ -1,5 +1,73 @@
 {
  "_format": "Player name -> { reset-Wednesday date -> 'present' or 'absent' }",
- "_example": {"2026-07-15": "present"},
- "_note": "keys starting with _ are ignored; dates must be the Wednesday starting the raid week (see the header tooltips on attendance.html)"
+ "_note": "keys starting with _ are ignored; dates must be the Wednesday starting the raid week (see the header tooltips on attendance.html)",
+ "Woodwind": {
+  "2026-07-29": "present"
+ },
+ "Madef": {
+  "2026-07-29": "present"
+ },
+ "Roarwind": {
+  "2026-07-29": "present"
+ },
+ "Badabuille": {
+  "2026-07-29": "present"
+ },
+ "Moungrym": {
+  "2026-07-29": "present"
+ },
+ "Tarmour": {
+  "2026-07-29": "present"
+ },
+ "Kianne": {
+  "2026-07-29": "present"
+ },
+ "Pious": {
+  "2026-07-29": "present"
+ },
+ "Bruand": {
+  "2026-07-29": "present"
+ },
+ "Starboyjude": {
+  "2026-07-29": "present"
+ },
+ "Naincapacité": {
+  "2026-07-29": "present"
+ },
+ "Paradigmh": {
+  "2026-07-29": "present"
+ },
+ "Nevronthyme": {
+  "2026-07-29": "present"
+ },
+ "Loranoa": {
+  "2026-07-29": "present"
+ },
+ "Cthulha": {
+  "2026-07-29": "present"
+ },
+ "Castratos": {
+  "2026-07-29": "present"
+ },
+ "Bepcyc": {
+  "2026-07-29": "present"
+ },
+ "Karrell": {
+  "2026-07-29": "present"
+ },
+ "Snney": {
+  "2026-07-29": "present"
+ },
+ "Gahenna": {
+  "2026-07-29": "present"
+ },
+ "Toastersha": {
+  "2026-07-29": "present"
+ },
+ "Shcherbaque": {
+  "2026-07-29": "present"
+ },
+ "Swellery": {
+  "2026-07-29": "present"
+ }
 }
