@@ -37,7 +37,10 @@ table.data th { text-align: left; color: var(--ink-dim); font-weight: 600;
   white-space: nowrap; }
 table.data td { padding: 6px 8px; border-bottom: 1px solid #212d38; }
 table.data tr:hover td { background: var(--card-hover); }
-td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.num, th.num,
+table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mid, th.mid,
+table.data th.mid, table.data td.mid { text-align: center; }
 .name-badge { display: inline-block; padding: 1px 8px; border-radius: 5px;
   color: #1a222c; font-weight: 650; font-size: 12.5px; }
 a.player-link { text-decoration: none; }

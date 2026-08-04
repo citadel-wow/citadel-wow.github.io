@@ -37,7 +37,10 @@ table.data th { text-align: left; color: var(--ink-dim); font-weight: 600;
   white-space: nowrap; }
 table.data td { padding: 6px 8px; border-bottom: 1px solid #212d38; }
 table.data tr:hover td { background: var(--card-hover); }
-td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.num, th.num,
+table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mid, th.mid,
+table.data th.mid, table.data td.mid { text-align: center; }
 .name-badge { display: inline-block; padding: 1px 8px; border-radius: 5px;
   color: #1a222c; font-weight: 650; font-size: 12.5px; }
 a.player-link { text-decoration: none; }
@@ -94,7 +97,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
 <table class="data">
   <tr>
     <th>Player</th><th>Role</th>
-    <th class="num" title="July 23, 2026 19:57:36">Jul 23</th><th class="num" title="July 16, 2026 20:02:12">Jul 16</th>
+    <th class="mid" title="July 23, 2026 19:57:36">Jul 23</th><th class="mid" title="July 16, 2026 20:02:12">Jul 16</th>
     <th class="num">%</th>
   </tr>
   
@@ -103,9 +106,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #f6b26b">Farmour</span></a></td>
     <td class="dim">Healer</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -115,9 +118,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #f6b26b">Kianne</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -127,9 +130,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #f6b26b">Roarwind</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -139,9 +142,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b6d7a8">Paradigmh</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -151,9 +154,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b6d7a8">Prevaraa</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -163,9 +166,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #a4c2f4">Cthulha</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -175,9 +178,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #a4c2f4">Loranoa</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -187,9 +190,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #d5a6bd">Aethorien</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -199,9 +202,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #d5a6bd">Bruand</span></a></td>
     <td class="dim">Healer</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -211,9 +214,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #d5a6bd">Pious</span></a></td>
     <td class="dim">Healer</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -223,9 +226,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #d5a6bd">Thanerin</span></a></td>
     <td class="dim">Tank</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -235,9 +238,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #efefef">Gahenna</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -247,9 +250,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #fff2cc">Richieroo</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -259,9 +262,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #6d9eeb">Badabonks</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -271,9 +274,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #6d9eeb">Shcherbaque</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -283,9 +286,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #6d9eeb">Swellery</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -295,9 +298,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b4a7d6">Jonetter</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -307,9 +310,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b4a7d6">Tripletap</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -319,9 +322,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #e2d3c9">Madef</span></a></td>
     <td class="dim">Tank</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -331,9 +334,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #e2d3c9">Moungrym</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -343,9 +346,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b6d7a8">Asharial</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -355,9 +358,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b6d7a8">Naincapacité</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -367,9 +370,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b6d7a8">Nevronthyme</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -379,9 +382,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b6d7a8">Trígger</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -391,9 +394,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #efefef">Snney</span></a></td>
     <td class="dim">Healer</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -403,9 +406,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #fff2cc">Moorit</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -415,9 +418,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #6d9eeb">Hextaco</span></a></td>
     <td class="dim">Healer</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -427,9 +430,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #6d9eeb">Jomezka</span></a></td>
     <td class="dim">Healer</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -439,9 +442,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #6d9eeb">Toastersha</span></a></td>
     <td class="dim">Healer</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -451,9 +454,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b4a7d6">Castratos</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -463,9 +466,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b4a7d6">Karrell</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -475,9 +478,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #e2d3c9">Tobbob</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -490,7 +493,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
 <table class="data">
   <tr>
     <th>Player</th><th>Role</th>
-    <th class="num" title="August 03, 2026 20:00:29">Aug 03</th><th class="num" title="July 27, 2026 19:59:29">Jul 27</th><th class="num" title="July 20, 2026 19:54:13">Jul 20</th><th class="num" title="July 13, 2026 19:52:20">Jul 13</th>
+    <th class="mid" title="August 03, 2026 20:00:29">Aug 03</th><th class="mid" title="July 27, 2026 19:59:29">Jul 27</th><th class="mid" title="July 20, 2026 19:54:13">Jul 20</th><th class="mid" title="July 13, 2026 19:52:20">Jul 13</th>
     <th class="num">%</th>
   </tr>
   
@@ -499,13 +502,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #f6b26b">Bearfoöt</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -515,13 +518,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #f6b26b">Myanthes</span></a></td>
     <td class="dim">Healer</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -531,13 +534,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #d5a6bd">Alexzed</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -547,13 +550,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #d5a6bd">Jonette</span></a></td>
     <td class="dim">Tank</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -563,13 +566,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #6d9eeb">Woodwind</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -579,13 +582,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b4a7d6">Dipstick</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -595,13 +598,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #e2d3c9">Honorik</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -611,13 +614,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #e2d3c9">Loronoa</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>100%</b></td>
   </tr>
@@ -627,13 +630,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #a4c2f4">Fëanturi</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>75%</b></td>
   </tr>
@@ -643,13 +646,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #efefef">Snney</span></a></td>
     <td class="dim">Healer</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>75%</b></td>
   </tr>
@@ -659,13 +662,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #fff2cc">Medef</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>75%</b></td>
   </tr>
@@ -675,13 +678,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #6d9eeb">Gahanna</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>75%</b></td>
   </tr>
@@ -691,13 +694,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #6d9eeb">Jeanlouisdav</span></a></td>
     <td class="dim">Healer</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>75%</b></td>
   </tr>
@@ -707,13 +710,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #6d9eeb">Vykola</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>75%</b></td>
   </tr>
@@ -723,13 +726,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b4a7d6">Klib</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>75%</b></td>
   </tr>
@@ -739,13 +742,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #e2d3c9">Tarmour</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>75%</b></td>
   </tr>
@@ -755,13 +758,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #f6b26b">Starboyjude</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -771,13 +774,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b6d7a8">Huugue</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -787,13 +790,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b6d7a8">Msx</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -803,13 +806,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #a4c2f4">Gandörf</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -819,13 +822,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #d5a6bd">Toasterp</span></a></td>
     <td class="dim">Healer</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -835,13 +838,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #6d9eeb">Legga</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -851,13 +854,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #6d9eeb">Toastersha</span></a></td>
     <td class="dim">Healer</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -867,13 +870,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b4a7d6">Karrell</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -883,13 +886,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b4a7d6">Togekiss</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -899,13 +902,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #e2d3c9">Badabuille</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -915,13 +918,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #e2d3c9">Prevaara</span></a></td>
     <td class="dim">Tank</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>50%</b></td>
   </tr>
@@ -931,13 +934,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #f6b26b">Mammutbaum</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -947,13 +950,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #f6b26b">Nuggëts</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -963,13 +966,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #f6b26b">Silvertejp</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -979,13 +982,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b6d7a8">Hausy</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -995,13 +998,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b6d7a8">Nevronthyme</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1011,13 +1014,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b6d7a8">Paradigmh</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1027,13 +1030,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b6d7a8">Prevaraa</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1043,13 +1046,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b6d7a8">Silverpump</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1059,13 +1062,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b6d7a8">Trígger</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1075,13 +1078,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #a4c2f4">Badabuum</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1091,13 +1094,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #a4c2f4">Cthulha</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1107,13 +1110,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #a4c2f4">Littlewhitey</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1123,13 +1126,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #d5a6bd">Malfori</span></a></td>
     <td class="dim">Healer</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1139,13 +1142,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #d5a6bd">Myxuling</span></a></td>
     <td class="dim">Healer</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1155,13 +1158,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #efefef">Paínkíller</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1171,13 +1174,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #efefef">Znney</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1187,13 +1190,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #fff2cc">Hanor</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1203,13 +1206,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #fff2cc">Smiethy</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1219,13 +1222,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #6d9eeb">Badabonks</span></a></td>
     <td class="dim">Physical</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1235,13 +1238,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #6d9eeb">Chokladbulle</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1251,13 +1254,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #6d9eeb">Jomezka</span></a></td>
     <td class="dim">Healer</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1267,13 +1270,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #6d9eeb">Shammrive</span></a></td>
     <td class="dim">Healer</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1283,13 +1286,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b4a7d6">Castratos</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1299,13 +1302,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #b4a7d6">Tripletap</span></a></td>
     <td class="dim">Caster</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
@@ -1315,13 +1318,13 @@ nav.site a.active { background: var(--card); color: var(--ink);
       <span class="name-badge" style="background: #e2d3c9">Madef</span></a></td>
     <td class="dim">Tank</td>
     
-    <td class="num"><span class="ok">✓</span></td>
+    <td class="mid"><span class="ok">✓</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
-    <td class="num"><span class="dim">·</span></td>
+    <td class="mid"><span class="dim">·</span></td>
     
     <td class="num"><b>25%</b></td>
   </tr>
