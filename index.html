@@ -4,130 +4,315 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Citadel — Raid Reports</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 90 20v30c0 25-18 38-40 45C28 88 10 75 10 50V20z' fill='%23c9a24b'/%3E%3Cpath d='M50 14 82 26v24c0 20-14 30-32 36-18-6-32-16-32-36V26z' fill='%231a222c'/%3E%3Cpath d='M50 26v48M34 40h32' stroke='%23c9a24b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
 <style>
-* { box-sizing: border-box; }
+:root {
+  --bg: #10161c;
+  --panel: #161e26;
+  --card: #1c2630;
+  --card-hover: #223040;
+  --line: #2b3a48;
+  --ink: #e8edf2;
+  --ink-dim: #8fa1b3;
+  --gold: #c9a24b;
+  --gold-soft: #e3c680;
+  --accent: #5d7f9d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  margin: 0; background: #263238; color: #eceff1;
+  font-family: "Helvetica Neue", Arial, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(1100px 380px at 50% -80px, #223140 0%, transparent 70%),
+    var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
 }
-header {
-  padding: 28px 24px 18px; background: #1c262b;
-  border-bottom: 3px solid #607d8b;
+header { padding: 44px 24px 26px; text-align: center; }
+.crest {
+  width: 46px; height: 46px; margin: 0 auto 12px; display: block;
 }
-h1 { margin: 0; font-size: 26px; }
-.sub { color: #90a4ae; font-size: 14px; margin-top: 4px; }
-main { max-width: 1200px; margin: 0 auto; padding: 20px 24px 60px; }
-.columns { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-@media (max-width: 800px) { .columns { grid-template-columns: 1fr; } }
-.col h2 {
-  font-size: 17px; margin: 6px 0 4px; padding-bottom: 6px;
-  border-bottom: 2px solid #607d8b; color: #b0bec5;
+h1 {
+  font-size: 30px; letter-spacing: 0.14em; text-transform: uppercase;
+  font-weight: 700;
 }
-.other-header { margin-top: 26px; }
+h1 .dash { color: var(--gold); }
+.sub {
+  color: var(--ink-dim); font-size: 14px; margin-top: 8px;
+  letter-spacing: 0.04em;
+}
+.rule {
+  width: 160px; height: 2px; margin: 18px auto 0;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+main { max-width: 1150px; margin: 0 auto; padding: 26px 24px 70px; }
+.columns { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+@media (max-width: 840px) { .columns { grid-template-columns: 1fr; } }
+
+.col-head {
+  display: flex; align-items: baseline; gap: 10px;
+  padding: 4px 2px 10px; border-bottom: 1px solid var(--line);
+  margin-bottom: 14px;
+}
+.col-head .name {
+  font-size: 15px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold-soft);
+}
+.col-head .day { color: var(--ink-dim); font-size: 13px; }
+.col-head .count {
+  margin-left: auto; font-size: 12px; color: var(--ink-dim);
+  background: var(--panel); border: 1px solid var(--line);
+  padding: 2px 10px; border-radius: 10px;
+}
+
 .night {
-  background: #2f3d44; border-radius: 8px; padding: 14px 18px;
-  margin: 14px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+  display: flex; gap: 16px; align-items: center;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 10px; padding: 14px 16px; margin-bottom: 12px;
+  transition: transform .12s ease, border-color .12s ease, background .12s ease;
 }
-.night .info { flex: 1 1 300px; }
-.night .title { font-weight: 600; font-size: 16px; }
-.night .meta { color: #90a4ae; font-size: 13px; margin-top: 2px; }
-.night a.btn {
-  display: inline-block; padding: 7px 16px; border-radius: 16px;
-  background: #607d8b; color: #fff; text-decoration: none; font-size: 14px;
+.night:hover {
+  transform: translateY(-2px); border-color: var(--gold);
+  background: var(--card-hover);
 }
-.night a.btn:hover { background: #78909c; }
-.night a.wcl { background: transparent; border: 1px solid #607d8b; }
-footer { text-align: center; color: #546e7a; font-size: 12px; padding: 20px; }
+.date-badge {
+  flex: 0 0 58px; text-align: center; padding: 7px 0;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+}
+.date-badge .d { font-size: 21px; font-weight: 700; line-height: 1; }
+.date-badge .m {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--gold-soft); margin-top: 3px;
+}
+.info { flex: 1 1 auto; min-width: 0; }
+.info .title { font-weight: 650; font-size: 15px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; }
+.chip {
+  font-size: 12px; color: var(--ink-dim);
+  border: 1px solid var(--line); border-radius: 20px; padding: 2px 10px;
+  background: var(--panel); white-space: nowrap;
+}
+.chip b { color: var(--ink); font-weight: 600; }
+.actions { display: flex; flex-direction: column; gap: 6px; }
+@media (max-width: 480px) {
+  .night { flex-wrap: wrap; }
+  .actions { flex-direction: row; width: 100%; }
+}
+a.btn {
+  display: inline-block; text-align: center; min-width: 74px;
+  padding: 6px 14px; border-radius: 7px; font-size: 13px; font-weight: 600;
+  text-decoration: none; color: var(--ink);
+  background: var(--accent); transition: filter .12s ease;
+}
+a.btn:hover { filter: brightness(1.18); }
+a.btn.cla { background: #4c6a52; }
+a.btn.wcl {
+  background: transparent; border: 1px solid var(--line);
+  color: var(--ink-dim); font-weight: 500;
+}
+a.btn.wcl:hover { border-color: var(--gold); color: var(--gold-soft); filter: none; }
+
+.empty {
+  color: var(--ink-dim); font-size: 14px; padding: 26px 0; text-align: center;
+  border: 1px dashed var(--line); border-radius: 10px;
+}
+.other-head { margin-top: 34px; }
+footer {
+  text-align: center; color: #4d6070; font-size: 12px; padding: 26px;
+  letter-spacing: 0.06em;
+}
+footer a { color: #64798c; }
 </style>
 </head>
 <body>
 <header>
-  <h1>Citadel — Raid Reports</h1>
-  <div class="sub">Raid-night reports — Role Performance Breakdown &amp; Combat Log Analytics</div>
+  <svg class="crest" viewBox="0 0 100 100" aria-hidden="true">
+    <path d="M50 5 90 20v30c0 25-18 38-40 45C28 88 10 75 10 50V20z" fill="#c9a24b"/>
+    <path d="M50 14 82 26v24c0 20-14 30-32 36-18-6-32-16-32-36V26z" fill="#1a222c"/>
+    <path d="M50 26v48M34 40h32" stroke="#c9a24b" stroke-width="7" stroke-linecap="round"/>
+  </svg>
+  <h1>Citadel <span class="dash">—</span> Raid Reports</h1>
+  <div class="sub">Role Performance Breakdown &amp; Combat Log Analytics, every raid night</div>
+  <div class="rule"></div>
 </header>
+
+
 
 <main>
 
 <div class="columns">
+  
+  
   <div class="col">
-    <h2>Raid 1 (Thursday)</h2>
+    <div class="col-head">
+      <span class="name">Raid 1</span>
+      <span class="day">Thursdays</span>
+      <span class="count">2 nights</span>
+    </div>
     
   <div class="night">
-    <div class="info">
-      <div class="title">SSC / TK (SSC in 1:13:51, TK in 1:13:02)</div>
-      <div class="meta">SSC / TK — July 23, 2026 19:57:36</div>
+    <div class="date-badge">
+      <div class="d">23</div>
+      <div class="m">Jul</div>
     </div>
-    <a class="btn" href="reports/Ncz4P28xGyQKVF7h/rpb.html">RPB</a>
-    <a class="btn" href="reports/Ncz4P28xGyQKVF7h/cla.html">CLA</a>
-    <a class="btn wcl" href="https://classic.warcraftlogs.com/reports/Ncz4P28xGyQKVF7h">WCL log</a>
+    <div class="info">
+      <div class="title">SSC / TK</div>
+      <div class="chips">
+        
+        <span class="chip">SSC <b>1:13:51</b></span>
+        
+        <span class="chip">TK <b>1:13:02</b></span>
+        
+        <span class="chip">Thursday, 2026</span>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="btn" href="reports/Ncz4P28xGyQKVF7h/rpb.html">RPB</a>
+      <a class="btn cla" href="reports/Ncz4P28xGyQKVF7h/cla.html">CLA</a>
+      <a class="btn wcl" href="https://classic.warcraftlogs.com/reports/Ncz4P28xGyQKVF7h">WCL log</a>
+    </div>
   </div>
 
     
   <div class="night">
-    <div class="info">
-      <div class="title">SSC / TK (SSC in 1:11:04, TK in 1:23:39)</div>
-      <div class="meta">SSC / TK — July 16, 2026 20:02:12</div>
+    <div class="date-badge">
+      <div class="d">16</div>
+      <div class="m">Jul</div>
     </div>
-    <a class="btn" href="reports/HRFMkxT6zD1qtfJp/rpb.html">RPB</a>
-    <a class="btn" href="reports/HRFMkxT6zD1qtfJp/cla.html">CLA</a>
-    <a class="btn wcl" href="https://classic.warcraftlogs.com/reports/HRFMkxT6zD1qtfJp">WCL log</a>
+    <div class="info">
+      <div class="title">SSC / TK</div>
+      <div class="chips">
+        
+        <span class="chip">SSC <b>1:11:04</b></span>
+        
+        <span class="chip">TK <b>1:23:39</b></span>
+        
+        <span class="chip">Thursday, 2026</span>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="btn" href="reports/HRFMkxT6zD1qtfJp/rpb.html">RPB</a>
+      <a class="btn cla" href="reports/HRFMkxT6zD1qtfJp/cla.html">CLA</a>
+      <a class="btn wcl" href="https://classic.warcraftlogs.com/reports/HRFMkxT6zD1qtfJp">WCL log</a>
+    </div>
   </div>
 
     
   </div>
+  
+  
   <div class="col">
-    <h2>Raid 2 (Monday)</h2>
+    <div class="col-head">
+      <span class="name">Raid 2</span>
+      <span class="day">Mondays</span>
+      <span class="count">4 nights</span>
+    </div>
     
   <div class="night">
-    <div class="info">
-      <div class="title">SSC / TK (SSC in 2:05:06, TK in 1:11:04)</div>
-      <div class="meta">SSC / TK — August 03, 2026 20:00:29</div>
+    <div class="date-badge">
+      <div class="d">03</div>
+      <div class="m">Aug</div>
     </div>
-    <a class="btn" href="reports/wFxJTz7cGR6jkMpX/rpb.html">RPB</a>
-    <a class="btn" href="reports/wFxJTz7cGR6jkMpX/cla.html">CLA</a>
-    <a class="btn wcl" href="https://classic.warcraftlogs.com/reports/wFxJTz7cGR6jkMpX">WCL log</a>
+    <div class="info">
+      <div class="title">SSC / TK</div>
+      <div class="chips">
+        
+        <span class="chip">SSC <b>2:05:06</b></span>
+        
+        <span class="chip">TK <b>1:11:04</b></span>
+        
+        <span class="chip">Monday, 2026</span>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="btn" href="reports/wFxJTz7cGR6jkMpX/rpb.html">RPB</a>
+      <a class="btn cla" href="reports/wFxJTz7cGR6jkMpX/cla.html">CLA</a>
+      <a class="btn wcl" href="https://classic.warcraftlogs.com/reports/wFxJTz7cGR6jkMpX">WCL log</a>
+    </div>
   </div>
 
     
   <div class="night">
-    <div class="info">
-      <div class="title">SSC / TK (SSC in 1:30:16, TK in 1:15:31)</div>
-      <div class="meta">SSC / TK — July 27, 2026 19:59:29</div>
+    <div class="date-badge">
+      <div class="d">27</div>
+      <div class="m">Jul</div>
     </div>
-    <a class="btn" href="reports/ntgaW61yqDFjVHPT/rpb.html">RPB</a>
-    <a class="btn" href="reports/ntgaW61yqDFjVHPT/cla.html">CLA</a>
-    <a class="btn wcl" href="https://classic.warcraftlogs.com/reports/ntgaW61yqDFjVHPT">WCL log</a>
+    <div class="info">
+      <div class="title">SSC / TK</div>
+      <div class="chips">
+        
+        <span class="chip">SSC <b>1:30:16</b></span>
+        
+        <span class="chip">TK <b>1:15:31</b></span>
+        
+        <span class="chip">Monday, 2026</span>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="btn" href="reports/ntgaW61yqDFjVHPT/rpb.html">RPB</a>
+      <a class="btn cla" href="reports/ntgaW61yqDFjVHPT/cla.html">CLA</a>
+      <a class="btn wcl" href="https://classic.warcraftlogs.com/reports/ntgaW61yqDFjVHPT">WCL log</a>
+    </div>
   </div>
 
     
   <div class="night">
-    <div class="info">
-      <div class="title">SSC / TK (SSC in 1:25:07, TK in 1:31:47)</div>
-      <div class="meta">SSC / TK — July 20, 2026 19:54:13</div>
+    <div class="date-badge">
+      <div class="d">20</div>
+      <div class="m">Jul</div>
     </div>
-    <a class="btn" href="reports/RNqdHDjahz2tvpMK/rpb.html">RPB</a>
-    <a class="btn" href="reports/RNqdHDjahz2tvpMK/cla.html">CLA</a>
-    <a class="btn wcl" href="https://classic.warcraftlogs.com/reports/RNqdHDjahz2tvpMK">WCL log</a>
+    <div class="info">
+      <div class="title">SSC / TK</div>
+      <div class="chips">
+        
+        <span class="chip">SSC <b>1:25:07</b></span>
+        
+        <span class="chip">TK <b>1:31:47</b></span>
+        
+        <span class="chip">Monday, 2026</span>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="btn" href="reports/RNqdHDjahz2tvpMK/rpb.html">RPB</a>
+      <a class="btn cla" href="reports/RNqdHDjahz2tvpMK/cla.html">CLA</a>
+      <a class="btn wcl" href="https://classic.warcraftlogs.com/reports/RNqdHDjahz2tvpMK">WCL log</a>
+    </div>
   </div>
 
     
   <div class="night">
-    <div class="info">
-      <div class="title">SSC / TK (SSC in 1:31:58, TK in 1:15:32)</div>
-      <div class="meta">SSC / TK — July 13, 2026 19:52:20</div>
+    <div class="date-badge">
+      <div class="d">13</div>
+      <div class="m">Jul</div>
     </div>
-    <a class="btn" href="reports/8VWkYmw6B34zbXRy/rpb.html">RPB</a>
-    <a class="btn" href="reports/8VWkYmw6B34zbXRy/cla.html">CLA</a>
-    <a class="btn wcl" href="https://classic.warcraftlogs.com/reports/8VWkYmw6B34zbXRy">WCL log</a>
+    <div class="info">
+      <div class="title">SSC / TK</div>
+      <div class="chips">
+        
+        <span class="chip">SSC <b>1:31:58</b></span>
+        
+        <span class="chip">TK <b>1:15:32</b></span>
+        
+        <span class="chip">Monday, 2026</span>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="btn" href="reports/8VWkYmw6B34zbXRy/rpb.html">RPB</a>
+      <a class="btn cla" href="reports/8VWkYmw6B34zbXRy/cla.html">CLA</a>
+      <a class="btn wcl" href="https://classic.warcraftlogs.com/reports/8VWkYmw6B34zbXRy">WCL log</a>
+    </div>
   </div>
 
     
   </div>
+  
 </div>
 
 
 
 </main>
-<footer>generated with raidstats</footer>
+<footer>
+  generated with <a href="https://classic.warcraftlogs.com/">WarcraftLogs</a> data · raidstats
+</footer>
 </body>
 </html>
