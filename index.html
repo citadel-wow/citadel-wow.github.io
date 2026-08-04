@@ -16,7 +16,14 @@ header {
 }
 h1 { margin: 0; font-size: 26px; }
 .sub { color: #90a4ae; font-size: 14px; margin-top: 4px; }
-main { max-width: 900px; margin: 0 auto; padding: 20px 24px 60px; }
+main { max-width: 1200px; margin: 0 auto; padding: 20px 24px 60px; }
+.columns { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 800px) { .columns { grid-template-columns: 1fr; } }
+.col h2 {
+  font-size: 17px; margin: 6px 0 4px; padding-bottom: 6px;
+  border-bottom: 2px solid #607d8b; color: #b0bec5;
+}
+.other-header { margin-top: 26px; }
 .night {
   background: #2f3d44; border-radius: 8px; padding: 14px 18px;
   margin: 14px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
@@ -38,8 +45,17 @@ footer { text-align: center; color: #546e7a; font-size: 12px; padding: 20px; }
   <h1>Citadel — Raid Reports</h1>
   <div class="sub">Raid-night reports — Role Performance Breakdown &amp; Combat Log Analytics</div>
 </header>
+
 <main>
 
+<div class="columns">
+  <div class="col">
+    <h2>Raid 1 (Thursday)</h2>
+    <p class="meta">No reports yet.</p>
+  </div>
+  <div class="col">
+    <h2>Raid 2 (Monday)</h2>
+    
   <div class="night">
     <div class="info">
       <div class="title">SSC / TK (SSC in 1:30:16, TK in 1:15:31)</div>
@@ -49,6 +65,12 @@ footer { text-align: center; color: #546e7a; font-size: 12px; padding: 20px; }
     <a class="btn" href="reports/ntgaW61yqDFjVHPT/cla.html">CLA</a>
     <a class="btn wcl" href="https://classic.warcraftlogs.com/reports/ntgaW61yqDFjVHPT">WCL log</a>
   </div>
+
+    
+  </div>
+</div>
+
+
 
 </main>
 <footer>generated with raidstats</footer>
