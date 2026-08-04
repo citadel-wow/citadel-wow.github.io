@@ -51,6 +51,16 @@ h1 .dash { color: var(--gold); }
   width: 160px; height: 2px; margin: 18px auto 0;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
+nav.site {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 16px 0 0;
+}
+nav.site a {
+  color: var(--ink-dim); text-decoration: none; font-size: 13px;
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 14px;
+}
+nav.site a:hover { color: var(--gold-soft); border-color: var(--gold); }
+nav.site a.active { background: var(--card); color: var(--ink); border-color: var(--gold); }
 
 main { max-width: 1150px; margin: 0 auto; padding: 26px 24px 70px; }
 .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
@@ -144,6 +154,12 @@ footer a { color: #64798c; }
   </svg>
   <h1>Citadel <span class="dash">—</span> Raid Reports</h1>
   <div class="sub">Role Performance Breakdown &amp; Combat Log Analytics, every raid night</div>
+  <nav class="site">
+    <a class="active" href="index.html">Nights</a>
+    <a href="attendance.html">Attendance</a>
+    <a href="progress.html">Progression</a>
+    <a href="trends.html">Trends</a>
+  </nav>
   <div class="rule"></div>
 </header>
 
