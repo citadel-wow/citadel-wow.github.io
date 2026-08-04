@@ -6,5 +6,45 @@
   "date": "July 27, 2026 19:59:29",
   "start_ms": 1785178769802,
   "raid": 2
+ },
+ "8VWkYmw6B34zbXRy": {
+  "report_id": "8VWkYmw6B34zbXRy",
+  "title": "SSC / TK (SSC in 1:31:58, TK in 1:15:32)",
+  "zone": "SSC / TK",
+  "date": "July 13, 2026 19:52:20",
+  "start_ms": 1783968740074,
+  "raid": 2
+ },
+ "HRFMkxT6zD1qtfJp": {
+  "report_id": "HRFMkxT6zD1qtfJp",
+  "title": "SSC / TK (SSC in 1:11:04, TK in 1:23:39)",
+  "zone": "SSC / TK",
+  "date": "July 16, 2026 20:02:12",
+  "start_ms": 1784228532073,
+  "raid": 1
+ },
+ "RNqdHDjahz2tvpMK": {
+  "report_id": "RNqdHDjahz2tvpMK",
+  "title": "SSC / TK (SSC in 1:25:07, TK in 1:31:47)",
+  "zone": "SSC / TK",
+  "date": "July 20, 2026 19:54:13",
+  "start_ms": 1784573653893,
+  "raid": 2
+ },
+ "Ncz4P28xGyQKVF7h": {
+  "report_id": "Ncz4P28xGyQKVF7h",
+  "title": "SSC / TK (SSC in 1:13:51, TK in 1:13:02)",
+  "zone": "SSC / TK",
+  "date": "July 23, 2026 19:57:36",
+  "start_ms": 1784833056876,
+  "raid": 1
+ },
+ "wFxJTz7cGR6jkMpX": {
+  "report_id": "wFxJTz7cGR6jkMpX",
+  "title": "SSC / TK (SSC in 2:05:06, TK in 1:11:04)",
+  "zone": "SSC / TK",
+  "date": "August 03, 2026 20:00:29",
+  "start_ms": 1785783629813,
+  "raid": 2
  }
 }
