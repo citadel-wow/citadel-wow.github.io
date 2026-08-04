@@ -1,0 +1,6449 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Attendance — Citadel — Raid Reports</title>
+<meta property="og:title" content="Attendance — Citadel — Raid Reports">
+<meta name="theme-color" content="#c9a24b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 90 20v30c0 25-18 38-40 45C28 88 10 75 10 50V20z' fill='%23c9a24b'/%3E%3Cpath d='M50 14 82 26v24c0 20-14 30-32 36-18-6-32-16-32-36V26z' fill='%231a222c'/%3E%3Cpath d='M50 26v48M34 40h32' stroke='%23c9a24b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #10161c; --panel: #161e26; --card: #1c2630; --card-hover: #223040;
+  --line: #2b3a48; --ink: #e8edf2; --ink-dim: #8fa1b3;
+  --gold: #c9a24b; --gold-soft: #e3c680; --accent: #5d7f9d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Helvetica Neue", Arial, "Segoe UI", sans-serif;
+  background: radial-gradient(1100px 380px at 50% -80px, #223140 0%, transparent 70%), var(--bg);
+  color: var(--ink); min-height: 100vh;
+}
+header { padding: 30px 24px 14px; text-align: center; }
+h1 { font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; }
+h1 a { color: var(--ink); text-decoration: none; }
+h1 .dash { color: var(--gold); }
+.rule { width: 140px; height: 2px; margin: 14px auto 0;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+main { max-width: 1150px; margin: 0 auto; padding: 18px 24px 70px; }
+h2 { font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase;
+     color: var(--gold-soft); margin: 26px 0 12px; }
+.panel { background: var(--card); border: 1px solid var(--line);
+         border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }
+table.data { border-collapse: collapse; width: 100%; font-size: 13px; }
+table.data th { text-align: left; color: var(--ink-dim); font-weight: 600;
+  font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line);
+  white-space: nowrap; }
+table.data td { padding: 6px 8px; border-bottom: 1px solid #212d38; }
+table.data tr:hover td { background: var(--card-hover); }
+td.num, th.num,
+table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mid, th.mid,
+table.data th.mid, table.data td.mid { text-align: center; }
+.name-badge { display: inline-block; padding: 1px 8px; border-radius: 5px;
+  color: #1a222c; font-weight: 650; font-size: 12.5px; }
+a.player-link { text-decoration: none; }
+.dim { color: var(--ink-dim); }
+footer { text-align: center; color: #4d6070; font-size: 12px; padding: 26px; }
+nav.site {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 14px 0 4px;
+}
+nav.site a {
+  color: var(--ink-dim); text-decoration: none; font-size: 13px;
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 14px;
+}
+nav.site a:hover { color: var(--gold-soft); border-color: var(--gold); }
+nav.site a.active { background: var(--card); color: var(--ink);
+                    border-color: var(--gold); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+         gap: 12px; margin-bottom: 16px; }
+.tile { background: var(--card); border: 1px solid var(--line);
+        border-radius: 10px; padding: 14px 16px; text-align: center; }
+.tile .v { font-size: 24px; font-weight: 700; }
+.tile .k { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+           color: var(--ink-dim); margin-top: 4px; }
+.chart-note { font-size: 11px; color: var(--ink-dim); margin-top: 6px; }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-dim);
+          margin-bottom: 6px; }
+.legend .sw { display: inline-block; width: 9px; height: 9px;
+              border-radius: 50%; margin-right: 5px; }
+.zone-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.zone-chip { border: 1px solid var(--line); background: var(--panel);
+  padding: 8px 16px; border-radius: 10px; font-size: 14px; }
+.zone-chip b { color: var(--gold-soft); }
+.ok { color: #7fc98b; } .bad { color: #d98a8a; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html">Citadel <span class="dash">—</span> Raid Reports</a></h1>
+  <nav class="site">
+    <a href="index.html">Logs</a>
+    
+    <a href="attendance.html" class="active">Attendance</a>
+    <a href="parses.html" class="">Parses</a>
+    
+    <a href="progress.html" class="">Progression</a>
+    <a href="trends.html" class="">Trends</a>
+  </nav>
+  <div class="rule"></div>
+</header>
+
+<main>
+<h2>Attendance — 12 raid weeks</h2>
+<div class="panel" style="overflow-x:auto">
+<table class="data">
+  <tr>
+    <th>Player</th><th>Role</th>
+    <th class="mid" title="raid week Jul 29 – Aug 04, 2026 · Aug 03">W31</th><th class="mid" title="raid week Jul 22 – Jul 28, 2026 · Jul 23, Jul 27">W30</th><th class="mid" title="raid week Jul 15 – Jul 21, 2026 · Jul 16, Jul 20">W29</th><th class="mid" title="raid week Jul 08 – Jul 14, 2026 · Jul 09, Jul 13">W28</th><th class="mid" title="raid week Jul 01 – Jul 07, 2026 · Jul 02, Jul 06">W27</th><th class="mid" title="raid week Jun 24 – Jun 30, 2026 · Jun 25, Jun 29">W26</th><th class="mid" title="raid week Jun 17 – Jun 23, 2026 · Jun 18">W25</th><th class="mid" title="raid week Jun 10 – Jun 16, 2026 · Jun 11, Jun 15">W24</th><th class="mid" title="raid week Jun 03 – Jun 09, 2026 · Jun 04, Jun 08">W23</th><th class="mid" title="raid week May 27 – Jun 02, 2026 · May 28, Jun 01, Jun 02">W22</th><th class="mid" title="raid week May 20 – May 26, 2026 · May 21, May 22, May 26">W21</th><th class="mid" title="raid week May 13 – May 19, 2026 · May 15, May 16">W20</th>
+    <th class="num">%</th>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/alexzed.html">
+      <span class="name-badge" style="background: #d5a6bd">Alexzed</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>100%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/jonette.html">
+      <span class="name-badge" style="background: #d5a6bd">Jonette</span></a></td>
+    <td class="dim">Tank</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>100%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/woodwind.html">
+      <span class="name-badge" style="background: #6d9eeb">Woodwind</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>100%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/nevronthyme.html">
+      <span class="name-badge" style="background: #b6d7a8">Nevronthyme</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>100%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/honorik.html">
+      <span class="name-badge" style="background: #e2d3c9">Honorik</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>100%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/madef.html">
+      <span class="name-badge" style="background: #e2d3c9">Madef</span></a></td>
+    <td class="dim">Tank</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>100%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/roarwind.html">
+      <span class="name-badge" style="background: #f6b26b">Roarwind</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>100%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/loranoa.html">
+      <span class="name-badge" style="background: #a4c2f4">Loranoa</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>100%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/bruand.html">
+      <span class="name-badge" style="background: #d5a6bd">Bruand</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>100%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/swellery.html">
+      <span class="name-badge" style="background: #6d9eeb">Swellery</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>100%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/toastersha.html">
+      <span class="name-badge" style="background: #6d9eeb">Toastersha</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>100%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/moungrym.html">
+      <span class="name-badge" style="background: #e2d3c9">Moungrym</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>100%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/kianne.html">
+      <span class="name-badge" style="background: #f6b26b">Kianne</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>100%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/gahenna.html">
+      <span class="name-badge" style="background: #efefef">Gahenna</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>100%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/bearfo-t.html">
+      <span class="name-badge" style="background: #f6b26b">Bearfoöt</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>92%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/klib.html">
+      <span class="name-badge" style="background: #b4a7d6">Klib</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>92%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/prevaraa.html">
+      <span class="name-badge" style="background: #b6d7a8">Prevaraa</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>92%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/snney.html">
+      <span class="name-badge" style="background: #efefef">Snney</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>92%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/badabonks.html">
+      <span class="name-badge" style="background: #6d9eeb">Badabonks</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>92%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/vykola.html">
+      <span class="name-badge" style="background: #6d9eeb">Vykola</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>92%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/jonetter.html">
+      <span class="name-badge" style="background: #b4a7d6">Jonetter</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>92%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/badabuille.html">
+      <span class="name-badge" style="background: #e2d3c9">Badabuille</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>92%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/tr-gger.html">
+      <span class="name-badge" style="background: #b6d7a8">Trígger</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>92%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/pious.html">
+      <span class="name-badge" style="background: #d5a6bd">Pious</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>92%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/thanerin.html">
+      <span class="name-badge" style="background: #d5a6bd">Thanerin</span></a></td>
+    <td class="dim">Tank</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>92%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/shcherbaque.html">
+      <span class="name-badge" style="background: #6d9eeb">Shcherbaque</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>92%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/castratos.html">
+      <span class="name-badge" style="background: #b4a7d6">Castratos</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>92%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/karrell.html">
+      <span class="name-badge" style="background: #b4a7d6">Karrell</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>92%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/loronoa.html">
+      <span class="name-badge" style="background: #e2d3c9">Loronoa</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>92%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/tarmour.html">
+      <span class="name-badge" style="background: #e2d3c9">Tarmour</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>92%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/gand-rf.html">
+      <span class="name-badge" style="background: #a4c2f4">Gandörf</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>83%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/bepcyc.html">
+      <span class="name-badge" style="background: #a4c2f4">Bepcyc</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>83%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/hextaco.html">
+      <span class="name-badge" style="background: #6d9eeb">Hextaco</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>83%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/naincapacit.html">
+      <span class="name-badge" style="background: #b6d7a8">Naincapacité</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>83%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/msx.html">
+      <span class="name-badge" style="background: #b6d7a8">Msx</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>75%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/littlewhitey.html">
+      <span class="name-badge" style="background: #a4c2f4">Littlewhitey</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>75%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/nosaj.html">
+      <span class="name-badge" style="background: #f6b26b">Nosaj</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>75%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/jomezka.html">
+      <span class="name-badge" style="background: #6d9eeb">Jomezka</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>75%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/paradigmh.html">
+      <span class="name-badge" style="background: #b6d7a8">Paradigmh</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>75%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/cthulha.html">
+      <span class="name-badge" style="background: #a4c2f4">Cthulha</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>75%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/pa-nk-ller.html">
+      <span class="name-badge" style="background: #efefef">Paínkíller</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>67%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/malfori.html">
+      <span class="name-badge" style="background: #d5a6bd">Malfori</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>67%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/markise.html">
+      <span class="name-badge" style="background: #6d9eeb">Markise</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>67%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/aethorien.html">
+      <span class="name-badge" style="background: #d5a6bd">Aethorien</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>58%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/toasterp.html">
+      <span class="name-badge" style="background: #d5a6bd">Toasterp</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>58%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/legga.html">
+      <span class="name-badge" style="background: #6d9eeb">Legga</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>58%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/drazhu.html">
+      <span class="name-badge" style="background: #a4c2f4">Drazhu</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>50%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/starboyjude.html">
+      <span class="name-badge" style="background: #f6b26b">Starboyjude</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>50%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/dipstick.html">
+      <span class="name-badge" style="background: #b4a7d6">Dipstick</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>42%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/tripletap.html">
+      <span class="name-badge" style="background: #b4a7d6">Tripletap</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>42%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/medef.html">
+      <span class="name-badge" style="background: #fff2cc">Medef</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>42%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/lifebloomz.html">
+      <span class="name-badge" style="background: #f6b26b">Lifebloomz</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>33%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/smiethy.html">
+      <span class="name-badge" style="background: #fff2cc">Smiethy</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>33%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/madepe.html">
+      <span class="name-badge" style="background: #e2d3c9">Madepe</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>33%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/molliee.html">
+      <span class="name-badge" style="background: #f6b26b">Molliee</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>33%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/myanthes.html">
+      <span class="name-badge" style="background: #f6b26b">Myanthes</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>33%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/f-anturi.html">
+      <span class="name-badge" style="background: #a4c2f4">Fëanturi</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>33%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/auroraeriz.html">
+      <span class="name-badge" style="background: #d5a6bd">Auroraeriz</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>33%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/moorit.html">
+      <span class="name-badge" style="background: #fff2cc">Moorit</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>33%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/richieroo.html">
+      <span class="name-badge" style="background: #fff2cc">Richieroo</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>33%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/lunaqt.html">
+      <span class="name-badge" style="background: #f6b26b">Lunaqt</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>33%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/farmour.html">
+      <span class="name-badge" style="background: #f6b26b">Farmour</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>25%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/nathox.html">
+      <span class="name-badge" style="background: #f6b26b">Nathox</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>25%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/lorpdickles.html">
+      <span class="name-badge" style="background: #b6d7a8">Lorpdickles</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>25%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/gahanna.html">
+      <span class="name-badge" style="background: #6d9eeb">Gahanna</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>25%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/jeanlouisdav.html">
+      <span class="name-badge" style="background: #6d9eeb">Jeanlouisdav</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>25%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/argio.html">
+      <span class="name-badge" style="background: #b4a7d6">Argio</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>25%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/prevaara.html">
+      <span class="name-badge" style="background: #e2d3c9">Prevaara</span></a></td>
+    <td class="dim">Tank</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>25%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/cauror.html">
+      <span class="name-badge" style="background: #fff2cc">Cauror</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>17%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/nugg-ts.html">
+      <span class="name-badge" style="background: #f6b26b">Nuggëts</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>17%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/silvertejp.html">
+      <span class="name-badge" style="background: #f6b26b">Silvertejp</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>17%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/huugue.html">
+      <span class="name-badge" style="background: #b6d7a8">Huugue</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>17%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/atenn.html">
+      <span class="name-badge" style="background: #a4c2f4">Atenn</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>17%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/stonexqt.html">
+      <span class="name-badge" style="background: #fff2cc">Stonexqt</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>17%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/lekiyo.html">
+      <span class="name-badge" style="background: #6d9eeb">Lekiyo</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>17%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/ennobling.html">
+      <span class="name-badge" style="background: #b4a7d6">Ennobling</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>17%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/linkross.html">
+      <span class="name-badge" style="background: #b4a7d6">Linkross</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>17%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/menop-uschen.html">
+      <span class="name-badge" style="background: #b4a7d6">Menopäuschen</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>17%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/togekiss.html">
+      <span class="name-badge" style="background: #b4a7d6">Togekiss</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>17%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/znney.html">
+      <span class="name-badge" style="background: #efefef">Znney</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" title="manual admin override"><span class="ok" style="color:#e3c680">●</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>17%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/col-nferal.html">
+      <span class="name-badge" style="background: #f6b26b">Colïnferal</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/leaina.html">
+      <span class="name-badge" style="background: #f6b26b">Leaina</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/mammutbaum.html">
+      <span class="name-badge" style="background: #f6b26b">Mammutbaum</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/tobber.html">
+      <span class="name-badge" style="background: #f6b26b">Tobber</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/aravind.html">
+      <span class="name-badge" style="background: #b6d7a8">Aravind</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/asharial.html">
+      <span class="name-badge" style="background: #b6d7a8">Asharial</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/baldameld.html">
+      <span class="name-badge" style="background: #b6d7a8">Baldameld</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/hausy.html">
+      <span class="name-badge" style="background: #b6d7a8">Hausy</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/melaena.html">
+      <span class="name-badge" style="background: #b6d7a8">Melaena</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/silverpump.html">
+      <span class="name-badge" style="background: #b6d7a8">Silverpump</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/badabuum.html">
+      <span class="name-badge" style="background: #a4c2f4">Badabuum</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/dandza.html">
+      <span class="name-badge" style="background: #d5a6bd">Dandza</span></a></td>
+    <td class="dim">Tank</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/irontoe.html">
+      <span class="name-badge" style="background: #d5a6bd">Irontoe</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/myxuling.html">
+      <span class="name-badge" style="background: #d5a6bd">Myxuling</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/samyigouprot.html">
+      <span class="name-badge" style="background: #d5a6bd">Samyigouprot</span></a></td>
+    <td class="dim">Tank</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/zethril.html">
+      <span class="name-badge" style="background: #d5a6bd">Zethril</span></a></td>
+    <td class="dim">Tank</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/anik.html">
+      <span class="name-badge" style="background: #efefef">Anik</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/cadavru.html">
+      <span class="name-badge" style="background: #efefef">Cadavru</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/min-u.html">
+      <span class="name-badge" style="background: #efefef">Minøu</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/sispimat.html">
+      <span class="name-badge" style="background: #efefef">Sispimat</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/szmul.html">
+      <span class="name-badge" style="background: #efefef">Szmul</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/hanor.html">
+      <span class="name-badge" style="background: #fff2cc">Hanor</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/chokladbulle.html">
+      <span class="name-badge" style="background: #6d9eeb">Chokladbulle</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/ellektra.html">
+      <span class="name-badge" style="background: #6d9eeb">Ellektra</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/myshamain.html">
+      <span class="name-badge" style="background: #6d9eeb">Myshamain</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/plastankann.html">
+      <span class="name-badge" style="background: #6d9eeb">Plastankann</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/shammrive.html">
+      <span class="name-badge" style="background: #6d9eeb">Shammrive</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/tacergal.html">
+      <span class="name-badge" style="background: #6d9eeb">Tacergal</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/bitis.html">
+      <span class="name-badge" style="background: #b4a7d6">Bitis</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/doloraa.html">
+      <span class="name-badge" style="background: #b4a7d6">Doloraa</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/saniqt.html">
+      <span class="name-badge" style="background: #e2d3c9">Saniqt</span></a></td>
+    <td class="dim">Tank</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/sipahi.html">
+      <span class="name-badge" style="background: #e2d3c9">Sipahi</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/tobbob.html">
+      <span class="name-badge" style="background: #e2d3c9">Tobbob</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="ok">✓</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    
+    
+    <td class="mid" ><span class="dim">·</span></td>
+    
+    <td class="num"><b>8%</b></td>
+  </tr>
+  
+</table>
+</div>
+<div class="chart-note">columns are WoW raid weeks (Wednesday reset), labelled with the
+calendar week number of the reset day — hover a header for the exact dates ·
+one ✓ per raid attended that week · <span style="color:#e3c680">●</span> = manual
+admin correction · % = raid weeks attended · click a name for the player profile</div>
+<div class="chart-note">admins: attendance can be corrected by
+<a href="https://github.com/citadel-wow/citadel-wow.github.io/edit/main/attendance-overrides.json"
+style="color:#8fa1b3">editing attendance-overrides.json</a> (requires GitHub
+write access to the site repository) — changes go live with the next site
+rebuild</div>
+</main>
+
+<footer>generated with WarcraftLogs data · raidstats</footer>
+
+</body>
+</html>

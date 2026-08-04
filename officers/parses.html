@@ -1,0 +1,5414 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parses — Citadel — Raid Reports</title>
+<meta property="og:title" content="Parses — Citadel — Raid Reports">
+<meta name="theme-color" content="#c9a24b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 90 20v30c0 25-18 38-40 45C28 88 10 75 10 50V20z' fill='%23c9a24b'/%3E%3Cpath d='M50 14 82 26v24c0 20-14 30-32 36-18-6-32-16-32-36V26z' fill='%231a222c'/%3E%3Cpath d='M50 26v48M34 40h32' stroke='%23c9a24b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #10161c; --panel: #161e26; --card: #1c2630; --card-hover: #223040;
+  --line: #2b3a48; --ink: #e8edf2; --ink-dim: #8fa1b3;
+  --gold: #c9a24b; --gold-soft: #e3c680; --accent: #5d7f9d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Helvetica Neue", Arial, "Segoe UI", sans-serif;
+  background: radial-gradient(1100px 380px at 50% -80px, #223140 0%, transparent 70%), var(--bg);
+  color: var(--ink); min-height: 100vh;
+}
+header { padding: 30px 24px 14px; text-align: center; }
+h1 { font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; }
+h1 a { color: var(--ink); text-decoration: none; }
+h1 .dash { color: var(--gold); }
+.rule { width: 140px; height: 2px; margin: 14px auto 0;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+main { max-width: 1150px; margin: 0 auto; padding: 18px 24px 70px; }
+h2 { font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase;
+     color: var(--gold-soft); margin: 26px 0 12px; }
+.panel { background: var(--card); border: 1px solid var(--line);
+         border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }
+table.data { border-collapse: collapse; width: 100%; font-size: 13px; }
+table.data th { text-align: left; color: var(--ink-dim); font-weight: 600;
+  font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line);
+  white-space: nowrap; }
+table.data td { padding: 6px 8px; border-bottom: 1px solid #212d38; }
+table.data tr:hover td { background: var(--card-hover); }
+td.num, th.num,
+table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mid, th.mid,
+table.data th.mid, table.data td.mid { text-align: center; }
+.name-badge { display: inline-block; padding: 1px 8px; border-radius: 5px;
+  color: #1a222c; font-weight: 650; font-size: 12.5px; }
+a.player-link { text-decoration: none; }
+.dim { color: var(--ink-dim); }
+footer { text-align: center; color: #4d6070; font-size: 12px; padding: 26px; }
+nav.site {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 14px 0 4px;
+}
+nav.site a {
+  color: var(--ink-dim); text-decoration: none; font-size: 13px;
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 14px;
+}
+nav.site a:hover { color: var(--gold-soft); border-color: var(--gold); }
+nav.site a.active { background: var(--card); color: var(--ink);
+                    border-color: var(--gold); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+         gap: 12px; margin-bottom: 16px; }
+.tile { background: var(--card); border: 1px solid var(--line);
+        border-radius: 10px; padding: 14px 16px; text-align: center; }
+.tile .v { font-size: 24px; font-weight: 700; }
+.tile .k { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+           color: var(--ink-dim); margin-top: 4px; }
+.chart-note { font-size: 11px; color: var(--ink-dim); margin-top: 6px; }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-dim);
+          margin-bottom: 6px; }
+.legend .sw { display: inline-block; width: 9px; height: 9px;
+              border-radius: 50%; margin-right: 5px; }
+.zone-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.zone-chip { border: 1px solid var(--line); background: var(--panel);
+  padding: 8px 16px; border-radius: 10px; font-size: 14px; }
+.zone-chip b { color: var(--gold-soft); }
+.ok { color: #7fc98b; } .bad { color: #d98a8a; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html">Citadel <span class="dash">—</span> Raid Reports</a></h1>
+  <nav class="site">
+    <a href="index.html">Logs</a>
+    
+    <a href="attendance.html" class="">Attendance</a>
+    <a href="parses.html" class="active">Parses</a>
+    
+    <a href="progress.html" class="">Progression</a>
+    <a href="trends.html" class="">Trends</a>
+  </nav>
+  <div class="rule"></div>
+</header>
+
+<main>
+<h2>Best parses per boss</h2>
+<div class="panel" style="overflow-x:auto">
+<table class="data">
+  <tr>
+    <th>Player</th><th>Role</th>
+    <th class="mid" title="Hydross the Unstable">Hydross</th><th class="mid" title="The Lurker Below">Lurker</th><th class="mid" title="Leotheras the Blind">Leotheras</th><th class="mid" title="Fathom-Lord Karathress">Karathress</th><th class="mid" title="Morogrim Tidewalker">Morogrim</th><th class="mid" title="Lady Vashj">Vashj</th><th class="mid" title="Al&#39;ar">Al&#39;ar</th><th class="mid" title="Void Reaver">Void Reaver</th><th class="mid" title="High Astromancer Solarian">Solarian</th><th class="mid" title="Kael&#39;thas Sunstrider">Kael&#39;thas</th>
+    <th class="num" title="average of the per-boss bests (WCL Best Perf. Avg)">Best Ø</th>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/bruand.html">
+      <span class="name-badge" style="background: #d5a6bd">Bruand</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 91 (Holy, Jun 25)">91</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="The Lurker Below — 97 (Holy, May 15)">97</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Leotheras the Blind — 97 (Holy, Jul 23)">97</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Fathom-Lord Karathress — 96 (Holy, Jul 09)">96</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 85 (Holy, May 21)">85</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 93 (Holy, Jun 11)">93</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Al&#39;ar — 97 (Holy, May 28)">97</b></td>
+    
+    
+    <td class="mid"><b style="color: #e268a8"
+           title="Void Reaver — 99 (Holy, Jul 23)">99</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 93 (Holy, Jul 23)">93</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Kael&#39;thas Sunstrider — 98 (Holy, Jul 23)">98</b></td>
+    
+    <td class="num"><b style="color: #ff8000">95</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/toastersha.html">
+      <span class="name-badge" style="background: #6d9eeb">Toastersha</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 77 (Restoration, May 15)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="The Lurker Below — 97 (Restoration, May 21)">97</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 92 (Restoration, Jun 11)">92</b></td>
+    
+    
+    <td class="mid"><b style="color: #e268a8"
+           title="Fathom-Lord Karathress — 99 (Restoration, Jun 25)">99</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Morogrim Tidewalker — 98 (Restoration, Jun 25)">98</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 88 (Restoration, Jun 11)">88</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 91 (Restoration, Jul 27)">91</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Void Reaver — 97 (Restoration, Jun 25)">97</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="High Astromancer Solarian — 98 (Restoration, Jun 04)">98</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 90 (Restoration, Jul 27)">90</b></td>
+    
+    <td class="num"><b style="color: #a335ee">93</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/karrell.html">
+      <span class="name-badge" style="background: #b4a7d6">Karrell</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 84 (Destruction, May 21)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="The Lurker Below — 95 (Destruction, Jun 18)">95</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 94 (Destruction, Jun 18)">94</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 90 (Destruction, Jun 18)">90</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 91 (Destruction, Jun 04)">91</b></td>
+    
+    
+    <td class="mid"><b style="color: #e268a8"
+           title="Lady Vashj — 99 (Destruction, May 21)">99</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 86 (Destruction, Jul 23)">86</b></td>
+    
+    
+    <td class="mid"><b style="color: #e268a8"
+           title="Void Reaver — 99 (Destruction, Jun 11)">99</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 93 (Destruction, Jun 04)">93</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 92 (Destruction, Jun 04)">92</b></td>
+    
+    <td class="num"><b style="color: #a335ee">92</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/shcherbaque.html">
+      <span class="name-badge" style="background: #6d9eeb">Shcherbaque</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 83 (Enhancement, Jul 09)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 91 (Enhancement, Jun 18)">91</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Leotheras the Blind — 97 (Enhancement, Jun 18)">97</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 93 (Enhancement, Jul 02)">93</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Morogrim Tidewalker — 95 (Enhancement, Jun 11)">95</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 91 (Enhancement, Jun 04)">91</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 84 (Enhancement, May 28)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 91 (Enhancement, May 28)">91</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 82 (Enhancement, Jun 25)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #e268a8"
+           title="Kael&#39;thas Sunstrider — 99 (Enhancement, May 28)">99</b></td>
+    
+    <td class="num"><b style="color: #a335ee">91</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/gahenna.html">
+      <span class="name-badge" style="background: #efefef">Gahenna</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 83 (Shadow, Jul 16)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 84 (Shadow, Jul 02)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 87 (Holy, Jun 11)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 87 (Shadow, Jun 25)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 93 (Shadow, Jul 23)">93</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Lady Vashj — 95 (Holy, Jun 11)">95</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 92 (Shadow, Jul 23)">92</b></td>
+    
+    
+    <td class="mid"><b style="color: #e268a8"
+           title="Void Reaver — 99 (Shadow, Jun 04)">99</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 87 (Shadow, Jun 04)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 93 (Shadow, Jul 16)">93</b></td>
+    
+    <td class="num"><b style="color: #a335ee">90</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/jomezka.html">
+      <span class="name-badge" style="background: #6d9eeb">Jomezka</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 87 (Restoration, Jun 18)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="The Lurker Below — 96 (Restoration, Jul 23)">96</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Leotheras the Blind — 95 (Restoration, Jul 23)">95</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Fathom-Lord Karathress — 98 (Restoration, Jul 23)">98</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 89 (Restoration, Jun 18)">89</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 83 (Restoration, Jul 23)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Al&#39;ar — 95 (Restoration, Jul 20)">95</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Void Reaver — 98 (Restoration, Jul 23)">98</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="High Astromancer Solarian — 96 (Restoration, Jul 23)">96</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 64 (Restoration, Jul 20)">64</b></td>
+    
+    <td class="num"><b style="color: #a335ee">90</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/swellery.html">
+      <span class="name-badge" style="background: #6d9eeb">Swellery</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 82 (Elemental, May 28)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="The Lurker Below — 95 (Elemental, Jun 11)">95</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Leotheras the Blind — 95 (Elemental, Jun 25)">95</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 90 (Elemental, Jul 16)">90</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 92 (Elemental, Jun 04)">92</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 94 (Elemental, Jun 11)">94</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 85 (Elemental, Jul 16)">85</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 94 (Elemental, Jul 09)">94</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 82 (Elemental, Jul 16)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 78 (Elemental, Jul 09)">78</b></td>
+    
+    <td class="num"><b style="color: #a335ee">89</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/woodwind.html">
+      <span class="name-badge" style="background: #6d9eeb">Woodwind</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 92 (Restoration, Jun 08)">92</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 92 (Restoration, Jun 08)">92</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 90 (Restoration, Jul 20)">90</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 81 (Restoration, May 22)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Morogrim Tidewalker — 95 (Restoration, May 22)">95</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 87 (Restoration, Jun 29)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 81 (Restoration, Jun 01)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Void Reaver — 95 (Restoration, Jun 08)">95</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 86 (Restoration, Jun 08)">86</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Kael&#39;thas Sunstrider — 95 (Restoration, Jun 08)">95</b></td>
+    
+    <td class="num"><b style="color: #a335ee">89</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/nosaj.html">
+      <span class="name-badge" style="background: #f6b26b">Nosaj</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Hydross the Unstable — 97 (Restoration, Jun 08)">97</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 93 (Feral, Jul 02)">93</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 89 (Feral, Jun 18)">89</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 94 (Feral, Jul 09)">94</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 83 (Feral, Jul 09)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 94 (Feral, Jul 09)">94</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 73 (Restoration, Jun 15)">73</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 86 (Feral, Jul 02)">86</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 75 (Feral, Jun 18)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 87 (Feral, Jul 02)">87</b></td>
+    
+    <td class="num"><b style="color: #a335ee">87</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/madef.html">
+      <span class="name-badge" style="background: #e2d3c9">Madef</span></a></td>
+    <td class="dim">Tank</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 75 (Protection, Jul 02)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 79 (Protection, Jul 02)">79</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Leotheras the Blind — 97 (Protection, Jun 18)">97</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Fathom-Lord Karathress — 95 (Protection, Jul 09)">95</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 88 (Protection, Jun 11)">88</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 64 (Protection, May 15)">64</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 92 (Protection, Jun 18)">92</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Void Reaver — 97 (Protection, May 28)">97</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 93 (Protection, Jun 18)">93</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 89 (Protection, Jun 25)">89</b></td>
+    
+    <td class="num"><b style="color: #a335ee">87</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/toasterp.html">
+      <span class="name-badge" style="background: #d5a6bd">Toasterp</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 84 (Holy, Jun 08)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 80 (Holy, Jun 08)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 83 (Holy, Jun 15)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 90 (Holy, Jul 06)">90</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 94 (Holy, Jul 06)">94</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 89 (Holy, Jun 15)">89</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 78 (Holy, Jun 01)">78</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Void Reaver — 95 (Holy, Jun 08)">95</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 86 (Holy, Jul 20)">86</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 87 (Holy, Jun 08)">87</b></td>
+    
+    <td class="num"><b style="color: #a335ee">87</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/legga.html">
+      <span class="name-badge" style="background: #6d9eeb">Legga</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 81 (Elemental, Jun 15)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 80 (Elemental, Jun 15)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 85 (Elemental, Jun 15)">85</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 80 (Elemental, Jun 29)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 88 (Elemental, Jun 04)">88</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Lady Vashj — 97 (Elemental, Jul 20)">97</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 90 (Elemental, Jul 20)">90</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 81 (Elemental, Jun 04)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 86 (Elemental, Jun 15)">86</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 93 (Elemental, Jul 06)">93</b></td>
+    
+    <td class="num"><b style="color: #a335ee">86</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/bepcyc.html">
+      <span class="name-badge" style="background: #a4c2f4">Bepcyc</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 80 (Arcane, Jun 02)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 90 (Arcane, Jul 02)">90</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 91 (Arcane, Jun 18)">91</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 86 (Arcane, Jun 25)">86</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 84 (Arcane, Jun 11)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 82 (Arcane, Jul 02)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 82 (Arcane, Jun 25)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 84 (Arcane, Jun 11)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 77 (Arcane, Jul 09)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 88 (Arcane, Jul 02)">88</b></td>
+    
+    <td class="num"><b style="color: #a335ee">84</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/littlewhitey.html">
+      <span class="name-badge" style="background: #a4c2f4">Littlewhitey</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 76 (Arcane, Jun 18)">76</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 88 (Arcane, Jun 18)">88</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 91 (Arcane, Jun 18)">91</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 88 (Arcane, Jun 04)">88</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 92 (Arcane, Jun 18)">92</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 76 (Arcane, Jul 02)">76</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 82 (Arcane, Jun 11)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 88 (Arcane, Jun 11)">88</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 82 (Arcane, Jun 04)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 77 (Arcane, Jul 02)">77</b></td>
+    
+    <td class="num"><b style="color: #a335ee">84</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/nevronthyme.html">
+      <span class="name-badge" style="background: #b6d7a8">Nevronthyme</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 79 (Beast Mastery, Jul 02)">79</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 76 (Beast Mastery, Jun 04)">76</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 87 (Beast Mastery, May 28)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 85 (Beast Mastery, Jul 09)">85</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 84 (Beast Mastery, Jun 04)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 86 (Beast Mastery, May 22)">86</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 78 (Beast Mastery, May 28)">78</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 84 (Beast Mastery, Jun 04)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 80 (Beast Mastery, Jul 16)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 88 (Beast Mastery, Jul 16)">88</b></td>
+    
+    <td class="num"><b style="color: #a335ee">83</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/tripletap.html">
+      <span class="name-badge" style="background: #b4a7d6">Tripletap</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 79 (Destruction, Jul 23)">79</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 92 (Destruction, Jul 23)">92</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 81 (Destruction, Jul 16)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 88 (Destruction, Jul 16)">88</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 91 (Destruction, Jul 16)">91</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 93 (Destruction, Jul 16)">93</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 88 (Destruction, Jul 16)">88</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 58 (Destruction, Aug 03)">58</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 80 (Destruction, Jul 06)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 78 (Destruction, Jun 29)">78</b></td>
+    
+    <td class="num"><b style="color: #a335ee">83</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/klib.html">
+      <span class="name-badge" style="background: #b4a7d6">Klib</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 68 (Destruction, Aug 03)">68</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 82 (Destruction, Jul 27)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 75 (Destruction, Jul 27)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 86 (Destruction, Jul 06)">86</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 88 (Destruction, Aug 03)">88</b></td>
+    
+    
+    <td class="mid"><b style="color: #e268a8"
+           title="Lady Vashj — 99 (Destruction, Jul 27)">99</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 83 (Destruction, Jun 29)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 66 (Destruction, Aug 03)">66</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 78 (Destruction, Jul 27)">78</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 92 (Destruction, Aug 03)">92</b></td>
+    
+    <td class="num"><b style="color: #a335ee">82</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/loranoa.html">
+      <span class="name-badge" style="background: #a4c2f4">Loranoa</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 79 (Arcane, Jun 04)">79</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 81 (Arcane, Jun 18)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 88 (Arcane, Jun 04)">88</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 91 (Arcane, Jun 25)">91</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 89 (Arcane, Jun 04)">89</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 58 (Arcane, May 21)">58</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 83 (Arcane, Jun 04)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 87 (Arcane, Jun 04)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 78 (Arcane, Jun 04)">78</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 72 (Arcane, Jun 11)">72</b></td>
+    
+    <td class="num"><b style="color: #a335ee">81</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/thanerin.html">
+      <span class="name-badge" style="background: #d5a6bd">Thanerin</span></a></td>
+    <td class="dim">Tank</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 81 (Justicar, Jul 02)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="The Lurker Below — 95 (Justicar, Jun 04)">95</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 87 (Justicar, Jun 18)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 94 (Protection, Jul 23)">94</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 82 (Justicar, Jul 23)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 66 (Holy, May 21)">66</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 77 (Justicar, Jun 25)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 80 (Justicar, Jun 11)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 75 (Justicar, Jul 23)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 74 (Justicar, Jul 09)">74</b></td>
+    
+    <td class="num"><b style="color: #a335ee">81</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/snney.html">
+      <span class="name-badge" style="background: #efefef">Snney</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 75 (Holy, Jul 13)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 70 (Holy, Jul 16)">70</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 87 (Holy, Jun 04)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 87 (Holy, Jul 16)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 89 (Holy, Jul 27)">89</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 75 (Holy, Jul 27)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 66 (Holy, Jul 27)">66</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Void Reaver — 95 (Holy, May 28)">95</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 57 (Holy, Jul 06)">57</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 94 (Holy, Jul 27)">94</b></td>
+    
+    <td class="num"><b style="color: #a335ee">80</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/lunaqt.html">
+      <span class="name-badge" style="background: #f6b26b">Lunaqt</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 82 (Balance, Jun 15)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 83 (Balance, Jun 15)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 83 (Balance, Jun 02)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 61 (Balance, Jun 15)">61</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 73 (Balance, Jun 15)">73</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 91 (Balance, Jun 02)">91</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 82 (Balance, Jun 15)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 85 (Balance, Jun 08)">85</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 62 (Balance, Jun 15)">62</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 94 (Balance, Jun 08)">94</b></td>
+    
+    <td class="num"><b style="color: #a335ee">80</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/aethorien.html">
+      <span class="name-badge" style="background: #d5a6bd">Aethorien</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 83 (Retribution, Jul 16)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 87 (Retribution, Jul 02)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 88 (Retribution, Jun 18)">88</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 87 (Retribution, Jul 02)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 82 (Retribution, Jun 18)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 92 (Retribution, Jul 02)">92</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 68 (Retribution, Jun 18)">68</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 86 (Retribution, Jun 18)">86</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 53 (Retribution, Jul 16)">53</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 76 (Retribution, Jul 09)">76</b></td>
+    
+    <td class="num"><b style="color: #a335ee">80</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/badabuille.html">
+      <span class="name-badge" style="background: #e2d3c9">Badabuille</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 74 (Fury, May 21)">74</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 90 (Fury, May 28)">90</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 82 (Fury, May 21)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 76 (Fury, Jul 09)">76</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 79 (Fury, Jul 09)">79</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 60 (Fury, Jul 02)">60</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 86 (Fury, Jun 04)">86</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 81 (Fury, Aug 03)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 80 (Fury, Jun 29)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 80 (Fury, Jun 11)">80</b></td>
+    
+    <td class="num"><b style="color: #a335ee">79</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/lifebloomz.html">
+      <span class="name-badge" style="background: #f6b26b">Lifebloomz</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 72 (Restoration, Jun 04)">72</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="The Lurker Below — 95 (Restoration, May 16)">95</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 87 (Restoration, May 22)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 65 (Restoration, Jun 04)">65</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 92 (Restoration, May 22)">92</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 40 (Restoration, May 22)">40</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 91 (Restoration, Jun 01)">91</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Void Reaver — 97 (Restoration, May 26)">97</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 79 (Restoration, Jun 01)">79</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 75 (Restoration, Jun 01)">75</b></td>
+    
+    <td class="num"><b style="color: #a335ee">79</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/drazhu.html">
+      <span class="name-badge" style="background: #a4c2f4">Drazhu</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 90 (Arcane, May 22)">90</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 79 (Arcane, Jun 15)">79</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 85 (Arcane, May 22)">85</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 70 (Arcane, May 22)">70</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 74 (Arcane, Jun 08)">74</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 92 (Arcane, Jun 08)">92</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 82 (Arcane, Jun 08)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 75 (Arcane, Jun 08)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 77 (Arcane, Jun 15)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 69 (Arcane, Jun 15)">69</b></td>
+    
+    <td class="num"><b style="color: #a335ee">79</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/lorpdickles.html">
+      <span class="name-badge" style="background: #b6d7a8">Lorpdickles</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 69 (Beast Mastery, May 26)">69</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 79 (Beast Mastery, Jun 01)">79</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 79 (Beast Mastery, May 26)">79</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 88 (Beast Mastery, Jun 15)">88</b></td>
+    
+    <td class="num"><b style="color: #a335ee">79</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/markise.html">
+      <span class="name-badge" style="background: #6d9eeb">Markise</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 74 (Enhancement, Jul 02)">74</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 88 (Enhancement, May 28)">88</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 87 (Enhancement, May 28)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 78 (Enhancement, Jul 02)">78</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 84 (Enhancement, May 28)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 87 (Enhancement, Jun 08)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 64 (Enhancement, May 28)">64</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 77 (Enhancement, May 28)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 69 (Enhancement, Jul 02)">69</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 72 (Enhancement, Jun 11)">72</b></td>
+    
+    <td class="num"><b style="color: #a335ee">78</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/castratos.html">
+      <span class="name-badge" style="background: #b4a7d6">Castratos</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 84 (Destruction, May 15)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 68 (Destruction, May 28)">68</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Leotheras the Blind — 27 (Destruction, May 28)">27</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 91 (Destruction, May 28)">91</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 83 (Destruction, May 15)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 84 (Destruction, Jul 16)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 81 (Destruction, May 28)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 93 (Destruction, Jun 11)">93</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 86 (Destruction, May 28)">86</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 80 (Destruction, Jul 27)">80</b></td>
+    
+    <td class="num"><b style="color: #a335ee">78</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/jonette.html">
+      <span class="name-badge" style="background: #d5a6bd">Jonette</span></a></td>
+    <td class="dim">Tank</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 83 (Justicar, May 22)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 75 (Justicar, Jun 29)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 75 (Protection, Jul 20)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 84 (Protection, Jul 27)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 70 (Justicar, Jun 08)">70</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 71 (Holy, Jul 06)">71</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 89 (Protection, May 26)">89</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 85 (Protection, Jun 08)">85</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 73 (Justicar, Jun 08)">73</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 71 (Justicar, Jun 08)">71</b></td>
+    
+    <td class="num"><b style="color: #a335ee">78</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/cauror.html">
+      <span class="name-badge" style="background: #fff2cc">Cauror</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 80 (Combat, May 16)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 77 (Combat, May 16)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 92 (Combat, May 16)">92</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 87 (Combat, May 16)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 84 (Combat, May 16)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 90 (Combat, May 21)">90</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 78 (Combat, May 26)">78</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 53 (Combat, May 26)">53</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 64 (Combat, May 26)">64</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #a335ee">78</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/moungrym.html">
+      <span class="name-badge" style="background: #e2d3c9">Moungrym</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 64 (Arms, Jul 16)">64</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 87 (Arms, Jun 18)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 87 (Arms, Jun 18)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 77 (Arms, Jul 16)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 80 (Arms, Jul 23)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 84 (Arms, Jun 02)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 71 (Arms, Jul 16)">71</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 82 (Arms, Jul 16)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 62 (Arms, Jul 02)">62</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 72 (Arms, Jun 18)">72</b></td>
+    
+    <td class="num"><b style="color: #a335ee">77</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/prevaraa.html">
+      <span class="name-badge" style="background: #b6d7a8">Prevaraa</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 74 (Beast Mastery, Jul 02)">74</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 85 (Survival, Jul 16)">85</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 74 (Beast Mastery, Jun 25)">74</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 82 (Beast Mastery, Jul 09)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 79 (Survival, Aug 03)">79</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 64 (Survival, Jul 16)">64</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 73 (Survival, Aug 03)">73</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 83 (Survival, Aug 03)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 72 (Survival, Aug 03)">72</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 85 (Survival, Jun 08)">85</b></td>
+    
+    <td class="num"><b style="color: #a335ee">77</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/jonetter.html">
+      <span class="name-badge" style="background: #b4a7d6">Jonetter</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 51 (Affliction, Jun 04)">51</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 67 (Affliction, Jun 25)">67</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 77 (Affliction, Jun 18)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 82 (Affliction, Jun 18)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 75 (Affliction, Jun 25)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 54 (Affliction, Jul 23)">54</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 89 (Affliction, Jun 25)">89</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Void Reaver — 96 (Affliction, Jun 11)">96</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 78 (Affliction, Jun 04)">78</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 90 (Affliction, Jul 16)">90</b></td>
+    
+    <td class="num"><b style="color: #a335ee">76</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/naincapacit.html">
+      <span class="name-badge" style="background: #b6d7a8">Naincapacité</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 70 (Beast Mastery, Jul 16)">70</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 78 (Beast Mastery, Jun 18)">78</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 84 (Beast Mastery, Jun 18)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 77 (Beast Mastery, Jun 18)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 74 (Beast Mastery, May 16)">74</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 69 (Beast Mastery, Jun 18)">69</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 77 (Beast Mastery, Jun 18)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 76 (Beast Mastery, Jun 18)">76</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 73 (Beast Mastery, Jun 15)">73</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 78 (Beast Mastery, Jul 16)">78</b></td>
+    
+    <td class="num"><b style="color: #a335ee">76</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/vykola.html">
+      <span class="name-badge" style="background: #6d9eeb">Vykola</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 70 (Elemental, Jun 29)">70</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 68 (Elemental, Aug 03)">68</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 79 (Elemental, Jul 20)">79</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 80 (Restoration, Jul 06)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 83 (Restoration, May 16)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 67 (Restoration, Jul 06)">67</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 81 (Elemental, Jun 08)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 90 (Elemental, Jun 08)">90</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 66 (Restoration, May 26)">66</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 76 (Elemental, Jul 20)">76</b></td>
+    
+    <td class="num"><b style="color: #a335ee">76</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/hanor.html">
+      <span class="name-badge" style="background: #fff2cc">Hanor</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 81 (Combat, Aug 03)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 70 (Combat, Aug 03)">70</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 76 (Combat, Aug 03)">76</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 75 (Combat, Aug 03)">75</b></td>
+    
+    <td class="num"><b style="color: #a335ee">76</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/paradigmh.html">
+      <span class="name-badge" style="background: #b6d7a8">Paradigmh</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 69 (Beast Mastery, Jun 18)">69</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 69 (Beast Mastery, Jun 08)">69</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 84 (Beast Mastery, May 16)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 71 (Beast Mastery, Jul 16)">71</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 78 (Survival, Jun 15)">78</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 79 (Beast Mastery, Jun 02)">79</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 75 (Beast Mastery, Jun 18)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 78 (Beast Mastery, Jun 18)">78</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 69 (Beast Mastery, Jul 13)">69</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 77 (Beast Mastery, Jul 16)">77</b></td>
+    
+    <td class="num"><b style="color: #a335ee">75</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/alexzed.html">
+      <span class="name-badge" style="background: #d5a6bd">Alexzed</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 56 (Retribution, Jul 20)">56</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 82 (Retribution, Jun 11)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 92 (Retribution, May 16)">92</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 52 (Retribution, May 21)">52</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 88 (Retribution, Jun 04)">88</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 67 (Retribution, Jun 02)">67</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 65 (Retribution, Jun 04)">65</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 94 (Retribution, Jun 11)">94</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 67 (Retribution, Jun 04)">67</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 90 (Retribution, Jun 11)">90</b></td>
+    
+    <td class="num"><b style="color: #a335ee">75</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/msx.html">
+      <span class="name-badge" style="background: #b6d7a8">Msx</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 65 (Beast Mastery, Jul 20)">65</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 72 (Beast Mastery, Jul 06)">72</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 57 (Beast Mastery, Jul 13)">57</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 78 (Beast Mastery, Jun 29)">78</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 73 (Beast Mastery, Jun 29)">73</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 79 (Beast Mastery, Jul 13)">79</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 83 (Beast Mastery, Jun 08)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 65 (Beast Mastery, Jul 20)">65</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 75 (Beast Mastery, Jun 29)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Kael&#39;thas Sunstrider — 95 (Beast Mastery, Jul 13)">95</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">74</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/cthulha.html">
+      <span class="name-badge" style="background: #a4c2f4">Cthulha</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 77 (Arcane, Jul 16)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 66 (Arcane, Jun 29)">66</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 68 (Arcane, Jul 06)">68</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 85 (Arcane, Jul 06)">85</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 74 (Arcane, Jul 06)">74</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 64 (Arcane, Jul 06)">64</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 86 (Arcane, Jul 16)">86</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 74 (Arcane, Jul 16)">74</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 77 (Arcane, Jun 29)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 71 (Arcane, Jul 16)">71</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">74</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/starboyjude.html">
+      <span class="name-badge" style="background: #f6b26b">Starboyjude</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 70 (Balance, Jul 13)">70</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 59 (Balance, Jul 13)">59</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 82 (Balance, Jul 20)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 73 (Balance, Jun 18)">73</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 68 (Balance, Jul 20)">68</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 84 (Balance, Jul 13)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 70 (Balance, Jul 20)">70</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 51 (Balance, Jun 18)">51</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 85 (Balance, Jul 06)">85</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 94 (Balance, Jul 20)">94</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">74</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/samyigouprot.html">
+      <span class="name-badge" style="background: #d5a6bd">Samyigouprot</span></a></td>
+    <td class="dim">Tank</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 84 (Justicar, May 15)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 87 (Justicar, May 15)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 64 (Justicar, May 15)">64</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 66 (Justicar, May 15)">66</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 86 (Justicar, May 15)">86</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 49 (Retribution, May 15)">49</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #3f8fd8">73</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/richieroo.html">
+      <span class="name-badge" style="background: #fff2cc">Richieroo</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 81 (Combat, Jul 16)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 80 (Combat, Jul 23)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 65 (Combat, Jul 02)">65</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 83 (Combat, Jul 16)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 80 (Combat, Jul 16)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 52 (Combat, Jul 16)">52</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 83 (Combat, Jul 16)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 75 (Combat, Jul 16)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 80 (Combat, Jul 16)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 50 (Combat, Jul 23)">50</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">73</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/myanthes.html">
+      <span class="name-badge" style="background: #f6b26b">Myanthes</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 65 (Restoration, Jul 20)">65</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 52 (Restoration, Jul 27)">52</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 71 (Restoration, Aug 03)">71</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 76 (Restoration, Aug 03)">76</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 69 (Restoration, Aug 03)">69</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 91 (Restoration, Aug 03)">91</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 68 (Restoration, Aug 03)">68</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 85 (Restoration, Jul 27)">85</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 71 (Restoration, Aug 03)">71</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 85 (Restoration, Jul 27)">85</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">73</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/silverpump.html">
+      <span class="name-badge" style="background: #b6d7a8">Silverpump</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 76 (Beast Mastery, Aug 03)">76</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="The Lurker Below — 5 (Beast Mastery, Aug 03)">5</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 80 (Beast Mastery, Aug 03)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 56 (Beast Mastery, Aug 03)">56</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 85 (Beast Mastery, Aug 03)">85</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 87 (Beast Mastery, Aug 03)">87</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 79 (Beast Mastery, Aug 03)">79</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 82 (Beast Mastery, Aug 03)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 84 (Beast Mastery, Aug 03)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 83 (Beast Mastery, Aug 03)">83</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">72</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/auroraeriz.html">
+      <span class="name-badge" style="background: #d5a6bd">Auroraeriz</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 43 (Retribution, May 15)">43</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 77 (Retribution, May 28)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 77 (Retribution, May 28)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 55 (Retribution, May 15)">55</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 70 (Retribution, Jun 08)">70</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 86 (Retribution, May 15)">86</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 51 (Retribution, Jun 08)">51</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 83 (Retribution, May 28)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 71 (Retribution, May 28)">71</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Kael&#39;thas Sunstrider — 96 (Retribution, May 28)">96</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">71</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/honorik.html">
+      <span class="name-badge" style="background: #e2d3c9">Honorik</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 74 (Protection, May 16)">74</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 70 (Protection, May 22)">70</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 62 (Gladiator, May 16)">62</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 86 (Protection, Jun 29)">86</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 81 (Protection, Jun 02)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 73 (Gladiator, Jun 02)">73</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 74 (Protection, Jun 08)">74</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 73 (Gladiator, Jun 08)">73</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 67 (Protection, Jun 08)">67</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kael&#39;thas Sunstrider — 39 (Protection, Jul 13)">39</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">70</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/hextaco.html">
+      <span class="name-badge" style="background: #6d9eeb">Hextaco</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 75 (Restoration, Jun 25)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 67 (Restoration, Jul 09)">67</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 78 (Restoration, May 22)">78</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 72 (Restoration, May 22)">72</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 91 (Restoration, May 22)">91</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 47 (Restoration, May 22)">47</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Al&#39;ar — 46 (Restoration, Jun 01)">46</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 91 (Restoration, Jul 23)">91</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 80 (Restoration, May 26)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 55 (Restoration, Jun 08)">55</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">70</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/tobbob.html">
+      <span class="name-badge" style="background: #e2d3c9">Tobbob</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 62 (Fury, Jul 23)">62</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 76 (Fury, Jul 23)">76</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 75 (Fury, Jul 23)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 80 (Fury, Jul 23)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 70 (Fury, Jul 23)">70</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 86 (Protection, Jul 23)">86</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Void Reaver — 14 (Fury, Jul 23)">14</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 62 (Fury, Jul 23)">62</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 90 (Fury, Jul 23)">90</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">68</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/tr-gger.html">
+      <span class="name-badge" style="background: #b6d7a8">Trígger</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 74 (Survival, Jul 02)">74</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 82 (Survival, Jul 23)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Leotheras the Blind — 43 (Survival, May 21)">43</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 69 (Survival, Jun 25)">69</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 83 (Survival, Jul 23)">83</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 76 (Survival, May 21)">76</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 76 (Survival, Jul 23)">76</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Void Reaver — 44 (Survival, Jul 23)">44</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 77 (Survival, Jun 04)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kael&#39;thas Sunstrider — 49 (Survival, Jun 25)">49</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">67</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/argio.html">
+      <span class="name-badge" style="background: #b4a7d6">Argio</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 68 (Destruction, Jun 04)">68</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 63 (Destruction, May 15)">63</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 77 (Destruction, May 15)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 84 (Destruction, May 28)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 62 (Destruction, May 28)">62</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 77 (Affliction, May 28)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 54 (Destruction, May 28)">54</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 93 (Destruction, Jun 04)">93</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 88 (Destruction, Jun 04)">88</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Kael&#39;thas Sunstrider — 4 (Destruction, May 28)">4</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">67</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/gand-rf.html">
+      <span class="name-badge" style="background: #a4c2f4">Gandörf</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 62 (Arcane, May 22)">62</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 66 (Arcane, Jul 06)">66</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 64 (Arcane, May 22)">64</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 72 (Arcane, Jul 06)">72</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 66 (Arcane, Jul 13)">66</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 62 (Arcane, Jul 06)">62</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 63 (Arcane, Jun 01)">63</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 70 (Arcane, Jun 29)">70</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 65 (Arcane, Jul 20)">65</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 77 (Arcane, Jul 06)">77</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">67</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/pious.html">
+      <span class="name-badge" style="background: #d5a6bd">Pious</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 73 (Holy, Jun 08)">73</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 72 (Holy, Jul 23)">72</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 73 (Holy, May 21)">73</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 76 (Holy, Jul 23)">76</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 43 (Holy, May 28)">43</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 30 (Holy, Jul 09)">30</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 81 (Holy, May 28)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 79 (Holy, May 28)">79</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="High Astromancer Solarian — 82 (Holy, Jul 06)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 56 (Holy, Jul 06)">56</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">66</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/tarmour.html">
+      <span class="name-badge" style="background: #e2d3c9">Tarmour</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 69 (Fury, May 22)">69</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 62 (Fury, Jun 08)">62</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 77 (Fury, May 22)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 63 (Fury, Jul 13)">63</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 76 (Fury, May 15)">76</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 76 (Fury, May 22)">76</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 68 (Fury, Jul 06)">68</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 62 (Fury, Jul 27)">62</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 64 (Fury, Jul 20)">64</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kael&#39;thas Sunstrider — 32 (Fury, Jul 27)">32</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">65</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/anik.html">
+      <span class="name-badge" style="background: #efefef">Anik</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 60 (Shadow, May 22)">60</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 80 (Shadow, May 22)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 56 (Shadow, May 22)">56</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 60 (Shadow, May 22)">60</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 55 (Shadow, May 22)">55</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 77 (Shadow, May 22)">77</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #3f8fd8">65</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/saniqt.html">
+      <span class="name-badge" style="background: #e2d3c9">Saniqt</span></a></td>
+    <td class="dim">Tank</td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 83 (Protection, Jun 29)">83</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 74 (Gladiator, Jun 29)">74</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kael&#39;thas Sunstrider — 38 (Protection, Jun 29)">38</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">65</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/atenn.html">
+      <span class="name-badge" style="background: #a4c2f4">Atenn</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 77 (Fire, May 21)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="The Lurker Below — 36 (Fire, May 21)">36</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Leotheras the Blind — 95 (Frost, May 16)">95</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 81 (Fire, May 21)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 81 (Fire, May 21)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Lady Vashj — 16 (Fire, May 21)">16</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #3f8fd8">64</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/badabonks.html">
+      <span class="name-badge" style="background: #6d9eeb">Badabonks</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 79 (Enhancement, May 16)">79</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 57 (Enhancement, Jul 16)">57</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 81 (Enhancement, May 16)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 72 (Enhancement, Jul 16)">72</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 57 (Enhancement, May 22)">57</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 40 (Enhancement, Jun 02)">40</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 77 (Enhancement, Jun 08)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 66 (Enhancement, Jun 08)">66</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 49 (Enhancement, Jul 23)">49</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 65 (Enhancement, Jul 16)">65</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">64</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/madepe.html">
+      <span class="name-badge" style="background: #e2d3c9">Madepe</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 62 (Fury, Jun 04)">62</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 65 (Fury, Jun 04)">65</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 84 (Fury, May 16)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 60 (Fury, May 21)">60</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 72 (Fury, May 21)">72</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 57 (Fury, May 21)">57</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 67 (Fury, Jun 04)">67</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 74 (Fury, Jun 04)">74</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 48 (Fury, Jun 04)">48</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kael&#39;thas Sunstrider — 46 (Fury, Jun 04)">46</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">64</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/irontoe.html">
+      <span class="name-badge" style="background: #d5a6bd">Irontoe</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 50 (Holy, May 22)">50</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 50 (Holy, May 22)">50</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 86 (Holy, May 22)">86</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 78 (Holy, May 22)">78</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 57 (Holy, May 22)">57</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 63 (Holy, May 22)">63</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #3f8fd8">64</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/badabuum.html">
+      <span class="name-badge" style="background: #a4c2f4">Badabuum</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 69 (Arcane, Jul 27)">69</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 70 (Arcane, Jul 27)">70</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 67 (Arcane, Jul 27)">67</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 63 (Arcane, Jul 27)">63</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 73 (Arcane, Jul 27)">73</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 57 (Arcane, Jul 27)">57</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 71 (Arcane, Jul 27)">71</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 61 (Arcane, Jul 27)">61</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 72 (Arcane, Jul 27)">72</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kael&#39;thas Sunstrider — 39 (Arcane, Jul 27)">39</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">64</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/leaina.html">
+      <span class="name-badge" style="background: #f6b26b">Leaina</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 61 (Warden, May 22)">61</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 70 (Feral, May 22)">70</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 61 (Feral, May 22)">61</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 82 (Feral, May 22)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 62 (Feral, May 22)">62</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 31 (Feral, May 22)">31</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #3f8fd8">61</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/tobber.html">
+      <span class="name-badge" style="background: #f6b26b">Tobber</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 40 (Restoration, Jun 29)">40</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="The Lurker Below — 47 (Restoration, Jun 29)">47</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 70 (Restoration, Jun 29)">70</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 48 (Restoration, Jun 29)">48</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 77 (Restoration, Jun 29)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 77 (Restoration, Jun 29)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Al&#39;ar — 42 (Restoration, Jun 29)">42</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 81 (Restoration, Jun 29)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 73 (Restoration, Jun 29)">73</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 51 (Restoration, Jun 29)">51</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">61</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/tacergal.html">
+      <span class="name-badge" style="background: #6d9eeb">Tacergal</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 52 (Enhancement, May 16)">52</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="The Lurker Below — 38 (Enhancement, May 16)">38</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 80 (Enhancement, May 16)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 52 (Enhancement, May 16)">52</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 70 (Enhancement, May 16)">70</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #3f8fd8">58</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/smiethy.html">
+      <span class="name-badge" style="background: #fff2cc">Smiethy</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 53 (Combat, Jun 15)">53</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 61 (Combat, Jun 15)">61</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 54 (Combat, Jun 15)">54</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 60 (Combat, Jun 02)">60</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 64 (Combat, Jun 02)">64</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 39 (Combat, Jun 02)">39</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 72 (Combat, Jun 08)">72</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 72 (Combat, Jun 08)">72</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 54 (Combat, Jun 08)">54</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 50 (Combat, Jun 15)">50</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">58</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/menop-uschen.html">
+      <span class="name-badge" style="background: #b4a7d6">Menopäuschen</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 54 (Destruction, Jun 29)">54</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 67 (Destruction, Jun 15)">67</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 60 (Destruction, Jun 15)">60</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 57 (Destruction, Jun 29)">57</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 64 (Destruction, Jun 15)">64</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 68 (Destruction, Jun 29)">68</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 59 (Destruction, Jun 29)">59</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 59 (Destruction, Jun 29)">59</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="High Astromancer Solarian — 22 (Destruction, Jun 29)">22</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kael&#39;thas Sunstrider — 75 (Destruction, Jun 29)">75</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">58</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/malfori.html">
+      <span class="name-badge" style="background: #d5a6bd">Malfori</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 40 (Holy, Jul 13)">40</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="The Lurker Below — 26 (Holy, Jul 13)">26</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 80 (Holy, Jun 11)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 84 (Holy, Jul 06)">84</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Morogrim Tidewalker — 89 (Holy, Jul 06)">89</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 34 (Holy, Jun 29)">34</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Al&#39;ar — 41 (Holy, May 26)">41</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 76 (Holy, May 26)">76</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 47 (Holy, Jul 13)">47</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 53 (Holy, Jul 06)">53</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">57</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/melaena.html">
+      <span class="name-badge" style="background: #b6d7a8">Melaena</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Hydross the Unstable — 18 (Beast Mastery, Jun 29)">18</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 80 (Beast Mastery, Jun 29)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 64 (Beast Mastery, Jun 29)">64</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 78 (Beast Mastery, Jun 29)">78</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 49 (Beast Mastery, Jun 29)">49</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 55 (Beast Mastery, Jun 29)">55</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #3f8fd8">57</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/bitis.html">
+      <span class="name-badge" style="background: #b4a7d6">Bitis</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 56 (Destruction, Jun 02)">56</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="The Lurker Below — 77 (Affliction, Jun 02)">77</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Leotheras the Blind — 24 (Affliction, Jun 02)">24</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 54 (Affliction, Jun 02)">54</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 45 (Affliction, Jun 02)">45</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 77 (Affliction, Jun 02)">77</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #3f8fd8">56</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/roarwind.html">
+      <span class="name-badge" style="background: #f6b26b">Roarwind</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 59 (Guardian, May 21)">59</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 67 (Feral, Jun 18)">67</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 71 (Warden, Jul 09)">71</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 67 (Feral, May 21)">67</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 33 (Feral, Jun 11)">33</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 49 (Feral, May 21)">49</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 54 (Guardian, Jun 25)">54</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Void Reaver — 42 (Feral, Jun 11)">42</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 52 (Feral, Jun 25)">52</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 56 (Feral, Jun 18)">56</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">55</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/dandza.html">
+      <span class="name-badge" style="background: #d5a6bd">Dandza</span></a></td>
+    <td class="dim">Tank</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 75 (Justicar, May 16)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 53 (Justicar, May 16)">53</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Leotheras the Blind — 47 (Protection, May 16)">47</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 43 (Justicar, May 16)">43</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 58 (Justicar, May 16)">58</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #3f8fd8">55</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/sispimat.html">
+      <span class="name-badge" style="background: #efefef">Sispimat</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Hydross the Unstable — 75 (Shadow, May 15)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="The Lurker Below — 36 (Shadow, May 15)">36</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 81 (Shadow, May 15)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 37 (Shadow, May 15)">37</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 37 (Shadow, May 15)">37</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 55 (Shadow, May 15)">55</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #3f8fd8">54</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/loronoa.html">
+      <span class="name-badge" style="background: #e2d3c9">Loronoa</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 51 (Arms, Aug 03)">51</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 56 (Arms, Aug 03)">56</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 66 (Arms, Aug 03)">66</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 51 (Arms, Jul 13)">51</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 74 (Arms, Jul 20)">74</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 35 (Arms, Jun 08)">35</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 55 (Arms, Jun 08)">55</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 69 (Arms, Aug 03)">69</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 59 (Arms, Jun 08)">59</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kael&#39;thas Sunstrider — 27 (Arms, Aug 03)">27</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">54</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/moorit.html">
+      <span class="name-badge" style="background: #fff2cc">Moorit</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 61 (Combat, May 22)">61</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 66 (Combat, Jun 11)">66</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Leotheras the Blind — 46 (Combat, Jun 11)">46</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 54 (Combat, May 22)">54</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 73 (Combat, Jun 11)">73</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 40 (Combat, May 22)">40</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Al&#39;ar — 49 (Combat, Jun 11)">49</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 63 (Combat, Jun 11)">63</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 57 (Combat, Jun 11)">57</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kael&#39;thas Sunstrider — 25 (Combat, Jul 16)">25</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">53</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/chokladbulle.html">
+      <span class="name-badge" style="background: #6d9eeb">Chokladbulle</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 65 (Elemental, Jul 13)">65</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="The Lurker Below — 46 (Elemental, Jul 13)">46</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 76 (Elemental, Jul 13)">76</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 82 (Elemental, Jul 13)">82</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 54 (Elemental, Jul 13)">54</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 38 (Elemental, Jul 13)">38</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Al&#39;ar — 24 (Elemental, Jul 13)">24</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 60 (Elemental, Jul 13)">60</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="High Astromancer Solarian — 23 (Elemental, Jul 13)">23</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 63 (Elemental, Jul 13)">63</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">53</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/jeanlouisdav.html">
+      <span class="name-badge" style="background: #6d9eeb">Jeanlouisdav</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 52 (Restoration, Jul 20)">52</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="The Lurker Below — 18 (Restoration, Aug 03)">18</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Leotheras the Blind — 48 (Restoration, Aug 03)">48</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 80 (Restoration, Jul 20)">80</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 68 (Restoration, Jul 20)">68</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 29 (Restoration, Jul 20)">29</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 66 (Restoration, Aug 03)">66</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 52 (Restoration, Jul 27)">52</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 41 (Restoration, Aug 03)">41</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 54 (Restoration, Jul 20)">54</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">51</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/bearfo-t.html">
+      <span class="name-badge" style="background: #f6b26b">Bearfoöt</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 41 (Feral, Aug 03)">41</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="The Lurker Below — 42 (Feral, Jul 06)">42</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 51 (Warden, Jul 06)">51</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 37 (Warden, Jun 08)">37</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 38 (Feral, May 16)">38</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 73 (Warden, Jun 08)">73</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 81 (Guardian, Jun 08)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Void Reaver — 39 (Guardian, Aug 03)">39</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 37 (Warden, Jul 06)">37</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 56 (Feral, Jul 06)">56</b></td>
+    
+    <td class="num"><b style="color: #3f8fd8">50</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/kianne.html">
+      <span class="name-badge" style="background: #f6b26b">Kianne</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 55 (Balance, Jul 23)">55</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 63 (Balance, Jul 16)">63</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 51 (Balance, Jul 02)">51</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 58 (Balance, Jun 25)">58</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 66 (Balance, Jul 02)">66</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Lady Vashj — 19 (Balance, Jul 09)">19</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Al&#39;ar — 49 (Balance, Jul 23)">49</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Void Reaver — 44 (Balance, Jul 09)">44</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 43 (Feral, Jul 16)">43</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kael&#39;thas Sunstrider — 46 (Feral, Jul 16)">46</b></td>
+    
+    <td class="num"><b style="color: #1eff00">49</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/stonexqt.html">
+      <span class="name-badge" style="background: #fff2cc">Stonexqt</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 63 (Combat, Jun 29)">63</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="The Lurker Below — 6 (Combat, Jul 06)">6</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Leotheras the Blind — 48 (Combat, Jul 06)">48</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 69 (Combat, Jun 29)">69</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 52 (Combat, Jun 29)">52</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Lady Vashj — 90 (Combat, Jul 06)">90</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 57 (Combat, Jul 06)">57</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Void Reaver — 49 (Combat, Jul 06)">49</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 49 (Combat, Jul 06)">49</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Kael&#39;thas Sunstrider — 4 (Combat, Jul 06)">4</b></td>
+    
+    <td class="num"><b style="color: #1eff00">49</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/ellektra.html">
+      <span class="name-badge" style="background: #6d9eeb">Ellektra</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Al&#39;ar — 43 (Enhancement, May 26)">43</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 58 (Enhancement, May 26)">58</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 42 (Enhancement, May 26)">42</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #1eff00">48</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/prevaara.html">
+      <span class="name-badge" style="background: #e2d3c9">Prevaara</span></a></td>
+    <td class="dim">Tank</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 38 (Protection, Jul 27)">38</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 53 (Gladiator, Jul 27)">53</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 52 (Protection, Jul 27)">52</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Fathom-Lord Karathress — 78 (Gladiator, Jul 27)">78</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 40 (Protection, Jul 27)">40</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 65 (Gladiator, Jul 27)">65</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 58 (Protection, Jul 27)">58</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Void Reaver — 42 (Gladiator, Jul 27)">42</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 39 (Gladiator, Jul 27)">39</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Kael&#39;thas Sunstrider — 6 (Fury, Jul 13)">6</b></td>
+    
+    <td class="num"><b style="color: #1eff00">47</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/silvertejp.html">
+      <span class="name-badge" style="background: #f6b26b">Silvertejp</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 52 (Feral, Jul 13)">52</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="The Lurker Below — 46 (Feral, Jul 13)">46</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Leotheras the Blind — 44 (Feral, Jul 13)">44</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 58 (Feral, Jul 13)">58</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 40 (Feral, Jul 13)">40</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 29 (Feral, Jul 13)">29</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Al&#39;ar — 48 (Feral, Jul 13)">48</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 58 (Feral, Jul 13)">58</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 39 (Feral, Jun 29)">39</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kael&#39;thas Sunstrider — 46 (Feral, Jul 13)">46</b></td>
+    
+    <td class="num"><b style="color: #1eff00">46</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/baldameld.html">
+      <span class="name-badge" style="background: #b6d7a8">Baldameld</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 46 (Beast Mastery, May 22)">46</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 51 (Beast Mastery, May 22)">51</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Leotheras the Blind — 5 (Beast Mastery, May 22)">5</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 56 (Beast Mastery, May 22)">56</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 73 (Beast Mastery, May 22)">73</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 37 (Beast Mastery, May 22)">37</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #1eff00">45</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/cadavru.html">
+      <span class="name-badge" style="background: #efefef">Cadavru</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Hydross the Unstable — 21 (Holy, Jun 29)">21</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="The Lurker Below — 35 (Holy, Jun 29)">35</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 55 (Holy, Jun 29)">55</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 48 (Holy, Jun 29)">48</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 32 (Holy, Jun 29)">32</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Lady Vashj — 52 (Holy, Jun 29)">52</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Al&#39;ar — 81 (Holy, Jun 29)">81</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Void Reaver — 35 (Holy, Jun 29)">35</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 47 (Holy, Jun 29)">47</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kael&#39;thas Sunstrider — 48 (Holy, Jun 29)">48</b></td>
+    
+    <td class="num"><b style="color: #1eff00">45</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/lekiyo.html">
+      <span class="name-badge" style="background: #6d9eeb">Lekiyo</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 46 (Enhancement, Jul 06)">46</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="The Lurker Below — 41 (Enhancement, Jul 06)">41</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Leotheras the Blind — 43 (Enhancement, Jun 29)">43</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 40 (Enhancement, Jun 29)">40</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 57 (Enhancement, Jul 06)">57</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 47 (Enhancement, Jul 06)">47</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Al&#39;ar — 45 (Enhancement, Jul 06)">45</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Void Reaver — 27 (Enhancement, Jun 29)">27</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 44 (Enhancement, Jun 29)">44</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 64 (Enhancement, Jun 29)">64</b></td>
+    
+    <td class="num"><b style="color: #1eff00">45</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/farmour.html">
+      <span class="name-badge" style="background: #f6b26b">Farmour</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 55 (Restoration, Jul 23)">55</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 71 (Restoration, Jul 23)">71</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Leotheras the Blind — 75 (Restoration, Jul 23)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 64 (Restoration, Jul 23)">64</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Morogrim Tidewalker — 24 (Restoration, Jul 23)">24</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Lady Vashj — 7 (Restoration, Jul 23)">7</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Al&#39;ar — 38 (Restoration, Jul 23)">38</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Void Reaver — 32 (Restoration, Jul 23)">32</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 45 (Restoration, Jul 23)">45</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kael&#39;thas Sunstrider — 39 (Restoration, Jul 23)">39</b></td>
+    
+    <td class="num"><b style="color: #1eff00">45</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/ennobling.html">
+      <span class="name-badge" style="background: #b4a7d6">Ennobling</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 37 (Destruction, May 22)">37</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="The Lurker Below — 43 (Destruction, May 16)">43</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 63 (Destruction, May 16)">63</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 55 (Destruction, May 22)">55</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 55 (Destruction, May 22)">55</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Lady Vashj — 12 (Destruction, May 22)">12</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #1eff00">44</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/col-nferal.html">
+      <span class="name-badge" style="background: #f6b26b">Colïnferal</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Al&#39;ar — 18 (Balance, Jun 01)">18</b></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Void Reaver — 75 (Restoration, Jun 01)">75</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 25 (Balance, Jun 01)">25</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 60 (Restoration, Jun 01)">60</b></td>
+    
+    <td class="num"><b style="color: #1eff00">44</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/hausy.html">
+      <span class="name-badge" style="background: #b6d7a8">Hausy</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 61 (Beast Mastery, Jul 20)">61</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="The Lurker Below — 18 (Beast Mastery, Jul 20)">18</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 61 (Beast Mastery, Jul 20)">61</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 42 (Beast Mastery, Jul 20)">42</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 57 (Beast Mastery, Jul 20)">57</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 28 (Beast Mastery, Jul 20)">28</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 50 (Beast Mastery, Jul 20)">50</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 61 (Beast Mastery, Jul 20)">61</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 49 (Beast Mastery, Jul 20)">49</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Kael&#39;thas Sunstrider — 13 (Beast Mastery, Jul 20)">13</b></td>
+    
+    <td class="num"><b style="color: #1eff00">44</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/pa-nk-ller.html">
+      <span class="name-badge" style="background: #efefef">Paínkíller</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 34 (Shadow, Jul 06)">34</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 52 (Shadow, Jul 06)">52</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Leotheras the Blind — 33 (Shadow, Jul 27)">33</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 54 (Shadow, Jul 06)">54</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 66 (Shadow, Jul 27)">66</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Lady Vashj — 24 (Shadow, Jul 27)">24</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Al&#39;ar — 45 (Shadow, Jul 27)">45</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Void Reaver — 49 (Shadow, Jun 29)">49</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 41 (Shadow, Jul 27)">41</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kael&#39;thas Sunstrider — 36 (Shadow, Jul 06)">36</b></td>
+    
+    <td class="num"><b style="color: #1eff00">43</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/sipahi.html">
+      <span class="name-badge" style="background: #e2d3c9">Sipahi</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Al&#39;ar — 42 (Fury, Jun 01)">42</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 54 (Fury, Jun 01)">54</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 56 (Fury, Jun 01)">56</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Kael&#39;thas Sunstrider — 20 (Fury, Jun 01)">20</b></td>
+    
+    <td class="num"><b style="color: #1eff00">43</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/min-u.html">
+      <span class="name-badge" style="background: #efefef">Minøu</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 27 (Holy, Jun 02)">27</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="The Lurker Below — 39 (Holy, Jun 02)">39</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 59 (Holy, Jun 02)">59</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 50 (Holy, Jun 02)">50</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 50 (Holy, Jun 02)">50</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 32 (Holy, Jun 02)">32</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #1eff00">43</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/molliee.html">
+      <span class="name-badge" style="background: #f6b26b">Molliee</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 53 (Restoration, Jul 09)">53</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 58 (Restoration, Jul 09)">58</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Leotheras the Blind — 30 (Restoration, Jul 02)">30</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 73 (Restoration, Jul 09)">73</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 42 (Restoration, Jul 02)">42</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 35 (Restoration, Jul 09)">35</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Al&#39;ar — 35 (Restoration, Jul 09)">35</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Void Reaver — 36 (Restoration, Jun 18)">36</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 32 (Restoration, Jul 09)">32</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kael&#39;thas Sunstrider — 32 (Restoration, Jul 02)">32</b></td>
+    
+    <td class="num"><b style="color: #1eff00">43</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/togekiss.html">
+      <span class="name-badge" style="background: #b4a7d6">Togekiss</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 63 (Destruction, Aug 03)">63</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="The Lurker Below — 26 (Destruction, Jul 27)">26</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Leotheras the Blind — 41 (Destruction, Jul 27)">41</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 69 (Destruction, Aug 03)">69</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Morogrim Tidewalker — 4 (Destruction, Aug 03)">4</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Lady Vashj — 16 (Destruction, Jul 27)">16</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Al&#39;ar — 28 (Destruction, Aug 03)">28</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Void Reaver — 41 (Destruction, Aug 03)">41</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 37 (Destruction, Aug 03)">37</b></td>
+    
+    
+    <td class="mid"><b style="color: #ff8000"
+           title="Kael&#39;thas Sunstrider — 96 (Destruction, Aug 03)">96</b></td>
+    
+    <td class="num"><b style="color: #1eff00">42</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/myshamain.html">
+      <span class="name-badge" style="background: #6d9eeb">Myshamain</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Hydross the Unstable — 53 (Enhancement, Jun 02)">53</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="The Lurker Below — 1 (Enhancement, Jun 02)">1</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 66 (Enhancement, Jun 02)">66</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 36 (Enhancement, Jun 02)">36</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 32 (Enhancement, Jun 02)">32</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 45 (Enhancement, Jun 02)">45</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #1eff00">39</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/medef.html">
+      <span class="name-badge" style="background: #fff2cc">Medef</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 40 (Combat, Jul 20)">40</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="The Lurker Below — 22 (Combat, Jul 27)">22</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Leotheras the Blind — 35 (Combat, Jul 20)">35</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 46 (Combat, Jul 27)">46</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 46 (Combat, Jul 27)">46</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 38 (Combat, Jul 27)">38</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Al&#39;ar — 50 (Combat, Jul 27)">50</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Void Reaver — 56 (Combat, Jul 27)">56</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 48 (Combat, Jul 27)">48</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Kael&#39;thas Sunstrider — 11 (Combat, Jul 27)">11</b></td>
+    
+    <td class="num"><b style="color: #1eff00">39</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/myxuling.html">
+      <span class="name-badge" style="background: #d5a6bd">Myxuling</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Leotheras the Blind — 7 (Holy, Jul 27)">7</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Fathom-Lord Karathress — 51 (Holy, Jul 27)">51</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Morogrim Tidewalker — 51 (Holy, Jul 27)">51</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Lady Vashj — 23 (Holy, Jul 27)">23</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Al&#39;ar — 46 (Holy, Jul 27)">46</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Void Reaver — 47 (Holy, Jul 27)">47</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="High Astromancer Solarian — 12 (Holy, Jul 27)">12</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 56 (Holy, Jul 27)">56</b></td>
+    
+    <td class="num"><b style="color: #1eff00">37</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/shammrive.html">
+      <span class="name-badge" style="background: #6d9eeb">Shammrive</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 48 (Restoration, Aug 03)">48</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="The Lurker Below — 51 (Restoration, Aug 03)">51</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Leotheras the Blind — 45 (Restoration, Aug 03)">45</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 46 (Restoration, Aug 03)">46</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Morogrim Tidewalker — 17 (Restoration, Aug 03)">17</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Lady Vashj — 19 (Restoration, Aug 03)">19</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Al&#39;ar — 26 (Restoration, Aug 03)">26</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Void Reaver — 45 (Restoration, Aug 03)">45</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="High Astromancer Solarian — 6 (Restoration, Aug 03)">6</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Kael&#39;thas Sunstrider — 63 (Restoration, Aug 03)">63</b></td>
+    
+    <td class="num"><b style="color: #1eff00">37</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/zethril.html">
+      <span class="name-badge" style="background: #d5a6bd">Zethril</span></a></td>
+    <td class="dim">Tank</td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Hydross the Unstable — 19 (Justicar, Jun 11)">19</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="The Lurker Below — 44 (Justicar, Jun 11)">44</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Leotheras the Blind — 59 (Justicar, Jun 11)">59</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 34 (Protection, Jun 11)">34</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 49 (Justicar, Jun 11)">49</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Lady Vashj — 11 (Justicar, Jun 11)">11</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #1eff00">36</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/f-anturi.html">
+      <span class="name-badge" style="background: #a4c2f4">Fëanturi</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 42 (Arcane, Jul 27)">42</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="The Lurker Below — 42 (Arcane, Jul 27)">42</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Leotheras the Blind — 26 (Arcane, Jul 27)">26</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 46 (Arcane, Aug 03)">46</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 38 (Arcane, Aug 03)">38</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Lady Vashj — 12 (Arcane, Jul 27)">12</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Al&#39;ar — 48 (Arcane, Jul 20)">48</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Void Reaver — 35 (Arcane, Jul 27)">35</b></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="High Astromancer Solarian — 50 (Arcane, Jul 27)">50</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kael&#39;thas Sunstrider — 25 (Arcane, Jul 27)">25</b></td>
+    
+    <td class="num"><b style="color: #1eff00">36</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/nathox.html">
+      <span class="name-badge" style="background: #f6b26b">Nathox</span></a></td>
+    <td class="dim">Healer</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 49 (Feral, May 15)">49</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="The Lurker Below — 44 (Restoration, Jun 02)">44</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Leotheras the Blind — 46 (Restoration, Jun 02)">46</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 25 (Warden, May 15)">25</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 47 (Feral, May 15)">47</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 30 (Restoration, Jun 02)">30</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Al&#39;ar — 15 (Balance, May 26)">15</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Void Reaver — 17 (Balance, May 26)">17</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 37 (Balance, May 26)">37</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #1eff00">34</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/aravind.html">
+      <span class="name-badge" style="background: #b6d7a8">Aravind</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 35 (Survival, May 16)">35</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="The Lurker Below — 47 (Survival, May 16)">47</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Leotheras the Blind — 42 (Survival, May 16)">42</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 34 (Survival, May 16)">34</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Morogrim Tidewalker — 12 (Survival, May 16)">12</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #1eff00">34</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/huugue.html">
+      <span class="name-badge" style="background: #b6d7a8">Huugue</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 49 (Beast Mastery, Jul 27)">49</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="The Lurker Below — 19 (Beast Mastery, Aug 03)">19</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Leotheras the Blind — 33 (Beast Mastery, Aug 03)">33</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 42 (Beast Mastery, Aug 03)">42</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 26 (Beast Mastery, Aug 03)">26</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Lady Vashj — 14 (Beast Mastery, Jul 27)">14</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Al&#39;ar — 38 (Beast Mastery, Aug 03)">38</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Void Reaver — 19 (Beast Mastery, Aug 03)">19</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 45 (Beast Mastery, Aug 03)">45</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Kael&#39;thas Sunstrider — 16 (Beast Mastery, Aug 03)">16</b></td>
+    
+    <td class="num"><b style="color: #1eff00">30</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/linkross.html">
+      <span class="name-badge" style="background: #b4a7d6">Linkross</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 43 (Destruction, May 22)">43</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="The Lurker Below — 12 (Destruction, May 22)">12</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Leotheras the Blind — 47 (Destruction, May 22)">47</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 30 (Destruction, May 22)">30</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 36 (Destruction, May 22)">36</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Lady Vashj — 24 (Destruction, May 22)">24</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Al&#39;ar — 6 (Destruction, Jun 01)">6</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Void Reaver — 29 (Destruction, Jun 01)">29</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 38 (Destruction, Jun 01)">38</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Kael&#39;thas Sunstrider — 3 (Destruction, Jun 01)">3</b></td>
+    
+    <td class="num"><b style="color: #1eff00">27</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/mammutbaum.html">
+      <span class="name-badge" style="background: #f6b26b">Mammutbaum</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 28 (Balance, Aug 03)">28</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="The Lurker Below — 18 (Balance, Aug 03)">18</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Leotheras the Blind — 4 (Balance, Aug 03)">4</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 25 (Balance, Aug 03)">25</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 30 (Balance, Aug 03)">30</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 37 (Balance, Aug 03)">37</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Al&#39;ar — 30 (Balance, Aug 03)">30</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Void Reaver — 13 (Balance, Aug 03)">13</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 32 (Balance, Aug 03)">32</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kael&#39;thas Sunstrider — 30 (Balance, Aug 03)">30</b></td>
+    
+    <td class="num"><b style="color: #1eff00">25</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/dipstick.html">
+      <span class="name-badge" style="background: #b4a7d6">Dipstick</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Hydross the Unstable — 17 (Affliction, Jul 27)">17</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="The Lurker Below — 13 (Affliction, Jul 27)">13</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Leotheras the Blind — 16 (Affliction, Aug 03)">16</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 38 (Affliction, Jul 27)">38</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 31 (Affliction, Jul 27)">31</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Lady Vashj — 27 (Affliction, Jul 27)">27</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Al&#39;ar — 14 (Affliction, Jul 27)">14</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Void Reaver — 19 (Affliction, Jul 20)">19</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="High Astromancer Solarian — 23 (Affliction, Jul 27)">23</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Kael&#39;thas Sunstrider — 14 (Affliction, Jul 27)">14</b></td>
+    
+    <td class="num"><b style="color: #9d9d9d">21</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/nugg-ts.html">
+      <span class="name-badge" style="background: #f6b26b">Nuggëts</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Hydross the Unstable — 21 (Balance, May 22)">21</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="The Lurker Below — 23 (Balance, May 22)">23</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Leotheras the Blind — 19 (Balance, May 22)">19</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Fathom-Lord Karathress — 16 (Balance, May 22)">16</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Morogrim Tidewalker — 21 (Balance, May 22)">21</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Lady Vashj — 14 (Balance, May 22)">14</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Kael&#39;thas Sunstrider — 22 (Balance, Jul 27)">22</b></td>
+    
+    <td class="num"><b style="color: #9d9d9d">19</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/szmul.html">
+      <span class="name-badge" style="background: #efefef">Szmul</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Hydross the Unstable — 8 (Shadow, Jun 15)">8</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="The Lurker Below — 3 (Shadow, Jun 15)">3</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Leotheras the Blind — 19 (Shadow, Jun 15)">19</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 43 (Holy, Jun 15)">43</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Morogrim Tidewalker — 31 (Shadow, Jun 15)">31</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Lady Vashj — 0 (Shadow, Jun 15)">0</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Al&#39;ar — 23 (Shadow, Jun 15)">23</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Void Reaver — 17 (Shadow, Jun 15)">17</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="High Astromancer Solarian — 9 (Shadow, Jun 15)">9</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kael&#39;thas Sunstrider — 28 (Shadow, Jun 15)">28</b></td>
+    
+    <td class="num"><b style="color: #9d9d9d">18</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/gahanna.html">
+      <span class="name-badge" style="background: #6d9eeb">Gahanna</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Hydross the Unstable — 11 (Enhancement, Aug 03)">11</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="The Lurker Below — 20 (Enhancement, Aug 03)">20</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Leotheras the Blind — 22 (Enhancement, Jul 27)">22</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Fathom-Lord Karathress — 8 (Enhancement, Aug 03)">8</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Morogrim Tidewalker — 19 (Enhancement, Aug 03)">19</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Lady Vashj — 11 (Enhancement, Jul 27)">11</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Al&#39;ar — 20 (Enhancement, Aug 03)">20</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Void Reaver — 17 (Enhancement, Aug 03)">17</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="High Astromancer Solarian — 12 (Enhancement, Aug 03)">12</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Kael&#39;thas Sunstrider — 21 (Enhancement, Aug 03)">21</b></td>
+    
+    <td class="num"><b style="color: #9d9d9d">16</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/znney.html">
+      <span class="name-badge" style="background: #efefef">Znney</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Hydross the Unstable — 48 (Holy, Jul 20)">48</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="The Lurker Below — 5 (Holy, Jul 20)">5</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Leotheras the Blind — 18 (Shadow, Jul 20)">18</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Fathom-Lord Karathress — 9 (Holy, Jul 20)">9</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Morogrim Tidewalker — 8 (Holy, Jul 20)">8</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Lady Vashj — 17 (Shadow, Jul 20)">17</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Al&#39;ar — 12 (Shadow, Jul 20)">12</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Void Reaver — 14 (Shadow, Jul 20)">14</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="High Astromancer Solarian — 7 (Shadow, Jul 20)">7</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Kael&#39;thas Sunstrider — 13 (Shadow, Jul 20)">13</b></td>
+    
+    <td class="num"><b style="color: #9d9d9d">15</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/doloraa.html">
+      <span class="name-badge" style="background: #b4a7d6">Doloraa</span></a></td>
+    <td class="dim">Caster</td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Hydross the Unstable — 4 (Destruction, Jul 09)">4</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="The Lurker Below — 17 (Destruction, Jul 09)">17</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Leotheras the Blind — 7 (Destruction, Jul 09)">7</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Fathom-Lord Karathress — 36 (Destruction, Jul 09)">36</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Morogrim Tidewalker — 11 (Destruction, Jul 09)">11</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Lady Vashj — 8 (Destruction, Jul 09)">8</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Al&#39;ar — 2 (Destruction, Jul 09)">2</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Void Reaver — 3 (Destruction, Jul 09)">3</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Astromancer Solarian — 28 (Destruction, Jul 09)">28</b></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kael&#39;thas Sunstrider — 25 (Destruction, Jul 09)">25</b></td>
+    
+    <td class="num"><b style="color: #9d9d9d">14</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/plastankann.html">
+      <span class="name-badge" style="background: #6d9eeb">Plastankann</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Al&#39;ar — 6 (Enhancement, May 26)">6</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Void Reaver — 11 (Enhancement, May 26)">11</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="High Astromancer Solarian — 20 (Enhancement, May 26)">20</b></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><b style="color: #9d9d9d">12</b></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/asharial.html">
+      <span class="name-badge" style="background: #b6d7a8">Asharial</span></a></td>
+    <td class="dim">Physical</td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Al&#39;ar — 6 (Beast Mastery, Jul 23)">6</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Void Reaver — 1 (Beast Mastery, Jul 23)">1</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="High Astromancer Solarian — 19 (Beast Mastery, Jul 23)">19</b></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Kael&#39;thas Sunstrider — 20 (Beast Mastery, Jul 23)">20</b></td>
+    
+    <td class="num"><b style="color: #9d9d9d">12</b></td>
+  </tr>
+  
+</table>
+</div>
+<div class="chart-note">best WCL parse percentile per boss across all archived
+nights (dps; hps for healers) — hover a value for spec and the night it was
+achieved · Best Ø = average of the per-boss bests · percentiles frozen at
+fetch time · colors follow WCL tiers</div>
+</main>
+
+<footer>generated with WarcraftLogs data · raidstats</footer>
+
+</body>
+</html>
