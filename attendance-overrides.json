@@ -1,0 +1,5 @@
+{
+ "_format": "Player name -> { reset-Wednesday date -> 'present' or 'absent' }",
+ "_example": {"2026-07-15": "present"},
+ "_note": "keys starting with _ are ignored; dates must be the Wednesday starting the raid week (see the header tooltips on attendance.html)"
+}
