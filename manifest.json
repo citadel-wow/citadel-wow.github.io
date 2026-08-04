@@ -64,5 +64,203 @@
   "kills": 10,
   "wipes": 4,
   "players": 27
+ },
+ "dDJ4mkhj8PWNaRgG": {
+  "report_id": "dDJ4mkhj8PWNaRgG",
+  "title": "SSC / TK (SSC in 3:51:17)",
+  "zone": "SSC",
+  "date": "May 15, 2026 19:41:55",
+  "start_ms": 1778870515846,
+  "raid": 1,
+  "kills": 6,
+  "wipes": 5,
+  "players": 27
+ },
+ "prFJGt4jDa9BmAdK": {
+  "report_id": "prFJGt4jDa9BmAdK",
+  "title": "SSC / TK (SSC in 3:45:42)",
+  "zone": "SSC",
+  "date": "May 16, 2026 20:00:50",
+  "start_ms": 1778958050756,
+  "raid": null,
+  "kills": 5,
+  "wipes": 8,
+  "players": 27
+ },
+ "N6k9LAQhFBjxzpDc": {
+  "report_id": "N6k9LAQhFBjxzpDc",
+  "title": "SSC / TK (SSC in 2:15:44)",
+  "zone": "SSC",
+  "date": "May 21, 2026 20:09:40",
+  "start_ms": 1779390580357,
+  "raid": 1,
+  "kills": 6,
+  "wipes": 1,
+  "players": 27
+ },
+ "ZVYFHznmg2qL4tTj": {
+  "report_id": "ZVYFHznmg2qL4tTj",
+  "title": "SSC / TK (SSC in 2:08:44)",
+  "zone": "SSC",
+  "date": "May 22, 2026 20:14:01",
+  "start_ms": 1779477241187,
+  "raid": 1,
+  "kills": 6,
+  "wipes": 1,
+  "players": 27
+ },
+ "YGmACZrJ13w6PnMq": {
+  "report_id": "YGmACZrJ13w6PnMq",
+  "title": "SSC / TK (TK in 2:52:37)",
+  "zone": "TK",
+  "date": "May 26, 2026 20:10:07",
+  "start_ms": 1779822607968,
+  "raid": 2,
+  "kills": 3,
+  "wipes": 7,
+  "players": 25
+ },
+ "hzq4aT9fgNpFdvAD": {
+  "report_id": "hzq4aT9fgNpFdvAD",
+  "title": "SSC / TK (SSC in 2:01:54, TK in 1:42:38)",
+  "zone": "SSC / TK",
+  "date": "May 28, 2026 19:51:01",
+  "start_ms": 1779994261743,
+  "raid": 1,
+  "kills": 10,
+  "wipes": 3,
+  "players": 27
+ },
+ "v417fRYFhMD8CWQT": {
+  "report_id": "v417fRYFhMD8CWQT",
+  "title": "SSC / TK (TK in 1:59:10)",
+  "zone": "TK",
+  "date": "June 01, 2026 20:04:43",
+  "start_ms": 1780340683646,
+  "raid": 2,
+  "kills": 4,
+  "wipes": 3,
+  "players": 26
+ },
+ "WNz9Vc7LCpa2Aynx": {
+  "report_id": "WNz9Vc7LCpa2Aynx",
+  "title": "SSC / TK (SSC in 2:04:50)",
+  "zone": "SSC",
+  "date": "June 02, 2026 19:47:36",
+  "start_ms": 1780426056052,
+  "raid": 2,
+  "kills": 6,
+  "wipes": 3,
+  "players": 27
+ },
+ "8JkgP3BnH7W9ZjRV": {
+  "report_id": "8JkgP3BnH7W9ZjRV",
+  "title": "SSC / TK (SSC in 1:37:01, TK in 1:27:57)",
+  "zone": "SSC / TK",
+  "date": "June 04, 2026 19:58:42",
+  "start_ms": 1780599522108,
+  "raid": 1,
+  "kills": 10,
+  "wipes": 2,
+  "players": 27
+ },
+ "PxGdbYA6gvnZ9W8r": {
+  "report_id": "PxGdbYA6gvnZ9W8r",
+  "title": "SSC / TK (TK in 1:47:44, SSC in 2:12:23)",
+  "zone": "TK / SSC",
+  "date": "June 08, 2026 19:57:19",
+  "start_ms": 1780945039654,
+  "raid": 2,
+  "kills": 10,
+  "wipes": 4,
+  "players": 28
+ },
+ "dJ9rGj6t2g7n1pDf": {
+  "report_id": "dJ9rGj6t2g7n1pDf",
+  "title": "SSC / TK (SSC in 1:47:36, TK in 1:12:48)",
+  "zone": "SSC / TK",
+  "date": "June 11, 2026 20:03:30",
+  "start_ms": 1781204610364,
+  "raid": 1,
+  "kills": 10,
+  "wipes": 1,
+  "players": 28
+ },
+ "xzWngt82YADv7a9R": {
+  "report_id": "xzWngt82YADv7a9R",
+  "title": "SSC / TK (TK in 1:29:35, SSC in 1:50:21)",
+  "zone": "TK / SSC",
+  "date": "June 15, 2026 19:55:03",
+  "start_ms": 1781549703306,
+  "raid": 2,
+  "kills": 10,
+  "wipes": 4,
+  "players": 28
+ },
+ "XzVmJ2Z7xBMfHDwP": {
+  "report_id": "XzVmJ2Z7xBMfHDwP",
+  "title": "SSC / TK (SSC in 1:35:36, TK in 1:07:23)",
+  "zone": "SSC / TK",
+  "date": "June 18, 2026 19:55:24",
+  "start_ms": 1781808924346,
+  "raid": 1,
+  "kills": 10,
+  "wipes": 1,
+  "players": 26
+ },
+ "1pVPN7aJyrHKRxkL": {
+  "report_id": "1pVPN7aJyrHKRxkL",
+  "title": "SSC / TK (SSC in 1:23:29, TK in 1:16:10)",
+  "zone": "SSC / TK",
+  "date": "June 25, 2026 19:58:51",
+  "start_ms": 1782413931441,
+  "raid": 1,
+  "kills": 10,
+  "wipes": 1,
+  "players": 28
+ },
+ "vHnLgt8X3yp6CDaW": {
+  "report_id": "vHnLgt8X3yp6CDaW",
+  "title": "SSC / TK (SSC in 1:33:24, TK in 1:25:13)",
+  "zone": "SSC / TK",
+  "date": "June 29, 2026 19:59:32",
+  "start_ms": 1782759572869,
+  "raid": 2,
+  "kills": 10,
+  "wipes": 3,
+  "players": 30
+ },
+ "g2WMnmdVJC9La17p": {
+  "report_id": "g2WMnmdVJC9La17p",
+  "title": "SSC / TK (SSC in 1:13:04, TK in 1:12:47)",
+  "zone": "SSC / TK",
+  "date": "July 02, 2026 20:02:06",
+  "start_ms": 1783018926502,
+  "raid": 1,
+  "kills": 10,
+  "wipes": 1,
+  "players": 28
+ },
+ "ZTkrGaK79yW8QwFh": {
+  "report_id": "ZTkrGaK79yW8QwFh",
+  "title": "SSC / TK (SSC in 1:32:03, TK in 1:25:54)",
+  "zone": "SSC / TK",
+  "date": "July 06, 2026 19:59:15",
+  "start_ms": 1783364355299,
+  "raid": 2,
+  "kills": 10,
+  "wipes": 4,
+  "players": 29
+ },
+ "qhyt2DLzFrNZ7MB4": {
+  "report_id": "qhyt2DLzFrNZ7MB4",
+  "title": "SSC / TK (SSC in 1:19:33, TK in 1:39:27)",
+  "zone": "SSC / TK",
+  "date": "July 09, 2026 20:03:25",
+  "start_ms": 1783623805962,
+  "raid": 1,
+  "kills": 10,
+  "wipes": 4,
+  "players": 28
  }
 }
