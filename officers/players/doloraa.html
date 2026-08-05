@@ -87,6 +87,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
     <a href="../attendance.html" class="">Attendance</a>
     <a href="../parses.html" class="">Parses</a>
     <a href="../deaths.html" class="">Deaths</a>
+    <a href="../consumables.html" class="">Consumables</a>
     
     <a href="../progress.html" class="">Progression</a>
     <a href="../trends.html" class="">Trends</a>
@@ -105,6 +106,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <div class="tile"><div class="v"><span style="color: #9d9d9d">14</span></div><div class="k">Avg parse</div></div>
   <div class="tile"><div class="v">10</div><div class="k">Deaths total</div></div>
 </div>
+
 <div class="panel" style="overflow-x:auto">
 <table class="data">
   <tr><th>Night</th><th>Present</th><th class="num">Activity</th>
@@ -335,6 +337,75 @@ nav.site a.active { background: var(--card); color: var(--ink);
 </table>
 </div>
 </main>
+
+<style>
+.panel { position: relative; }
+.chart-tip {
+  position: absolute; pointer-events: none; z-index: 20; display: none;
+  background: #10161c; border: 1px solid var(--gold); border-radius: 7px;
+  padding: 7px 11px; font-size: 12.5px; white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0,0,0,.5);
+}
+.chart-tip .t { color: var(--ink-dim); margin-bottom: 3px; font-size: 11.5px; }
+.chart-tip .row { display: flex; align-items: center; gap: 6px; }
+.chart-tip .sw { width: 8px; height: 8px; border-radius: 50%; }
+.chart-tip b { margin-left: auto; padding-left: 10px; }
+</style>
+<script>
+// hover layer for line charts: crosshair + immediate tooltip (screen only)
+(function () {
+  var SVGNS = "http://www.w3.org/2000/svg";
+  document.querySelectorAll('svg[data-chart="line"]').forEach(function (svg) {
+    var points = JSON.parse(svg.dataset.points || "[]");
+    if (!points.length) return;
+    var y0 = +svg.dataset.y0, y1 = +svg.dataset.y1;
+    var panel = svg.closest(".panel") || svg.parentElement;
+    var tip = document.createElement("div");
+    tip.className = "chart-tip";
+    panel.appendChild(tip);
+    var cross = document.createElementNS(SVGNS, "line");
+    cross.setAttribute("stroke", "#e3c680");
+    cross.setAttribute("stroke-width", "1");
+    cross.setAttribute("stroke-dasharray", "3,3");
+    cross.setAttribute("y1", y0);
+    cross.setAttribute("y2", y1);
+    cross.style.display = "none";
+    svg.appendChild(cross);
+
+    svg.addEventListener("mousemove", function (e) {
+      var rect = svg.getBoundingClientRect();
+      var vx = (e.clientX - rect.left) * 640 / rect.width;
+      var best = 0, bestD = Infinity;
+      points.forEach(function (p, i) {
+        var d = Math.abs(p.x - vx);
+        if (d < bestD) { bestD = d; best = i; }
+      });
+      var p = points[best];
+      cross.setAttribute("x1", p.x);
+      cross.setAttribute("x2", p.x);
+      cross.style.display = "";
+      var html = '<div class="t">' + p.label + '</div>';
+      p.items.forEach(function (it) {
+        html += '<div class="row"><span class="sw" style="background:' + it.color
+              + '"></span>' + it.name + '<b>' + it.text + '</b></div>';
+      });
+      tip.innerHTML = html;
+      tip.style.display = "block";
+      var prect = panel.getBoundingClientRect();
+      var left = e.clientX - prect.left + 16;
+      if (left + tip.offsetWidth > prect.width - 8)
+        left = e.clientX - prect.left - tip.offsetWidth - 16;
+      tip.style.left = left + "px";
+      tip.style.top = (e.clientY - prect.top - tip.offsetHeight / 2) + "px";
+    });
+    svg.addEventListener("mouseleave", function () {
+      tip.style.display = "none";
+      cross.style.display = "none";
+    });
+  });
+})();
+</script>
+
 
 <footer>generated with WarcraftLogs data · raidstats</footer>
 
