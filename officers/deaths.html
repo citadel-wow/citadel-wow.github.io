@@ -1,0 +1,1467 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deaths — Citadel — Raid Reports</title>
+<meta property="og:title" content="Deaths — Citadel — Raid Reports">
+<meta name="theme-color" content="#c9a24b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 90 20v30c0 25-18 38-40 45C28 88 10 75 10 50V20z' fill='%23c9a24b'/%3E%3Cpath d='M50 14 82 26v24c0 20-14 30-32 36-18-6-32-16-32-36V26z' fill='%231a222c'/%3E%3Cpath d='M50 26v48M34 40h32' stroke='%23c9a24b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #10161c; --panel: #161e26; --card: #1c2630; --card-hover: #223040;
+  --line: #2b3a48; --ink: #e8edf2; --ink-dim: #8fa1b3;
+  --gold: #c9a24b; --gold-soft: #e3c680; --accent: #5d7f9d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Helvetica Neue", Arial, "Segoe UI", sans-serif;
+  background: radial-gradient(1100px 380px at 50% -80px, #223140 0%, transparent 70%), var(--bg);
+  color: var(--ink); min-height: 100vh;
+}
+header { padding: 30px 24px 14px; text-align: center; }
+h1 { font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; }
+h1 a { color: var(--ink); text-decoration: none; }
+h1 .dash { color: var(--gold); }
+.rule { width: 140px; height: 2px; margin: 14px auto 0;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+main { max-width: 1150px; margin: 0 auto; padding: 18px 24px 70px; }
+h2 { font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase;
+     color: var(--gold-soft); margin: 26px 0 12px; }
+.panel { background: var(--card); border: 1px solid var(--line);
+         border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }
+table.data { border-collapse: collapse; width: 100%; font-size: 13px; }
+table.data th { text-align: left; color: var(--ink-dim); font-weight: 600;
+  font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line);
+  white-space: nowrap; }
+table.data td { padding: 6px 8px; border-bottom: 1px solid #212d38; }
+table.data tr:hover td { background: var(--card-hover); }
+td.num, th.num,
+table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mid, th.mid,
+table.data th.mid, table.data td.mid { text-align: center; }
+.name-badge { display: inline-block; padding: 1px 8px; border-radius: 5px;
+  color: #1a222c; font-weight: 650; font-size: 12.5px; }
+a.player-link { text-decoration: none; }
+.dim { color: var(--ink-dim); }
+footer { text-align: center; color: #4d6070; font-size: 12px; padding: 26px; }
+nav.site {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 14px 0 4px;
+}
+nav.site a {
+  color: var(--ink-dim); text-decoration: none; font-size: 13px;
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 14px;
+}
+nav.site a:hover { color: var(--gold-soft); border-color: var(--gold); }
+nav.site a.active { background: var(--card); color: var(--ink);
+                    border-color: var(--gold); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+         gap: 12px; margin-bottom: 16px; }
+.tile { background: var(--card); border: 1px solid var(--line);
+        border-radius: 10px; padding: 14px 16px; text-align: center; }
+.tile .v { font-size: 24px; font-weight: 700; }
+.tile .k { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+           color: var(--ink-dim); margin-top: 4px; }
+.chart-note { font-size: 11px; color: var(--ink-dim); margin-top: 6px; }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-dim);
+          margin-bottom: 6px; }
+.legend .sw { display: inline-block; width: 9px; height: 9px;
+              border-radius: 50%; margin-right: 5px; }
+.zone-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.zone-chip { border: 1px solid var(--line); background: var(--panel);
+  padding: 8px 16px; border-radius: 10px; font-size: 14px; }
+.zone-chip b { color: var(--gold-soft); }
+.ok { color: #7fc98b; } .bad { color: #d98a8a; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html">Citadel <span class="dash">—</span> Raid Reports</a></h1>
+  <nav class="site">
+    
+    <a href="index.html">Logs</a>
+    
+    <a href="attendance.html" class="">Attendance</a>
+    <a href="parses.html" class="">Parses</a>
+    <a href="deaths.html" class="active">Deaths</a>
+    
+    <a href="progress.html" class="">Progression</a>
+    <a href="trends.html" class="">Trends</a>
+  </nav>
+  <div class="rule"></div>
+</header>
+
+<main>
+<h2>Death log — all archived nights</h2>
+<div class="panel" style="overflow-x:auto">
+<table class="data">
+  <tr>
+    <th>Player</th><th>Class</th>
+    <th class="num" title="died first in a boss pull">First deaths</th>
+    <th class="num">Total deaths</th>
+    <th title="the ability (or enemy) that kills them most often">Dies mostly to</th>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/jonette.html">
+      <span class="name-badge" style="background: #d5a6bd">Jonette</span></a></td>
+    <td class="dim">Paladin</td>
+    <td class="num"><b class="bad">12</b></td>
+    <td class="num">52</td>
+    <td class="dim">Melee <span style="font-size:11px">×34</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/honorik.html">
+      <span class="name-badge" style="background: #e2d3c9">Honorik</span></a></td>
+    <td class="dim">Warrior</td>
+    <td class="num"><b class="bad">10</b></td>
+    <td class="num">23</td>
+    <td class="dim">Melee <span style="font-size:11px">×15</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/thanerin.html">
+      <span class="name-badge" style="background: #d5a6bd">Thanerin</span></a></td>
+    <td class="dim">Paladin</td>
+    <td class="num"><b class="bad">9</b></td>
+    <td class="num">23</td>
+    <td class="dim">Melee <span style="font-size:11px">×16</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/karrell.html">
+      <span class="name-badge" style="background: #b4a7d6">Karrell</span></a></td>
+    <td class="dim">Warlock</td>
+    <td class="num"><b class="bad">8</b></td>
+    <td class="num">43</td>
+    <td class="dim">Melee <span style="font-size:11px">×27</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/castratos.html">
+      <span class="name-badge" style="background: #b4a7d6">Castratos</span></a></td>
+    <td class="dim">Warlock</td>
+    <td class="num"><b class="bad">8</b></td>
+    <td class="num">37</td>
+    <td class="dim">Melee <span style="font-size:11px">×21</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/roarwind.html">
+      <span class="name-badge" style="background: #f6b26b">Roarwind</span></a></td>
+    <td class="dim">Druid</td>
+    <td class="num"><b class="bad">8</b></td>
+    <td class="num">18</td>
+    <td class="dim">Melee <span style="font-size:11px">×12</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/shcherbaque.html">
+      <span class="name-badge" style="background: #6d9eeb">Shcherbaque</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><b class="bad">7</b></td>
+    <td class="num">41</td>
+    <td class="dim">Melee <span style="font-size:11px">×17</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/tripletap.html">
+      <span class="name-badge" style="background: #b4a7d6">Tripletap</span></a></td>
+    <td class="dim">Warlock</td>
+    <td class="num"><b class="bad">6</b></td>
+    <td class="num">22</td>
+    <td class="dim">Melee <span style="font-size:11px">×15</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/badabuille.html">
+      <span class="name-badge" style="background: #e2d3c9">Badabuille</span></a></td>
+    <td class="dim">Warrior</td>
+    <td class="num"><b class="bad">5</b></td>
+    <td class="num">42</td>
+    <td class="dim">Melee <span style="font-size:11px">×28</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/alexzed.html">
+      <span class="name-badge" style="background: #d5a6bd">Alexzed</span></a></td>
+    <td class="dim">Paladin</td>
+    <td class="num"><b class="bad">5</b></td>
+    <td class="num">34</td>
+    <td class="dim">Melee <span style="font-size:11px">×17</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/snney.html">
+      <span class="name-badge" style="background: #efefef">Snney</span></a></td>
+    <td class="dim">Priest</td>
+    <td class="num"><b class="bad">5</b></td>
+    <td class="num">33</td>
+    <td class="dim">Melee <span style="font-size:11px">×12</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/swellery.html">
+      <span class="name-badge" style="background: #6d9eeb">Swellery</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><b class="bad">5</b></td>
+    <td class="num">25</td>
+    <td class="dim">Melee <span style="font-size:11px">×9</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/loronoa.html">
+      <span class="name-badge" style="background: #e2d3c9">Loronoa</span></a></td>
+    <td class="dim">Warrior</td>
+    <td class="num"><b class="bad">4</b></td>
+    <td class="num">39</td>
+    <td class="dim">Melee <span style="font-size:11px">×20</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/gahenna.html">
+      <span class="name-badge" style="background: #efefef">Gahenna</span></a></td>
+    <td class="dim">Priest</td>
+    <td class="num"><b class="bad">4</b></td>
+    <td class="num">34</td>
+    <td class="dim">Melee <span style="font-size:11px">×10</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/klib.html">
+      <span class="name-badge" style="background: #b4a7d6">Klib</span></a></td>
+    <td class="dim">Warlock</td>
+    <td class="num"><b class="bad">4</b></td>
+    <td class="num">34</td>
+    <td class="dim">Melee <span style="font-size:11px">×14</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/woodwind.html">
+      <span class="name-badge" style="background: #6d9eeb">Woodwind</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><b class="bad">4</b></td>
+    <td class="num">33</td>
+    <td class="dim">Melee <span style="font-size:11px">×13</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/gand-rf.html">
+      <span class="name-badge" style="background: #a4c2f4">Gandörf</span></a></td>
+    <td class="dim">Mage</td>
+    <td class="num"><b class="bad">4</b></td>
+    <td class="num">30</td>
+    <td class="dim">Whirlwind <span style="font-size:11px">×8</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/badabonks.html">
+      <span class="name-badge" style="background: #6d9eeb">Badabonks</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><b class="bad">4</b></td>
+    <td class="num">29</td>
+    <td class="dim">Melee <span style="font-size:11px">×12</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/madef.html">
+      <span class="name-badge" style="background: #e2d3c9">Madef</span></a></td>
+    <td class="dim">Warrior</td>
+    <td class="num"><b class="bad">4</b></td>
+    <td class="num">26</td>
+    <td class="dim">Melee <span style="font-size:11px">×18</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/toastersha.html">
+      <span class="name-badge" style="background: #6d9eeb">Toastersha</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><b class="bad">4</b></td>
+    <td class="num">24</td>
+    <td class="dim">Melee <span style="font-size:11px">×7</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/nosaj.html">
+      <span class="name-badge" style="background: #f6b26b">Nosaj</span></a></td>
+    <td class="dim">Druid</td>
+    <td class="num"><b class="bad">4</b></td>
+    <td class="num">23</td>
+    <td class="dim">Melee <span style="font-size:11px">×9</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/paradigmh.html">
+      <span class="name-badge" style="background: #b6d7a8">Paradigmh</span></a></td>
+    <td class="dim">Hunter</td>
+    <td class="num"><b class="bad">4</b></td>
+    <td class="num">23</td>
+    <td class="dim">Melee <span style="font-size:11px">×6</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/jomezka.html">
+      <span class="name-badge" style="background: #6d9eeb">Jomezka</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><b class="bad">4</b></td>
+    <td class="num">21</td>
+    <td class="dim">Melee <span style="font-size:11px">×9</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/prevaraa.html">
+      <span class="name-badge" style="background: #b6d7a8">Prevaraa</span></a></td>
+    <td class="dim">Hunter</td>
+    <td class="num"><b class="bad">4</b></td>
+    <td class="num">20</td>
+    <td class="dim">Melee <span style="font-size:11px">×7</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/naincapacit.html">
+      <span class="name-badge" style="background: #b6d7a8">Naincapacité</span></a></td>
+    <td class="dim">Hunter</td>
+    <td class="num"><b class="bad">4</b></td>
+    <td class="num">18</td>
+    <td class="dim">Melee <span style="font-size:11px">×8</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/molliee.html">
+      <span class="name-badge" style="background: #f6b26b">Molliee</span></a></td>
+    <td class="dim">Druid</td>
+    <td class="num"><b class="bad">4</b></td>
+    <td class="num">14</td>
+    <td class="dim">Melee <span style="font-size:11px">×3</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/togekiss.html">
+      <span class="name-badge" style="background: #b4a7d6">Togekiss</span></a></td>
+    <td class="dim">Warlock</td>
+    <td class="num"><b class="bad">4</b></td>
+    <td class="num">12</td>
+    <td class="dim">Melee <span style="font-size:11px">×6</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/bearfo-t.html">
+      <span class="name-badge" style="background: #f6b26b">Bearfoöt</span></a></td>
+    <td class="dim">Druid</td>
+    <td class="num"><b class="bad">3</b></td>
+    <td class="num">31</td>
+    <td class="dim">Melee <span style="font-size:11px">×17</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/drazhu.html">
+      <span class="name-badge" style="background: #a4c2f4">Drazhu</span></a></td>
+    <td class="dim">Mage</td>
+    <td class="num"><b class="bad">3</b></td>
+    <td class="num">24</td>
+    <td class="dim">Melee <span style="font-size:11px">×11</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/moungrym.html">
+      <span class="name-badge" style="background: #e2d3c9">Moungrym</span></a></td>
+    <td class="dim">Warrior</td>
+    <td class="num"><b class="bad">3</b></td>
+    <td class="num">23</td>
+    <td class="dim">Melee <span style="font-size:11px">×9</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/kianne.html">
+      <span class="name-badge" style="background: #f6b26b">Kianne</span></a></td>
+    <td class="dim">Druid</td>
+    <td class="num"><b class="bad">3</b></td>
+    <td class="num">19</td>
+    <td class="dim">Whirlwind <span style="font-size:11px">×4</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/auroraeriz.html">
+      <span class="name-badge" style="background: #d5a6bd">Auroraeriz</span></a></td>
+    <td class="dim">Paladin</td>
+    <td class="num"><b class="bad">3</b></td>
+    <td class="num">15</td>
+    <td class="dim">Melee <span style="font-size:11px">×6</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/starboyjude.html">
+      <span class="name-badge" style="background: #f6b26b">Starboyjude</span></a></td>
+    <td class="dim">Druid</td>
+    <td class="num"><b class="bad">3</b></td>
+    <td class="num">15</td>
+    <td class="dim">Melee <span style="font-size:11px">×10</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/bruand.html">
+      <span class="name-badge" style="background: #d5a6bd">Bruand</span></a></td>
+    <td class="dim">Paladin</td>
+    <td class="num"><b class="bad">3</b></td>
+    <td class="num">14</td>
+    <td class="dim">Melee <span style="font-size:11px">×2</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/cthulha.html">
+      <span class="name-badge" style="background: #a4c2f4">Cthulha</span></a></td>
+    <td class="dim">Mage</td>
+    <td class="num"><b class="bad">3</b></td>
+    <td class="num">14</td>
+    <td class="dim">Melee <span style="font-size:11px">×3</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/doloraa.html">
+      <span class="name-badge" style="background: #b4a7d6">Doloraa</span></a></td>
+    <td class="dim">Warlock</td>
+    <td class="num"><b class="bad">3</b></td>
+    <td class="num">7</td>
+    <td class="dim">Melee <span style="font-size:11px">×5</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/stonexqt.html">
+      <span class="name-badge" style="background: #fff2cc">Stonexqt</span></a></td>
+    <td class="dim">Rogue</td>
+    <td class="num"><b class="bad">3</b></td>
+    <td class="num">7</td>
+    <td class="dim">Melee <span style="font-size:11px">×4</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/msx.html">
+      <span class="name-badge" style="background: #b6d7a8">Msx</span></a></td>
+    <td class="dim">Hunter</td>
+    <td class="num"><b class="bad">2</b></td>
+    <td class="num">26</td>
+    <td class="dim">Melee <span style="font-size:11px">×7</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/nevronthyme.html">
+      <span class="name-badge" style="background: #b6d7a8">Nevronthyme</span></a></td>
+    <td class="dim">Hunter</td>
+    <td class="num"><b class="bad">2</b></td>
+    <td class="num">22</td>
+    <td class="dim">Whirlwind <span style="font-size:11px">×8</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/pa-nk-ller.html">
+      <span class="name-badge" style="background: #efefef">Paínkíller</span></a></td>
+    <td class="dim">Priest</td>
+    <td class="num"><b class="bad">2</b></td>
+    <td class="num">21</td>
+    <td class="dim">Melee <span style="font-size:11px">×6</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/loranoa.html">
+      <span class="name-badge" style="background: #a4c2f4">Loranoa</span></a></td>
+    <td class="dim">Mage</td>
+    <td class="num"><b class="bad">2</b></td>
+    <td class="num">18</td>
+    <td class="dim">Melee <span style="font-size:11px">×7</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/toasterp.html">
+      <span class="name-badge" style="background: #d5a6bd">Toasterp</span></a></td>
+    <td class="dim">Paladin</td>
+    <td class="num"><b class="bad">2</b></td>
+    <td class="num">17</td>
+    <td class="dim">Pounding <span style="font-size:11px">×3</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/myanthes.html">
+      <span class="name-badge" style="background: #f6b26b">Myanthes</span></a></td>
+    <td class="dim">Druid</td>
+    <td class="num"><b class="bad">2</b></td>
+    <td class="num">14</td>
+    <td class="dim">Melee <span style="font-size:11px">×7</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/tr-gger.html">
+      <span class="name-badge" style="background: #b6d7a8">Trígger</span></a></td>
+    <td class="dim">Hunter</td>
+    <td class="num"><b class="bad">2</b></td>
+    <td class="num">12</td>
+    <td class="dim">Melee <span style="font-size:11px">×3</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/f-anturi.html">
+      <span class="name-badge" style="background: #a4c2f4">Fëanturi</span></a></td>
+    <td class="dim">Mage</td>
+    <td class="num"><b class="bad">2</b></td>
+    <td class="num">11</td>
+    <td class="dim">Melee <span style="font-size:11px">×4</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/smiethy.html">
+      <span class="name-badge" style="background: #fff2cc">Smiethy</span></a></td>
+    <td class="dim">Rogue</td>
+    <td class="num"><b class="bad">2</b></td>
+    <td class="num">10</td>
+    <td class="dim">Melee <span style="font-size:11px">×3</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/huugue.html">
+      <span class="name-badge" style="background: #b6d7a8">Huugue</span></a></td>
+    <td class="dim">Hunter</td>
+    <td class="num"><b class="bad">2</b></td>
+    <td class="num">8</td>
+    <td class="dim">Melee <span style="font-size:11px">×4</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/medef.html">
+      <span class="name-badge" style="background: #fff2cc">Medef</span></a></td>
+    <td class="dim">Rogue</td>
+    <td class="num"><b class="bad">2</b></td>
+    <td class="num">6</td>
+    <td class="dim">Bomb <span style="font-size:11px">×2</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/zethril.html">
+      <span class="name-badge" style="background: #d5a6bd">Zethril</span></a></td>
+    <td class="dim">Paladin</td>
+    <td class="num"><b class="bad">2</b></td>
+    <td class="num">5</td>
+    <td class="dim">Melee <span style="font-size:11px">×3</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/farmour.html">
+      <span class="name-badge" style="background: #f6b26b">Farmour</span></a></td>
+    <td class="dim">Druid</td>
+    <td class="num"><b class="bad">2</b></td>
+    <td class="num">4</td>
+    <td class="dim">Pounding <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/myshamain.html">
+      <span class="name-badge" style="background: #6d9eeb">Myshamain</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><b class="bad">2</b></td>
+    <td class="num">4</td>
+    <td class="dim">Melee <span style="font-size:11px">×2</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/szmul.html">
+      <span class="name-badge" style="background: #efefef">Szmul</span></a></td>
+    <td class="dim">Priest</td>
+    <td class="num"><b class="bad">2</b></td>
+    <td class="num">4</td>
+    <td class="dim">Arcing Smash <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/asharial.html">
+      <span class="name-badge" style="background: #b6d7a8">Asharial</span></a></td>
+    <td class="dim">Hunter</td>
+    <td class="num"><b class="bad">2</b></td>
+    <td class="num">2</td>
+    <td class="dim">Flame Patch <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/vykola.html">
+      <span class="name-badge" style="background: #6d9eeb">Vykola</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">42</td>
+    <td class="dim">Melee <span style="font-size:11px">×21</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/tarmour.html">
+      <span class="name-badge" style="background: #e2d3c9">Tarmour</span></a></td>
+    <td class="dim">Warrior</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">28</td>
+    <td class="dim">Melee <span style="font-size:11px">×18</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/littlewhitey.html">
+      <span class="name-badge" style="background: #a4c2f4">Littlewhitey</span></a></td>
+    <td class="dim">Mage</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">27</td>
+    <td class="dim">Melee <span style="font-size:11px">×16</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/markise.html">
+      <span class="name-badge" style="background: #6d9eeb">Markise</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">26</td>
+    <td class="dim">Whirlwind <span style="font-size:11px">×7</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/madepe.html">
+      <span class="name-badge" style="background: #e2d3c9">Madepe</span></a></td>
+    <td class="dim">Warrior</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">24</td>
+    <td class="dim">Melee <span style="font-size:11px">×10</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/hextaco.html">
+      <span class="name-badge" style="background: #6d9eeb">Hextaco</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">18</td>
+    <td class="dim">Melee <span style="font-size:11px">×8</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/malfori.html">
+      <span class="name-badge" style="background: #d5a6bd">Malfori</span></a></td>
+    <td class="dim">Paladin</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">17</td>
+    <td class="dim">Melee <span style="font-size:11px">×4</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/argio.html">
+      <span class="name-badge" style="background: #b4a7d6">Argio</span></a></td>
+    <td class="dim">Warlock</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">15</td>
+    <td class="dim">Melee <span style="font-size:11px">×9</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/pious.html">
+      <span class="name-badge" style="background: #d5a6bd">Pious</span></a></td>
+    <td class="dim">Paladin</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">14</td>
+    <td class="dim">Melee <span style="font-size:11px">×3</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/gahanna.html">
+      <span class="name-badge" style="background: #6d9eeb">Gahanna</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">12</td>
+    <td class="dim">Melee <span style="font-size:11px">×3</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/lunaqt.html">
+      <span class="name-badge" style="background: #f6b26b">Lunaqt</span></a></td>
+    <td class="dim">Druid</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">11</td>
+    <td class="dim">Melee <span style="font-size:11px">×7</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/bepcyc.html">
+      <span class="name-badge" style="background: #a4c2f4">Bepcyc</span></a></td>
+    <td class="dim">Mage</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">10</td>
+    <td class="dim">Melee <span style="font-size:11px">×3</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/ellektra.html">
+      <span class="name-badge" style="background: #6d9eeb">Ellektra</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">8</td>
+    <td class="dim">Melee <span style="font-size:11px">×2</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/lekiyo.html">
+      <span class="name-badge" style="background: #6d9eeb">Lekiyo</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">8</td>
+    <td class="dim">Melee <span style="font-size:11px">×5</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/plastankann.html">
+      <span class="name-badge" style="background: #6d9eeb">Plastankann</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">8</td>
+    <td class="dim">Melee <span style="font-size:11px">×3</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/lorpdickles.html">
+      <span class="name-badge" style="background: #b6d7a8">Lorpdickles</span></a></td>
+    <td class="dim">Hunter</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">6</td>
+    <td class="dim">Melee <span style="font-size:11px">×2</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/dandza.html">
+      <span class="name-badge" style="background: #d5a6bd">Dandza</span></a></td>
+    <td class="dim">Paladin</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">5</td>
+    <td class="dim">Melee <span style="font-size:11px">×4</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/silverpump.html">
+      <span class="name-badge" style="background: #b6d7a8">Silverpump</span></a></td>
+    <td class="dim">Hunter</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">5</td>
+    <td class="dim">Melee <span style="font-size:11px">×3</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/chokladbulle.html">
+      <span class="name-badge" style="background: #6d9eeb">Chokladbulle</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">4</td>
+    <td class="dim">Melee <span style="font-size:11px">×2</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/legga.html">
+      <span class="name-badge" style="background: #6d9eeb">Legga</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">4</td>
+    <td class="dim">Melee <span style="font-size:11px">×2</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/cadavru.html">
+      <span class="name-badge" style="background: #efefef">Cadavru</span></a></td>
+    <td class="dim">Priest</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">2</td>
+    <td class="dim">Melee <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/samyigouprot.html">
+      <span class="name-badge" style="background: #d5a6bd">Samyigouprot</span></a></td>
+    <td class="dim">Paladin</td>
+    <td class="num"><b class="bad">1</b></td>
+    <td class="num">2</td>
+    <td class="dim">Chaos Blast <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/jonetter.html">
+      <span class="name-badge" style="background: #b4a7d6">Jonetter</span></a></td>
+    <td class="dim">Warlock</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">23</td>
+    <td class="dim">Melee <span style="font-size:11px">×17</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/aethorien.html">
+      <span class="name-badge" style="background: #d5a6bd">Aethorien</span></a></td>
+    <td class="dim">Paladin</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">18</td>
+    <td class="dim">Melee <span style="font-size:11px">×9</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/lifebloomz.html">
+      <span class="name-badge" style="background: #f6b26b">Lifebloomz</span></a></td>
+    <td class="dim">Druid</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">15</td>
+    <td class="dim">Melee <span style="font-size:11px">×7</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/cauror.html">
+      <span class="name-badge" style="background: #fff2cc">Cauror</span></a></td>
+    <td class="dim">Rogue</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">11</td>
+    <td class="dim">Melee <span style="font-size:11px">×8</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/richieroo.html">
+      <span class="name-badge" style="background: #fff2cc">Richieroo</span></a></td>
+    <td class="dim">Rogue</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">9</td>
+    <td class="dim">Whirlwind <span style="font-size:11px">×4</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/nathox.html">
+      <span class="name-badge" style="background: #f6b26b">Nathox</span></a></td>
+    <td class="dim">Druid</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">8</td>
+    <td class="dim">Melee <span style="font-size:11px">×4</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/dipstick.html">
+      <span class="name-badge" style="background: #b4a7d6">Dipstick</span></a></td>
+    <td class="dim">Warlock</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">7</td>
+    <td class="dim">Melee <span style="font-size:11px">×4</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/ennobling.html">
+      <span class="name-badge" style="background: #b4a7d6">Ennobling</span></a></td>
+    <td class="dim">Warlock</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">7</td>
+    <td class="dim">Melee <span style="font-size:11px">×3</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/moorit.html">
+      <span class="name-badge" style="background: #fff2cc">Moorit</span></a></td>
+    <td class="dim">Rogue</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">7</td>
+    <td class="dim">Whirlwind <span style="font-size:11px">×2</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/jeanlouisdav.html">
+      <span class="name-badge" style="background: #6d9eeb">Jeanlouisdav</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">5</td>
+    <td class="dim">Melee <span style="font-size:11px">×4</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/menop-uschen.html">
+      <span class="name-badge" style="background: #b4a7d6">Menopäuschen</span></a></td>
+    <td class="dim">Warlock</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">5</td>
+    <td class="dim">Melee <span style="font-size:11px">×3</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/prevaara.html">
+      <span class="name-badge" style="background: #e2d3c9">Prevaara</span></a></td>
+    <td class="dim">Warrior</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">5</td>
+    <td class="dim">Melee <span style="font-size:11px">×2</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/tacergal.html">
+      <span class="name-badge" style="background: #6d9eeb">Tacergal</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">5</td>
+    <td class="dim">Melee <span style="font-size:11px">×3</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/atenn.html">
+      <span class="name-badge" style="background: #a4c2f4">Atenn</span></a></td>
+    <td class="dim">Mage</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">4</td>
+    <td class="dim">Melee <span style="font-size:11px">×2</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/linkross.html">
+      <span class="name-badge" style="background: #b4a7d6">Linkross</span></a></td>
+    <td class="dim">Warlock</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">4</td>
+    <td class="dim">Melee <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/mammutbaum.html">
+      <span class="name-badge" style="background: #f6b26b">Mammutbaum</span></a></td>
+    <td class="dim">Druid</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">3</td>
+    <td class="dim">Melee <span style="font-size:11px">×2</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/shammrive.html">
+      <span class="name-badge" style="background: #6d9eeb">Shammrive</span></a></td>
+    <td class="dim">Shaman</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">3</td>
+    <td class="dim">Melee <span style="font-size:11px">×2</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/sipahi.html">
+      <span class="name-badge" style="background: #e2d3c9">Sipahi</span></a></td>
+    <td class="dim">Warrior</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">3</td>
+    <td class="dim">Melee <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/anik.html">
+      <span class="name-badge" style="background: #efefef">Anik</span></a></td>
+    <td class="dim">Priest</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">2</td>
+    <td class="dim">Melee <span style="font-size:11px">×2</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/baldameld.html">
+      <span class="name-badge" style="background: #b6d7a8">Baldameld</span></a></td>
+    <td class="dim">Hunter</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">2</td>
+    <td class="dim">Melee <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/col-nferal.html">
+      <span class="name-badge" style="background: #f6b26b">Colïnferal</span></a></td>
+    <td class="dim">Druid</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">2</td>
+    <td class="dim">Pounding <span style="font-size:11px">×2</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/leaina.html">
+      <span class="name-badge" style="background: #f6b26b">Leaina</span></a></td>
+    <td class="dim">Druid</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">2</td>
+    <td class="dim">Melee <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/melaena.html">
+      <span class="name-badge" style="background: #b6d7a8">Melaena</span></a></td>
+    <td class="dim">Hunter</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">2</td>
+    <td class="dim">Melee <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/min-u.html">
+      <span class="name-badge" style="background: #efefef">Minøu</span></a></td>
+    <td class="dim">Priest</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">2</td>
+    <td class="dim">Multi-Shot <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/nugg-ts.html">
+      <span class="name-badge" style="background: #f6b26b">Nuggëts</span></a></td>
+    <td class="dim">Druid</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">2</td>
+    <td class="dim">Melee <span style="font-size:11px">×2</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/sispimat.html">
+      <span class="name-badge" style="background: #efefef">Sispimat</span></a></td>
+    <td class="dim">Priest</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">2</td>
+    <td class="dim">Melee <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/tobbob.html">
+      <span class="name-badge" style="background: #e2d3c9">Tobbob</span></a></td>
+    <td class="dim">Warrior</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">2</td>
+    <td class="dim">Melee <span style="font-size:11px">×2</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/aravind.html">
+      <span class="name-badge" style="background: #b6d7a8">Aravind</span></a></td>
+    <td class="dim">Hunter</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">1</td>
+    <td class="dim">Shoot <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/badabuum.html">
+      <span class="name-badge" style="background: #a4c2f4">Badabuum</span></a></td>
+    <td class="dim">Mage</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">1</td>
+    <td class="dim">Melee <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/bitis.html">
+      <span class="name-badge" style="background: #b4a7d6">Bitis</span></a></td>
+    <td class="dim">Warlock</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">1</td>
+    <td class="dim">Toxic Spores <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/hanor.html">
+      <span class="name-badge" style="background: #fff2cc">Hanor</span></a></td>
+    <td class="dim">Rogue</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">1</td>
+    <td class="dim">Melee <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/irontoe.html">
+      <span class="name-badge" style="background: #d5a6bd">Irontoe</span></a></td>
+    <td class="dim">Paladin</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">1</td>
+    <td class="dim">Melee <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/myxuling.html">
+      <span class="name-badge" style="background: #d5a6bd">Myxuling</span></a></td>
+    <td class="dim">Paladin</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">1</td>
+    <td class="dim">? <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/saniqt.html">
+      <span class="name-badge" style="background: #e2d3c9">Saniqt</span></a></td>
+    <td class="dim">Warrior</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">1</td>
+    <td class="dim">Fireball <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/silvertejp.html">
+      <span class="name-badge" style="background: #f6b26b">Silvertejp</span></a></td>
+    <td class="dim">Druid</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">1</td>
+    <td class="dim">Melee <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+  <tr>
+    <td><a class="player-link" href="players/tobber.html">
+      <span class="name-badge" style="background: #f6b26b">Tobber</span></a></td>
+    <td class="dim">Druid</td>
+    <td class="num"><span class="dim">0</span></td>
+    <td class="num">1</td>
+    <td class="dim">Rebirth <span style="font-size:11px">×1</span></td>
+  </tr>
+  
+</table>
+</div>
+<div class="chart-note">boss-fight deaths only (trash ignored) · "first deaths"
+counts pulls where the player was the first to die — the number to keep low ·
+click a name for the player profile</div>
+
+<h2>Per boss</h2>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/hydross-the-unstable.html">Hydross the Unstable</a></b>
+    <span class="dim" style="font-size:12px">26 pulls ·
+      172 deaths · Ø 6.6 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×166</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Water Tomb <span class="bad">×5</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Vile Sludge <span class="bad">×1</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Roarwind <span class="bad">×6</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Thanerin <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Honorik <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/the-lurker-below.html">The Lurker Below</a></b>
+    <span class="dim" style="font-size:12px">22 pulls ·
+      86 deaths · Ø 3.9 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Spout <span class="bad">×31</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×28</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Arcing Smash <span class="bad">×11</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Scalding Water <span class="bad">×9</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Geyser <span class="bad">×4</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Auroraeriz <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Shcherbaque <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Bruand <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/leotheras-the-blind.html">Leotheras the Blind</a></b>
+    <span class="dim" style="font-size:12px">28 pulls ·
+      269 deaths · Ø 9.6 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Whirlwind <span class="bad">×139</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×66</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Chaos Blast <span class="bad">×39</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Mind Blast <span class="bad">×12</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Shadow Word: Death <span class="bad">×3</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Drazhu <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Karrell <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Snney <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/fathom-lord-karathress.html">Fathom-Lord Karathress</a></b>
+    <span class="dim" style="font-size:12px">43 pulls ·
+      230 deaths · Ø 5.3 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×124</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Cataclysmic Bolt <span class="bad">×47</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Scorch <span class="bad">×16</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Frost Shock <span class="bad">×12</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Sear Nova <span class="bad">×9</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Karrell <span class="bad">×5</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Jonette <span class="bad">×5</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Honorik <span class="bad">×4</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/morogrim-tidewalker.html">Morogrim Tidewalker</a></b>
+    <span class="dim" style="font-size:12px">30 pulls ·
+      74 deaths · Ø 2.5 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×52</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Watery Grave Explosion <span class="bad">×11</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">? <span class="bad">×4</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Falling <span class="bad">×4</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Freeze <span class="bad">×2</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Swellery <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Snney <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Molliee <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/lady-vashj.html">Lady Vashj</a></b>
+    <span class="dim" style="font-size:12px">28 pulls ·
+      208 deaths · Ø 7.4 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×67</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Static Charge <span class="bad">×40</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Toxic Spores <span class="bad">×32</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Shoot <span class="bad">×24</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Multi-Shot <span class="bad">×15</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Gahenna <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Klib <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Jonette <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/al-ar.html">Al&#39;ar</a></b>
+    <span class="dim" style="font-size:12px">23 pulls ·
+      133 deaths · Ø 5.8 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×55</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Flame Buffet <span class="bad">×24</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Flame Patch <span class="bad">×17</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Ember Blast <span class="bad">×15</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Flame Quills <span class="bad">×8</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Bearfoöt <span class="bad">×3</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Castratos <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Thanerin <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/void-reaver.html">Void Reaver</a></b>
+    <span class="dim" style="font-size:12px">25 pulls ·
+      130 deaths · Ø 5.2 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Pounding <span class="bad">×62</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×43</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Arcane Orb <span class="bad">×22</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Knock Away <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">? <span class="bad">×1</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Alexzed <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Madef <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Tripletap <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/high-astromancer-solarian.html">High Astromancer Solarian</a></b>
+    <span class="dim" style="font-size:12px">22 pulls ·
+      41 deaths · Ø 1.9 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Arcane Missiles <span class="bad">×13</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×8</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Falling <span class="bad">×5</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Blinding Light <span class="bad">×4</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Rain of Fire <span class="bad">×2</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Shcherbaque <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Loronoa <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Ellektra <span class="bad">×1</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/kael-thas-sunstrider.html">Kael&#39;thas Sunstrider</a></b>
+    <span class="dim" style="font-size:12px">27 pulls ·
+      248 deaths · Ø 9.2 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×111</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Nether Beam <span class="bad">×28</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Bomb <span class="bad">×19</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Fireball <span class="bad">×19</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Flame Strike <span class="bad">×13</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Badabuille <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Honorik <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Prevaraa <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="chart-note">boss names link to the full pull history</div>
+</main>
+
+<footer>generated with WarcraftLogs data · raidstats</footer>
+
+</body>
+</html>
