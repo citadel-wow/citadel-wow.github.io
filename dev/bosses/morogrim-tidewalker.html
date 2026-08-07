@@ -1,0 +1,502 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Morogrim Tidewalker — Citadel — Raid Reports</title>
+<meta property="og:title" content="Morogrim Tidewalker — Citadel — Raid Reports">
+<meta name="theme-color" content="#c9a24b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 90 20v30c0 25-18 38-40 45C28 88 10 75 10 50V20z' fill='%23c9a24b'/%3E%3Cpath d='M50 14 82 26v24c0 20-14 30-32 36-18-6-32-16-32-36V26z' fill='%231a222c'/%3E%3Cpath d='M50 26v48M34 40h32' stroke='%23c9a24b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #10161c; --panel: #161e26; --card: #1c2630; --card-hover: #223040;
+  --line: #2b3a48; --ink: #e8edf2; --ink-dim: #8fa1b3;
+  --gold: #c9a24b; --gold-soft: #e3c680; --accent: #5d7f9d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Helvetica Neue", Arial, "Segoe UI", sans-serif;
+  background: radial-gradient(1100px 380px at 50% -80px, #223140 0%, transparent 70%), var(--bg);
+  color: var(--ink); min-height: 100vh;
+}
+header { padding: 30px 24px 14px; text-align: center; }
+h1 { font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; }
+h1 a { color: var(--ink); text-decoration: none; }
+h1 .dash { color: var(--gold); }
+.rule { width: 140px; height: 2px; margin: 14px auto 0;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+main { max-width: 1150px; margin: 0 auto; padding: 18px 24px 70px; }
+h2 { font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase;
+     color: var(--gold-soft); margin: 26px 0 12px; }
+.panel { background: var(--card); border: 1px solid var(--line);
+         border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }
+table.data { border-collapse: collapse; width: 100%; font-size: 13px; }
+table.data th { text-align: left; color: var(--ink-dim); font-weight: 600;
+  font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line);
+  white-space: nowrap; }
+table.data td { padding: 6px 8px; border-bottom: 1px solid #212d38; }
+table.data tr:hover td { background: var(--card-hover); }
+td.num, th.num,
+table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mid, th.mid,
+table.data th.mid, table.data td.mid { text-align: center; }
+.name-badge { display: inline-block; padding: 1px 8px; border-radius: 5px;
+  color: #1a222c; font-weight: 650; font-size: 12.5px; }
+a.player-link { text-decoration: none; }
+.dim { color: var(--ink-dim); }
+footer { text-align: center; color: #4d6070; font-size: 12px; padding: 26px; }
+nav.site {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 14px 0 4px;
+}
+nav.site a {
+  color: var(--ink-dim); text-decoration: none; font-size: 13px;
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 14px;
+}
+nav.site a:hover { color: var(--gold-soft); border-color: var(--gold); }
+nav.site a.active { background: var(--card); color: var(--ink);
+                    border-color: var(--gold); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+         gap: 12px; margin-bottom: 16px; }
+.tile { background: var(--card); border: 1px solid var(--line);
+        border-radius: 10px; padding: 14px 16px; text-align: center; }
+.tile .v { font-size: 24px; font-weight: 700; }
+.tile .k { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+           color: var(--ink-dim); margin-top: 4px; }
+.chart-note { font-size: 11px; color: var(--ink-dim); margin-top: 6px; }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-dim);
+          margin-bottom: 6px; }
+.legend .sw { display: inline-block; width: 9px; height: 9px;
+              border-radius: 50%; margin-right: 5px; }
+.zone-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.zone-chip { border: 1px solid var(--line); background: var(--panel);
+  padding: 8px 16px; border-radius: 10px; font-size: 14px; }
+.zone-chip b { color: var(--gold-soft); }
+.ok { color: #7fc98b; } .bad { color: #d98a8a; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="../index.html">Citadel <span class="dash">—</span> Raid Reports</a></h1>
+  <nav class="site">
+    
+    <a href="../index.html">Logs</a>
+    
+    <a href="../attendance.html" class="">Attendance</a>
+    <a href="../parses.html" class="">Parses</a>
+    <a href="../deaths.html" class="">Deaths</a>
+    <a href="../consumables.html" class="">Consumables</a>
+    
+    <a href="../progress.html" class="active">Progression</a>
+    <a href="../trends.html" class="">Trends</a>
+  </nav>
+  <div class="rule"></div>
+</header>
+
+<main>
+<h2>Morogrim Tidewalker — 30 pulls, 22 kills</h2>
+<div class="panel" style="overflow-x:auto">
+<table class="data">
+  <tr>
+    <th>#</th><th>Night</th><th class="num">Pull</th><th class="num">Length</th>
+    <th>Result</th><th class="num">Deaths</th>
+    <th title="who initiated the pull and with what">Pulled by</th>
+    <th title="first player to die, the killing ability and the time into the pull">First death</th>
+  </tr>
+  
+  <tr>
+    <td class="dim">1</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/dDJ4mkhj8PWNaRgG">May 15</a></td>
+    <td class="num dim">1</td>
+    <td class="num">4:18</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">1</td>
+    <td class="dim">Trígger <span style="font-size:11px">— Aimed Shot</span></td>
+    <td class="dim">Swellery — Watery Grave Explosion
+        <span style="font-size:11px">@ 2:34</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">2</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/prFJGt4jDa9BmAdK">May 16</a></td>
+    <td class="num dim">1</td>
+    <td class="num">5:19</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">1</td>
+    <td class="dim">Naincapacité <span style="font-size:11px">— Aimed Shot</span></td>
+    <td class="dim">Msx — Watery Grave Explosion
+        <span style="font-size:11px">@ 1:05</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">3</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/N6k9LAQhFBjxzpDc">May 21</a></td>
+    <td class="num dim">1</td>
+    <td class="num">4:16</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">0</td>
+    <td class="dim">Msx <span style="font-size:11px">— Auto Shot</span></td>
+    <td class="dim">·</td>
+  </tr>
+  
+  <tr>
+    <td class="dim">4</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/ZVYFHznmg2qL4tTj">May 22</a></td>
+    <td class="num dim">1</td>
+    <td class="num">4:27</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">1</td>
+    <td class="dim">Nevronthyme <span style="font-size:11px">— Steady Shot</span></td>
+    <td class="dim">Swellery — Watery Grave Explosion
+        <span style="font-size:11px">@ 1:48</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">5</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/hzq4aT9fgNpFdvAD">May 28</a></td>
+    <td class="num dim">1</td>
+    <td class="num">2:12</td>
+    <td><span class="bad">wipe at 56.4%</span></td>
+    <td class="num">18</td>
+    <td class="dim">Naincapacité <span style="font-size:11px">— Aimed Shot</span></td>
+    <td class="dim">Snney — Melee
+        <span style="font-size:11px">@ 1:07</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">6</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/hzq4aT9fgNpFdvAD">May 28</a></td>
+    <td class="num dim">2</td>
+    <td class="num">4:07</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">1</td>
+    <td class="dim">Naincapacité <span style="font-size:11px">— Aimed Shot</span></td>
+    <td class="dim">Nosaj — Melee
+        <span style="font-size:11px">@ 2:53</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">7</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/WNz9Vc7LCpa2Aynx">Jun 02</a></td>
+    <td class="num dim">1</td>
+    <td class="num">4:20</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">0</td>
+    <td class="dim">Prevaraa <span style="font-size:11px">— Auto Shot</span></td>
+    <td class="dim">·</td>
+  </tr>
+  
+  <tr>
+    <td class="dim">8</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/8JkgP3BnH7W9ZjRV">Jun 04</a></td>
+    <td class="num dim">1</td>
+    <td class="num">3:44</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">0</td>
+    <td class="dim">Naincapacité (pet Alien) <span style="font-size:11px">— body pull</span></td>
+    <td class="dim">·</td>
+  </tr>
+  
+  <tr>
+    <td class="dim">9</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/PxGdbYA6gvnZ9W8r">Jun 08</a></td>
+    <td class="num dim">1</td>
+    <td class="num">4:08</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">2</td>
+    <td class="dim">Msx <span style="font-size:11px">— Arcane Shot</span></td>
+    <td class="dim">Loronoa — Melee
+        <span style="font-size:11px">@ 0:29</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">10</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/dJ9rGj6t2g7n1pDf">Jun 11</a></td>
+    <td class="num dim">1</td>
+    <td class="num">3:37</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">1</td>
+    <td class="dim">Prevaraa <span style="font-size:11px">— Auto Shot</span></td>
+    <td class="dim">Paínkíller — Falling
+        <span style="font-size:11px">@ 2:20</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">11</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/xzWngt82YADv7a9R">Jun 15</a></td>
+    <td class="num dim">1</td>
+    <td class="num">0:16</td>
+    <td><span class="bad">wipe at 100.0%</span></td>
+    <td class="num">1</td>
+    <td class="dim">Trígger <span style="font-size:11px">— Arcane Shot</span></td>
+    <td class="dim">Drazhu — Melee
+        <span style="font-size:11px">@ 0:08</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">12</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/xzWngt82YADv7a9R">Jun 15</a></td>
+    <td class="num dim">2</td>
+    <td class="num">4:03</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">0</td>
+    <td class="dim">Msx <span style="font-size:11px">— Auto Shot</span></td>
+    <td class="dim">·</td>
+  </tr>
+  
+  <tr>
+    <td class="dim">13</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/XzVmJ2Z7xBMfHDwP">Jun 18</a></td>
+    <td class="num dim">1</td>
+    <td class="num">3:39</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">3</td>
+    <td class="dim">Naincapacité <span style="font-size:11px">— Aimed Shot</span></td>
+    <td class="dim">Molliee — Watery Grave Explosion
+        <span style="font-size:11px">@ 0:45</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">14</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/1pVPN7aJyrHKRxkL">Jun 25</a></td>
+    <td class="num dim">1</td>
+    <td class="num">0:25</td>
+    <td><span class="bad">wipe at 100.0%</span></td>
+    <td class="num">1</td>
+    <td class="dim">Thanerin <span style="font-size:11px">— body pull</span></td>
+    <td class="dim">Molliee — Melee
+        <span style="font-size:11px">@ 0:11</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">15</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/1pVPN7aJyrHKRxkL">Jun 25</a></td>
+    <td class="num dim">2</td>
+    <td class="num">3:52</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">5</td>
+    <td class="dim">Trígger <span style="font-size:11px">— Multi-Shot</span></td>
+    <td class="dim">Hextaco — Melee
+        <span style="font-size:11px">@ 1:40</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">16</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/vHnLgt8X3yp6CDaW">Jun 29</a></td>
+    <td class="num dim">1</td>
+    <td class="num">0:17</td>
+    <td><span class="bad">wipe at 100.0%</span></td>
+    <td class="num">1</td>
+    <td class="dim">Stonexqt <span style="font-size:11px">— Throw</span></td>
+    <td class="dim">Stonexqt — Melee
+        <span style="font-size:11px">@ 0:09</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">17</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/vHnLgt8X3yp6CDaW">Jun 29</a></td>
+    <td class="num dim">2</td>
+    <td class="num">3:58</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">1</td>
+    <td class="dim">Naincapacité <span style="font-size:11px">— Aimed Shot</span></td>
+    <td class="dim">Cadavru — Melee
+        <span style="font-size:11px">@ 2:59</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">18</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/g2WMnmdVJC9La17p">Jul 02</a></td>
+    <td class="num dim">1</td>
+    <td class="num">0:32</td>
+    <td><span class="bad">wipe at 100.0%</span></td>
+    <td class="num">1</td>
+    <td class="dim">Thanerin <span style="font-size:11px">— Righteous Defense</span></td>
+    <td class="dim">Thanerin — Melee
+        <span style="font-size:11px">@ 0:07</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">19</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/g2WMnmdVJC9La17p">Jul 02</a></td>
+    <td class="num dim">2</td>
+    <td class="num">3:24</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">2</td>
+    <td class="dim">Trígger <span style="font-size:11px">— Arcane Shot</span></td>
+    <td class="dim">Jomezka — Melee
+        <span style="font-size:11px">@ 1:48</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">20</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/ZTkrGaK79yW8QwFh">Jul 06</a></td>
+    <td class="num dim">1</td>
+    <td class="num">0:17</td>
+    <td><span class="bad">wipe at 100.0%</span></td>
+    <td class="num">1</td>
+    <td class="dim">Stonexqt <span style="font-size:11px">— Throw</span></td>
+    <td class="dim">Stonexqt — Melee
+        <span style="font-size:11px">@ 0:08</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">21</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/ZTkrGaK79yW8QwFh">Jul 06</a></td>
+    <td class="num dim">2</td>
+    <td class="num">0:21</td>
+    <td><span class="bad">wipe at 100.0%</span></td>
+    <td class="num">1</td>
+    <td class="dim">Cthulha <span style="font-size:11px">— Blink</span></td>
+    <td class="dim">Jonette — Melee
+        <span style="font-size:11px">@ 0:13</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">22</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/ZTkrGaK79yW8QwFh">Jul 06</a></td>
+    <td class="num dim">3</td>
+    <td class="num">4:13</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">5</td>
+    <td class="dim">Naincapacité <span style="font-size:11px">— Arcane Shot</span></td>
+    <td class="dim">Vykola — Falling
+        <span style="font-size:11px">@ 2:02</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">23</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/qhyt2DLzFrNZ7MB4">Jul 09</a></td>
+    <td class="num dim">1</td>
+    <td class="num">3:37</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">3</td>
+    <td class="dim">Trígger <span style="font-size:11px">— Arcane Shot</span></td>
+    <td class="dim">Gahenna — Watery Grave Explosion
+        <span style="font-size:11px">@ 2:14</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">24</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/8VWkYmw6B34zbXRy">Jul 13</a></td>
+    <td class="num dim">1</td>
+    <td class="num">4:14</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">2</td>
+    <td class="dim">Msx <span style="font-size:11px">— Aimed Shot</span></td>
+    <td class="dim">Snney — Melee
+        <span style="font-size:11px">@ 2:36</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">25</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/HRFMkxT6zD1qtfJp">Jul 16</a></td>
+    <td class="num dim">1</td>
+    <td class="num">3:24</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">0</td>
+    <td class="dim">Naincapacité <span style="font-size:11px">— Arcane Shot</span></td>
+    <td class="dim">·</td>
+  </tr>
+  
+  <tr>
+    <td class="dim">26</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/RNqdHDjahz2tvpMK">Jul 20</a></td>
+    <td class="num dim">1</td>
+    <td class="num">3:54</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">0</td>
+    <td class="dim">Trígger <span style="font-size:11px">— Arcane Shot</span></td>
+    <td class="dim">·</td>
+  </tr>
+  
+  <tr>
+    <td class="dim">27</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/Ncz4P28xGyQKVF7h">Jul 23</a></td>
+    <td class="num dim">1</td>
+    <td class="num">3:19</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">0</td>
+    <td class="dim">Trígger <span style="font-size:11px">— Multi-Shot</span></td>
+    <td class="dim">·</td>
+  </tr>
+  
+  <tr>
+    <td class="dim">28</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/ntgaW61yqDFjVHPT">Jul 27</a></td>
+    <td class="num dim">1</td>
+    <td class="num">3:04</td>
+    <td><span class="bad">wipe at 37.6%</span></td>
+    <td class="num">18</td>
+    <td class="dim">Nevronthyme <span style="font-size:11px">— Aimed Shot</span></td>
+    <td class="dim">Toastersha — Melee
+        <span style="font-size:11px">@ 1:04</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">29</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/ntgaW61yqDFjVHPT">Jul 27</a></td>
+    <td class="num dim">2</td>
+    <td class="num">4:12</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">3</td>
+    <td class="dim">Nevronthyme <span style="font-size:11px">— Aimed Shot</span></td>
+    <td class="dim">Myanthes — Melee
+        <span style="font-size:11px">@ 1:53</span></td>
+  </tr>
+  
+  <tr>
+    <td class="dim">30</td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="https://classic.warcraftlogs.com/reports/wFxJTz7cGR6jkMpX">Aug 03</a></td>
+    <td class="num dim">1</td>
+    <td class="num">3:56</td>
+    <td><span class="ok">kill</span></td>
+    <td class="num">1</td>
+    <td class="dim">Prevaraa <span style="font-size:11px">— Auto Shot</span></td>
+    <td class="dim">Togekiss — Watery Grave Explosion
+        <span style="font-size:11px">@ 1:54</span></td>
+  </tr>
+  
+</table>
+</div>
+<div class="chart-note">pulls in chronological order across all archived
+nights · night links open the WCL log · wipe % = boss health remaining ·
+<a href="../deaths.html" style="color:#8fa1b3">back to the death log</a></div>
+</main>
+
+<footer>generated with WarcraftLogs data · raidstats</footer>
+
+</body>
+</html>

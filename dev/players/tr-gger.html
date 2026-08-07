@@ -1,0 +1,463 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trígger — Citadel — Raid Reports</title>
+<meta property="og:title" content="Trígger — Citadel — Raid Reports">
+<meta name="theme-color" content="#c9a24b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 90 20v30c0 25-18 38-40 45C28 88 10 75 10 50V20z' fill='%23c9a24b'/%3E%3Cpath d='M50 14 82 26v24c0 20-14 30-32 36-18-6-32-16-32-36V26z' fill='%231a222c'/%3E%3Cpath d='M50 26v48M34 40h32' stroke='%23c9a24b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #10161c; --panel: #161e26; --card: #1c2630; --card-hover: #223040;
+  --line: #2b3a48; --ink: #e8edf2; --ink-dim: #8fa1b3;
+  --gold: #c9a24b; --gold-soft: #e3c680; --accent: #5d7f9d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Helvetica Neue", Arial, "Segoe UI", sans-serif;
+  background: radial-gradient(1100px 380px at 50% -80px, #223140 0%, transparent 70%), var(--bg);
+  color: var(--ink); min-height: 100vh;
+}
+header { padding: 30px 24px 14px; text-align: center; }
+h1 { font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; }
+h1 a { color: var(--ink); text-decoration: none; }
+h1 .dash { color: var(--gold); }
+.rule { width: 140px; height: 2px; margin: 14px auto 0;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+main { max-width: 1150px; margin: 0 auto; padding: 18px 24px 70px; }
+h2 { font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase;
+     color: var(--gold-soft); margin: 26px 0 12px; }
+.panel { background: var(--card); border: 1px solid var(--line);
+         border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }
+table.data { border-collapse: collapse; width: 100%; font-size: 13px; }
+table.data th { text-align: left; color: var(--ink-dim); font-weight: 600;
+  font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line);
+  white-space: nowrap; }
+table.data td { padding: 6px 8px; border-bottom: 1px solid #212d38; }
+table.data tr:hover td { background: var(--card-hover); }
+td.num, th.num,
+table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mid, th.mid,
+table.data th.mid, table.data td.mid { text-align: center; }
+.name-badge { display: inline-block; padding: 1px 8px; border-radius: 5px;
+  color: #1a222c; font-weight: 650; font-size: 12.5px; }
+a.player-link { text-decoration: none; }
+.dim { color: var(--ink-dim); }
+footer { text-align: center; color: #4d6070; font-size: 12px; padding: 26px; }
+nav.site {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 14px 0 4px;
+}
+nav.site a {
+  color: var(--ink-dim); text-decoration: none; font-size: 13px;
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 14px;
+}
+nav.site a:hover { color: var(--gold-soft); border-color: var(--gold); }
+nav.site a.active { background: var(--card); color: var(--ink);
+                    border-color: var(--gold); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+         gap: 12px; margin-bottom: 16px; }
+.tile { background: var(--card); border: 1px solid var(--line);
+        border-radius: 10px; padding: 14px 16px; text-align: center; }
+.tile .v { font-size: 24px; font-weight: 700; }
+.tile .k { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+           color: var(--ink-dim); margin-top: 4px; }
+.chart-note { font-size: 11px; color: var(--ink-dim); margin-top: 6px; }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-dim);
+          margin-bottom: 6px; }
+.legend .sw { display: inline-block; width: 9px; height: 9px;
+              border-radius: 50%; margin-right: 5px; }
+.zone-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.zone-chip { border: 1px solid var(--line); background: var(--panel);
+  padding: 8px 16px; border-radius: 10px; font-size: 14px; }
+.zone-chip b { color: var(--gold-soft); }
+.ok { color: #7fc98b; } .bad { color: #d98a8a; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="../index.html">Citadel <span class="dash">—</span> Raid Reports</a></h1>
+  <nav class="site">
+    
+    <a href="../index.html">Logs</a>
+    
+    <a href="../attendance.html" class="">Attendance</a>
+    <a href="../parses.html" class="">Parses</a>
+    <a href="../deaths.html" class="">Deaths</a>
+    <a href="../consumables.html" class="">Consumables</a>
+    
+    <a href="../progress.html" class="">Progression</a>
+    <a href="../trends.html" class="">Trends</a>
+  </nav>
+  <div class="rule"></div>
+</header>
+
+<main>
+<h2><span class="name-badge" style="background: #b6d7a8; font-size: 15px">Trígger</span>
+    <span class="dim" style="text-transform:none; letter-spacing:0; font-size:13px"> Hunter · Physical</span></h2>
+<div class="tiles">
+  <div class="tile" title="raid weeks attended (WoW reset weeks)">
+    <div class="v">92%</div><div class="k">Attendance</div></div>
+  <div class="tile"><div class="v">76%</div><div class="k">Avg activity</div></div>
+  <div class="tile"><div class="v">86%</div><div class="k">Avg consumables</div></div>
+  <div class="tile"><div class="v"><span style="color: #1eff00">46</span></div><div class="k">Avg parse</div></div>
+  <div class="tile"><div class="v">22</div><div class="k">Deaths total</div></div>
+</div>
+
+<h2 style="font-size:14px">Parse trend</h2>
+<div class="panel"><svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:auto" data-chart="line" data-points='[{"label": "May 15", "x": 46.0, "items": [{"name": "dps parse", "color": "#bc8834", "text": "36"}]}, {"label": "May 21", "x": 101.4, "items": [{"name": "dps parse", "color": "#bc8834", "text": "50"}]}, {"label": "May 28", "x": 156.9, "items": [{"name": "dps parse", "color": "#bc8834", "text": "46"}]}, {"label": "Jun 04", "x": 212.3, "items": [{"name": "dps parse", "color": "#bc8834", "text": "44"}]}, {"label": "Jun 15", "x": 267.8, "items": [{"name": "dps parse", "color": "#bc8834", "text": "45"}]}, {"label": "Jun 25", "x": 323.2, "items": [{"name": "dps parse", "color": "#bc8834", "text": "50"}]}, {"label": "Jul 02", "x": 378.7, "items": [{"name": "dps parse", "color": "#bc8834", "text": "46"}]}, {"label": "Jul 09", "x": 434.1, "items": [{"name": "dps parse", "color": "#bc8834", "text": "46"}]}, {"label": "Jul 20", "x": 489.6, "items": [{"name": "dps parse", "color": "#bc8834", "text": "44"}]}, {"label": "Jul 23", "x": 545.0, "items": [{"name": "dps parse", "color": "#bc8834", "text": "52"}]}]' data-y0="16" data-y1="180"><line x1="46" y1="180.0" x2="545" y2="180.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="183.5" text-anchor="end" font-size="10" fill="#8fa1b3">0</text><line x1="46" y1="98.0" x2="545" y2="98.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="101.5" text-anchor="end" font-size="10" fill="#8fa1b3">30</text><line x1="46" y1="16.0" x2="545" y2="16.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="19.5" text-anchor="end" font-size="10" fill="#8fa1b3">60</text><text x="46.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 15</text><text x="101.4" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 21</text><text x="156.9" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 28</text><text x="212.3" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 04</text><text x="267.8" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 15</text><text x="323.2" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 25</text><text x="378.7" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 02</text><text x="434.1" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 09</text><text x="489.6" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 20</text><text x="545.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 23</text><polyline points="46.0,81.3 101.4,42.9 156.9,53.8 212.3,59.3 267.8,56.6 323.2,42.9 378.7,53.8 434.1,53.8 489.6,59.3 545.0,37.4" fill="none" stroke="#bc8834" stroke-width="2" stroke-linejoin="round"/><circle cx="46.0" cy="81.3" r="3.5" fill="#bc8834"/><circle cx="46.0" cy="81.3" r="10" fill="transparent"><title>May 15 — dps parse: 36</title></circle><circle cx="101.4" cy="42.9" r="3.5" fill="#bc8834"/><circle cx="101.4" cy="42.9" r="10" fill="transparent"><title>May 21 — dps parse: 50</title></circle><circle cx="156.9" cy="53.8" r="3.5" fill="#bc8834"/><circle cx="156.9" cy="53.8" r="10" fill="transparent"><title>May 28 — dps parse: 46</title></circle><circle cx="212.3" cy="59.3" r="3.5" fill="#bc8834"/><circle cx="212.3" cy="59.3" r="10" fill="transparent"><title>Jun 04 — dps parse: 44</title></circle><circle cx="267.8" cy="56.6" r="3.5" fill="#bc8834"/><circle cx="267.8" cy="56.6" r="10" fill="transparent"><title>Jun 15 — dps parse: 45</title></circle><circle cx="323.2" cy="42.9" r="3.5" fill="#bc8834"/><circle cx="323.2" cy="42.9" r="10" fill="transparent"><title>Jun 25 — dps parse: 50</title></circle><circle cx="378.7" cy="53.8" r="3.5" fill="#bc8834"/><circle cx="378.7" cy="53.8" r="10" fill="transparent"><title>Jul 02 — dps parse: 46</title></circle><circle cx="434.1" cy="53.8" r="3.5" fill="#bc8834"/><circle cx="434.1" cy="53.8" r="10" fill="transparent"><title>Jul 09 — dps parse: 46</title></circle><circle cx="489.6" cy="59.3" r="3.5" fill="#bc8834"/><circle cx="489.6" cy="59.3" r="10" fill="transparent"><title>Jul 20 — dps parse: 44</title></circle><circle cx="545.0" cy="37.4" r="3.5" fill="#bc8834"/><circle cx="545.0" cy="37.4" r="10" fill="transparent"><title>Jul 23 — dps parse: 52</title></circle><circle cx="555" cy="37.4" r="4" fill="#bc8834"/><text x="563" y="40.9" font-size="11" fill="#e8edf2">52</text></svg>
+<div class="chart-note">average parse percentile per attended night
+(all bosses of the night, WCL historical basis)</div></div>
+
+<div class="panel" style="overflow-x:auto">
+<table class="data">
+  <tr><th>Night</th><th>Present</th><th class="num">Activity</th>
+      <th class="num">Consumables</th><th class="num">Parse</th>
+      <th class="num">Deaths</th><th>Reports</th></tr>
+  
+  <tr>
+    <td>Aug 03, 2026</td>
+    
+    <td><span class="dim">·</span></td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="dim">—</td>
+    
+  </tr>
+  
+  <tr>
+    <td>Jul 27, 2026</td>
+    
+    <td><span class="dim">·</span></td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="dim">—</td>
+    
+  </tr>
+  
+  <tr>
+    <td>Jul 23, 2026</td>
+    
+    <td><span class="ok">✓</span></td>
+    <td class="num">76%</td>
+    <td class="num">92%</td>
+    <td class="num"><b style="color: #3f8fd8" title="Al&#39;ar 76 · Fathom-Lord Karathress 51 · High Astromancer Solarian 4 · Hydross the Unstable 68 · Kael&#39;thas Sunstrider 32 · Lady Vashj 46 · Leotheras the Blind 29 · Morogrim Tidewalker 83 · The Lurker Below 82 · Void Reaver 44">52</b></td>
+    <td class="num">1</td>
+    <td><a class="dim" href="../../reports/Ncz4P28xGyQKVF7h/rpb.html">RPB</a> ·
+        <a class="dim" href="../../reports/Ncz4P28xGyQKVF7h/cla.html">CLA</a> ·
+        <a class="dim" href="https://classic.warcraftlogs.com/reports/Ncz4P28xGyQKVF7h">WCL log</a></td>
+    
+  </tr>
+  
+  <tr>
+    <td>Jul 20, 2026</td>
+    
+    <td><span class="ok">✓</span></td>
+    <td class="num">83%</td>
+    <td class="num">82%</td>
+    <td class="num"><b style="color: #1eff00" title="Al&#39;ar 51 · Fathom-Lord Karathress 48 · High Astromancer Solarian 61 · Hydross the Unstable 43 · Kael&#39;thas Sunstrider 31 · Lady Vashj 34 · Leotheras the Blind 43 · Morogrim Tidewalker 51 · The Lurker Below 37 · Void Reaver 39">44</b></td>
+    <td class="num">0</td>
+    <td><a class="dim" href="../../reports/RNqdHDjahz2tvpMK/rpb.html">RPB</a> ·
+        <a class="dim" href="../../reports/RNqdHDjahz2tvpMK/cla.html">CLA</a> ·
+        <a class="dim" href="https://classic.warcraftlogs.com/reports/RNqdHDjahz2tvpMK">WCL log</a></td>
+    
+  </tr>
+  
+  <tr>
+    <td>Jul 16, 2026</td>
+    
+    <td><span class="dim">·</span></td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="dim">—</td>
+    
+  </tr>
+  
+  <tr>
+    <td>Jul 13, 2026</td>
+    
+    <td><span class="dim">·</span></td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="dim">—</td>
+    
+  </tr>
+  
+  <tr>
+    <td>Jul 09, 2026</td>
+    
+    <td><span class="ok">✓</span></td>
+    <td class="num">80%</td>
+    <td class="num">82%</td>
+    <td class="num"><b style="color: #1eff00" title="Al&#39;ar 44 · Fathom-Lord Karathress 53 · High Astromancer Solarian 77 · Hydross the Unstable 60 · Kael&#39;thas Sunstrider 23 · Lady Vashj 30 · Leotheras the Blind 5 · Morogrim Tidewalker 73 · The Lurker Below 49 · Void Reaver 42">46</b></td>
+    <td class="num">1</td>
+    <td><a class="dim" href="../../reports/qhyt2DLzFrNZ7MB4/rpb.html">RPB</a> ·
+        <a class="dim" href="../../reports/qhyt2DLzFrNZ7MB4/cla.html">CLA</a> ·
+        <a class="dim" href="https://classic.warcraftlogs.com/reports/qhyt2DLzFrNZ7MB4">WCL log</a></td>
+    
+  </tr>
+  
+  <tr>
+    <td>Jul 06, 2026</td>
+    
+    <td><span class="dim">·</span></td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="dim">—</td>
+    
+  </tr>
+  
+  <tr>
+    <td>Jul 02, 2026</td>
+    
+    <td><span class="ok">✓</span></td>
+    <td class="num">78%</td>
+    <td class="num">96%</td>
+    <td class="num"><b style="color: #1eff00" title="Al&#39;ar 43 · Fathom-Lord Karathress 51 · High Astromancer Solarian 39 · Hydross the Unstable 74 · Kael&#39;thas Sunstrider 40 · Lady Vashj 36 · Leotheras the Blind 36 · Morogrim Tidewalker 80 · The Lurker Below 24 · Void Reaver 37">46</b></td>
+    <td class="num">1</td>
+    <td><a class="dim" href="../../reports/g2WMnmdVJC9La17p/rpb.html">RPB</a> ·
+        <a class="dim" href="../../reports/g2WMnmdVJC9La17p/cla.html">CLA</a> ·
+        <a class="dim" href="https://classic.warcraftlogs.com/reports/g2WMnmdVJC9La17p">WCL log</a></td>
+    
+  </tr>
+  
+  <tr>
+    <td>Jun 29, 2026</td>
+    
+    <td><span class="dim">·</span></td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="dim">—</td>
+    
+  </tr>
+  
+  <tr>
+    <td>Jun 25, 2026</td>
+    
+    <td><span class="ok">✓</span></td>
+    <td class="num">77%</td>
+    <td class="num">64%</td>
+    <td class="num"><b style="color: #3f8fd8" title="Al&#39;ar 64 · Fathom-Lord Karathress 69 · High Astromancer Solarian 54 · Hydross the Unstable 59 · Kael&#39;thas Sunstrider 49 · Lady Vashj 46 · Leotheras the Blind 2 · Morogrim Tidewalker 63 · The Lurker Below 75 · Void Reaver 22">50</b></td>
+    <td class="num">2</td>
+    <td><a class="dim" href="../../reports/1pVPN7aJyrHKRxkL/rpb.html">RPB</a> ·
+        <a class="dim" href="../../reports/1pVPN7aJyrHKRxkL/cla.html">CLA</a> ·
+        <a class="dim" href="https://classic.warcraftlogs.com/reports/1pVPN7aJyrHKRxkL">WCL log</a></td>
+    
+  </tr>
+  
+  <tr>
+    <td>Jun 18, 2026</td>
+    
+    <td><span class="dim">·</span></td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="dim">—</td>
+    
+  </tr>
+  
+  <tr>
+    <td>Jun 15, 2026</td>
+    
+    <td><span class="ok">✓</span></td>
+    <td class="num">72%</td>
+    <td class="num">97%</td>
+    <td class="num"><b style="color: #1eff00" title="Al&#39;ar 46 · Fathom-Lord Karathress 42 · High Astromancer Solarian 76 · Hydross the Unstable 42 · Kael&#39;thas Sunstrider 41 · Lady Vashj 17 · Leotheras the Blind 28 · Morogrim Tidewalker 66 · The Lurker Below 65 · Void Reaver 27">45</b></td>
+    <td class="num">4</td>
+    <td><a class="dim" href="../../reports/xzWngt82YADv7a9R/rpb.html">RPB</a> ·
+        <a class="dim" href="../../reports/xzWngt82YADv7a9R/cla.html">CLA</a> ·
+        <a class="dim" href="https://classic.warcraftlogs.com/reports/xzWngt82YADv7a9R">WCL log</a></td>
+    
+  </tr>
+  
+  <tr>
+    <td>Jun 11, 2026</td>
+    
+    <td><span class="dim">·</span></td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="dim">—</td>
+    
+  </tr>
+  
+  <tr>
+    <td>Jun 08, 2026</td>
+    
+    <td><span class="dim">·</span></td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="dim">—</td>
+    
+  </tr>
+  
+  <tr>
+    <td>Jun 04, 2026</td>
+    
+    <td><span class="ok">✓</span></td>
+    <td class="num">72%</td>
+    <td class="num">83%</td>
+    <td class="num"><b style="color: #1eff00" title="Al&#39;ar 63 · Fathom-Lord Karathress 36 · High Astromancer Solarian 77 · Hydross the Unstable 48 · Kael&#39;thas Sunstrider 9 · Lady Vashj 13 · Leotheras the Blind 38 · Morogrim Tidewalker 75 · The Lurker Below 60 · Void Reaver 26">44</b></td>
+    <td class="num">1</td>
+    <td><a class="dim" href="../../reports/8JkgP3BnH7W9ZjRV/rpb.html">RPB</a> ·
+        <a class="dim" href="../../reports/8JkgP3BnH7W9ZjRV/cla.html">CLA</a> ·
+        <a class="dim" href="https://classic.warcraftlogs.com/reports/8JkgP3BnH7W9ZjRV">WCL log</a></td>
+    
+  </tr>
+  
+  <tr>
+    <td>Jun 02, 2026</td>
+    
+    <td><span class="dim">·</span></td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="dim">—</td>
+    
+  </tr>
+  
+  <tr>
+    <td>Jun 01, 2026</td>
+    
+    <td><span class="dim">·</span></td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="dim">—</td>
+    
+  </tr>
+  
+  <tr>
+    <td>May 28, 2026</td>
+    
+    <td><span class="ok">✓</span></td>
+    <td class="num">69%</td>
+    <td class="num">89%</td>
+    <td class="num"><b style="color: #1eff00" title="Al&#39;ar 39 · Fathom-Lord Karathress 55 · High Astromancer Solarian 58 · Hydross the Unstable 26 · Kael&#39;thas Sunstrider 18 · Lady Vashj 64 · Leotheras the Blind 26 · Morogrim Tidewalker 63 · The Lurker Below 71 · Void Reaver 43">46</b></td>
+    <td class="num">3</td>
+    <td><a class="dim" href="../../reports/hzq4aT9fgNpFdvAD/rpb.html">RPB</a> ·
+        <a class="dim" href="../../reports/hzq4aT9fgNpFdvAD/cla.html">CLA</a> ·
+        <a class="dim" href="https://classic.warcraftlogs.com/reports/hzq4aT9fgNpFdvAD">WCL log</a></td>
+    
+  </tr>
+  
+  <tr>
+    <td>May 26, 2026</td>
+    
+    <td><span class="dim">·</span></td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="dim">—</td>
+    
+  </tr>
+  
+  <tr>
+    <td>May 22, 2026</td>
+    
+    <td><span class="dim">·</span></td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="dim">—</td>
+    
+  </tr>
+  
+  <tr>
+    <td>May 21, 2026</td>
+    
+    <td><span class="ok">✓</span></td>
+    <td class="num">77%</td>
+    <td class="num">93%</td>
+    <td class="num"><b style="color: #3f8fd8" title="Fathom-Lord Karathress 67 · Hydross the Unstable 20 · Lady Vashj 76 · Leotheras the Blind 43 · Morogrim Tidewalker 65 · The Lurker Below 32">50</b></td>
+    <td class="num">3</td>
+    <td><a class="dim" href="../../reports/N6k9LAQhFBjxzpDc/rpb.html">RPB</a> ·
+        <a class="dim" href="../../reports/N6k9LAQhFBjxzpDc/cla.html">CLA</a> ·
+        <a class="dim" href="https://classic.warcraftlogs.com/reports/N6k9LAQhFBjxzpDc">WCL log</a></td>
+    
+  </tr>
+  
+  <tr>
+    <td>May 16, 2026</td>
+    
+    <td><span class="dim">·</span></td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="num dim">—</td>
+    <td class="num dim">—</td><td class="dim">—</td>
+    
+  </tr>
+  
+  <tr>
+    <td>May 15, 2026</td>
+    
+    <td><span class="ok">✓</span></td>
+    <td class="num">72%</td>
+    <td class="num">87%</td>
+    <td class="num"><b style="color: #1eff00" title="Fathom-Lord Karathress 35 · Hydross the Unstable 29 · Lady Vashj 10 · Leotheras the Blind 39 · Morogrim Tidewalker 78 · The Lurker Below 23">36</b></td>
+    <td class="num">6</td>
+    <td><a class="dim" href="../../reports/dDJ4mkhj8PWNaRgG/rpb.html">RPB</a> ·
+        <a class="dim" href="../../reports/dDJ4mkhj8PWNaRgG/cla.html">CLA</a> ·
+        <a class="dim" href="https://classic.warcraftlogs.com/reports/dDJ4mkhj8PWNaRgG">WCL log</a></td>
+    
+  </tr>
+  
+</table>
+</div>
+</main>
+
+<style>
+.panel { position: relative; }
+.chart-tip {
+  position: absolute; pointer-events: none; z-index: 20; display: none;
+  background: #10161c; border: 1px solid var(--gold); border-radius: 7px;
+  padding: 7px 11px; font-size: 12.5px; white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0,0,0,.5);
+}
+.chart-tip .t { color: var(--ink-dim); margin-bottom: 3px; font-size: 11.5px; }
+.chart-tip .row { display: flex; align-items: center; gap: 6px; }
+.chart-tip .sw { width: 8px; height: 8px; border-radius: 50%; }
+.chart-tip b { margin-left: auto; padding-left: 10px; }
+</style>
+<script>
+// hover layer for line charts: crosshair + immediate tooltip (screen only)
+(function () {
+  var SVGNS = "http://www.w3.org/2000/svg";
+  document.querySelectorAll('svg[data-chart="line"]').forEach(function (svg) {
+    var points = JSON.parse(svg.dataset.points || "[]");
+    if (!points.length) return;
+    var y0 = +svg.dataset.y0, y1 = +svg.dataset.y1;
+    var panel = svg.closest(".panel") || svg.parentElement;
+    var tip = document.createElement("div");
+    tip.className = "chart-tip";
+    panel.appendChild(tip);
+    var cross = document.createElementNS(SVGNS, "line");
+    cross.setAttribute("stroke", "#e3c680");
+    cross.setAttribute("stroke-width", "1");
+    cross.setAttribute("stroke-dasharray", "3,3");
+    cross.setAttribute("y1", y0);
+    cross.setAttribute("y2", y1);
+    cross.style.display = "none";
+    svg.appendChild(cross);
+
+    svg.addEventListener("mousemove", function (e) {
+      var rect = svg.getBoundingClientRect();
+      var vx = (e.clientX - rect.left) * 640 / rect.width;
+      var best = 0, bestD = Infinity;
+      points.forEach(function (p, i) {
+        var d = Math.abs(p.x - vx);
+        if (d < bestD) { bestD = d; best = i; }
+      });
+      var p = points[best];
+      cross.setAttribute("x1", p.x);
+      cross.setAttribute("x2", p.x);
+      cross.style.display = "";
+      var html = '<div class="t">' + p.label + '</div>';
+      p.items.forEach(function (it) {
+        html += '<div class="row"><span class="sw" style="background:' + it.color
+              + '"></span>' + it.name + '<b>' + it.text + '</b></div>';
+      });
+      tip.innerHTML = html;
+      tip.style.display = "block";
+      var prect = panel.getBoundingClientRect();
+      var left = e.clientX - prect.left + 16;
+      if (left + tip.offsetWidth > prect.width - 8)
+        left = e.clientX - prect.left - tip.offsetWidth - 16;
+      tip.style.left = left + "px";
+      tip.style.top = (e.clientY - prect.top - tip.offsetHeight / 2) + "px";
+    });
+    svg.addEventListener("mouseleave", function () {
+      tip.style.display = "none";
+      cross.style.display = "none";
+    });
+  });
+})();
+</script>
+
+
+<footer>generated with WarcraftLogs data · raidstats</footer>
+
+</body>
+</html>

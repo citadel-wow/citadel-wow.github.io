@@ -1,0 +1,521 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trends — Citadel — Raid Reports</title>
+<meta property="og:title" content="Trends — Citadel — Raid Reports">
+<meta name="theme-color" content="#c9a24b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 90 20v30c0 25-18 38-40 45C28 88 10 75 10 50V20z' fill='%23c9a24b'/%3E%3Cpath d='M50 14 82 26v24c0 20-14 30-32 36-18-6-32-16-32-36V26z' fill='%231a222c'/%3E%3Cpath d='M50 26v48M34 40h32' stroke='%23c9a24b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #10161c; --panel: #161e26; --card: #1c2630; --card-hover: #223040;
+  --line: #2b3a48; --ink: #e8edf2; --ink-dim: #8fa1b3;
+  --gold: #c9a24b; --gold-soft: #e3c680; --accent: #5d7f9d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Helvetica Neue", Arial, "Segoe UI", sans-serif;
+  background: radial-gradient(1100px 380px at 50% -80px, #223140 0%, transparent 70%), var(--bg);
+  color: var(--ink); min-height: 100vh;
+}
+header { padding: 30px 24px 14px; text-align: center; }
+h1 { font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; }
+h1 a { color: var(--ink); text-decoration: none; }
+h1 .dash { color: var(--gold); }
+.rule { width: 140px; height: 2px; margin: 14px auto 0;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+main { max-width: 1150px; margin: 0 auto; padding: 18px 24px 70px; }
+h2 { font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase;
+     color: var(--gold-soft); margin: 26px 0 12px; }
+.panel { background: var(--card); border: 1px solid var(--line);
+         border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }
+table.data { border-collapse: collapse; width: 100%; font-size: 13px; }
+table.data th { text-align: left; color: var(--ink-dim); font-weight: 600;
+  font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line);
+  white-space: nowrap; }
+table.data td { padding: 6px 8px; border-bottom: 1px solid #212d38; }
+table.data tr:hover td { background: var(--card-hover); }
+td.num, th.num,
+table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mid, th.mid,
+table.data th.mid, table.data td.mid { text-align: center; }
+.name-badge { display: inline-block; padding: 1px 8px; border-radius: 5px;
+  color: #1a222c; font-weight: 650; font-size: 12.5px; }
+a.player-link { text-decoration: none; }
+.dim { color: var(--ink-dim); }
+footer { text-align: center; color: #4d6070; font-size: 12px; padding: 26px; }
+nav.site {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 14px 0 4px;
+}
+nav.site a {
+  color: var(--ink-dim); text-decoration: none; font-size: 13px;
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 14px;
+}
+nav.site a:hover { color: var(--gold-soft); border-color: var(--gold); }
+nav.site a.active { background: var(--card); color: var(--ink);
+                    border-color: var(--gold); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+         gap: 12px; margin-bottom: 16px; }
+.tile { background: var(--card); border: 1px solid var(--line);
+        border-radius: 10px; padding: 14px 16px; text-align: center; }
+.tile .v { font-size: 24px; font-weight: 700; }
+.tile .k { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+           color: var(--ink-dim); margin-top: 4px; }
+.chart-note { font-size: 11px; color: var(--ink-dim); margin-top: 6px; }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-dim);
+          margin-bottom: 6px; }
+.legend .sw { display: inline-block; width: 9px; height: 9px;
+              border-radius: 50%; margin-right: 5px; }
+.zone-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.zone-chip { border: 1px solid var(--line); background: var(--panel);
+  padding: 8px 16px; border-radius: 10px; font-size: 14px; }
+.zone-chip b { color: var(--gold-soft); }
+.ok { color: #7fc98b; } .bad { color: #d98a8a; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html">Citadel <span class="dash">—</span> Raid Reports</a></h1>
+  <nav class="site">
+    
+    <a href="index.html">Logs</a>
+    
+    <a href="attendance.html" class="">Attendance</a>
+    <a href="parses.html" class="">Parses</a>
+    <a href="deaths.html" class="">Deaths</a>
+    <a href="consumables.html" class="">Consumables</a>
+    
+    <a href="progress.html" class="">Progression</a>
+    <a href="trends.html" class="active">Trends</a>
+  </nav>
+  <div class="rule"></div>
+</header>
+
+<main>
+
+<h2 style="font-size: 18px">Raid 1 · Thursdays</h2>
+
+<h2>Clear times</h2>
+<div class="panel">
+  <div class="legend">
+    
+    <span><span class="sw" style="background: #bc8834"></span>SSC</span>
+    
+    <span><span class="sw" style="background: #5e93cf"></span>TK</span>
+    
+  </div>
+  <svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:auto" data-chart="line" data-points='[{"label": "May 15", "x": 46.0, "items": [{"name": "SSC", "color": "#bc8834", "text": "3:51"}]}, {"label": "May 21", "x": 95.9, "items": [{"name": "SSC", "color": "#bc8834", "text": "2:15"}]}, {"label": "May 28", "x": 145.8, "items": [{"name": "SSC", "color": "#bc8834", "text": "2:01"}, {"name": "TK", "color": "#5e93cf", "text": "1:42"}]}, {"label": "Jun 04", "x": 195.7, "items": [{"name": "SSC", "color": "#bc8834", "text": "1:37"}, {"name": "TK", "color": "#5e93cf", "text": "1:27"}]}, {"label": "Jun 11", "x": 245.6, "items": [{"name": "SSC", "color": "#bc8834", "text": "1:47"}, {"name": "TK", "color": "#5e93cf", "text": "1:12"}]}, {"label": "Jun 18", "x": 295.5, "items": [{"name": "SSC", "color": "#bc8834", "text": "1:35"}, {"name": "TK", "color": "#5e93cf", "text": "1:07"}]}, {"label": "Jun 25", "x": 345.4, "items": [{"name": "SSC", "color": "#bc8834", "text": "1:23"}, {"name": "TK", "color": "#5e93cf", "text": "1:16"}]}, {"label": "Jul 02", "x": 395.3, "items": [{"name": "SSC", "color": "#bc8834", "text": "1:13"}, {"name": "TK", "color": "#5e93cf", "text": "1:12"}]}, {"label": "Jul 09", "x": 445.2, "items": [{"name": "SSC", "color": "#bc8834", "text": "1:19"}, {"name": "TK", "color": "#5e93cf", "text": "1:39"}]}, {"label": "Jul 16", "x": 495.1, "items": [{"name": "SSC", "color": "#bc8834", "text": "1:11"}, {"name": "TK", "color": "#5e93cf", "text": "1:23"}]}, {"label": "Jul 23", "x": 545.0, "items": [{"name": "SSC", "color": "#bc8834", "text": "1:13"}, {"name": "TK", "color": "#5e93cf", "text": "1:13"}]}]' data-y0="16" data-y1="180"><line x1="46" y1="180.0" x2="545" y2="180.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="183.5" text-anchor="end" font-size="10" fill="#8fa1b3">0m</text><line x1="46" y1="98.0" x2="545" y2="98.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="101.5" text-anchor="end" font-size="10" fill="#8fa1b3">2:12</text><line x1="46" y1="16.0" x2="545" y2="16.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="19.5" text-anchor="end" font-size="10" fill="#8fa1b3">4:25</text><text x="46.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 15</text><text x="95.9" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 21</text><text x="145.8" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 28</text><text x="195.7" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 04</text><text x="245.6" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 11</text><text x="295.5" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 18</text><text x="345.4" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 25</text><text x="395.3" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 02</text><text x="445.2" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 09</text><text x="495.1" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 16</text><text x="545.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 23</text><polyline points="46.0,37.4 95.9,96.3 145.8,104.8 195.7,120.2 245.6,113.7 295.5,121.1 345.4,128.5 395.3,134.9 445.2,130.9 495.1,136.2 545.0,134.5" fill="none" stroke="#bc8834" stroke-width="2" stroke-linejoin="round"/><circle cx="46.0" cy="37.4" r="3.5" fill="#bc8834"/><circle cx="46.0" cy="37.4" r="10" fill="transparent"><title>May 15 — SSC: 3:51</title></circle><circle cx="95.9" cy="96.3" r="3.5" fill="#bc8834"/><circle cx="95.9" cy="96.3" r="10" fill="transparent"><title>May 21 — SSC: 2:15</title></circle><circle cx="145.8" cy="104.8" r="3.5" fill="#bc8834"/><circle cx="145.8" cy="104.8" r="10" fill="transparent"><title>May 28 — SSC: 2:01</title></circle><circle cx="195.7" cy="120.2" r="3.5" fill="#bc8834"/><circle cx="195.7" cy="120.2" r="10" fill="transparent"><title>Jun 04 — SSC: 1:37</title></circle><circle cx="245.6" cy="113.7" r="3.5" fill="#bc8834"/><circle cx="245.6" cy="113.7" r="10" fill="transparent"><title>Jun 11 — SSC: 1:47</title></circle><circle cx="295.5" cy="121.1" r="3.5" fill="#bc8834"/><circle cx="295.5" cy="121.1" r="10" fill="transparent"><title>Jun 18 — SSC: 1:35</title></circle><circle cx="345.4" cy="128.5" r="3.5" fill="#bc8834"/><circle cx="345.4" cy="128.5" r="10" fill="transparent"><title>Jun 25 — SSC: 1:23</title></circle><circle cx="395.3" cy="134.9" r="3.5" fill="#bc8834"/><circle cx="395.3" cy="134.9" r="10" fill="transparent"><title>Jul 02 — SSC: 1:13</title></circle><circle cx="445.2" cy="130.9" r="3.5" fill="#bc8834"/><circle cx="445.2" cy="130.9" r="10" fill="transparent"><title>Jul 09 — SSC: 1:19</title></circle><circle cx="495.1" cy="136.2" r="3.5" fill="#bc8834"/><circle cx="495.1" cy="136.2" r="10" fill="transparent"><title>Jul 16 — SSC: 1:11</title></circle><circle cx="545.0" cy="134.5" r="3.5" fill="#bc8834"/><circle cx="545.0" cy="134.5" r="10" fill="transparent"><title>Jul 23 — SSC: 1:13</title></circle><polyline points="145.8,116.7 195.7,125.8 245.6,135.1 295.5,138.5 345.4,133.0 395.3,135.1 445.2,118.7 495.1,128.4 545.0,135.0" fill="none" stroke="#5e93cf" stroke-width="2" stroke-linejoin="round"/><circle cx="145.8" cy="116.7" r="3.5" fill="#5e93cf"/><circle cx="145.8" cy="116.7" r="10" fill="transparent"><title>May 28 — TK: 1:42</title></circle><circle cx="195.7" cy="125.8" r="3.5" fill="#5e93cf"/><circle cx="195.7" cy="125.8" r="10" fill="transparent"><title>Jun 04 — TK: 1:27</title></circle><circle cx="245.6" cy="135.1" r="3.5" fill="#5e93cf"/><circle cx="245.6" cy="135.1" r="10" fill="transparent"><title>Jun 11 — TK: 1:12</title></circle><circle cx="295.5" cy="138.5" r="3.5" fill="#5e93cf"/><circle cx="295.5" cy="138.5" r="10" fill="transparent"><title>Jun 18 — TK: 1:07</title></circle><circle cx="345.4" cy="133.0" r="3.5" fill="#5e93cf"/><circle cx="345.4" cy="133.0" r="10" fill="transparent"><title>Jun 25 — TK: 1:16</title></circle><circle cx="395.3" cy="135.1" r="3.5" fill="#5e93cf"/><circle cx="395.3" cy="135.1" r="10" fill="transparent"><title>Jul 02 — TK: 1:12</title></circle><circle cx="445.2" cy="118.7" r="3.5" fill="#5e93cf"/><circle cx="445.2" cy="118.7" r="10" fill="transparent"><title>Jul 09 — TK: 1:39</title></circle><circle cx="495.1" cy="128.4" r="3.5" fill="#5e93cf"/><circle cx="495.1" cy="128.4" r="10" fill="transparent"><title>Jul 16 — TK: 1:23</title></circle><circle cx="545.0" cy="135.0" r="3.5" fill="#5e93cf"/><circle cx="545.0" cy="135.0" r="10" fill="transparent"><title>Jul 23 — TK: 1:13</title></circle><circle cx="555" cy="127.7" r="4" fill="#bc8834"/><text x="563" y="131.2" font-size="11" fill="#e8edf2">SSC 1:13</text><circle cx="555" cy="141.7" r="4" fill="#5e93cf"/><text x="563" y="145.2" font-size="11" fill="#e8edf2">TK 1:13</text></svg>
+</div>
+
+<h2>Deaths per night</h2>
+<div class="panel"><svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:auto"><line x1="46" y1="180.0" x2="545" y2="180.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="183.5" text-anchor="end" font-size="10" fill="#8fa1b3">0</text><line x1="46" y1="98.0" x2="545" y2="98.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="101.5" text-anchor="end" font-size="10" fill="#8fa1b3">128</text><line x1="46" y1="16.0" x2="545" y2="16.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="19.5" text-anchor="end" font-size="10" fill="#8fa1b3">255</text><rect x="47.0" y="37.4" width="43.4" height="142.6" rx="4" fill="#5e93cf"><title>May 15: 222</title></rect><text x="68.7" y="32.4" text-anchor="middle" font-size="10" fill="#e8edf2">222</text><text x="68.7" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 15</text><rect x="92.4" y="104.8" width="43.4" height="75.2" rx="4" fill="#5e93cf"><title>May 21: 117</title></rect><text x="114.0" y="99.8" text-anchor="middle" font-size="10" fill="#e8edf2">117</text><text x="114.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 21</text><rect x="137.7" y="82.4" width="43.4" height="97.6" rx="4" fill="#5e93cf"><title>May 28: 152</title></rect><text x="159.4" y="77.4" text-anchor="middle" font-size="10" fill="#e8edf2">152</text><text x="159.4" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 28</text><rect x="183.1" y="110.6" width="43.4" height="69.4" rx="4" fill="#5e93cf"><title>Jun 04: 108</title></rect><text x="204.8" y="105.6" text-anchor="middle" font-size="10" fill="#e8edf2">108</text><text x="204.8" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 04</text><rect x="228.5" y="95.2" width="43.4" height="84.8" rx="4" fill="#5e93cf"><title>Jun 11: 132</title></rect><text x="250.1" y="90.2" text-anchor="middle" font-size="10" fill="#e8edf2">132</text><text x="250.1" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 11</text><rect x="273.8" y="129.9" width="43.4" height="50.1" rx="4" fill="#5e93cf"><title>Jun 18: 78</title></rect><text x="295.5" y="124.9" text-anchor="middle" font-size="10" fill="#e8edf2">78</text><text x="295.5" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 18</text><rect x="319.2" y="104.2" width="43.4" height="75.8" rx="4" fill="#5e93cf"><title>Jun 25: 118</title></rect><text x="340.9" y="99.2" text-anchor="middle" font-size="10" fill="#e8edf2">118</text><text x="340.9" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 25</text><rect x="364.5" y="129.3" width="43.4" height="50.7" rx="4" fill="#5e93cf"><title>Jul 02: 79</title></rect><text x="386.2" y="124.3" text-anchor="middle" font-size="10" fill="#e8edf2">79</text><text x="386.2" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 02</text><rect x="409.9" y="81.7" width="43.4" height="98.3" rx="4" fill="#5e93cf"><title>Jul 09: 153</title></rect><text x="431.6" y="76.7" text-anchor="middle" font-size="10" fill="#e8edf2">153</text><text x="431.6" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 09</text><rect x="455.3" y="130.5" width="43.4" height="49.5" rx="4" fill="#5e93cf"><title>Jul 16: 77</title></rect><text x="477.0" y="125.5" text-anchor="middle" font-size="10" fill="#e8edf2">77</text><text x="477.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 16</text><rect x="500.6" y="138.2" width="43.4" height="41.8" rx="4" fill="#5e93cf"><title>Jul 23: 65</title></rect><text x="522.3" y="133.2" text-anchor="middle" font-size="10" fill="#e8edf2">65</text><text x="522.3" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 23</text></svg></div>
+
+<h2>Average consumable score</h2>
+<div class="panel"><svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:auto" data-chart="line" data-points='[{"label": "May 15", "x": 46.0, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "86%"}]}, {"label": "May 21", "x": 95.9, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "85%"}]}, {"label": "May 28", "x": 145.8, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "83%"}]}, {"label": "Jun 04", "x": 195.7, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "89%"}]}, {"label": "Jun 11", "x": 245.6, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "89%"}]}, {"label": "Jun 18", "x": 295.5, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "89%"}]}, {"label": "Jun 25", "x": 345.4, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "86%"}]}, {"label": "Jul 02", "x": 395.3, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "90%"}]}, {"label": "Jul 09", "x": 445.2, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "83%"}]}, {"label": "Jul 16", "x": 495.1, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "89%"}]}, {"label": "Jul 23", "x": 545.0, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "90%"}]}]' data-y0="16" data-y1="180"><line x1="46" y1="180.0" x2="545" y2="180.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="183.5" text-anchor="end" font-size="10" fill="#8fa1b3">0%</text><line x1="46" y1="98.0" x2="545" y2="98.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="101.5" text-anchor="end" font-size="10" fill="#8fa1b3">50%</text><line x1="46" y1="16.0" x2="545" y2="16.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="19.5" text-anchor="end" font-size="10" fill="#8fa1b3">100%</text><text x="46.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 15</text><text x="95.9" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 21</text><text x="145.8" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 28</text><text x="195.7" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 04</text><text x="245.6" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 11</text><text x="295.5" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 18</text><text x="345.4" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 25</text><text x="395.3" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 02</text><text x="445.2" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 09</text><text x="495.1" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 16</text><text x="545.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 23</text><polyline points="46.0,39.0 95.9,40.6 145.8,43.9 195.7,34.0 245.6,34.0 295.5,34.0 345.4,39.0 395.3,32.4 445.2,43.9 495.1,34.0 545.0,32.4" fill="none" stroke="#5e93cf" stroke-width="2" stroke-linejoin="round"/><circle cx="46.0" cy="39.0" r="3.5" fill="#5e93cf"/><circle cx="46.0" cy="39.0" r="10" fill="transparent"><title>May 15 — avg consumables: 86%</title></circle><circle cx="95.9" cy="40.6" r="3.5" fill="#5e93cf"/><circle cx="95.9" cy="40.6" r="10" fill="transparent"><title>May 21 — avg consumables: 85%</title></circle><circle cx="145.8" cy="43.9" r="3.5" fill="#5e93cf"/><circle cx="145.8" cy="43.9" r="10" fill="transparent"><title>May 28 — avg consumables: 83%</title></circle><circle cx="195.7" cy="34.0" r="3.5" fill="#5e93cf"/><circle cx="195.7" cy="34.0" r="10" fill="transparent"><title>Jun 04 — avg consumables: 89%</title></circle><circle cx="245.6" cy="34.0" r="3.5" fill="#5e93cf"/><circle cx="245.6" cy="34.0" r="10" fill="transparent"><title>Jun 11 — avg consumables: 89%</title></circle><circle cx="295.5" cy="34.0" r="3.5" fill="#5e93cf"/><circle cx="295.5" cy="34.0" r="10" fill="transparent"><title>Jun 18 — avg consumables: 89%</title></circle><circle cx="345.4" cy="39.0" r="3.5" fill="#5e93cf"/><circle cx="345.4" cy="39.0" r="10" fill="transparent"><title>Jun 25 — avg consumables: 86%</title></circle><circle cx="395.3" cy="32.4" r="3.5" fill="#5e93cf"/><circle cx="395.3" cy="32.4" r="10" fill="transparent"><title>Jul 02 — avg consumables: 90%</title></circle><circle cx="445.2" cy="43.9" r="3.5" fill="#5e93cf"/><circle cx="445.2" cy="43.9" r="10" fill="transparent"><title>Jul 09 — avg consumables: 83%</title></circle><circle cx="495.1" cy="34.0" r="3.5" fill="#5e93cf"/><circle cx="495.1" cy="34.0" r="10" fill="transparent"><title>Jul 16 — avg consumables: 89%</title></circle><circle cx="545.0" cy="32.4" r="3.5" fill="#5e93cf"/><circle cx="545.0" cy="32.4" r="10" fill="transparent"><title>Jul 23 — avg consumables: 90%</title></circle><circle cx="555" cy="32.4" r="4" fill="#5e93cf"/><text x="563" y="35.9" font-size="11" fill="#e8edf2">90%</text></svg></div>
+
+<h2>Average parse</h2>
+<div class="panel"><svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:auto" data-chart="line" data-points='[{"label": "May 15", "x": 46.0, "items": [{"name": "avg parse", "color": "#a335ee", "text": "49"}]}, {"label": "May 21", "x": 95.9, "items": [{"name": "avg parse", "color": "#a335ee", "text": "52"}]}, {"label": "May 28", "x": 145.8, "items": [{"name": "avg parse", "color": "#a335ee", "text": "54"}]}, {"label": "Jun 04", "x": 195.7, "items": [{"name": "avg parse", "color": "#a335ee", "text": "58"}]}, {"label": "Jun 11", "x": 245.6, "items": [{"name": "avg parse", "color": "#a335ee", "text": "54"}]}, {"label": "Jun 18", "x": 295.5, "items": [{"name": "avg parse", "color": "#a335ee", "text": "59"}]}, {"label": "Jun 25", "x": 345.4, "items": [{"name": "avg parse", "color": "#a335ee", "text": "54"}]}, {"label": "Jul 02", "x": 395.3, "items": [{"name": "avg parse", "color": "#a335ee", "text": "57"}]}, {"label": "Jul 09", "x": 445.2, "items": [{"name": "avg parse", "color": "#a335ee", "text": "48"}]}, {"label": "Jul 16", "x": 495.1, "items": [{"name": "avg parse", "color": "#a335ee", "text": "57"}]}, {"label": "Jul 23", "x": 545.0, "items": [{"name": "avg parse", "color": "#a335ee", "text": "56"}]}]' data-y0="16" data-y1="180"><line x1="46" y1="180.0" x2="545" y2="180.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="183.5" text-anchor="end" font-size="10" fill="#8fa1b3">0</text><line x1="46" y1="98.0" x2="545" y2="98.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="101.5" text-anchor="end" font-size="10" fill="#8fa1b3">34</text><line x1="46" y1="16.0" x2="545" y2="16.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="19.5" text-anchor="end" font-size="10" fill="#8fa1b3">68</text><text x="46.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 15</text><text x="95.9" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 21</text><text x="145.8" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 28</text><text x="195.7" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 04</text><text x="245.6" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 11</text><text x="295.5" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 18</text><text x="345.4" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 25</text><text x="395.3" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 02</text><text x="445.2" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 09</text><text x="495.1" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 16</text><text x="545.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 23</text><polyline points="46.0,61.6 95.9,54.3 145.8,49.5 195.7,39.8 245.6,49.5 295.5,37.4 345.4,49.5 395.3,42.2 445.2,64.0 495.1,42.2 545.0,44.6" fill="none" stroke="#a335ee" stroke-width="2" stroke-linejoin="round"/><circle cx="46.0" cy="61.6" r="3.5" fill="#a335ee"/><circle cx="46.0" cy="61.6" r="10" fill="transparent"><title>May 15 — avg parse: 49</title></circle><circle cx="95.9" cy="54.3" r="3.5" fill="#a335ee"/><circle cx="95.9" cy="54.3" r="10" fill="transparent"><title>May 21 — avg parse: 52</title></circle><circle cx="145.8" cy="49.5" r="3.5" fill="#a335ee"/><circle cx="145.8" cy="49.5" r="10" fill="transparent"><title>May 28 — avg parse: 54</title></circle><circle cx="195.7" cy="39.8" r="3.5" fill="#a335ee"/><circle cx="195.7" cy="39.8" r="10" fill="transparent"><title>Jun 04 — avg parse: 58</title></circle><circle cx="245.6" cy="49.5" r="3.5" fill="#a335ee"/><circle cx="245.6" cy="49.5" r="10" fill="transparent"><title>Jun 11 — avg parse: 54</title></circle><circle cx="295.5" cy="37.4" r="3.5" fill="#a335ee"/><circle cx="295.5" cy="37.4" r="10" fill="transparent"><title>Jun 18 — avg parse: 59</title></circle><circle cx="345.4" cy="49.5" r="3.5" fill="#a335ee"/><circle cx="345.4" cy="49.5" r="10" fill="transparent"><title>Jun 25 — avg parse: 54</title></circle><circle cx="395.3" cy="42.2" r="3.5" fill="#a335ee"/><circle cx="395.3" cy="42.2" r="10" fill="transparent"><title>Jul 02 — avg parse: 57</title></circle><circle cx="445.2" cy="64.0" r="3.5" fill="#a335ee"/><circle cx="445.2" cy="64.0" r="10" fill="transparent"><title>Jul 09 — avg parse: 48</title></circle><circle cx="495.1" cy="42.2" r="3.5" fill="#a335ee"/><circle cx="495.1" cy="42.2" r="10" fill="transparent"><title>Jul 16 — avg parse: 57</title></circle><circle cx="545.0" cy="44.6" r="3.5" fill="#a335ee"/><circle cx="545.0" cy="44.6" r="10" fill="transparent"><title>Jul 23 — avg parse: 56</title></circle><circle cx="555" cy="44.6" r="4" fill="#a335ee"/><text x="563" y="48.1" font-size="11" fill="#e8edf2">56</text></svg>
+  <div class="chart-note">roster average of per-night parse percentiles (WCL, dps/hps)</div>
+</div>
+
+<h2>Average activity</h2>
+<div class="panel"><svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:auto" data-chart="line" data-points='[{"label": "May 15", "x": 46.0, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "68%"}]}, {"label": "May 21", "x": 95.9, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "76%"}]}, {"label": "May 28", "x": 145.8, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "75%"}]}, {"label": "Jun 04", "x": 195.7, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "76%"}]}, {"label": "Jun 11", "x": 245.6, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "73%"}]}, {"label": "Jun 18", "x": 295.5, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "77%"}]}, {"label": "Jun 25", "x": 345.4, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "75%"}]}, {"label": "Jul 02", "x": 395.3, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "75%"}]}, {"label": "Jul 09", "x": 445.2, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "71%"}]}, {"label": "Jul 16", "x": 495.1, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "73%"}]}, {"label": "Jul 23", "x": 545.0, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "74%"}]}]' data-y0="16" data-y1="180"><line x1="46" y1="180.0" x2="545" y2="180.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="183.5" text-anchor="end" font-size="10" fill="#8fa1b3">0%</text><line x1="46" y1="98.0" x2="545" y2="98.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="101.5" text-anchor="end" font-size="10" fill="#8fa1b3">44%</text><line x1="46" y1="16.0" x2="545" y2="16.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="19.5" text-anchor="end" font-size="10" fill="#8fa1b3">89%</text><text x="46.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 15</text><text x="95.9" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 21</text><text x="145.8" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 28</text><text x="195.7" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 04</text><text x="245.6" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 11</text><text x="295.5" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 18</text><text x="345.4" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 25</text><text x="395.3" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 02</text><text x="445.2" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 09</text><text x="495.1" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 16</text><text x="545.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 23</text><polyline points="46.0,54.1 95.9,39.2 145.8,41.1 195.7,39.2 245.6,44.8 295.5,37.4 345.4,41.1 395.3,41.1 445.2,48.5 495.1,44.8 545.0,42.9" fill="none" stroke="#5e93cf" stroke-width="2" stroke-linejoin="round"/><circle cx="46.0" cy="54.1" r="3.5" fill="#5e93cf"/><circle cx="46.0" cy="54.1" r="10" fill="transparent"><title>May 15 — avg activity: 68%</title></circle><circle cx="95.9" cy="39.2" r="3.5" fill="#5e93cf"/><circle cx="95.9" cy="39.2" r="10" fill="transparent"><title>May 21 — avg activity: 76%</title></circle><circle cx="145.8" cy="41.1" r="3.5" fill="#5e93cf"/><circle cx="145.8" cy="41.1" r="10" fill="transparent"><title>May 28 — avg activity: 75%</title></circle><circle cx="195.7" cy="39.2" r="3.5" fill="#5e93cf"/><circle cx="195.7" cy="39.2" r="10" fill="transparent"><title>Jun 04 — avg activity: 76%</title></circle><circle cx="245.6" cy="44.8" r="3.5" fill="#5e93cf"/><circle cx="245.6" cy="44.8" r="10" fill="transparent"><title>Jun 11 — avg activity: 73%</title></circle><circle cx="295.5" cy="37.4" r="3.5" fill="#5e93cf"/><circle cx="295.5" cy="37.4" r="10" fill="transparent"><title>Jun 18 — avg activity: 77%</title></circle><circle cx="345.4" cy="41.1" r="3.5" fill="#5e93cf"/><circle cx="345.4" cy="41.1" r="10" fill="transparent"><title>Jun 25 — avg activity: 75%</title></circle><circle cx="395.3" cy="41.1" r="3.5" fill="#5e93cf"/><circle cx="395.3" cy="41.1" r="10" fill="transparent"><title>Jul 02 — avg activity: 75%</title></circle><circle cx="445.2" cy="48.5" r="3.5" fill="#5e93cf"/><circle cx="445.2" cy="48.5" r="10" fill="transparent"><title>Jul 09 — avg activity: 71%</title></circle><circle cx="495.1" cy="44.8" r="3.5" fill="#5e93cf"/><circle cx="495.1" cy="44.8" r="10" fill="transparent"><title>Jul 16 — avg activity: 73%</title></circle><circle cx="545.0" cy="42.9" r="3.5" fill="#5e93cf"/><circle cx="545.0" cy="42.9" r="10" fill="transparent"><title>Jul 23 — avg activity: 74%</title></circle><circle cx="555" cy="42.9" r="4" fill="#5e93cf"/><text x="563" y="46.4" font-size="11" fill="#e8edf2">74%</text></svg>
+  <div class="chart-note">WCL active-time share, averaged over the roster</div>
+</div>
+
+<h2>All numbers</h2>
+<div class="panel" style="overflow-x:auto; margin-bottom: 40px">
+<table class="data">
+  <tr><th>Night</th><th class="num">SSC</th><th class="num">TK</th>
+      <th class="num">Deaths</th><th class="num">Consumables</th>
+      <th class="num">Activity</th><th class="num">Parse</th>
+      <th class="num">Raiders</th></tr>
+  
+  <tr>
+    <td>Jul 23</td>
+    <td class="num">1:13:51</td>
+    <td class="num">1:13:02</td>
+    <td class="num">65</td>
+    <td class="num">90%</td>
+    <td class="num">74%</td>
+    <td class="num">56</td>
+    <td class="num">26</td>
+  </tr>
+  
+  <tr>
+    <td>Jul 16</td>
+    <td class="num">1:11:04</td>
+    <td class="num">1:23:39</td>
+    <td class="num">77</td>
+    <td class="num">89%</td>
+    <td class="num">73%</td>
+    <td class="num">57</td>
+    <td class="num">26</td>
+  </tr>
+  
+  <tr>
+    <td>Jul 09</td>
+    <td class="num">1:19:33</td>
+    <td class="num">1:39:27</td>
+    <td class="num">153</td>
+    <td class="num">83%</td>
+    <td class="num">71%</td>
+    <td class="num">48</td>
+    <td class="num">26</td>
+  </tr>
+  
+  <tr>
+    <td>Jul 02</td>
+    <td class="num">1:13:04</td>
+    <td class="num">1:12:47</td>
+    <td class="num">79</td>
+    <td class="num">90%</td>
+    <td class="num">75%</td>
+    <td class="num">57</td>
+    <td class="num">25</td>
+  </tr>
+  
+  <tr>
+    <td>Jun 25</td>
+    <td class="num">1:23:29</td>
+    <td class="num">1:16:10</td>
+    <td class="num">118</td>
+    <td class="num">86%</td>
+    <td class="num">75%</td>
+    <td class="num">54</td>
+    <td class="num">25</td>
+  </tr>
+  
+  <tr>
+    <td>Jun 18</td>
+    <td class="num">1:35:36</td>
+    <td class="num">1:07:23</td>
+    <td class="num">78</td>
+    <td class="num">89%</td>
+    <td class="num">77%</td>
+    <td class="num">59</td>
+    <td class="num">25</td>
+  </tr>
+  
+  <tr>
+    <td>Jun 11</td>
+    <td class="num">1:47:36</td>
+    <td class="num">1:12:48</td>
+    <td class="num">132</td>
+    <td class="num">89%</td>
+    <td class="num">73%</td>
+    <td class="num">54</td>
+    <td class="num">26</td>
+  </tr>
+  
+  <tr>
+    <td>Jun 04</td>
+    <td class="num">1:37:01</td>
+    <td class="num">1:27:57</td>
+    <td class="num">108</td>
+    <td class="num">89%</td>
+    <td class="num">76%</td>
+    <td class="num">58</td>
+    <td class="num">25</td>
+  </tr>
+  
+  <tr>
+    <td>May 28</td>
+    <td class="num">2:01:54</td>
+    <td class="num">1:42:38</td>
+    <td class="num">152</td>
+    <td class="num">83%</td>
+    <td class="num">75%</td>
+    <td class="num">54</td>
+    <td class="num">25</td>
+  </tr>
+  
+  <tr>
+    <td>May 21</td>
+    <td class="num">2:15:44</td>
+    <td class="num">—</td>
+    <td class="num">117</td>
+    <td class="num">85%</td>
+    <td class="num">76%</td>
+    <td class="num">52</td>
+    <td class="num">25</td>
+  </tr>
+  
+  <tr>
+    <td>May 15</td>
+    <td class="num">3:51:17</td>
+    <td class="num">—</td>
+    <td class="num">222</td>
+    <td class="num">86%</td>
+    <td class="num">68%</td>
+    <td class="num">49</td>
+    <td class="num">25</td>
+  </tr>
+  
+</table>
+</div>
+
+<h2 style="font-size: 18px">Raid 2 · Mondays</h2>
+
+<h2>Clear times</h2>
+<div class="panel">
+  <div class="legend">
+    
+    <span><span class="sw" style="background: #bc8834"></span>SSC</span>
+    
+    <span><span class="sw" style="background: #5e93cf"></span>TK</span>
+    
+  </div>
+  <svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:auto" data-chart="line" data-points='[{"label": "May 16", "x": 46.0, "items": [{"name": "SSC", "color": "#bc8834", "text": "3:45"}]}, {"label": "May 22", "x": 87.6, "items": [{"name": "SSC", "color": "#bc8834", "text": "2:08"}]}, {"label": "May 26", "x": 129.2, "items": [{"name": "TK", "color": "#5e93cf", "text": "2:52"}]}, {"label": "Jun 01", "x": 170.8, "items": [{"name": "TK", "color": "#5e93cf", "text": "1:59"}]}, {"label": "Jun 02", "x": 212.3, "items": [{"name": "SSC", "color": "#bc8834", "text": "2:04"}]}, {"label": "Jun 08", "x": 253.9, "items": [{"name": "SSC", "color": "#bc8834", "text": "2:12"}, {"name": "TK", "color": "#5e93cf", "text": "1:47"}]}, {"label": "Jun 15", "x": 295.5, "items": [{"name": "SSC", "color": "#bc8834", "text": "1:50"}, {"name": "TK", "color": "#5e93cf", "text": "1:29"}]}, {"label": "Jun 29", "x": 337.1, "items": [{"name": "SSC", "color": "#bc8834", "text": "1:33"}, {"name": "TK", "color": "#5e93cf", "text": "1:25"}]}, {"label": "Jul 06", "x": 378.7, "items": [{"name": "SSC", "color": "#bc8834", "text": "1:32"}, {"name": "TK", "color": "#5e93cf", "text": "1:25"}]}, {"label": "Jul 13", "x": 420.2, "items": [{"name": "SSC", "color": "#bc8834", "text": "1:31"}, {"name": "TK", "color": "#5e93cf", "text": "1:15"}]}, {"label": "Jul 20", "x": 461.8, "items": [{"name": "SSC", "color": "#bc8834", "text": "1:25"}, {"name": "TK", "color": "#5e93cf", "text": "1:31"}]}, {"label": "Jul 27", "x": 503.4, "items": [{"name": "SSC", "color": "#bc8834", "text": "1:30"}, {"name": "TK", "color": "#5e93cf", "text": "1:15"}]}, {"label": "Aug 03", "x": 545.0, "items": [{"name": "SSC", "color": "#bc8834", "text": "2:05"}, {"name": "TK", "color": "#5e93cf", "text": "1:11"}]}]' data-y0="16" data-y1="180"><line x1="46" y1="180.0" x2="545" y2="180.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="183.5" text-anchor="end" font-size="10" fill="#8fa1b3">0m</text><line x1="46" y1="98.0" x2="545" y2="98.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="101.5" text-anchor="end" font-size="10" fill="#8fa1b3">2:09</text><line x1="46" y1="16.0" x2="545" y2="16.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="19.5" text-anchor="end" font-size="10" fill="#8fa1b3">4:19</text><text x="46.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 16</text><text x="87.6" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 22</text><text x="129.2" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 26</text><text x="170.8" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 01</text><text x="212.3" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 02</text><text x="253.9" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 08</text><text x="295.5" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 15</text><text x="337.1" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 29</text><text x="378.7" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 06</text><text x="420.2" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 13</text><text x="461.8" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 20</text><text x="503.4" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 27</text><text x="545.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Aug 03</text><polyline points="46.0,37.4 87.6,98.7 212.3,101.1 253.9,96.4 295.5,110.3 337.1,121.0 378.7,121.8 420.2,121.9 461.8,126.2 503.4,123.0 545.0,101.0" fill="none" stroke="#bc8834" stroke-width="2" stroke-linejoin="round"/><circle cx="46.0" cy="37.4" r="3.5" fill="#bc8834"/><circle cx="46.0" cy="37.4" r="10" fill="transparent"><title>May 16 — SSC: 3:45</title></circle><circle cx="87.6" cy="98.7" r="3.5" fill="#bc8834"/><circle cx="87.6" cy="98.7" r="10" fill="transparent"><title>May 22 — SSC: 2:08</title></circle><circle cx="212.3" cy="101.1" r="3.5" fill="#bc8834"/><circle cx="212.3" cy="101.1" r="10" fill="transparent"><title>Jun 02 — SSC: 2:04</title></circle><circle cx="253.9" cy="96.4" r="3.5" fill="#bc8834"/><circle cx="253.9" cy="96.4" r="10" fill="transparent"><title>Jun 08 — SSC: 2:12</title></circle><circle cx="295.5" cy="110.3" r="3.5" fill="#bc8834"/><circle cx="295.5" cy="110.3" r="10" fill="transparent"><title>Jun 15 — SSC: 1:50</title></circle><circle cx="337.1" cy="121.0" r="3.5" fill="#bc8834"/><circle cx="337.1" cy="121.0" r="10" fill="transparent"><title>Jun 29 — SSC: 1:33</title></circle><circle cx="378.7" cy="121.8" r="3.5" fill="#bc8834"/><circle cx="378.7" cy="121.8" r="10" fill="transparent"><title>Jul 06 — SSC: 1:32</title></circle><circle cx="420.2" cy="121.9" r="3.5" fill="#bc8834"/><circle cx="420.2" cy="121.9" r="10" fill="transparent"><title>Jul 13 — SSC: 1:31</title></circle><circle cx="461.8" cy="126.2" r="3.5" fill="#bc8834"/><circle cx="461.8" cy="126.2" r="10" fill="transparent"><title>Jul 20 — SSC: 1:25</title></circle><circle cx="503.4" cy="123.0" r="3.5" fill="#bc8834"/><circle cx="503.4" cy="123.0" r="10" fill="transparent"><title>Jul 27 — SSC: 1:30</title></circle><circle cx="545.0" cy="101.0" r="3.5" fill="#bc8834"/><circle cx="545.0" cy="101.0" r="10" fill="transparent"><title>Aug 03 — SSC: 2:05</title></circle><polyline points="129.2,70.9 170.8,104.7 253.9,111.9 295.5,123.4 337.1,126.2 378.7,125.7 420.2,132.3 461.8,122.0 503.4,132.3 545.0,135.1" fill="none" stroke="#5e93cf" stroke-width="2" stroke-linejoin="round"/><circle cx="129.2" cy="70.9" r="3.5" fill="#5e93cf"/><circle cx="129.2" cy="70.9" r="10" fill="transparent"><title>May 26 — TK: 2:52</title></circle><circle cx="170.8" cy="104.7" r="3.5" fill="#5e93cf"/><circle cx="170.8" cy="104.7" r="10" fill="transparent"><title>Jun 01 — TK: 1:59</title></circle><circle cx="253.9" cy="111.9" r="3.5" fill="#5e93cf"/><circle cx="253.9" cy="111.9" r="10" fill="transparent"><title>Jun 08 — TK: 1:47</title></circle><circle cx="295.5" cy="123.4" r="3.5" fill="#5e93cf"/><circle cx="295.5" cy="123.4" r="10" fill="transparent"><title>Jun 15 — TK: 1:29</title></circle><circle cx="337.1" cy="126.2" r="3.5" fill="#5e93cf"/><circle cx="337.1" cy="126.2" r="10" fill="transparent"><title>Jun 29 — TK: 1:25</title></circle><circle cx="378.7" cy="125.7" r="3.5" fill="#5e93cf"/><circle cx="378.7" cy="125.7" r="10" fill="transparent"><title>Jul 06 — TK: 1:25</title></circle><circle cx="420.2" cy="132.3" r="3.5" fill="#5e93cf"/><circle cx="420.2" cy="132.3" r="10" fill="transparent"><title>Jul 13 — TK: 1:15</title></circle><circle cx="461.8" cy="122.0" r="3.5" fill="#5e93cf"/><circle cx="461.8" cy="122.0" r="10" fill="transparent"><title>Jul 20 — TK: 1:31</title></circle><circle cx="503.4" cy="132.3" r="3.5" fill="#5e93cf"/><circle cx="503.4" cy="132.3" r="10" fill="transparent"><title>Jul 27 — TK: 1:15</title></circle><circle cx="545.0" cy="135.1" r="3.5" fill="#5e93cf"/><circle cx="545.0" cy="135.1" r="10" fill="transparent"><title>Aug 03 — TK: 1:11</title></circle><circle cx="555" cy="101.0" r="4" fill="#bc8834"/><text x="563" y="104.5" font-size="11" fill="#e8edf2">SSC 2:05</text><circle cx="555" cy="135.1" r="4" fill="#5e93cf"/><text x="563" y="138.6" font-size="11" fill="#e8edf2">TK 1:11</text></svg>
+</div>
+
+<h2>Deaths per night</h2>
+<div class="panel"><svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:auto"><line x1="46" y1="180.0" x2="545" y2="180.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="183.5" text-anchor="end" font-size="10" fill="#8fa1b3">0</text><line x1="46" y1="98.0" x2="545" y2="98.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="101.5" text-anchor="end" font-size="10" fill="#8fa1b3">122</text><line x1="46" y1="16.0" x2="545" y2="16.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="19.5" text-anchor="end" font-size="10" fill="#8fa1b3">245</text><rect x="47.0" y="71.5" width="36.4" height="108.5" rx="4" fill="#5e93cf"><title>May 16: 162</title></rect><text x="65.2" y="66.5" text-anchor="middle" font-size="10" fill="#e8edf2">162</text><text x="65.2" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 16</text><rect x="85.4" y="129.8" width="36.4" height="50.2" rx="4" fill="#5e93cf"><title>May 22: 75</title></rect><text x="103.6" y="124.8" text-anchor="middle" font-size="10" fill="#e8edf2">75</text><text x="103.6" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 22</text><rect x="123.8" y="50.8" width="36.4" height="129.2" rx="4" fill="#5e93cf"><title>May 26: 193</title></rect><text x="142.0" y="45.8" text-anchor="middle" font-size="10" fill="#e8edf2">193</text><text x="142.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 26</text><rect x="162.2" y="121.1" width="36.4" height="58.9" rx="4" fill="#5e93cf"><title>Jun 01: 88</title></rect><text x="180.3" y="116.1" text-anchor="middle" font-size="10" fill="#e8edf2">88</text><text x="180.3" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 01</text><rect x="200.5" y="140.5" width="36.4" height="39.5" rx="4" fill="#5e93cf"><title>Jun 02: 59</title></rect><text x="218.7" y="135.5" text-anchor="middle" font-size="10" fill="#e8edf2">59</text><text x="218.7" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 02</text><rect x="238.9" y="37.4" width="36.4" height="142.6" rx="4" fill="#5e93cf"><title>Jun 08: 213</title></rect><text x="257.1" y="32.4" text-anchor="middle" font-size="10" fill="#e8edf2">213</text><text x="257.1" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 08</text><rect x="277.3" y="107.0" width="36.4" height="73.0" rx="4" fill="#5e93cf"><title>Jun 15: 109</title></rect><text x="295.5" y="102.0" text-anchor="middle" font-size="10" fill="#e8edf2">109</text><text x="295.5" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 15</text><rect x="315.7" y="132.5" width="36.4" height="47.5" rx="4" fill="#5e93cf"><title>Jun 29: 71</title></rect><text x="333.9" y="127.5" text-anchor="middle" font-size="10" fill="#e8edf2">71</text><text x="333.9" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 29</text><rect x="354.1" y="102.3" width="36.4" height="77.7" rx="4" fill="#5e93cf"><title>Jul 06: 116</title></rect><text x="372.3" y="97.3" text-anchor="middle" font-size="10" fill="#e8edf2">116</text><text x="372.3" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 06</text><rect x="392.5" y="130.5" width="36.4" height="49.5" rx="4" fill="#5e93cf"><title>Jul 13: 74</title></rect><text x="410.7" y="125.5" text-anchor="middle" font-size="10" fill="#e8edf2">74</text><text x="410.7" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 13</text><rect x="430.8" y="90.3" width="36.4" height="89.7" rx="4" fill="#5e93cf"><title>Jul 20: 134</title></rect><text x="449.0" y="85.3" text-anchor="middle" font-size="10" fill="#e8edf2">134</text><text x="449.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 20</text><rect x="469.2" y="131.8" width="36.4" height="48.2" rx="4" fill="#5e93cf"><title>Jul 27: 72</title></rect><text x="487.4" y="126.8" text-anchor="middle" font-size="10" fill="#e8edf2">72</text><text x="487.4" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 27</text><rect x="507.6" y="58.8" width="36.4" height="121.2" rx="4" fill="#5e93cf"><title>Aug 03: 181</title></rect><text x="525.8" y="53.8" text-anchor="middle" font-size="10" fill="#e8edf2">181</text><text x="525.8" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Aug 03</text></svg></div>
+
+<h2>Average consumable score</h2>
+<div class="panel"><svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:auto" data-chart="line" data-points='[{"label": "May 16", "x": 46.0, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "83%"}]}, {"label": "May 22", "x": 87.6, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "86%"}]}, {"label": "May 26", "x": 129.2, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "87%"}]}, {"label": "Jun 01", "x": 170.8, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "89%"}]}, {"label": "Jun 02", "x": 212.3, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "88%"}]}, {"label": "Jun 08", "x": 253.9, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "83%"}]}, {"label": "Jun 15", "x": 295.5, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "87%"}]}, {"label": "Jun 29", "x": 337.1, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "92%"}]}, {"label": "Jul 06", "x": 378.7, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "82%"}]}, {"label": "Jul 13", "x": 420.2, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "95%"}]}, {"label": "Jul 20", "x": 461.8, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "83%"}]}, {"label": "Jul 27", "x": 503.4, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "85%"}]}, {"label": "Aug 03", "x": 545.0, "items": [{"name": "avg consumables", "color": "#5e93cf", "text": "87%"}]}]' data-y0="16" data-y1="180"><line x1="46" y1="180.0" x2="545" y2="180.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="183.5" text-anchor="end" font-size="10" fill="#8fa1b3">0%</text><line x1="46" y1="98.0" x2="545" y2="98.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="101.5" text-anchor="end" font-size="10" fill="#8fa1b3">50%</text><line x1="46" y1="16.0" x2="545" y2="16.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="19.5" text-anchor="end" font-size="10" fill="#8fa1b3">100%</text><text x="46.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 16</text><text x="87.6" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 22</text><text x="129.2" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 26</text><text x="170.8" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 01</text><text x="212.3" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 02</text><text x="253.9" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 08</text><text x="295.5" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 15</text><text x="337.1" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 29</text><text x="378.7" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 06</text><text x="420.2" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 13</text><text x="461.8" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 20</text><text x="503.4" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 27</text><text x="545.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Aug 03</text><polyline points="46.0,43.9 87.6,39.0 129.2,37.3 170.8,34.0 212.3,35.7 253.9,43.9 295.5,37.3 337.1,29.1 378.7,45.5 420.2,24.2 461.8,43.9 503.4,40.6 545.0,37.3" fill="none" stroke="#5e93cf" stroke-width="2" stroke-linejoin="round"/><circle cx="46.0" cy="43.9" r="3.5" fill="#5e93cf"/><circle cx="46.0" cy="43.9" r="10" fill="transparent"><title>May 16 — avg consumables: 83%</title></circle><circle cx="87.6" cy="39.0" r="3.5" fill="#5e93cf"/><circle cx="87.6" cy="39.0" r="10" fill="transparent"><title>May 22 — avg consumables: 86%</title></circle><circle cx="129.2" cy="37.3" r="3.5" fill="#5e93cf"/><circle cx="129.2" cy="37.3" r="10" fill="transparent"><title>May 26 — avg consumables: 87%</title></circle><circle cx="170.8" cy="34.0" r="3.5" fill="#5e93cf"/><circle cx="170.8" cy="34.0" r="10" fill="transparent"><title>Jun 01 — avg consumables: 89%</title></circle><circle cx="212.3" cy="35.7" r="3.5" fill="#5e93cf"/><circle cx="212.3" cy="35.7" r="10" fill="transparent"><title>Jun 02 — avg consumables: 88%</title></circle><circle cx="253.9" cy="43.9" r="3.5" fill="#5e93cf"/><circle cx="253.9" cy="43.9" r="10" fill="transparent"><title>Jun 08 — avg consumables: 83%</title></circle><circle cx="295.5" cy="37.3" r="3.5" fill="#5e93cf"/><circle cx="295.5" cy="37.3" r="10" fill="transparent"><title>Jun 15 — avg consumables: 87%</title></circle><circle cx="337.1" cy="29.1" r="3.5" fill="#5e93cf"/><circle cx="337.1" cy="29.1" r="10" fill="transparent"><title>Jun 29 — avg consumables: 92%</title></circle><circle cx="378.7" cy="45.5" r="3.5" fill="#5e93cf"/><circle cx="378.7" cy="45.5" r="10" fill="transparent"><title>Jul 06 — avg consumables: 82%</title></circle><circle cx="420.2" cy="24.2" r="3.5" fill="#5e93cf"/><circle cx="420.2" cy="24.2" r="10" fill="transparent"><title>Jul 13 — avg consumables: 95%</title></circle><circle cx="461.8" cy="43.9" r="3.5" fill="#5e93cf"/><circle cx="461.8" cy="43.9" r="10" fill="transparent"><title>Jul 20 — avg consumables: 83%</title></circle><circle cx="503.4" cy="40.6" r="3.5" fill="#5e93cf"/><circle cx="503.4" cy="40.6" r="10" fill="transparent"><title>Jul 27 — avg consumables: 85%</title></circle><circle cx="545.0" cy="37.3" r="3.5" fill="#5e93cf"/><circle cx="545.0" cy="37.3" r="10" fill="transparent"><title>Aug 03 — avg consumables: 87%</title></circle><circle cx="555" cy="37.3" r="4" fill="#5e93cf"/><text x="563" y="40.8" font-size="11" fill="#e8edf2">87%</text></svg></div>
+
+<h2>Average parse</h2>
+<div class="panel"><svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:auto" data-chart="line" data-points='[{"label": "May 16", "x": 46.0, "items": [{"name": "avg parse", "color": "#a335ee", "text": "49"}]}, {"label": "May 22", "x": 87.6, "items": [{"name": "avg parse", "color": "#a335ee", "text": "48"}]}, {"label": "May 26", "x": 129.2, "items": [{"name": "avg parse", "color": "#a335ee", "text": "49"}]}, {"label": "Jun 01", "x": 170.8, "items": [{"name": "avg parse", "color": "#a335ee", "text": "44"}]}, {"label": "Jun 02", "x": 212.3, "items": [{"name": "avg parse", "color": "#a335ee", "text": "45"}]}, {"label": "Jun 08", "x": 253.9, "items": [{"name": "avg parse", "color": "#a335ee", "text": "48"}]}, {"label": "Jun 15", "x": 295.5, "items": [{"name": "avg parse", "color": "#a335ee", "text": "45"}]}, {"label": "Jun 29", "x": 337.1, "items": [{"name": "avg parse", "color": "#a335ee", "text": "47"}]}, {"label": "Jul 06", "x": 378.7, "items": [{"name": "avg parse", "color": "#a335ee", "text": "44"}]}, {"label": "Jul 13", "x": 420.2, "items": [{"name": "avg parse", "color": "#a335ee", "text": "44"}]}, {"label": "Jul 20", "x": 461.8, "items": [{"name": "avg parse", "color": "#a335ee", "text": "41"}]}, {"label": "Jul 27", "x": 503.4, "items": [{"name": "avg parse", "color": "#a335ee", "text": "40"}]}, {"label": "Aug 03", "x": 545.0, "items": [{"name": "avg parse", "color": "#a335ee", "text": "43"}]}]' data-y0="16" data-y1="180"><line x1="46" y1="180.0" x2="545" y2="180.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="183.5" text-anchor="end" font-size="10" fill="#8fa1b3">0</text><line x1="46" y1="98.0" x2="545" y2="98.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="101.5" text-anchor="end" font-size="10" fill="#8fa1b3">28</text><line x1="46" y1="16.0" x2="545" y2="16.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="19.5" text-anchor="end" font-size="10" fill="#8fa1b3">56</text><text x="46.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 16</text><text x="87.6" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 22</text><text x="129.2" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 26</text><text x="170.8" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 01</text><text x="212.3" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 02</text><text x="253.9" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 08</text><text x="295.5" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 15</text><text x="337.1" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 29</text><text x="378.7" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 06</text><text x="420.2" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 13</text><text x="461.8" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 20</text><text x="503.4" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 27</text><text x="545.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Aug 03</text><polyline points="46.0,37.4 87.6,40.3 129.2,37.4 170.8,51.9 212.3,49.0 253.9,40.3 295.5,49.0 337.1,43.2 378.7,51.9 420.2,51.9 461.8,60.7 503.4,63.6 545.0,54.9" fill="none" stroke="#a335ee" stroke-width="2" stroke-linejoin="round"/><circle cx="46.0" cy="37.4" r="3.5" fill="#a335ee"/><circle cx="46.0" cy="37.4" r="10" fill="transparent"><title>May 16 — avg parse: 49</title></circle><circle cx="87.6" cy="40.3" r="3.5" fill="#a335ee"/><circle cx="87.6" cy="40.3" r="10" fill="transparent"><title>May 22 — avg parse: 48</title></circle><circle cx="129.2" cy="37.4" r="3.5" fill="#a335ee"/><circle cx="129.2" cy="37.4" r="10" fill="transparent"><title>May 26 — avg parse: 49</title></circle><circle cx="170.8" cy="51.9" r="3.5" fill="#a335ee"/><circle cx="170.8" cy="51.9" r="10" fill="transparent"><title>Jun 01 — avg parse: 44</title></circle><circle cx="212.3" cy="49.0" r="3.5" fill="#a335ee"/><circle cx="212.3" cy="49.0" r="10" fill="transparent"><title>Jun 02 — avg parse: 45</title></circle><circle cx="253.9" cy="40.3" r="3.5" fill="#a335ee"/><circle cx="253.9" cy="40.3" r="10" fill="transparent"><title>Jun 08 — avg parse: 48</title></circle><circle cx="295.5" cy="49.0" r="3.5" fill="#a335ee"/><circle cx="295.5" cy="49.0" r="10" fill="transparent"><title>Jun 15 — avg parse: 45</title></circle><circle cx="337.1" cy="43.2" r="3.5" fill="#a335ee"/><circle cx="337.1" cy="43.2" r="10" fill="transparent"><title>Jun 29 — avg parse: 47</title></circle><circle cx="378.7" cy="51.9" r="3.5" fill="#a335ee"/><circle cx="378.7" cy="51.9" r="10" fill="transparent"><title>Jul 06 — avg parse: 44</title></circle><circle cx="420.2" cy="51.9" r="3.5" fill="#a335ee"/><circle cx="420.2" cy="51.9" r="10" fill="transparent"><title>Jul 13 — avg parse: 44</title></circle><circle cx="461.8" cy="60.7" r="3.5" fill="#a335ee"/><circle cx="461.8" cy="60.7" r="10" fill="transparent"><title>Jul 20 — avg parse: 41</title></circle><circle cx="503.4" cy="63.6" r="3.5" fill="#a335ee"/><circle cx="503.4" cy="63.6" r="10" fill="transparent"><title>Jul 27 — avg parse: 40</title></circle><circle cx="545.0" cy="54.9" r="3.5" fill="#a335ee"/><circle cx="545.0" cy="54.9" r="10" fill="transparent"><title>Aug 03 — avg parse: 43</title></circle><circle cx="555" cy="54.9" r="4" fill="#a335ee"/><text x="563" y="58.4" font-size="11" fill="#e8edf2">43</text></svg>
+  <div class="chart-note">roster average of per-night parse percentiles (WCL, dps/hps)</div>
+</div>
+
+<h2>Average activity</h2>
+<div class="panel"><svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg" role="img" style="width:100%;height:auto" data-chart="line" data-points='[{"label": "May 16", "x": 46.0, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "72%"}]}, {"label": "May 22", "x": 87.6, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "74%"}]}, {"label": "May 26", "x": 129.2, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "64%"}]}, {"label": "Jun 01", "x": 170.8, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "76%"}]}, {"label": "Jun 02", "x": 212.3, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "77%"}]}, {"label": "Jun 08", "x": 253.9, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "71%"}]}, {"label": "Jun 15", "x": 295.5, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "72%"}]}, {"label": "Jun 29", "x": 337.1, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "66%"}]}, {"label": "Jul 06", "x": 378.7, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "68%"}]}, {"label": "Jul 13", "x": 420.2, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "76%"}]}, {"label": "Jul 20", "x": 461.8, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "74%"}]}, {"label": "Jul 27", "x": 503.4, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "71%"}]}, {"label": "Aug 03", "x": 545.0, "items": [{"name": "avg activity", "color": "#5e93cf", "text": "73%"}]}]' data-y0="16" data-y1="180"><line x1="46" y1="180.0" x2="545" y2="180.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="183.5" text-anchor="end" font-size="10" fill="#8fa1b3">0%</text><line x1="46" y1="98.0" x2="545" y2="98.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="101.5" text-anchor="end" font-size="10" fill="#8fa1b3">44%</text><line x1="46" y1="16.0" x2="545" y2="16.0" stroke="#2b3a48" stroke-width="1"/><text x="40" y="19.5" text-anchor="end" font-size="10" fill="#8fa1b3">89%</text><text x="46.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 16</text><text x="87.6" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 22</text><text x="129.2" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">May 26</text><text x="170.8" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 01</text><text x="212.3" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 02</text><text x="253.9" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 08</text><text x="295.5" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 15</text><text x="337.1" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jun 29</text><text x="378.7" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 06</text><text x="420.2" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 13</text><text x="461.8" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 20</text><text x="503.4" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Jul 27</text><text x="545.0" y="196" text-anchor="middle" font-size="10" fill="#8fa1b3">Aug 03</text><polyline points="46.0,46.7 87.6,42.9 129.2,61.5 170.8,39.2 212.3,37.4 253.9,48.5 295.5,46.7 337.1,57.8 378.7,54.1 420.2,39.2 461.8,42.9 503.4,48.5 545.0,44.8" fill="none" stroke="#5e93cf" stroke-width="2" stroke-linejoin="round"/><circle cx="46.0" cy="46.7" r="3.5" fill="#5e93cf"/><circle cx="46.0" cy="46.7" r="10" fill="transparent"><title>May 16 — avg activity: 72%</title></circle><circle cx="87.6" cy="42.9" r="3.5" fill="#5e93cf"/><circle cx="87.6" cy="42.9" r="10" fill="transparent"><title>May 22 — avg activity: 74%</title></circle><circle cx="129.2" cy="61.5" r="3.5" fill="#5e93cf"/><circle cx="129.2" cy="61.5" r="10" fill="transparent"><title>May 26 — avg activity: 64%</title></circle><circle cx="170.8" cy="39.2" r="3.5" fill="#5e93cf"/><circle cx="170.8" cy="39.2" r="10" fill="transparent"><title>Jun 01 — avg activity: 76%</title></circle><circle cx="212.3" cy="37.4" r="3.5" fill="#5e93cf"/><circle cx="212.3" cy="37.4" r="10" fill="transparent"><title>Jun 02 — avg activity: 77%</title></circle><circle cx="253.9" cy="48.5" r="3.5" fill="#5e93cf"/><circle cx="253.9" cy="48.5" r="10" fill="transparent"><title>Jun 08 — avg activity: 71%</title></circle><circle cx="295.5" cy="46.7" r="3.5" fill="#5e93cf"/><circle cx="295.5" cy="46.7" r="10" fill="transparent"><title>Jun 15 — avg activity: 72%</title></circle><circle cx="337.1" cy="57.8" r="3.5" fill="#5e93cf"/><circle cx="337.1" cy="57.8" r="10" fill="transparent"><title>Jun 29 — avg activity: 66%</title></circle><circle cx="378.7" cy="54.1" r="3.5" fill="#5e93cf"/><circle cx="378.7" cy="54.1" r="10" fill="transparent"><title>Jul 06 — avg activity: 68%</title></circle><circle cx="420.2" cy="39.2" r="3.5" fill="#5e93cf"/><circle cx="420.2" cy="39.2" r="10" fill="transparent"><title>Jul 13 — avg activity: 76%</title></circle><circle cx="461.8" cy="42.9" r="3.5" fill="#5e93cf"/><circle cx="461.8" cy="42.9" r="10" fill="transparent"><title>Jul 20 — avg activity: 74%</title></circle><circle cx="503.4" cy="48.5" r="3.5" fill="#5e93cf"/><circle cx="503.4" cy="48.5" r="10" fill="transparent"><title>Jul 27 — avg activity: 71%</title></circle><circle cx="545.0" cy="44.8" r="3.5" fill="#5e93cf"/><circle cx="545.0" cy="44.8" r="10" fill="transparent"><title>Aug 03 — avg activity: 73%</title></circle><circle cx="555" cy="44.8" r="4" fill="#5e93cf"/><text x="563" y="48.3" font-size="11" fill="#e8edf2">73%</text></svg>
+  <div class="chart-note">WCL active-time share, averaged over the roster</div>
+</div>
+
+<h2>All numbers</h2>
+<div class="panel" style="overflow-x:auto; margin-bottom: 40px">
+<table class="data">
+  <tr><th>Night</th><th class="num">SSC</th><th class="num">TK</th>
+      <th class="num">Deaths</th><th class="num">Consumables</th>
+      <th class="num">Activity</th><th class="num">Parse</th>
+      <th class="num">Raiders</th></tr>
+  
+  <tr>
+    <td>Aug 03</td>
+    <td class="num">2:05:06</td>
+    <td class="num">1:11:04</td>
+    <td class="num">181</td>
+    <td class="num">87%</td>
+    <td class="num">73%</td>
+    <td class="num">43</td>
+    <td class="num">26</td>
+  </tr>
+  
+  <tr>
+    <td>Jul 27</td>
+    <td class="num">1:30:16</td>
+    <td class="num">1:15:31</td>
+    <td class="num">72</td>
+    <td class="num">85%</td>
+    <td class="num">71%</td>
+    <td class="num">40</td>
+    <td class="num">27</td>
+  </tr>
+  
+  <tr>
+    <td>Jul 20</td>
+    <td class="num">1:25:07</td>
+    <td class="num">1:31:47</td>
+    <td class="num">134</td>
+    <td class="num">83%</td>
+    <td class="num">74%</td>
+    <td class="num">41</td>
+    <td class="num">25</td>
+  </tr>
+  
+  <tr>
+    <td>Jul 13</td>
+    <td class="num">1:31:58</td>
+    <td class="num">1:15:32</td>
+    <td class="num">74</td>
+    <td class="num">95%</td>
+    <td class="num">76%</td>
+    <td class="num">44</td>
+    <td class="num">25</td>
+  </tr>
+  
+  <tr>
+    <td>Jul 06</td>
+    <td class="num">1:32:03</td>
+    <td class="num">1:25:54</td>
+    <td class="num">116</td>
+    <td class="num">82%</td>
+    <td class="num">68%</td>
+    <td class="num">44</td>
+    <td class="num">27</td>
+  </tr>
+  
+  <tr>
+    <td>Jun 29</td>
+    <td class="num">1:33:24</td>
+    <td class="num">1:25:13</td>
+    <td class="num">71</td>
+    <td class="num">92%</td>
+    <td class="num">66%</td>
+    <td class="num">47</td>
+    <td class="num">28</td>
+  </tr>
+  
+  <tr>
+    <td>Jun 15</td>
+    <td class="num">1:50:21</td>
+    <td class="num">1:29:35</td>
+    <td class="num">109</td>
+    <td class="num">87%</td>
+    <td class="num">72%</td>
+    <td class="num">45</td>
+    <td class="num">26</td>
+  </tr>
+  
+  <tr>
+    <td>Jun 08</td>
+    <td class="num">2:12:23</td>
+    <td class="num">1:47:44</td>
+    <td class="num">213</td>
+    <td class="num">83%</td>
+    <td class="num">71%</td>
+    <td class="num">48</td>
+    <td class="num">26</td>
+  </tr>
+  
+  <tr>
+    <td>Jun 02</td>
+    <td class="num">2:04:50</td>
+    <td class="num">—</td>
+    <td class="num">59</td>
+    <td class="num">88%</td>
+    <td class="num">77%</td>
+    <td class="num">45</td>
+    <td class="num">25</td>
+  </tr>
+  
+  <tr>
+    <td>Jun 01</td>
+    <td class="num">—</td>
+    <td class="num">1:59:10</td>
+    <td class="num">88</td>
+    <td class="num">89%</td>
+    <td class="num">76%</td>
+    <td class="num">44</td>
+    <td class="num">25</td>
+  </tr>
+  
+  <tr>
+    <td>May 26</td>
+    <td class="num">—</td>
+    <td class="num">2:52:37</td>
+    <td class="num">193</td>
+    <td class="num">87%</td>
+    <td class="num">64%</td>
+    <td class="num">49</td>
+    <td class="num">25</td>
+  </tr>
+  
+  <tr>
+    <td>May 22</td>
+    <td class="num">2:08:44</td>
+    <td class="num">—</td>
+    <td class="num">75</td>
+    <td class="num">86%</td>
+    <td class="num">74%</td>
+    <td class="num">48</td>
+    <td class="num">25</td>
+  </tr>
+  
+  <tr>
+    <td>May 16</td>
+    <td class="num">3:45:42</td>
+    <td class="num">—</td>
+    <td class="num">162</td>
+    <td class="num">83%</td>
+    <td class="num">72%</td>
+    <td class="num">49</td>
+    <td class="num">25</td>
+  </tr>
+  
+</table>
+</div>
+
+</main>
+
+<footer>generated with WarcraftLogs data · raidstats</footer>
+
+
+
+<style>
+.panel { position: relative; }
+.chart-tip {
+  position: absolute; pointer-events: none; z-index: 20; display: none;
+  background: #10161c; border: 1px solid var(--gold); border-radius: 7px;
+  padding: 7px 11px; font-size: 12.5px; white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0,0,0,.5);
+}
+.chart-tip .t { color: var(--ink-dim); margin-bottom: 3px; font-size: 11.5px; }
+.chart-tip .row { display: flex; align-items: center; gap: 6px; }
+.chart-tip .sw { width: 8px; height: 8px; border-radius: 50%; }
+.chart-tip b { margin-left: auto; padding-left: 10px; }
+</style>
+<script>
+// hover layer for line charts: crosshair + immediate tooltip (screen only)
+(function () {
+  var SVGNS = "http://www.w3.org/2000/svg";
+  document.querySelectorAll('svg[data-chart="line"]').forEach(function (svg) {
+    var points = JSON.parse(svg.dataset.points || "[]");
+    if (!points.length) return;
+    var y0 = +svg.dataset.y0, y1 = +svg.dataset.y1;
+    var panel = svg.closest(".panel") || svg.parentElement;
+    var tip = document.createElement("div");
+    tip.className = "chart-tip";
+    panel.appendChild(tip);
+    var cross = document.createElementNS(SVGNS, "line");
+    cross.setAttribute("stroke", "#e3c680");
+    cross.setAttribute("stroke-width", "1");
+    cross.setAttribute("stroke-dasharray", "3,3");
+    cross.setAttribute("y1", y0);
+    cross.setAttribute("y2", y1);
+    cross.style.display = "none";
+    svg.appendChild(cross);
+
+    svg.addEventListener("mousemove", function (e) {
+      var rect = svg.getBoundingClientRect();
+      var vx = (e.clientX - rect.left) * 640 / rect.width;
+      var best = 0, bestD = Infinity;
+      points.forEach(function (p, i) {
+        var d = Math.abs(p.x - vx);
+        if (d < bestD) { bestD = d; best = i; }
+      });
+      var p = points[best];
+      cross.setAttribute("x1", p.x);
+      cross.setAttribute("x2", p.x);
+      cross.style.display = "";
+      var html = '<div class="t">' + p.label + '</div>';
+      p.items.forEach(function (it) {
+        html += '<div class="row"><span class="sw" style="background:' + it.color
+              + '"></span>' + it.name + '<b>' + it.text + '</b></div>';
+      });
+      tip.innerHTML = html;
+      tip.style.display = "block";
+      var prect = panel.getBoundingClientRect();
+      var left = e.clientX - prect.left + 16;
+      if (left + tip.offsetWidth > prect.width - 8)
+        left = e.clientX - prect.left - tip.offsetWidth - 16;
+      tip.style.left = left + "px";
+      tip.style.top = (e.clientY - prect.top - tip.offsetHeight / 2) + "px";
+    });
+    svg.addEventListener("mouseleave", function () {
+      tip.style.display = "none";
+      cross.style.display = "none";
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

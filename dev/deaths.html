@@ -1,0 +1,819 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deaths — Citadel — Raid Reports</title>
+<meta property="og:title" content="Deaths — Citadel — Raid Reports">
+<meta name="theme-color" content="#c9a24b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 90 20v30c0 25-18 38-40 45C28 88 10 75 10 50V20z' fill='%23c9a24b'/%3E%3Cpath d='M50 14 82 26v24c0 20-14 30-32 36-18-6-32-16-32-36V26z' fill='%231a222c'/%3E%3Cpath d='M50 26v48M34 40h32' stroke='%23c9a24b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #10161c; --panel: #161e26; --card: #1c2630; --card-hover: #223040;
+  --line: #2b3a48; --ink: #e8edf2; --ink-dim: #8fa1b3;
+  --gold: #c9a24b; --gold-soft: #e3c680; --accent: #5d7f9d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Helvetica Neue", Arial, "Segoe UI", sans-serif;
+  background: radial-gradient(1100px 380px at 50% -80px, #223140 0%, transparent 70%), var(--bg);
+  color: var(--ink); min-height: 100vh;
+}
+header { padding: 30px 24px 14px; text-align: center; }
+h1 { font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; }
+h1 a { color: var(--ink); text-decoration: none; }
+h1 .dash { color: var(--gold); }
+.rule { width: 140px; height: 2px; margin: 14px auto 0;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+main { max-width: 1150px; margin: 0 auto; padding: 18px 24px 70px; }
+h2 { font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase;
+     color: var(--gold-soft); margin: 26px 0 12px; }
+.panel { background: var(--card); border: 1px solid var(--line);
+         border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }
+table.data { border-collapse: collapse; width: 100%; font-size: 13px; }
+table.data th { text-align: left; color: var(--ink-dim); font-weight: 600;
+  font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line);
+  white-space: nowrap; }
+table.data td { padding: 6px 8px; border-bottom: 1px solid #212d38; }
+table.data tr:hover td { background: var(--card-hover); }
+td.num, th.num,
+table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mid, th.mid,
+table.data th.mid, table.data td.mid { text-align: center; }
+.name-badge { display: inline-block; padding: 1px 8px; border-radius: 5px;
+  color: #1a222c; font-weight: 650; font-size: 12.5px; }
+a.player-link { text-decoration: none; }
+.dim { color: var(--ink-dim); }
+footer { text-align: center; color: #4d6070; font-size: 12px; padding: 26px; }
+nav.site {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 14px 0 4px;
+}
+nav.site a {
+  color: var(--ink-dim); text-decoration: none; font-size: 13px;
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 14px;
+}
+nav.site a:hover { color: var(--gold-soft); border-color: var(--gold); }
+nav.site a.active { background: var(--card); color: var(--ink);
+                    border-color: var(--gold); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+         gap: 12px; margin-bottom: 16px; }
+.tile { background: var(--card); border: 1px solid var(--line);
+        border-radius: 10px; padding: 14px 16px; text-align: center; }
+.tile .v { font-size: 24px; font-weight: 700; }
+.tile .k { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+           color: var(--ink-dim); margin-top: 4px; }
+.chart-note { font-size: 11px; color: var(--ink-dim); margin-top: 6px; }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-dim);
+          margin-bottom: 6px; }
+.legend .sw { display: inline-block; width: 9px; height: 9px;
+              border-radius: 50%; margin-right: 5px; }
+.zone-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.zone-chip { border: 1px solid var(--line); background: var(--panel);
+  padding: 8px 16px; border-radius: 10px; font-size: 14px; }
+.zone-chip b { color: var(--gold-soft); }
+.ok { color: #7fc98b; } .bad { color: #d98a8a; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="index.html">Citadel <span class="dash">—</span> Raid Reports</a></h1>
+  <nav class="site">
+    
+    <a href="index.html">Logs</a>
+    
+    <a href="attendance.html" class="">Attendance</a>
+    <a href="parses.html" class="">Parses</a>
+    <a href="deaths.html" class="active">Deaths</a>
+    <a href="consumables.html" class="">Consumables</a>
+    
+    <a href="progress.html" class="">Progression</a>
+    <a href="trends.html" class="">Trends</a>
+  </nav>
+  <div class="rule"></div>
+</header>
+
+<main>
+<div class="panel" style="padding:10px 14px; margin-bottom:16px">
+  <label style="cursor:pointer; font-size:13px">
+    <input type="checkbox" id="scope-all-kills" style="vertical-align:-2px">
+    include players outside CITADEL (pugs and guests who appeared on our raids)
+  </label>
+</div>
+
+<div id="scope-guild">
+<h2>Deaths per boss</h2>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/hydross-the-unstable.html">Hydross the Unstable</a></b>
+    <span class="dim" style="font-size:12px">26 pulls ·
+      135 deaths · Ø 5.2 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×131</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Water Tomb <span class="bad">×4</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Roarwind <span class="bad">×6</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Thanerin <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Honorik <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/the-lurker-below.html">The Lurker Below</a></b>
+    <span class="dim" style="font-size:12px">22 pulls ·
+      77 deaths · Ø 3.5 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Spout <span class="bad">×29</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×25</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Scalding Water <span class="bad">×9</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Arcing Smash <span class="bad">×9</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Shoot <span class="bad">×2</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Auroraeriz <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Shcherbaque <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Bruand <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/leotheras-the-blind.html">Leotheras the Blind</a></b>
+    <span class="dim" style="font-size:12px">28 pulls ·
+      232 deaths · Ø 8.3 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Whirlwind <span class="bad">×122</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×55</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Chaos Blast <span class="bad">×34</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Mind Blast <span class="bad">×10</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Shadow Word: Death <span class="bad">×3</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Drazhu <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Karrell <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Snney <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/fathom-lord-karathress.html">Fathom-Lord Karathress</a></b>
+    <span class="dim" style="font-size:12px">43 pulls ·
+      188 deaths · Ø 4.4 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×95</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Cataclysmic Bolt <span class="bad">×38</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Scorch <span class="bad">×15</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Frost Shock <span class="bad">×10</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Sear Nova <span class="bad">×9</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Karrell <span class="bad">×5</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Jonette <span class="bad">×5</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Honorik <span class="bad">×4</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/morogrim-tidewalker.html">Morogrim Tidewalker</a></b>
+    <span class="dim" style="font-size:12px">30 pulls ·
+      56 deaths · Ø 1.9 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×40</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Watery Grave Explosion <span class="bad">×8</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">? <span class="bad">×3</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Falling <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Freeze <span class="bad">×2</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Swellery <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Snney <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Molliee <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/lady-vashj.html">Lady Vashj</a></b>
+    <span class="dim" style="font-size:12px">28 pulls ·
+      171 deaths · Ø 6.1 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×59</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Static Charge <span class="bad">×31</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Toxic Spores <span class="bad">×28</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Shoot <span class="bad">×16</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Multi-Shot <span class="bad">×14</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Gahenna <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Klib <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Jonette <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/al-ar.html">Al&#39;ar</a></b>
+    <span class="dim" style="font-size:12px">23 pulls ·
+      105 deaths · Ø 4.6 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×44</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Flame Buffet <span class="bad">×15</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Flame Patch <span class="bad">×13</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Ember Blast <span class="bad">×13</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Flame Quills <span class="bad">×7</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Bearfoöt <span class="bad">×3</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Castratos <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Thanerin <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/void-reaver.html">Void Reaver</a></b>
+    <span class="dim" style="font-size:12px">25 pulls ·
+      104 deaths · Ø 4.2 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Pounding <span class="bad">×50</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×34</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Arcane Orb <span class="bad">×17</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Knock Away <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">? <span class="bad">×1</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Alexzed <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Madef <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Woodwind <span class="bad">×1</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/high-astromancer-solarian.html">High Astromancer Solarian</a></b>
+    <span class="dim" style="font-size:12px">22 pulls ·
+      30 deaths · Ø 1.4 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Arcane Missiles <span class="bad">×11</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×5</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Blinding Light <span class="bad">×3</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Falling <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Hammer of Wrath <span class="bad">×2</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Shcherbaque <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Loronoa <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Bruand <span class="bad">×1</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/kael-thas-sunstrider.html">Kael&#39;thas Sunstrider</a></b>
+    <span class="dim" style="font-size:12px">27 pulls ·
+      208 deaths · Ø 7.7 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×97</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Nether Beam <span class="bad">×21</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Bomb <span class="bad">×15</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Fireball <span class="bad">×15</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Flame Strike <span class="bad">×11</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Badabuille <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Honorik <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Prevaraa <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="chart-note">boss names link to the full pull history</div>
+</div>
+
+<div id="scope-all" hidden>
+<h2>Deaths per boss</h2>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/hydross-the-unstable.html">Hydross the Unstable</a></b>
+    <span class="dim" style="font-size:12px">26 pulls ·
+      172 deaths · Ø 6.6 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×166</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Water Tomb <span class="bad">×5</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Vile Sludge <span class="bad">×1</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Roarwind <span class="bad">×6</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Thanerin <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Honorik <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/the-lurker-below.html">The Lurker Below</a></b>
+    <span class="dim" style="font-size:12px">22 pulls ·
+      86 deaths · Ø 3.9 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Spout <span class="bad">×31</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×28</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Arcing Smash <span class="bad">×11</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Scalding Water <span class="bad">×9</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Geyser <span class="bad">×4</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Auroraeriz <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Shcherbaque <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Bruand <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/leotheras-the-blind.html">Leotheras the Blind</a></b>
+    <span class="dim" style="font-size:12px">28 pulls ·
+      269 deaths · Ø 9.6 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Whirlwind <span class="bad">×139</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×66</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Chaos Blast <span class="bad">×39</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Mind Blast <span class="bad">×12</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Shadow Word: Death <span class="bad">×3</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Drazhu <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Karrell <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Snney <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/fathom-lord-karathress.html">Fathom-Lord Karathress</a></b>
+    <span class="dim" style="font-size:12px">43 pulls ·
+      230 deaths · Ø 5.3 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×124</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Cataclysmic Bolt <span class="bad">×47</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Scorch <span class="bad">×16</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Frost Shock <span class="bad">×12</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Sear Nova <span class="bad">×9</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Karrell <span class="bad">×5</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Jonette <span class="bad">×5</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Honorik <span class="bad">×4</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/morogrim-tidewalker.html">Morogrim Tidewalker</a></b>
+    <span class="dim" style="font-size:12px">30 pulls ·
+      74 deaths · Ø 2.5 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×52</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Watery Grave Explosion <span class="bad">×11</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">? <span class="bad">×4</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Falling <span class="bad">×4</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Freeze <span class="bad">×2</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Swellery <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Snney <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Molliee <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/lady-vashj.html">Lady Vashj</a></b>
+    <span class="dim" style="font-size:12px">28 pulls ·
+      208 deaths · Ø 7.4 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×67</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Static Charge <span class="bad">×40</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Toxic Spores <span class="bad">×32</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Shoot <span class="bad">×24</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Multi-Shot <span class="bad">×15</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Gahenna <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Klib <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Jonette <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/al-ar.html">Al&#39;ar</a></b>
+    <span class="dim" style="font-size:12px">23 pulls ·
+      133 deaths · Ø 5.8 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×55</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Flame Buffet <span class="bad">×24</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Flame Patch <span class="bad">×17</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Ember Blast <span class="bad">×15</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Flame Quills <span class="bad">×8</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Bearfoöt <span class="bad">×3</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Castratos <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Thanerin <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/void-reaver.html">Void Reaver</a></b>
+    <span class="dim" style="font-size:12px">25 pulls ·
+      130 deaths · Ø 5.2 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Pounding <span class="bad">×62</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×43</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Arcane Orb <span class="bad">×22</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Knock Away <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">? <span class="bad">×1</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Alexzed <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Madef <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Tripletap <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/high-astromancer-solarian.html">High Astromancer Solarian</a></b>
+    <span class="dim" style="font-size:12px">22 pulls ·
+      41 deaths · Ø 1.9 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Arcane Missiles <span class="bad">×13</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×8</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Falling <span class="bad">×5</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Blinding Light <span class="bad">×4</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Rain of Fire <span class="bad">×2</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Shcherbaque <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Loronoa <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Ellektra <span class="bad">×1</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap">
+    <b style="font-size:15px"><a class="player-link" style="color:var(--ink)"
+       href="bosses/kael-thas-sunstrider.html">Kael&#39;thas Sunstrider</a></b>
+    <span class="dim" style="font-size:12px">27 pulls ·
+      248 deaths · Ø 9.2 per pull</span>
+  </div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px">
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Deadliest abilities</div>
+      
+      <div style="font-size:13px; padding:2px 0">Melee <span class="bad">×111</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Nether Beam <span class="bad">×28</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Bomb <span class="bad">×19</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Fireball <span class="bad">×19</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Flame Strike <span class="bad">×13</span></div>
+      
+    </div>
+    <div>
+      <div class="dim" style="font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">Most first deaths</div>
+      
+      <div style="font-size:13px; padding:2px 0">Badabuille <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Honorik <span class="bad">×2</span></div>
+      
+      <div style="font-size:13px; padding:2px 0">Prevaraa <span class="bad">×2</span></div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="chart-note">boss names link to the full pull history</div>
+</div>
+
+<script>
+document.getElementById("scope-all-kills").addEventListener("change", function () {
+  document.getElementById("scope-guild").hidden = this.checked;
+  document.getElementById("scope-all").hidden = !this.checked;
+});
+</script>
+</main>
+
+<footer>generated with WarcraftLogs data · raidstats</footer>
+
+</body>
+</html>
