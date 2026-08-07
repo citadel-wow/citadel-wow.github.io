@@ -76,6 +76,28 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
 @media print {
   .sheetnav { display: none; }
 }
+/* small screens: sticky first column so wide sheets stay readable */
+@media screen and (max-width: 700px) {
+  body { padding: 8px 8px; font-size: 11px; -webkit-text-size-adjust: 100%; }
+  h1 { font-size: 17px; }
+  h2 { font-size: 14px; }
+  .meta, .settings, .sheet-note { font-size: 11px; }
+  th, td { padding: 2px 4px; }
+  .table-scroll { max-height: 76vh; -webkit-overflow-scrolling: touch; }
+  .table-scroll td:first-child {
+    position: sticky; left: 0; z-index: 5;
+    background: #ffffff;
+  }
+  .table-scroll tr:nth-child(even) td:first-child {
+    background: #f4f6f8;
+  }
+  .table-scroll th:first-child { position: sticky; left: 0; z-index: 12; }
+}
+.tap-tip {
+  display: none; position: absolute; z-index: 100; max-width: 86vw;
+  background: #263238; color: #eceff1; font-size: 12px; line-height: 1.45;
+  padding: 8px 11px; border-radius: 7px; box-shadow: 0 4px 14px rgba(0,0,0,.35);
+}
 </style>
 </head>
 <body>
@@ -16471,6 +16493,27 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         div.style.display = (key === "all" || div.dataset.sheet === key) ? "" : "none";
       });
     });
+  });
+})();
+</script>
+<script>
+// touch devices: title tooltips don't hover — tap a noted cell instead
+(function () {
+  if (window.matchMedia("(hover: hover)").matches) return;
+  var tip = document.createElement("div");
+  tip.className = "tap-tip";
+  document.body.appendChild(tip);
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest("[title]");
+    var text = el && el.getAttribute("title");
+    if (!text) { tip.style.display = "none"; return; }
+    tip.textContent = text;
+    tip.style.display = "block";
+    var r = el.getBoundingClientRect();
+    tip.style.top = (r.bottom + window.scrollY + 6) + "px";
+    var maxLeft = window.scrollX + document.documentElement.clientWidth
+                  - tip.offsetWidth - 8;
+    tip.style.left = Math.min(Math.max(8, r.left + window.scrollX), maxLeft) + "px";
   });
 })();
 </script>
