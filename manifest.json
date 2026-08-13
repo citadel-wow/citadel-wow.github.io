@@ -284,5 +284,16 @@
   "kills": 10,
   "wipes": 2,
   "players": 30
+ },
+ "FrB1PaDpNH6LTYgk": {
+  "report_id": "FrB1PaDpNH6LTYgk",
+  "title": "SSC / TK (SSC in 1:10:39, TK in 1:07:38)",
+  "zone": "SSC / TK",
+  "date": "August 13, 2026 20:01:31",
+  "start_ms": 1786647691544,
+  "raid": 1,
+  "kills": 10,
+  "wipes": 2,
+  "players": 26
  }
 }
