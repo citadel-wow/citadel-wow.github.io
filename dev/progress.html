@@ -75,7 +75,10 @@ nav.site a.active { background: var(--card); color: var(--ink);
 .zone-chip b { color: var(--gold-soft); }
 .ok { color: #7fc98b; } .bad { color: #d98a8a; }
 </style>
-</head>
+
+<style>
+table.data td.grp, table.data th.grp { border-left: 2px solid var(--line); }
+</style></head>
 <body>
 
 <header>
@@ -96,124 +99,252 @@ nav.site a.active { background: var(--card); color: var(--ink);
 </header>
 
 <main>
-
-
 <div class="zone-chips">
   
-  <span class="zone-chip">SSC <b>6/6</b></span>
+  <span class="zone-chip"><span class="dim" style="font-size:12px">Raid 1 · Thursdays</span>
+    &nbsp; SSC <b>6/6</b>&nbsp; TK <b>4/4</b>
+  </span>
   
-  <span class="zone-chip">TK <b>4/4</b></span>
+  <span class="zone-chip"><span class="dim" style="font-size:12px">Raid 2 · Mondays</span>
+    &nbsp; SSC <b>6/6</b>&nbsp; TK <b>4/4</b>
+  </span>
   
 </div>
 <div class="panel" style="overflow-x:auto">
 <table class="data">
-  <tr><th>Zone</th><th>Boss</th><th class="num">Pulls</th><th class="num">Kills</th>
-      <th>First kill</th><th class="num">Best kill</th></tr>
-  
   <tr>
-    <td><span style="color: #bc8834">SSC</span></td>
-    <td><a class="player-link" style="color:var(--ink)"
-        href="bosses/fathom-lord-karathress.html">Fathom-Lord Karathress</a></td>
-    <td class="num">46</td>
-    <td class="num"><span class="ok">25</span></td>
-    <td class="dim">May 15</td>
-    <td class="num">2:11</td>
+    <th rowspan="2">Zone</th><th rowspan="2">Boss</th>
+    
+    <th class="mid grp" colspan="4">Raid 1 · Thursdays</th>
+    
+    <th class="mid grp" colspan="4">Raid 2 · Mondays</th>
+    
+  </tr>
+  <tr>
+    
+    <th class="num grp">Pulls</th><th class="num">Kills</th>
+    <th>First kill</th><th class="num">Best kill</th>
+    
+    <th class="num grp">Pulls</th><th class="num">Kills</th>
+    <th>First kill</th><th class="num">Best kill</th>
+    
   </tr>
   
   <tr>
     <td><span style="color: #bc8834">SSC</span></td>
     <td><a class="player-link" style="color:var(--ink)"
         href="bosses/hydross-the-unstable.html">Hydross the Unstable</a></td>
-    <td class="num">29</td>
-    <td class="num"><span class="ok">25</span></td>
+    
+    
+    <td class="num grp">14</td>
+    <td class="num"><span class="ok">13</span></td>
     <td class="dim">May 15</td>
     <td class="num">2:09</td>
-  </tr>
-  
-  <tr>
-    <td><span style="color: #bc8834">SSC</span></td>
-    <td><a class="player-link" style="color:var(--ink)"
-        href="bosses/lady-vashj.html">Lady Vashj</a></td>
-    <td class="num">32</td>
-    <td class="num"><span class="ok">24</span></td>
-    <td class="dim">May 15</td>
-    <td class="num">7:13</td>
-  </tr>
-  
-  <tr>
-    <td><span style="color: #bc8834">SSC</span></td>
-    <td><a class="player-link" style="color:var(--ink)"
-        href="bosses/leotheras-the-blind.html">Leotheras the Blind</a></td>
-    <td class="num">31</td>
-    <td class="num"><span class="ok">25</span></td>
-    <td class="dim">May 15</td>
-    <td class="num">2:44</td>
-  </tr>
-  
-  <tr>
-    <td><span style="color: #bc8834">SSC</span></td>
-    <td><a class="player-link" style="color:var(--ink)"
-        href="bosses/morogrim-tidewalker.html">Morogrim Tidewalker</a></td>
-    <td class="num">34</td>
-    <td class="num"><span class="ok">25</span></td>
-    <td class="dim">May 15</td>
-    <td class="num">3:19</td>
+    
+    
+    
+    <td class="num grp">15</td>
+    <td class="num"><span class="ok">12</span></td>
+    <td class="dim">May 16</td>
+    <td class="num">2:28</td>
+    
+    
   </tr>
   
   <tr>
     <td><span style="color: #bc8834">SSC</span></td>
     <td><a class="player-link" style="color:var(--ink)"
         href="bosses/the-lurker-below.html">The Lurker Below</a></td>
-    <td class="num">25</td>
-    <td class="num"><span class="ok">25</span></td>
+    
+    
+    <td class="num grp">13</td>
+    <td class="num"><span class="ok">13</span></td>
     <td class="dim">May 15</td>
     <td class="num">2:50</td>
+    
+    
+    
+    <td class="num grp">12</td>
+    <td class="num"><span class="ok">12</span></td>
+    <td class="dim">May 16</td>
+    <td class="num">3:17</td>
+    
+    
+  </tr>
+  
+  <tr>
+    <td><span style="color: #bc8834">SSC</span></td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="bosses/leotheras-the-blind.html">Leotheras the Blind</a></td>
+    
+    
+    <td class="num grp">15</td>
+    <td class="num"><span class="ok">13</span></td>
+    <td class="dim">May 15</td>
+    <td class="num">2:44</td>
+    
+    
+    
+    <td class="num grp">16</td>
+    <td class="num"><span class="ok">12</span></td>
+    <td class="dim">May 16</td>
+    <td class="num">3:47</td>
+    
+    
+  </tr>
+  
+  <tr>
+    <td><span style="color: #bc8834">SSC</span></td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="bosses/fathom-lord-karathress.html">Fathom-Lord Karathress</a></td>
+    
+    
+    <td class="num grp">20</td>
+    <td class="num"><span class="ok">13</span></td>
+    <td class="dim">May 15</td>
+    <td class="num">2:11</td>
+    
+    
+    
+    <td class="num grp">26</td>
+    <td class="num"><span class="ok">12</span></td>
+    <td class="dim">May 16</td>
+    <td class="num">2:28</td>
+    
+    
+  </tr>
+  
+  <tr>
+    <td><span style="color: #bc8834">SSC</span></td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="bosses/morogrim-tidewalker.html">Morogrim Tidewalker</a></td>
+    
+    
+    <td class="num grp">17</td>
+    <td class="num"><span class="ok">13</span></td>
+    <td class="dim">May 15</td>
+    <td class="num">3:19</td>
+    
+    
+    
+    <td class="num grp">17</td>
+    <td class="num"><span class="ok">12</span></td>
+    <td class="dim">May 16</td>
+    <td class="num">3:54</td>
+    
+    
+  </tr>
+  
+  <tr>
+    <td><span style="color: #bc8834">SSC</span></td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="bosses/lady-vashj.html">Lady Vashj</a></td>
+    
+    
+    <td class="num grp">15</td>
+    <td class="num"><span class="ok">13</span></td>
+    <td class="dim">May 15</td>
+    <td class="num">7:13</td>
+    
+    
+    
+    <td class="num grp">17</td>
+    <td class="num"><span class="ok">11</span></td>
+    <td class="dim">May 22</td>
+    <td class="num">7:41</td>
+    
+    
   </tr>
   
   <tr>
     <td><span style="color: #5e93cf">TK</span></td>
     <td><a class="player-link" style="color:var(--ink)"
         href="bosses/al-ar.html">Al&#39;ar</a></td>
-    <td class="num">26</td>
-    <td class="num"><span class="ok">22</span></td>
-    <td class="dim">May 26</td>
-    <td class="num">4:46</td>
-  </tr>
-  
-  <tr>
-    <td><span style="color: #5e93cf">TK</span></td>
-    <td><a class="player-link" style="color:var(--ink)"
-        href="bosses/high-astromancer-solarian.html">High Astromancer Solarian</a></td>
-    <td class="num">26</td>
-    <td class="num"><span class="ok">22</span></td>
-    <td class="dim">May 26</td>
-    <td class="num">1:58</td>
-  </tr>
-  
-  <tr>
-    <td><span style="color: #5e93cf">TK</span></td>
-    <td><a class="player-link" style="color:var(--ink)"
-        href="bosses/kael-thas-sunstrider.html">Kael&#39;thas Sunstrider</a></td>
-    <td class="num">31</td>
-    <td class="num"><span class="ok">21</span></td>
+    
+    
+    <td class="num grp">11</td>
+    <td class="num"><span class="ok">11</span></td>
     <td class="dim">May 28</td>
-    <td class="num">7:13</td>
+    <td class="num">4:46</td>
+    
+    
+    
+    <td class="num grp">15</td>
+    <td class="num"><span class="ok">11</span></td>
+    <td class="dim">May 26</td>
+    <td class="num">5:38</td>
+    
+    
   </tr>
   
   <tr>
     <td><span style="color: #5e93cf">TK</span></td>
     <td><a class="player-link" style="color:var(--ink)"
         href="bosses/void-reaver.html">Void Reaver</a></td>
-    <td class="num">28</td>
-    <td class="num"><span class="ok">22</span></td>
-    <td class="dim">May 26</td>
+    
+    
+    <td class="num grp">14</td>
+    <td class="num"><span class="ok">11</span></td>
+    <td class="dim">May 28</td>
     <td class="num">2:40</td>
+    
+    
+    
+    <td class="num grp">14</td>
+    <td class="num"><span class="ok">11</span></td>
+    <td class="dim">May 26</td>
+    <td class="num">3:03</td>
+    
+    
+  </tr>
+  
+  <tr>
+    <td><span style="color: #5e93cf">TK</span></td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="bosses/high-astromancer-solarian.html">High Astromancer Solarian</a></td>
+    
+    
+    <td class="num grp">13</td>
+    <td class="num"><span class="ok">11</span></td>
+    <td class="dim">May 28</td>
+    <td class="num">1:58</td>
+    
+    
+    
+    <td class="num grp">13</td>
+    <td class="num"><span class="ok">11</span></td>
+    <td class="dim">May 26</td>
+    <td class="num">2:12</td>
+    
+    
+  </tr>
+  
+  <tr>
+    <td><span style="color: #5e93cf">TK</span></td>
+    <td><a class="player-link" style="color:var(--ink)"
+        href="bosses/kael-thas-sunstrider.html">Kael&#39;thas Sunstrider</a></td>
+    
+    
+    <td class="num grp">14</td>
+    <td class="num"><span class="ok">11</span></td>
+    <td class="dim">May 28</td>
+    <td class="num">7:13</td>
+    
+    
+    
+    <td class="num grp">17</td>
+    <td class="num"><span class="ok">10</span></td>
+    <td class="dim">Jun 01</td>
+    <td class="num">8:02</td>
+    
+    
   </tr>
   
 </table>
 </div>
-
-<div class="chart-note">counts cover the nights archived on this site</div>
+<div class="chart-note">each raid's numbers stand on their own — nothing is
+summed across the columns · counts cover the nights archived on this site ·
+click a boss for its full pull history</div>
 </main>
 
 <footer>generated with WarcraftLogs data · raidstats</footer>
