@@ -317,5 +317,16 @@
   "kills": 10,
   "wipes": 1,
   "players": 28
+ },
+ "HbJA9NCBTtL8za4P": {
+  "report_id": "HbJA9NCBTtL8za4P",
+  "title": "SSC+TK (SSC in 1:28:30, TK in 1:29:18)",
+  "zone": "SSC / TK",
+  "date": "August 24, 2026 20:01:40",
+  "start_ms": 1787598100490,
+  "raid": 2,
+  "kills": 10,
+  "wipes": 1,
+  "players": 37
  }
 }
