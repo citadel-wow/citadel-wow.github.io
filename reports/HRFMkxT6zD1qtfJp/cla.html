@@ -76,6 +76,33 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
 @media print {
   .sheetnav { display: none; }
 }
+/* small screens: sticky first column so wide sheets stay readable */
+@media screen and (max-width: 700px) {
+  body { padding: 8px 8px; font-size: 11px; -webkit-text-size-adjust: 100%; }
+  h1 { font-size: 17px; }
+  h2 { font-size: 14px; }
+  .meta, .settings, .sheet-note { font-size: 11px; }
+  th, td { padding: 2px 4px; }
+  .table-scroll { max-height: 76vh; -webkit-overflow-scrolling: touch; }
+  .table-scroll td:first-child {
+    position: sticky; left: 0; z-index: 5;
+    background: #ffffff;
+  }
+  .table-scroll tr:nth-child(even) td:first-child {
+    background: #f4f6f8;
+  }
+  .table-scroll th:first-child { position: sticky; left: 0; z-index: 12; }
+}
+@media screen and (max-width: 560px) { .tap-tip { max-width: 86vw; } }
+.tap-tip {
+  display: none; position: absolute; z-index: 100;
+  /* max-content so the bubble sizes to its text, not to the space left
+     of the viewport edge (absolutely positioned boxes shrink-to-fit) */
+  width: max-content; max-width: 460px; white-space: normal;
+  pointer-events: none;
+  background: #263238; color: #eceff1; font-size: 12.5px; line-height: 1.5;
+  padding: 8px 11px; border-radius: 7px; box-shadow: 0 4px 14px rgba(0,0,0,.35);
+}
 </style>
 </head>
 <body>
@@ -10455,9 +10482,11 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
 <h2>fights</h2>
 
 <div class="settings">
-  <b>speedrun zone</b>: none (just list all fights) · <b>path or id of the second log</b>: 
+  <b>speedrun zone</b>: none (just list all fights) · <b>path or id of the second log</b>: qhyt2DLzFrNZ7MB4
 </div>
 
+
+<div class="sheet-note">title 2: SSC / TK (SSC in 1:19:33, TK in 1:39:27) | zone 2: Serpentshrine Cavern | date 2: July 09, 2026 20:03:25</div>
 
 
 
@@ -10465,7 +10494,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
 <table>
   
   <tr>
-    <th>fight</th><th>idle</th><th>start</th><th>duration</th><th>end</th>
+    <th>fight</th><th>idle</th><th>start</th><th>duration</th><th>end</th><th>duration diff (log 1 - log 2)</th><th>end diff (log 1 - log 2)</th>
   </tr>
   
   <tr>
@@ -10505,6 +10534,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >0:00:34</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -10543,6 +10586,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >0:01:13</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -10583,6 +10640,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >0:02:57</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -10621,6 +10692,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >0:04:32</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -10661,6 +10746,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >0:06:41</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -10699,6 +10798,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >0:07:46</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -10739,6 +10852,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >0:08:43</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -10777,6 +10904,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >0:09:45</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -10817,6 +10958,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >0:10:32</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -10855,6 +11010,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >0:11:32</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -10895,6 +11064,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >0:12:21</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -10933,6 +11116,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                font-weight:bold;
                "
         >0:17:05</td>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:00:42</td>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:10:51</td>
     
   </tr>
   
@@ -10973,6 +11170,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >0:18:47</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -11011,6 +11222,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                font-weight:bold;
                "
         >0:22:09</td>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:00:16</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:01:05</td>
     
   </tr>
   
@@ -11051,6 +11276,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >0:25:43</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -11089,6 +11328,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >0:27:11</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -11129,6 +11382,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >0:28:47</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -11167,6 +11434,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >0:30:18</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -11207,6 +11488,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >0:31:54</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -11245,6 +11540,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                font-weight:bold;
                "
         >0:36:53</td>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:00:13</td>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:09:06</td>
     
   </tr>
   
@@ -11285,6 +11594,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >0:37:04</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -11323,6 +11646,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >0:40:02</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -11363,6 +11700,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >0:41:50</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -11401,6 +11752,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >0:42:47</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -11441,6 +11806,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >0:43:24</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -11479,6 +11858,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >0:44:08</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -11519,6 +11912,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >0:51:08</td>
     
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:00:06</td>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:08:40</td>
+    
   </tr>
   
   <tr>
@@ -11557,6 +11964,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >0:51:13</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -11597,6 +12018,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >0:52:31</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -11635,6 +12070,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >0:53:33</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -11675,6 +12124,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >0:55:20</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -11713,6 +12176,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                font-weight:bold;
                "
         >1:01:28</td>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:01:23</td>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:08:46</td>
     
   </tr>
   
@@ -11753,6 +12230,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >1:16:00</td>
     
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:01:43</td>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:10:13</td>
+    
   </tr>
   
   <tr>
@@ -11791,6 +12282,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >1:27:57</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -11831,6 +12336,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >1:31:22</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -11869,6 +12388,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >1:33:18</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -11909,6 +12442,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >1:34:56</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -11947,6 +12494,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >1:36:23</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -11987,6 +12548,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >1:37:45</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -12025,6 +12600,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >1:40:16</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -12065,6 +12654,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >1:41:16</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -12103,6 +12706,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                font-weight:bold;
                "
         >1:48:21</td>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:00:56</td>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:08:39</td>
     
   </tr>
   
@@ -12143,6 +12760,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >1:50:14</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -12181,6 +12812,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >1:51:04</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -12221,6 +12866,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >1:52:38</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -12259,6 +12918,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >1:54:00</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -12299,6 +12972,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >1:54:23</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -12337,6 +13024,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >1:55:52</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -12377,6 +13078,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >1:57:27</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -12415,6 +13130,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >1:58:57</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -12455,6 +13184,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >2:03:41</td>
     
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:00:18</td>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:30:18</td>
+    
   </tr>
   
   <tr>
@@ -12493,6 +13236,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >2:06:01</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -12533,6 +13290,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >2:06:44</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -12571,6 +13342,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >2:07:18</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -12611,6 +13396,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >2:07:55</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -12649,6 +13448,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >2:09:29</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -12689,6 +13502,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >2:11:09</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -12727,6 +13554,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >2:12:16</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -12767,6 +13608,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >2:15:51</td>
     
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:00:15</td>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:30:48</td>
+    
   </tr>
   
   <tr>
@@ -12805,6 +13660,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >2:17:39</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -12845,6 +13714,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >2:18:59</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -12883,6 +13766,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >2:20:35</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -12923,6 +13820,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >2:22:00</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -12961,6 +13872,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                "
         >2:23:12</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
     
   </tr>
   
@@ -13001,6 +13926,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >2:24:40</td>
     
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
   </tr>
   
   <tr>
@@ -13039,6 +13978,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                font-weight:bold;
                "
         >2:36:28</td>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        ></td>
     
   </tr>
   
@@ -13079,6 +14032,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                "
         >2:51:04</td>
     
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:00:50</td>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >-0:26:19</td>
+    
   </tr>
   
   <tr>
@@ -13096,6 +14063,2838 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
                
                font-style:italic;"
         >1:17:03</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        ></td>
+    
+    <td class=""
+        style="
+               
+               
+               font-style:italic;"
+        >-0:21:47</td>
+    
+  </tr>
+  
+</table>
+</div>
+
+<div class="table-scroll">
+<table>
+  <caption>SSC / TK (SSC in 1:19:33, TK in 1:39:27)</caption>
+  <tr>
+    <th>fight</th><th>idle</th><th>start</th><th>duration</th><th>end</th>
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Coilfang Beast-Tamer (trash)</td>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >---</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:00</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:33</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:33</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Underbog Colossus (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:32</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:05</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:26</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:32</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Coilfang Beast-Tamer (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:29</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:02:02</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:35</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:02:38</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Hydross the Unstable (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:32</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:03:11</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:39</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:03:50</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Hydross the Unstable (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:10</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:04:01</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:28</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:04:30</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Hydross the Unstable (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:02:09</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:06:40</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:45</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:08:25</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Vashj&#39;ir Honor Guard (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:16</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:08:41</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:44</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:09:26</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Underbog Colossus (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:23</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:09:50</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:31</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:10:22</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Vashj&#39;ir Honor Guard (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:28</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:10:50</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:41</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:11:31</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Vashj&#39;ir Honor Guard (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:17</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:11:49</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:36</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:12:26</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Vashj&#39;ir Honor Guard (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:21</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:12:47</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:45</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:13:33</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Hydross the Unstable (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:38</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:15:12</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:08</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:15:20</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Hydross the Unstable (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:12</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:15:32</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:06</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:15:39</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Hydross the Unstable (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:02:29</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:18:08</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:11</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:18:20</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Tainted Water Elemental (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:11</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:18:31</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:07</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:18:39</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >Hydross the Unstable</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:00:00</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:18:39</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:02:25</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:21:04</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >The Lurker Below</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:03:13</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:24:18</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:03:38</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:27:56</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Underbog Colossus (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:02:50</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:30:46</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:24</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:31:10</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Coilfang Serpentguard (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:46</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:32:56</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:36</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:33:33</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Tidewalker Warrior (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:04</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:34:37</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:31</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:35:08</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Tidewalker Warrior (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:02:53</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:38:02</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:42</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:38:44</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Tidewalker Warrior (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:41</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:39:26</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:25</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:40:51</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >Morogrim Tidewalker</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:01:30</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:42:21</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:03:37</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:45:59</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Tidewalker Lurker (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:00</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:45:59</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:07</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:46:07</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Underbog Colossus (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:17</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:47:24</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:48</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:49:12</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Underbog Colossus (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:40</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:49:53</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:53</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:50:47</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Underbog Colossus (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:31</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:51:19</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:46</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:52:06</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Underbog Colossus (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:17</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:52:23</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:34</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:52:57</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Greyheart Shield-Bearer (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:33</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:53:31</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:46</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:54:17</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >Fathom-Lord Karathress</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:03:05</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:57:22</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:02:25</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:59:48</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Fathom-Guard Caribdis (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:00</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:59:48</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:15</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:00:04</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Greyheart Shield-Bearer (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:51</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:00:56</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:59</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:01:55</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Greyheart Skulker (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:57</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:02:53</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:51</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:03:44</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >Leotheras the Blind</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:01:42</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >1:05:26</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:04:47</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >1:10:14</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >Lady Vashj</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:06:55</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >1:17:10</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:09:03</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >1:26:13</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Bloodwarder Vindicator (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:11:43</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:37:56</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:50</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:38:46</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Bloodwarder Marshal (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:13</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:39:00</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:34</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:39:34</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Bloodwarder Vindicator (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:25</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:40:00</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:03</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:41:03</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Bloodwarder Vindicator (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:17</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:42:21</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:10</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:43:32</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Tempest Falconer (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:24</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:44:57</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:28</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:46:25</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Phoenix-Hawk (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:31</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:46:57</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:51</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:47:48</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Phoenix-Hawk (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:14</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:48:03</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:26</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:48:29</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Phoenix-Hawk (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:25</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:48:55</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:29</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:49:25</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >Al&#39;ar</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:01:52</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >1:51:17</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:05:42</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >1:57:00</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Crystalcore Devastator (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:52</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:57:53</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:00</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:58:53</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Crystalcore Devastator (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:10</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:59:04</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:33</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >1:59:37</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Crystalcore Devastator (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:25</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:00:02</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:55</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:00:57</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Crystalcore Devastator (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:25</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:01:23</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:15</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:02:38</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Crystalcore Devastator (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:25</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:03:04</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:19</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:04:24</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Crystalcore Sentinel (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:31</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:04:55</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:21</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:06:17</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Crystalcore Sentinel (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:45</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:07:03</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:12</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:08:16</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >Void Reaver</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:03:01</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >2:11:17</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:00:54</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >2:12:12</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >Void Reaver</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:03:28</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >2:15:41</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:02:13</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >2:17:54</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >Void Reaver</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:06:16</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >2:24:10</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:01:24</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >2:25:35</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >Void Reaver</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:05:09</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >2:30:45</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:03:14</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >2:33:59</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Astromancer Lord (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:49</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:35:49</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:29</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:36:19</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Crystalcore Sentinel (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:28</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:36:47</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:02</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:37:49</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Bloodwarder Squire (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:15</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:38:05</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:26</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:38:31</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Bloodwarder Squire (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:27</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:38:59</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:26</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:39:25</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Nether Scryer (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:41</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:40:07</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:31</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:41:38</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Bloodwarder Squire (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:17</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:41:56</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:27</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:42:23</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Bloodwarder Squire (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:19</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:42:42</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:30</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:43:12</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >High Astromancer Solarian</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:01:13</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >2:44:26</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:02:13</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >2:46:39</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Crimson Hand Inquisitor (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:08</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:47:48</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:39</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:48:28</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Crimson Hand Blood Knight (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:33</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:49:01</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:31</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:50:33</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Crimson Hand Blood Knight (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:06</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:51:40</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:01:13</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:52:54</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Bloodwarder Marshal (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:44</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:53:39</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:59</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:54:38</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Bloodwarder Marshal (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:49</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:55:28</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:57</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:56:25</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               "
+        >Bloodwarder Marshal (trash)</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:51</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:57:16</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >0:00:57</td>
+    
+    <td class="num"
+        style="
+               
+               
+               "
+        >2:58:14</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >Kael&#39;thas Sunstrider</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:01:32</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >2:59:46</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:02:59</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >3:02:46</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               font-weight:bold;
+               "
+        >Kael&#39;thas Sunstrider</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:06:15</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >3:09:01</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >0:08:22</td>
+    
+    <td class="num"
+        style="
+               
+               font-weight:bold;
+               "
+        >3:17:23</td>
+    
+  </tr>
+  
+  <tr>
+    
+    <td class=""
+        style="
+               
+               
+               font-style:italic;"
+        >total idle time</td>
+    
+    <td class="num"
+        style="
+               
+               
+               font-style:italic;"
+        >1:38:50</td>
     
     <td class=""
         style="
@@ -13140,6 +16939,60 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         div.style.display = (key === "all" || div.dataset.sheet === key) ? "" : "none";
       });
     });
+  });
+})();
+</script>
+<script>
+// Readable notes everywhere: native title tooltips truncate long text
+// (a 13-ability dispel breakdown never fits), so cells with a note use a
+// wrapping bubble — hover on desktop, tap on touch. The numbered
+// footnotes under each table remain the printable fallback.
+(function () {
+  var tip = document.createElement("div");
+  tip.className = "tap-tip";
+  document.body.appendChild(tip);
+
+  function noteOf(el) {
+    if (!el) return null;
+    if (el.hasAttribute("title")) {          // migrate once: kill the native one
+      var t = el.getAttribute("title");
+      el.setAttribute("data-tip", t);
+      el.setAttribute("aria-label", t);
+      el.removeAttribute("title");
+    }
+    return el.getAttribute("data-tip");
+  }
+
+  function show(el, x, y) {
+    var text = noteOf(el);
+    if (!text) { tip.style.display = "none"; return; }
+    tip.textContent = text;
+    tip.style.display = "block";
+    place(x, y);
+  }
+
+  function place(x, y) {
+    var vw = window.innerWidth || document.documentElement.clientWidth || 1024;
+    var maxLeft = window.scrollX + vw - tip.offsetWidth - 8;
+    tip.style.left = Math.max(8, Math.min(x, maxLeft)) + "px";
+    tip.style.top = (y + 14) + "px";
+  }
+
+  document.addEventListener("mouseover", function (e) {
+    var el = e.target.closest("[title], [data-tip]");
+    if (el) show(el, e.pageX, e.pageY);
+    else tip.style.display = "none";
+  });
+  document.addEventListener("mousemove", function (e) {
+    if (tip.style.display !== "block") return;
+    var el = e.target.closest("[title], [data-tip]");
+    if (!el) { tip.style.display = "none"; return; }
+    place(e.pageX, e.pageY);
+  });
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest("[title], [data-tip]");
+    if (el) show(el, e.pageX, e.pageY);
+    else tip.style.display = "none";
   });
 })();
 </script>

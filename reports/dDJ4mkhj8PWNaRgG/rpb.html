@@ -117,10 +117,39 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
   .table-scroll tr.player-row th { position: sticky; top: 6px; z-index: 11; }
   .table-scroll td.label { position: sticky; left: 0; z-index: 10; }
   tr.metric:hover td { background: #fff3cd !important; }
-  td[title], th[title] { cursor: help; }
+  td[title], th[title], td[data-tip], th[data-tip] { cursor: help; }
+  .footnotes { font-size: 12px; line-height: 1.5; margin-top: 8px;
+               color: #445; }
+  .footnotes sup { font-size: 0.75em; }
 }
 @media print {
   .rolenav { display: none; }
+}
+/* small screens: tighter metrics grid, wrapping nav, full-width search */
+@media screen and (max-width: 700px) {
+  body { padding: 8px 8px; -webkit-text-size-adjust: 100%; }
+  h1 { font-size: 17px; }
+  h2 { font-size: 14px; }
+  .meta { font-size: 11px; }
+  .fs-11, .fs-10, .fs-9 { font-size: 11px; }
+  .fs-11 col.player-col, .fs-10 col.player-col, .fs-9 col.player-col { width: 72px; }
+  col.label-col { width: 128px; }
+  col.group-label-col { width: 106px; }
+  th, td { padding: 2px 3px; }
+  td.label, td.group-label { font-size: 10px; }
+  .rolenav { flex-wrap: wrap; }
+  .rolenav input { width: 100%; margin-left: 0; }
+  .table-scroll { max-height: 76vh; -webkit-overflow-scrolling: touch; }
+}
+@media screen and (max-width: 560px) { .tap-tip { max-width: 86vw; } }
+.tap-tip {
+  display: none; position: absolute; z-index: 100;
+  /* max-content so the bubble sizes to its text, not to the space left
+     of the viewport edge (absolutely positioned boxes shrink-to-fit) */
+  width: max-content; max-width: 460px; white-space: normal;
+  pointer-events: none;
+  background: #263238; color: #eceff1; font-size: 12.5px; line-height: 1.5;
+  padding: 8px 11px; border-radius: 7px; box-shadow: 0 4px 14px rgba(0,0,0,.35);
 }
 </style>
 </head>
@@ -229,7 +258,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">4</td>
+  <td class="val" title="dispelled: Avenger&#39;s Shield ×1, Earthbind ×1, Frost Nova ×1, Poison Bolt ×1">4<sup title="dispelled: Avenger&#39;s Shield ×1, Earthbind ×1, Frost Nova ×1, Poison Bolt ×1">3</sup></td>
   
 
       
@@ -837,7 +866,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">278</td>
+  <td class="val" title="dispelled: Arcane Destruction ×2">278<sup title="dispelled: Arcane Destruction ×2">4</sup></td>
   
 
       
@@ -1541,7 +1570,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">1865<sup title="spell haste: 0">3</sup></td>
+  <td class="val" title="spell haste: 0">1865<sup title="spell haste: 0">5</sup></td>
   
 
       
@@ -1589,7 +1618,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">75%<sup title="0 seconds substracted for spell haste buffs">4</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">75%<sup title="0 seconds substracted for spell haste buffs">6</sup></td>
   
 
       
@@ -1597,7 +1626,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">90%<sup title="0 seconds substracted for spell haste buffs">4</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">90%<sup title="0 seconds substracted for spell haste buffs">6</sup></td>
   
 
       
@@ -1637,7 +1666,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">1260<sup title="spell haste: 0">3</sup></td>
+  <td class="val" title="spell haste: 0">1260<sup title="spell haste: 0">5</sup></td>
   
 
       
@@ -3675,7 +3704,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">23790<sup title="dps: 1.7">5</sup></td>
+  <td class="val" title="dps: 1.7">23790<sup title="dps: 1.7">7</sup></td>
   
 
       
@@ -3683,7 +3712,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">12132<sup title="dps: 0.9">6</sup></td>
+  <td class="val" title="dps: 0.9">12132<sup title="dps: 0.9">8</sup></td>
   
 
       
@@ -3737,13 +3766,17 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
   
   <div><sup>2</sup> trinkets equipped on bosses: — 1x Adamantine Figurine — 11x Romulo&#39;s Poison Vial — 9x Gnomeregan Auto-Dodger 600 — 1x Bloodlust Brooch</div>
   
-  <div><sup>3</sup> spell haste: 0</div>
+  <div><sup>3</sup> dispelled: Avenger&#39;s Shield ×1, Earthbind ×1, Frost Nova ×1, Poison Bolt ×1</div>
   
-  <div><sup>4</sup> 0 seconds substracted for spell haste buffs</div>
+  <div><sup>4</sup> dispelled: Arcane Destruction ×2</div>
   
-  <div><sup>5</sup> dps: 1.7</div>
+  <div><sup>5</sup> spell haste: 0</div>
   
-  <div><sup>6</sup> dps: 0.9</div>
+  <div><sup>6</sup> 0 seconds substracted for spell haste buffs</div>
+  
+  <div><sup>7</sup> dps: 1.7</div>
+  
+  <div><sup>8</sup> dps: 0.9</div>
   
 </div>
 
@@ -3876,7 +3909,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">40</td>
+  <td class="val" title="dispelled: Virulent Poison ×13, Poison Bolt ×9, Earthbind ×6, Avenger&#39;s Shield ×4, Poison Bolt Volley ×3, Arcane Lightning ×2, Holy Fire ×1, Rampant Infection ×1, Shadow Embrace ×1, Vampiric Embrace ×1">40<sup title="dispelled: Virulent Poison ×13, Poison Bolt ×9, Earthbind ×6, Avenger&#39;s Shield ×4, Poison Bolt Volley ×3, Arcane Lightning ×2, Holy Fire ×1, Rampant Infection ×1, Shadow Embrace ×1, Vampiric Embrace ×1">6</sup></td>
   
 
       
@@ -4318,7 +4351,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">16</td>
+  <td class="val" title="dispelled: Poison Bolt ×5">16<sup title="dispelled: Poison Bolt ×5">7</sup></td>
   
 
       
@@ -4392,7 +4425,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
 
   
   
-  <td class="val">2</td>
+  <td class="val" title="dispelled: Rampant Infection ×2">2<sup title="dispelled: Rampant Infection ×2">8</sup></td>
   
 
       
@@ -4432,12 +4465,12 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">2</td>
+  <td class="val" title="dispelled: Poison Bolt ×2">2<sup title="dispelled: Poison Bolt ×2">9</sup></td>
   
 
   
   
-  <td class="val">23</td>
+  <td class="val" title="dispelled: Virulent Poison ×10, Poison Bolt Volley ×6, Poison Bolt ×5">23<sup title="dispelled: Virulent Poison ×10, Poison Bolt Volley ×6, Poison Bolt ×5">10</sup></td>
   
 
       
@@ -4604,7 +4637,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">25</td>
+  <td class="val" title="dispelled: Holy Fire ×15, Avenger&#39;s Shield ×2, Earthbind ×2, Arcane Lightning ×1, Cone of Cold ×1, Frost Shock ×1, Frostbolt ×1, Hammer of Justice ×1, Judgement of the Crusader ×1">25<sup title="dispelled: Holy Fire ×15, Avenger&#39;s Shield ×2, Earthbind ×2, Arcane Lightning ×1, Cone of Cold ×1, Frost Shock ×1, Frostbolt ×1, Hammer of Justice ×1, Judgement of the Crusader ×1">11</sup></td>
   
 
       
@@ -6809,7 +6842,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">3420<sup title="spell haste: 0">6</sup></td>
+  <td class="val" title="spell haste: 0">3420<sup title="spell haste: 0">12</sup></td>
   
 
       
@@ -6817,7 +6850,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">4024<sup title="spell haste: 0">6</sup></td>
+  <td class="val" title="spell haste: 0">4024<sup title="spell haste: 0">12</sup></td>
   
 
       
@@ -6825,7 +6858,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">2547<sup title="spell haste: 0">6</sup></td>
+  <td class="val" title="spell haste: 0">2547<sup title="spell haste: 0">12</sup></td>
   
 
       
@@ -6833,12 +6866,12 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">610<sup title="spell haste: 0">6</sup></td>
+  <td class="val" title="spell haste: 0">610<sup title="spell haste: 0">12</sup></td>
   
 
   
   
-  <td class="val">1340<sup title="spell haste: 0">6</sup></td>
+  <td class="val" title="spell haste: 0">1340<sup title="spell haste: 0">12</sup></td>
   
 
       
@@ -6899,7 +6932,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">82%<sup title="0 seconds substracted for spell haste buffs">7</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">82%<sup title="0 seconds substracted for spell haste buffs">13</sup></td>
   
 
       
@@ -6907,7 +6940,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">96%<sup title="0 seconds substracted for spell haste buffs">7</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">96%<sup title="0 seconds substracted for spell haste buffs">13</sup></td>
   
 
       
@@ -6915,7 +6948,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">76%<sup title="0 seconds substracted for spell haste buffs">7</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">76%<sup title="0 seconds substracted for spell haste buffs">13</sup></td>
   
 
       
@@ -6923,12 +6956,12 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">85%<sup title="0 seconds substracted for spell haste buffs">7</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">85%<sup title="0 seconds substracted for spell haste buffs">13</sup></td>
   
 
   
   
-  <td class="val">72%<sup title="0 seconds substracted for spell haste buffs">7</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">72%<sup title="0 seconds substracted for spell haste buffs">13</sup></td>
   
 
       
@@ -6989,7 +7022,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val zero">0<sup title="spell haste: 0">6</sup></td>
+  <td class="val zero" title="spell haste: 0">0<sup title="spell haste: 0">12</sup></td>
   
 
       
@@ -6997,7 +7030,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val zero">0<sup title="spell haste: 0">6</sup></td>
+  <td class="val zero" title="spell haste: 0">0<sup title="spell haste: 0">12</sup></td>
   
 
       
@@ -7005,7 +7038,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">632<sup title="spell haste: 0">6</sup></td>
+  <td class="val" title="spell haste: 0">632<sup title="spell haste: 0">12</sup></td>
   
 
       
@@ -7013,12 +7046,12 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">2921<sup title="spell haste: 0">6</sup></td>
+  <td class="val" title="spell haste: 0">2921<sup title="spell haste: 0">12</sup></td>
   
 
   
   
-  <td class="val">1679<sup title="spell haste: 0">6</sup></td>
+  <td class="val" title="spell haste: 0">1679<sup title="spell haste: 0">12</sup></td>
   
 
       
@@ -10869,9 +10902,21 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
   
   <div><sup>5</sup> trinkets equipped on bosses: — 11x Essence of the Martyr — 11x Scarab of the Infinite Cycle</div>
   
-  <div><sup>6</sup> spell haste: 0</div>
+  <div><sup>6</sup> dispelled: Virulent Poison ×13, Poison Bolt ×9, Earthbind ×6, Avenger&#39;s Shield ×4, Poison Bolt Volley ×3, Arcane Lightning ×2, Holy Fire ×1, Rampant Infection ×1, Shadow Embrace ×1, Vampiric Embrace ×1</div>
   
-  <div><sup>7</sup> 0 seconds substracted for spell haste buffs</div>
+  <div><sup>7</sup> dispelled: Poison Bolt ×5</div>
+  
+  <div><sup>8</sup> dispelled: Rampant Infection ×2</div>
+  
+  <div><sup>9</sup> dispelled: Poison Bolt ×2</div>
+  
+  <div><sup>10</sup> dispelled: Virulent Poison ×10, Poison Bolt Volley ×6, Poison Bolt ×5</div>
+  
+  <div><sup>11</sup> dispelled: Holy Fire ×15, Avenger&#39;s Shield ×2, Earthbind ×2, Arcane Lightning ×1, Cone of Cold ×1, Frost Shock ×1, Frostbolt ×1, Hammer of Justice ×1, Judgement of the Crusader ×1</div>
+  
+  <div><sup>12</sup> spell haste: 0</div>
+  
+  <div><sup>13</sup> 0 seconds substracted for spell haste buffs</div>
   
 </div>
 
@@ -11039,7 +11084,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">22</td>
+  <td class="val" title="interrupted 6 casts: Healing Wave ×6">22<sup title="interrupted 6 casts: Healing Wave ×6">7</sup></td>
   
 
       
@@ -11318,12 +11363,12 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">16</td>
+  <td class="val" title="interrupted 8 casts: Greater Heal ×4, Healing Wave ×3, Frostbolt ×1">16<sup title="interrupted 8 casts: Greater Heal ×4, Healing Wave ×3, Frostbolt ×1">8</sup></td>
   
 
   
   
-  <td class="val">11</td>
+  <td class="val" title="interrupted 2 casts: Greater Heal ×2">11<sup title="interrupted 2 casts: Greater Heal ×2">9</sup></td>
   
 
       
@@ -11399,7 +11444,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">3</td>
+  <td class="val" title="dispelled: Poison Shield ×2, Arcane Destruction ×1">3<sup title="dispelled: Poison Shield ×2, Arcane Destruction ×1">10</sup></td>
   
 
       
@@ -11759,7 +11804,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">4</td>
+  <td class="val" title="dispelled: Poison Bolt ×3, Poison Bolt Volley ×1">4<sup title="dispelled: Poison Bolt ×3, Poison Bolt Volley ×1">11</sup></td>
   
 
       
@@ -11991,7 +12036,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">9</td>
+  <td class="val" title="dispelled: Lightning Shield ×4, Arcane Destruction ×2, Poison Shield ×2, Blessing of Wisdom ×1">9<sup title="dispelled: Lightning Shield ×4, Arcane Destruction ×2, Poison Shield ×2, Blessing of Wisdom ×1">12</sup></td>
   
 
       
@@ -14994,20 +15039,12 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">3127<sup title="spell haste: 0">7</sup></td>
+  <td class="val" title="spell haste: 0">3127<sup title="spell haste: 0">13</sup></td>
   
 
   
   
-  <td class="val">2846<sup title="spell haste: 0">7</sup></td>
-  
-
-      
-        <td class="group-label"></td>
-        
-  
-  
-  <td class="val">3409<sup title="spell haste: 0">7</sup></td>
+  <td class="val" title="spell haste: 0">2846<sup title="spell haste: 0">13</sup></td>
   
 
       
@@ -15015,7 +15052,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">2860<sup title="spell haste: 0">7</sup></td>
+  <td class="val" title="spell haste: 0">3409<sup title="spell haste: 0">13</sup></td>
   
 
       
@@ -15023,22 +15060,30 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">2438<sup title="spell haste: 0">7</sup></td>
+  <td class="val" title="spell haste: 0">2860<sup title="spell haste: 0">13</sup></td>
+  
+
+      
+        <td class="group-label"></td>
+        
+  
+  
+  <td class="val" title="spell haste: 0">2438<sup title="spell haste: 0">13</sup></td>
   
 
   
   
-  <td class="val">3178<sup title="spell haste: 0">7</sup></td>
+  <td class="val" title="spell haste: 0">3178<sup title="spell haste: 0">13</sup></td>
   
 
   
   
-  <td class="val">3820<sup title="spell haste: 0">7</sup></td>
+  <td class="val" title="spell haste: 0">3820<sup title="spell haste: 0">13</sup></td>
   
 
   
   
-  <td class="val">2431<sup title="spell haste: 0">7</sup></td>
+  <td class="val" title="spell haste: 0">2431<sup title="spell haste: 0">13</sup></td>
   
 
       
@@ -15114,20 +15159,12 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">87%<sup title="82 seconds substracted for spell haste buffs">8</sup></td>
+  <td class="val" title="82 seconds substracted for spell haste buffs">87%<sup title="82 seconds substracted for spell haste buffs">14</sup></td>
   
 
   
   
-  <td class="val">81%<sup title="54 seconds substracted for spell haste buffs">9</sup></td>
-  
-
-      
-        <td class="group-label"></td>
-        
-  
-  
-  <td class="val">82%<sup title="0 seconds substracted for spell haste buffs">10</sup></td>
+  <td class="val" title="54 seconds substracted for spell haste buffs">81%<sup title="54 seconds substracted for spell haste buffs">15</sup></td>
   
 
       
@@ -15135,7 +15172,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">81%<sup title="0 seconds substracted for spell haste buffs">10</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">82%<sup title="0 seconds substracted for spell haste buffs">16</sup></td>
   
 
       
@@ -15143,22 +15180,30 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">67%<sup title="0 seconds substracted for spell haste buffs">10</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">81%<sup title="0 seconds substracted for spell haste buffs">16</sup></td>
+  
+
+      
+        <td class="group-label"></td>
+        
+  
+  
+  <td class="val" title="0 seconds substracted for spell haste buffs">67%<sup title="0 seconds substracted for spell haste buffs">16</sup></td>
   
 
   
   
-  <td class="val">90%<sup title="0 seconds substracted for spell haste buffs">10</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">90%<sup title="0 seconds substracted for spell haste buffs">16</sup></td>
   
 
   
   
-  <td class="val">100%<sup title="0 seconds substracted for spell haste buffs">10</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">100%<sup title="0 seconds substracted for spell haste buffs">16</sup></td>
   
 
   
   
-  <td class="val">70%<sup title="0 seconds substracted for spell haste buffs">10</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">70%<sup title="0 seconds substracted for spell haste buffs">16</sup></td>
   
 
       
@@ -15234,20 +15279,12 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">509<sup title="spell haste: 0">7</sup></td>
+  <td class="val" title="spell haste: 0">509<sup title="spell haste: 0">13</sup></td>
   
 
   
   
-  <td class="val">533<sup title="spell haste: 0">7</sup></td>
-  
-
-      
-        <td class="group-label"></td>
-        
-  
-  
-  <td class="val zero">0<sup title="spell haste: 0">7</sup></td>
+  <td class="val" title="spell haste: 0">533<sup title="spell haste: 0">13</sup></td>
   
 
       
@@ -15255,7 +15292,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">530<sup title="spell haste: 0">7</sup></td>
+  <td class="val zero" title="spell haste: 0">0<sup title="spell haste: 0">13</sup></td>
   
 
       
@@ -15263,22 +15300,30 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">374<sup title="spell haste: 0">7</sup></td>
+  <td class="val" title="spell haste: 0">530<sup title="spell haste: 0">13</sup></td>
+  
+
+      
+        <td class="group-label"></td>
+        
+  
+  
+  <td class="val" title="spell haste: 0">374<sup title="spell haste: 0">13</sup></td>
   
 
   
   
-  <td class="val">569<sup title="spell haste: 0">7</sup></td>
+  <td class="val" title="spell haste: 0">569<sup title="spell haste: 0">13</sup></td>
   
 
   
   
-  <td class="val">358<sup title="spell haste: 0">7</sup></td>
+  <td class="val" title="spell haste: 0">358<sup title="spell haste: 0">13</sup></td>
   
 
   
   
-  <td class="val">496<sup title="spell haste: 0">7</sup></td>
+  <td class="val" title="spell haste: 0">496<sup title="spell haste: 0">13</sup></td>
   
 
       
@@ -20786,13 +20831,25 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
   
   <div><sup>6</sup> trinkets equipped on bosses: — 11x Quagmirran&#39;s Eye — 11x Neltharion&#39;s Tear</div>
   
-  <div><sup>7</sup> spell haste: 0</div>
+  <div><sup>7</sup> interrupted 6 casts: Healing Wave ×6</div>
   
-  <div><sup>8</sup> 82 seconds substracted for spell haste buffs</div>
+  <div><sup>8</sup> interrupted 8 casts: Greater Heal ×4, Healing Wave ×3, Frostbolt ×1</div>
   
-  <div><sup>9</sup> 54 seconds substracted for spell haste buffs</div>
+  <div><sup>9</sup> interrupted 2 casts: Greater Heal ×2</div>
   
-  <div><sup>10</sup> 0 seconds substracted for spell haste buffs</div>
+  <div><sup>10</sup> dispelled: Poison Shield ×2, Arcane Destruction ×1</div>
+  
+  <div><sup>11</sup> dispelled: Poison Bolt ×3, Poison Bolt Volley ×1</div>
+  
+  <div><sup>12</sup> dispelled: Lightning Shield ×4, Arcane Destruction ×2, Poison Shield ×2, Blessing of Wisdom ×1</div>
+  
+  <div><sup>13</sup> spell haste: 0</div>
+  
+  <div><sup>14</sup> 82 seconds substracted for spell haste buffs</div>
+  
+  <div><sup>15</sup> 54 seconds substracted for spell haste buffs</div>
+  
+  <div><sup>16</sup> 0 seconds substracted for spell haste buffs</div>
   
 </div>
 
@@ -21011,7 +21068,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">179</td>
+  <td class="val" title="interrupted 5 casts: Frostbolt ×2, Greater Heal ×2, Shadow Bolt ×1">179<sup title="interrupted 5 casts: Frostbolt ×2, Greater Heal ×2, Shadow Bolt ×1">8</sup></td>
   
 
       
@@ -21053,12 +21110,12 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">357</td>
+  <td class="val" title="dispelled: Poison Shield ×3, Arcane Destruction ×1, Lightning Shield ×1">357<sup title="dispelled: Poison Shield ×3, Arcane Destruction ×1, Lightning Shield ×1">9</sup></td>
   
 
   
   
-  <td class="val">125</td>
+  <td class="val" title="dispelled: Arcane Destruction ×1, Hand of Protection ×1">125<sup title="dispelled: Arcane Destruction ×1, Hand of Protection ×1">10</sup></td>
   
 
       
@@ -21437,7 +21494,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">3</td>
+  <td class="val" title="dispelled: Lightning Shield ×1, Poison Shield ×1">3<sup title="dispelled: Lightning Shield ×1, Poison Shield ×1">11</sup></td>
   
 
       
@@ -21679,7 +21736,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">1</td>
+  <td class="val" title="dispelled: Poison Bolt Volley ×1">1<sup title="dispelled: Poison Bolt Volley ×1">12</sup></td>
   
 
   
@@ -21905,12 +21962,12 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">8</td>
+  <td class="val" title="dispelled: Enrage ×8">8<sup title="dispelled: Enrage ×8">13</sup></td>
   
 
   
   
-  <td class="val">5</td>
+  <td class="val" title="dispelled: Enrage ×4">5<sup title="dispelled: Enrage ×4">14</sup></td>
   
 
       
@@ -21926,7 +21983,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">12</td>
+  <td class="val" title="interrupted 6 casts: Greater Heal ×4, Frostbolt ×2">12<sup title="interrupted 6 casts: Greater Heal ×4, Frostbolt ×2">15</sup></td>
   
 
       
@@ -25316,12 +25373,12 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">1589<sup title="spell haste: 0">8</sup></td>
+  <td class="val" title="spell haste: 0">1589<sup title="spell haste: 0">16</sup></td>
   
 
   
   
-  <td class="val">2742<sup title="spell haste: 0">8</sup></td>
+  <td class="val" title="spell haste: 0">2742<sup title="spell haste: 0">16</sup></td>
   
 
       
@@ -25342,7 +25399,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">3150<sup title="spell haste: 0">8</sup></td>
+  <td class="val" title="spell haste: 0">3150<sup title="spell haste: 0">16</sup></td>
   
 
       
@@ -25358,7 +25415,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">1509<sup title="spell haste: 0">8</sup></td>
+  <td class="val" title="spell haste: 0">1509<sup title="spell haste: 0">16</sup></td>
   
 
       
@@ -25458,25 +25515,12 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">39%<sup title="0 seconds substracted for spell haste buffs">9</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">39%<sup title="0 seconds substracted for spell haste buffs">17</sup></td>
   
 
   
   
-  <td class="val">66%<sup title="0 seconds substracted for spell haste buffs">9</sup></td>
-  
-
-      
-        <td class="group-label"></td>
-        
-  
-  
-  <td class="val">83%<sup title="0 seconds substracted for spell haste buffs">9</sup></td>
-  
-
-  
-  
-  <td class="val">73%<sup title="0 seconds substracted for spell haste buffs">9</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">66%<sup title="0 seconds substracted for spell haste buffs">17</sup></td>
   
 
       
@@ -25484,7 +25528,12 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">78%<sup title="0 seconds substracted for spell haste buffs">9</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">83%<sup title="0 seconds substracted for spell haste buffs">17</sup></td>
+  
+
+  
+  
+  <td class="val" title="0 seconds substracted for spell haste buffs">73%<sup title="0 seconds substracted for spell haste buffs">17</sup></td>
   
 
       
@@ -25492,7 +25541,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">42%<sup title="0 seconds substracted for spell haste buffs">9</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">78%<sup title="0 seconds substracted for spell haste buffs">17</sup></td>
   
 
       
@@ -25500,7 +25549,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">44%<sup title="0 seconds substracted for spell haste buffs">9</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">42%<sup title="0 seconds substracted for spell haste buffs">17</sup></td>
   
 
       
@@ -25508,12 +25557,20 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">38%<sup title="0 seconds substracted for spell haste buffs">9</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">44%<sup title="0 seconds substracted for spell haste buffs">17</sup></td>
+  
+
+      
+        <td class="group-label"></td>
+        
+  
+  
+  <td class="val" title="0 seconds substracted for spell haste buffs">38%<sup title="0 seconds substracted for spell haste buffs">17</sup></td>
   
 
   
   
-  <td class="val">44%<sup title="0 seconds substracted for spell haste buffs">9</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">44%<sup title="0 seconds substracted for spell haste buffs">17</sup></td>
   
 
       
@@ -25600,12 +25657,12 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">55<sup title="spell haste: 0">8</sup></td>
+  <td class="val" title="spell haste: 0">55<sup title="spell haste: 0">16</sup></td>
   
 
   
   
-  <td class="val zero">0<sup title="spell haste: 0">8</sup></td>
+  <td class="val zero" title="spell haste: 0">0<sup title="spell haste: 0">16</sup></td>
   
 
       
@@ -25626,7 +25683,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">92<sup title="spell haste: 0">8</sup></td>
+  <td class="val" title="spell haste: 0">92<sup title="spell haste: 0">16</sup></td>
   
 
       
@@ -25642,7 +25699,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
         
   
   
-  <td class="val">308<sup title="spell haste: 0">8</sup></td>
+  <td class="val" title="spell haste: 0">308<sup title="spell haste: 0">16</sup></td>
   
 
       
@@ -32095,7 +32152,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
 11x Dragonspine Trophy
 4x Bloodlust Brooch
 7x Tsunami Talisman">
-        <span class="vname">Tarmour</span><sup>10</sup>
+        <span class="vname">Tarmour</span><sup>18</sup>
       </th>
       
     
@@ -32384,7 +32441,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
       
   
   
-  <td class="val">7</td>
+  <td class="val" title="interrupted 3 casts: Greater Heal ×2, Shadow Bolt ×1">7<sup title="interrupted 3 casts: Greater Heal ×2, Shadow Bolt ×1">19</sup></td>
   
 
     
@@ -32694,7 +32751,7 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
       
   
   
-  <td class="val">34%<sup title="0 seconds substracted for spell haste buffs">9</sup></td>
+  <td class="val" title="0 seconds substracted for spell haste buffs">34%<sup title="0 seconds substracted for spell haste buffs">17</sup></td>
   
 
     
@@ -33678,11 +33735,29 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
   
   <div><sup>7</sup> trinkets equipped on bosses: — 11x Bloodlust Brooch — 11x Dragonspine Trophy</div>
   
-  <div><sup>8</sup> spell haste: 0</div>
+  <div><sup>8</sup> interrupted 5 casts: Frostbolt ×2, Greater Heal ×2, Shadow Bolt ×1</div>
   
-  <div><sup>9</sup> 0 seconds substracted for spell haste buffs</div>
+  <div><sup>9</sup> dispelled: Poison Shield ×3, Arcane Destruction ×1, Lightning Shield ×1</div>
   
-  <div><sup>10</sup> trinkets equipped on bosses: — 11x Dragonspine Trophy — 4x Bloodlust Brooch — 7x Tsunami Talisman</div>
+  <div><sup>10</sup> dispelled: Arcane Destruction ×1, Hand of Protection ×1</div>
+  
+  <div><sup>11</sup> dispelled: Lightning Shield ×1, Poison Shield ×1</div>
+  
+  <div><sup>12</sup> dispelled: Poison Bolt Volley ×1</div>
+  
+  <div><sup>13</sup> dispelled: Enrage ×8</div>
+  
+  <div><sup>14</sup> dispelled: Enrage ×4</div>
+  
+  <div><sup>15</sup> interrupted 6 casts: Greater Heal ×4, Frostbolt ×2</div>
+  
+  <div><sup>16</sup> spell haste: 0</div>
+  
+  <div><sup>17</sup> 0 seconds substracted for spell haste buffs</div>
+  
+  <div><sup>18</sup> trinkets equipped on bosses: — 11x Dragonspine Trophy — 4x Bloodlust Brooch — 7x Tsunami Talisman</div>
+  
+  <div><sup>19</sup> interrupted 3 casts: Greater Heal ×2, Shadow Bolt ×1</div>
   
 </div>
 
@@ -33734,6 +33809,60 @@ sup { font-size: 0.7em; color: #7986cb; font-weight: bold; }
       });
     });
   }
+})();
+</script>
+<script>
+// Readable notes everywhere: native title tooltips truncate long text
+// (a 13-ability dispel breakdown never fits), so cells with a note use a
+// wrapping bubble — hover on desktop, tap on touch. The numbered
+// footnotes under each table remain the printable fallback.
+(function () {
+  var tip = document.createElement("div");
+  tip.className = "tap-tip";
+  document.body.appendChild(tip);
+
+  function noteOf(el) {
+    if (!el) return null;
+    if (el.hasAttribute("title")) {          // migrate once: kill the native one
+      var t = el.getAttribute("title");
+      el.setAttribute("data-tip", t);
+      el.setAttribute("aria-label", t);
+      el.removeAttribute("title");
+    }
+    return el.getAttribute("data-tip");
+  }
+
+  function show(el, x, y) {
+    var text = noteOf(el);
+    if (!text) { tip.style.display = "none"; return; }
+    tip.textContent = text;
+    tip.style.display = "block";
+    place(x, y);
+  }
+
+  function place(x, y) {
+    var vw = window.innerWidth || document.documentElement.clientWidth || 1024;
+    var maxLeft = window.scrollX + vw - tip.offsetWidth - 8;
+    tip.style.left = Math.max(8, Math.min(x, maxLeft)) + "px";
+    tip.style.top = (y + 14) + "px";
+  }
+
+  document.addEventListener("mouseover", function (e) {
+    var el = e.target.closest("[title], [data-tip]");
+    if (el) show(el, e.pageX, e.pageY);
+    else tip.style.display = "none";
+  });
+  document.addEventListener("mousemove", function (e) {
+    if (tip.style.display !== "block") return;
+    var el = e.target.closest("[title], [data-tip]");
+    if (!el) { tip.style.display = "none"; return; }
+    place(e.pageX, e.pageY);
+  });
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest("[title], [data-tip]");
+    if (el) show(el, e.pageX, e.pageY);
+    else tip.style.display = "none";
+  });
 })();
 </script>
 </body>
