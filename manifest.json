@@ -372,5 +372,16 @@
   "kills": 5,
   "wipes": 4,
   "players": 96
+ },
+ "GVw4NYx8HhXpBvjk": {
+  "report_id": "GVw4NYx8HhXpBvjk",
+  "title": "BT part 1 (BT in 3:09:41)",
+  "zone": "BT",
+  "date": "August 31, 2026 20:07:48",
+  "start_ms": 1788203268032,
+  "raid": 1,
+  "kills": 4,
+  "wipes": 11,
+  "players": 30
  }
 }
