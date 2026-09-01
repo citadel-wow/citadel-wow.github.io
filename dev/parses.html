@@ -80,6 +80,29 @@ nav.site a.active { background: var(--card); color: var(--ink);
 <style>
 .best-pct { background: rgba(227,198,128,.13); border-radius: 4px;
   padding: 0 4px; box-shadow: inset 0 0 0 1px rgba(227,198,128,.4); }
+/* a full tier is up to 14 boss columns — give the boards the window and
+   keep the cells compact so nothing scrolls sideways on a laptop */
+main { max-width: min(1760px, 98vw); }
+table.data th, table.data td { padding: 5px 5px; }
+table.data td.mid, table.data th.mid { padding-left: 3px; padding-right: 3px; }
+table.data td.mid b { font-size: 12.5px; }
+.name-badge { font-size: 12px; padding: 1px 6px; }
+/* narrow laptops: shed the class column (the name badge is already
+   class-coloured) and tighten everything so 14 bosses still fit */
+@media (max-width: 1200px) {
+  main { padding-left: 10px; padding-right: 10px; }
+  .panel { padding: 12px 8px; }
+  table.data { font-size: 11.5px; }
+  table.data th, table.data td { padding: 4px 3px; }
+  table.data td.mid, table.data th.mid { padding-left: 2px; padding-right: 2px; }
+  .rolecol { display: none; }
+  .panel { padding: 12px 10px; }
+}
+@media (max-width: 900px) {
+  .panel { padding: 8px; }
+  table.data { font-size: 11px; }
+  table.data td.mid b { font-size: 11px; }
+}
 </style></head>
 <body>
 
@@ -125,14 +148,14 @@ nav.site a.active { background: var(--card); color: var(--ink);
 <div class="panel" style="overflow-x:auto">
 <table class="data">
   <tr>
-    <th>Player</th><th>Role</th>
+    <th>Player</th><th class="rolecol">Role</th>
     <th class="mid" title="Hydross the Unstable">Hydross</th><th class="mid" title="The Lurker Below">Lurker</th><th class="mid" title="Leotheras the Blind">Leotheras</th><th class="mid" title="Fathom-Lord Karathress">Karathress</th><th class="mid" title="Morogrim Tidewalker">Morogrim</th><th class="mid" title="Lady Vashj">Vashj</th><th class="mid" title="Al&#39;ar">Al&#39;ar</th><th class="mid" title="Void Reaver">Void Reaver</th><th class="mid" title="High Astromancer Solarian">Solarian</th><th class="mid" title="Kael&#39;thas Sunstrider">Kael&#39;thas</th>
-    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp./raid</th>
-    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks/raid</th>
+    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp.</th>
+    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks</th>
     <th class="num" title="WCL Best Perf. Avg: average of the per-boss bests, excluding Vashj &amp; Kael'thas (no All Star points this phase)">Best Ø</th>
   </tr>
   <tr>
-    <td class="dim" style="font-size:11px">Top dps</td><td></td>
+    <td class="dim" style="font-size:11px">Top dps</td><td class="rolecol"></td>
     
     
     <td class="mid"><span style="color: var(--gold-soft)"
@@ -190,7 +213,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/madef.html">
       <span class="name-badge" style="background: #e2d3c9">Madef</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -240,7 +263,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/thanerin.html">
       <span class="name-badge" style="background: #d5a6bd">Thanerin</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -290,7 +313,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/jonette.html">
       <span class="name-badge" style="background: #d5a6bd">Jonette</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b class="best-pct" style="color: #a335ee"
@@ -340,7 +363,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/honorik.html">
       <span class="name-badge" style="background: #e2d3c9">Honorik</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -390,7 +413,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badadudu.html">
       <span class="name-badge" style="background: #f6b26b">Badadudu</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -440,7 +463,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/prevaara.html">
       <span class="name-badge" style="background: #e2d3c9">Prevaara</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -490,7 +513,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badabuille.html">
       <span class="name-badge" style="background: #e2d3c9">Badabuille</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -534,7 +557,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/nosaj.html">
       <span class="name-badge" style="background: #f6b26b">Nosaj</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -575,7 +598,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/roarwind.html">
       <span class="name-badge" style="background: #f6b26b">Roarwind</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -622,7 +645,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bearfo-t.html">
       <span class="name-badge" style="background: #f6b26b">Bearfoöt</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -669,7 +692,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/kianne.html">
       <span class="name-badge" style="background: #f6b26b">Kianne</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -717,14 +740,14 @@ nav.site a.active { background: var(--card); color: var(--ink);
 <div class="panel" style="overflow-x:auto">
 <table class="data">
   <tr>
-    <th>Player</th><th>Role</th>
+    <th>Player</th><th class="rolecol">Role</th>
     <th class="mid" title="Hydross the Unstable">Hydross</th><th class="mid" title="The Lurker Below">Lurker</th><th class="mid" title="Leotheras the Blind">Leotheras</th><th class="mid" title="Fathom-Lord Karathress">Karathress</th><th class="mid" title="Morogrim Tidewalker">Morogrim</th><th class="mid" title="Lady Vashj">Vashj</th><th class="mid" title="Al&#39;ar">Al&#39;ar</th><th class="mid" title="Void Reaver">Void Reaver</th><th class="mid" title="High Astromancer Solarian">Solarian</th><th class="mid" title="Kael&#39;thas Sunstrider">Kael&#39;thas</th>
-    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp./raid</th>
-    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks/raid</th>
+    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp.</th>
+    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks</th>
     <th class="num" title="WCL Best Perf. Avg: average of the per-boss bests, excluding Vashj &amp; Kael'thas (no All Star points this phase)">Best Ø</th>
   </tr>
   <tr>
-    <td class="dim" style="font-size:11px">Top dps</td><td></td>
+    <td class="dim" style="font-size:11px">Top dps</td><td class="rolecol"></td>
     
     
     <td class="mid"><span style="color: var(--gold-soft)"
@@ -782,7 +805,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/karrell.html">
       <span class="name-badge" style="background: #b4a7d6">Karrell</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -832,7 +855,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/swellery.html">
       <span class="name-badge" style="background: #6d9eeb">Swellery</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -882,7 +905,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gahenna.html">
       <span class="name-badge" style="background: #efefef">Gahenna</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b class="best-pct" style="color: #a335ee"
@@ -932,7 +955,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/shcherbaque.html">
       <span class="name-badge" style="background: #6d9eeb">Shcherbaque</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -982,7 +1005,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/littlewhitey.html">
       <span class="name-badge" style="background: #a4c2f4">Littlewhitey</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -1032,7 +1055,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/loranoa.html">
       <span class="name-badge" style="background: #a4c2f4">Loranoa</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -1082,7 +1105,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/nosaj.html">
       <span class="name-badge" style="background: #f6b26b">Nosaj</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -1132,7 +1155,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bepcyc.html">
       <span class="name-badge" style="background: #a4c2f4">Bepcyc</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -1182,7 +1205,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/nevronthyme.html">
       <span class="name-badge" style="background: #b6d7a8">Nevronthyme</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -1232,7 +1255,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/klib.html">
       <span class="name-badge" style="background: #b4a7d6">Klib</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -1282,7 +1305,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/markise.html">
       <span class="name-badge" style="background: #6d9eeb">Markise</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -1332,7 +1355,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/lorpdickles.html">
       <span class="name-badge" style="background: #b6d7a8">Lorpdickles</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -1382,7 +1405,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badabuum.html">
       <span class="name-badge" style="background: #a4c2f4">Badabuum</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -1432,7 +1455,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badabuille.html">
       <span class="name-badge" style="background: #e2d3c9">Badabuille</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -1482,7 +1505,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/aethorien.html">
       <span class="name-badge" style="background: #d5a6bd">Aethorien</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -1532,7 +1555,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/drazhu.html">
       <span class="name-badge" style="background: #a4c2f4">Drazhu</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -1582,7 +1605,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/richieroo.html">
       <span class="name-badge" style="background: #fff2cc">Richieroo</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -1632,7 +1655,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/castratos.html">
       <span class="name-badge" style="background: #b4a7d6">Castratos</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -1682,7 +1705,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/prevaraa.html">
       <span class="name-badge" style="background: #b6d7a8">Prevaraa</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -1732,7 +1755,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/vykola.html">
       <span class="name-badge" style="background: #6d9eeb">Vykola</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -1782,7 +1805,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/jonetter.html">
       <span class="name-badge" style="background: #b4a7d6">Jonetter</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -1832,7 +1855,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/cthulha.html">
       <span class="name-badge" style="background: #a4c2f4">Cthulha</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -1882,7 +1905,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/naincapacit.html">
       <span class="name-badge" style="background: #b6d7a8">Naincapacité</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -1932,7 +1955,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/cauror.html">
       <span class="name-badge" style="background: #fff2cc">Cauror</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -1981,7 +2004,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/moungrym.html">
       <span class="name-badge" style="background: #e2d3c9">Moungrym</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2031,7 +2054,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/alexzed.html">
       <span class="name-badge" style="background: #d5a6bd">Alexzed</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2081,7 +2104,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/paradigmh.html">
       <span class="name-badge" style="background: #b6d7a8">Paradigmh</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2131,7 +2154,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/argio.html">
       <span class="name-badge" style="background: #b4a7d6">Argio</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2181,7 +2204,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tarmour.html">
       <span class="name-badge" style="background: #e2d3c9">Tarmour</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2231,7 +2254,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badabonks.html">
       <span class="name-badge" style="background: #6d9eeb">Badabonks</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -2281,7 +2304,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tr-gger.html">
       <span class="name-badge" style="background: #b6d7a8">Trígger</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2331,7 +2354,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/auroraeriz.html">
       <span class="name-badge" style="background: #d5a6bd">Auroraeriz</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -2381,7 +2404,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/starboyjude.html">
       <span class="name-badge" style="background: #f6b26b">Starboyjude</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2431,7 +2454,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/madepe.html">
       <span class="name-badge" style="background: #e2d3c9">Madepe</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2481,7 +2504,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/medef.html">
       <span class="name-badge" style="background: #fff2cc">Medef</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -2531,7 +2554,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gand-rf.html">
       <span class="name-badge" style="background: #a4c2f4">Gandörf</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2581,7 +2604,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/smiethy.html">
       <span class="name-badge" style="background: #fff2cc">Smiethy</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2631,7 +2654,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/loronoa.html">
       <span class="name-badge" style="background: #e2d3c9">Loronoa</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2681,7 +2704,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/woodwind.html">
       <span class="name-badge" style="background: #6d9eeb">Woodwind</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -2731,7 +2754,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/kianne.html">
       <span class="name-badge" style="background: #f6b26b">Kianne</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2781,7 +2804,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badadudu.html">
       <span class="name-badge" style="background: #f6b26b">Badadudu</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2831,7 +2854,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/roarwind.html">
       <span class="name-badge" style="background: #f6b26b">Roarwind</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -2880,7 +2903,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/dipstick.html">
       <span class="name-badge" style="background: #b4a7d6">Dipstick</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -2930,7 +2953,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gahanna.html">
       <span class="name-badge" style="background: #6d9eeb">Gahanna</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -2980,7 +3003,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/f-anturi.html">
       <span class="name-badge" style="background: #a4c2f4">Fëanturi</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -3030,7 +3053,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/nugg-ts.html">
       <span class="name-badge" style="background: #f6b26b">Nuggëts</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -3080,7 +3103,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bearfo-t.html">
       <span class="name-badge" style="background: #f6b26b">Bearfoöt</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -3130,7 +3153,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bruand.html">
       <span class="name-badge" style="background: #d5a6bd">Bruand</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -3180,7 +3203,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/heironymo.html">
       <span class="name-badge" style="background: #b6d7a8">Heironymo</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -3230,7 +3253,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/prevaara.html">
       <span class="name-badge" style="background: #e2d3c9">Prevaara</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -3280,7 +3303,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/znney.html">
       <span class="name-badge" style="background: #efefef">Znney</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -3329,7 +3352,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/honorik.html">
       <span class="name-badge" style="background: #e2d3c9">Honorik</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -3379,7 +3402,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/malfori.html">
       <span class="name-badge" style="background: #d5a6bd">Malfori</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -3429,7 +3452,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/thanerin.html">
       <span class="name-badge" style="background: #d5a6bd">Thanerin</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -3476,14 +3499,14 @@ nav.site a.active { background: var(--card); color: var(--ink);
 <div class="panel" style="overflow-x:auto">
 <table class="data">
   <tr>
-    <th>Player</th><th>Role</th>
+    <th>Player</th><th class="rolecol">Role</th>
     <th class="mid" title="Hydross the Unstable">Hydross</th><th class="mid" title="The Lurker Below">Lurker</th><th class="mid" title="Leotheras the Blind">Leotheras</th><th class="mid" title="Fathom-Lord Karathress">Karathress</th><th class="mid" title="Morogrim Tidewalker">Morogrim</th><th class="mid" title="Lady Vashj">Vashj</th><th class="mid" title="Al&#39;ar">Al&#39;ar</th><th class="mid" title="Void Reaver">Void Reaver</th><th class="mid" title="High Astromancer Solarian">Solarian</th><th class="mid" title="Kael&#39;thas Sunstrider">Kael&#39;thas</th>
-    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp./raid</th>
-    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks/raid</th>
+    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp.</th>
+    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks</th>
     <th class="num" title="WCL Best Perf. Avg: average of the per-boss bests, excluding Vashj &amp; Kael'thas (no All Star points this phase)">Best Ø</th>
   </tr>
   <tr>
-    <td class="dim" style="font-size:11px">Top hps</td><td></td>
+    <td class="dim" style="font-size:11px">Top hps</td><td class="rolecol"></td>
     
     
     <td class="mid"><span style="color: var(--gold-soft)"
@@ -3541,7 +3564,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/jomezka.html">
       <span class="name-badge" style="background: #6d9eeb">Jomezka</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -3591,7 +3614,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bruand.html">
       <span class="name-badge" style="background: #d5a6bd">Bruand</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -3641,7 +3664,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/toastersha.html">
       <span class="name-badge" style="background: #6d9eeb">Toastersha</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -3691,7 +3714,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/woodwind.html">
       <span class="name-badge" style="background: #6d9eeb">Woodwind</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -3741,7 +3764,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/toasterp.html">
       <span class="name-badge" style="background: #d5a6bd">Toasterp</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -3791,7 +3814,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gahenna.html">
       <span class="name-badge" style="background: #efefef">Gahenna</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -3841,7 +3864,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/lifebloomz.html">
       <span class="name-badge" style="background: #f6b26b">Lifebloomz</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -3891,7 +3914,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/snney.html">
       <span class="name-badge" style="background: #efefef">Snney</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -3941,7 +3964,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/nosaj.html">
       <span class="name-badge" style="background: #f6b26b">Nosaj</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b class="best-pct" style="color: #ff8000"
@@ -3991,7 +4014,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/pious.html">
       <span class="name-badge" style="background: #d5a6bd">Pious</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -4041,7 +4064,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/vykola.html">
       <span class="name-badge" style="background: #6d9eeb">Vykola</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -4091,7 +4114,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/malfori.html">
       <span class="name-badge" style="background: #d5a6bd">Malfori</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -4141,7 +4164,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/farmour.html">
       <span class="name-badge" style="background: #f6b26b">Farmour</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -4191,7 +4214,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/molliee.html">
       <span class="name-badge" style="background: #f6b26b">Molliee</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -4241,7 +4264,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/jonette.html">
       <span class="name-badge" style="background: #d5a6bd">Jonette</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -4283,7 +4306,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/znney.html">
       <span class="name-badge" style="background: #efefef">Znney</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -4327,7 +4350,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/thanerin.html">
       <span class="name-badge" style="background: #d5a6bd">Thanerin</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -4368,7 +4391,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/swellery.html">
       <span class="name-badge" style="background: #6d9eeb">Swellery</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -4421,14 +4444,14 @@ nav.site a.active { background: var(--card); color: var(--ink);
 <div class="panel" style="overflow-x:auto">
 <table class="data">
   <tr>
-    <th>Player</th><th>Role</th>
+    <th>Player</th><th class="rolecol">Role</th>
     <th class="mid" title="Hydross the Unstable">Hydross</th><th class="mid" title="The Lurker Below">Lurker</th><th class="mid" title="Leotheras the Blind">Leotheras</th><th class="mid" title="Fathom-Lord Karathress">Karathress</th><th class="mid" title="Morogrim Tidewalker">Morogrim</th><th class="mid" title="Lady Vashj">Vashj</th><th class="mid" title="Al&#39;ar">Al&#39;ar</th><th class="mid" title="Void Reaver">Void Reaver</th><th class="mid" title="High Astromancer Solarian">Solarian</th><th class="mid" title="Kael&#39;thas Sunstrider">Kael&#39;thas</th>
-    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp./raid</th>
-    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks/raid</th>
+    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp.</th>
+    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks</th>
     <th class="num" title="WCL Best Perf. Avg: average of the per-boss bests, excluding Vashj &amp; Kael'thas (no All Star points this phase)">Best Ø</th>
   </tr>
   <tr>
-    <td class="dim" style="font-size:11px">Top dps</td><td></td>
+    <td class="dim" style="font-size:11px">Top dps</td><td class="rolecol"></td>
     
     
     <td class="mid"><span style="color: var(--gold-soft)"
@@ -4486,7 +4509,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tobbob.html">
       <span class="name-badge" style="background: #e2d3c9">Tobbob</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -4536,7 +4559,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/dandza.html">
       <span class="name-badge" style="background: #d5a6bd">Dandza</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -4586,7 +4609,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tobber.html">
       <span class="name-badge" style="background: #f6b26b">Tobber</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -4636,7 +4659,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/madef.html">
       <span class="name-badge" style="background: #e2d3c9">Madef</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -4686,7 +4709,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/remyfox.html">
       <span class="name-badge" style="background: #e2d3c9">Remyfox</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -4736,7 +4759,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/dachaus.html">
       <span class="name-badge" style="background: #e2d3c9">Dachaus</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #ff8000"
@@ -4779,7 +4802,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/thanerin.html">
       <span class="name-badge" style="background: #d5a6bd">Thanerin</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -4829,7 +4852,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/samyigouprot.html">
       <span class="name-badge" style="background: #d5a6bd">Samyigouprot</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -4879,7 +4902,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/saniqt.html">
       <span class="name-badge" style="background: #e2d3c9">Saniqt</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -4929,7 +4952,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/leaina.html">
       <span class="name-badge" style="background: #f6b26b">Leaina</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b class="best-pct" style="color: #ff8000"
@@ -4974,7 +4997,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/jonette.html">
       <span class="name-badge" style="background: #d5a6bd">Jonette</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -5024,7 +5047,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/honorik.html">
       <span class="name-badge" style="background: #e2d3c9">Honorik</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5074,7 +5097,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badadudu.html">
       <span class="name-badge" style="background: #f6b26b">Badadudu</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5124,7 +5147,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/choogz.html">
       <span class="name-badge" style="background: #d5a6bd">Choogz</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5174,7 +5197,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/prevaara.html">
       <span class="name-badge" style="background: #e2d3c9">Prevaara</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5224,7 +5247,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/slotto.html">
       <span class="name-badge" style="background: #e2d3c9">Slotto</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -5274,7 +5297,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/zor-a.html">
       <span class="name-badge" style="background: #e2d3c9">Zorÿa</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -5324,7 +5347,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badabuille.html">
       <span class="name-badge" style="background: #e2d3c9">Badabuille</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -5368,7 +5391,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/nosaj.html">
       <span class="name-badge" style="background: #f6b26b">Nosaj</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -5409,7 +5432,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/reggiehobbes.html">
       <span class="name-badge" style="background: #d5a6bd">Reggiehobbes</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5459,7 +5482,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/roarwind.html">
       <span class="name-badge" style="background: #f6b26b">Roarwind</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5506,7 +5529,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/aurafarma.html">
       <span class="name-badge" style="background: #d5a6bd">Aurafarma</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -5547,7 +5570,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/mythraeil.html">
       <span class="name-badge" style="background: #e2d3c9">Mythraeil</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5588,7 +5611,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/silvertejp.html">
       <span class="name-badge" style="background: #f6b26b">Silvertejp</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -5631,7 +5654,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/zethril.html">
       <span class="name-badge" style="background: #d5a6bd">Zethril</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5681,7 +5704,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/skrapper.html">
       <span class="name-badge" style="background: #d5a6bd">Skrapper</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -5728,7 +5751,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/malczi.html">
       <span class="name-badge" style="background: #d5a6bd">Malczi</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5778,7 +5801,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gryzmon.html">
       <span class="name-badge" style="background: #f6b26b">Gryzmon</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -5824,7 +5847,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/handr-kkari.html">
       <span class="name-badge" style="background: #e2d3c9">Handrökkari</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -5866,7 +5889,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/knirpzz.html">
       <span class="name-badge" style="background: #e2d3c9">Knirpzz</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -5907,7 +5930,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/lunaqt.html">
       <span class="name-badge" style="background: #f6b26b">Lunaqt</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -5949,7 +5972,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bearfo-t.html">
       <span class="name-badge" style="background: #f6b26b">Bearfoöt</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -5996,7 +6019,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/myxuling.html">
       <span class="name-badge" style="background: #d5a6bd">Myxuling</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -6046,7 +6069,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/hornydevil.html">
       <span class="name-badge" style="background: #d5a6bd">Hornydevil</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -6087,7 +6110,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/moraelinn.html">
       <span class="name-badge" style="background: #f6b26b">Moraelinn</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -6133,7 +6156,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/puvat.html">
       <span class="name-badge" style="background: #f6b26b">Puvat</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -6176,7 +6199,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/loraladina.html">
       <span class="name-badge" style="background: #d5a6bd">Loraladina</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -6226,7 +6249,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/kianne.html">
       <span class="name-badge" style="background: #f6b26b">Kianne</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -6268,7 +6291,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/myanthes.html">
       <span class="name-badge" style="background: #f6b26b">Myanthes</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -6310,7 +6333,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/m-on.html">
       <span class="name-badge" style="background: #e2d3c9">Móon</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -6351,7 +6374,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/nathox.html">
       <span class="name-badge" style="background: #f6b26b">Nathox</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -6392,7 +6415,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/justinbeaver.html">
       <span class="name-badge" style="background: #f6b26b">Justinbeaver</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -6441,14 +6464,14 @@ nav.site a.active { background: var(--card); color: var(--ink);
 <div class="panel" style="overflow-x:auto">
 <table class="data">
   <tr>
-    <th>Player</th><th>Role</th>
+    <th>Player</th><th class="rolecol">Role</th>
     <th class="mid" title="Hydross the Unstable">Hydross</th><th class="mid" title="The Lurker Below">Lurker</th><th class="mid" title="Leotheras the Blind">Leotheras</th><th class="mid" title="Fathom-Lord Karathress">Karathress</th><th class="mid" title="Morogrim Tidewalker">Morogrim</th><th class="mid" title="Lady Vashj">Vashj</th><th class="mid" title="Al&#39;ar">Al&#39;ar</th><th class="mid" title="Void Reaver">Void Reaver</th><th class="mid" title="High Astromancer Solarian">Solarian</th><th class="mid" title="Kael&#39;thas Sunstrider">Kael&#39;thas</th>
-    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp./raid</th>
-    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks/raid</th>
+    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp.</th>
+    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks</th>
     <th class="num" title="WCL Best Perf. Avg: average of the per-boss bests, excluding Vashj &amp; Kael'thas (no All Star points this phase)">Best Ø</th>
   </tr>
   <tr>
-    <td class="dim" style="font-size:11px">Top dps</td><td></td>
+    <td class="dim" style="font-size:11px">Top dps</td><td class="rolecol"></td>
     
     
     <td class="mid"><span style="color: var(--gold-soft)"
@@ -6506,7 +6529,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/safar-fruit.html">
       <span class="name-badge" style="background: #b6d7a8">Safarîfruit</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #ff8000"
@@ -6556,7 +6579,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/dachaus.html">
       <span class="name-badge" style="background: #e2d3c9">Dachaus</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -6606,7 +6629,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/mirrogue.html">
       <span class="name-badge" style="background: #fff2cc">Mirrogue</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -6656,7 +6679,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/lunaqt.html">
       <span class="name-badge" style="background: #f6b26b">Lunaqt</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b class="best-pct" style="color: #ff8000"
@@ -6706,7 +6729,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/silverpump.html">
       <span class="name-badge" style="background: #b6d7a8">Silverpump</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -6756,7 +6779,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/lenfort.html">
       <span class="name-badge" style="background: #b6d7a8">Lenfort</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -6806,7 +6829,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/karrell.html">
       <span class="name-badge" style="background: #b4a7d6">Karrell</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -6856,7 +6879,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/anik.html">
       <span class="name-badge" style="background: #efefef">Anik</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -6906,7 +6929,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/swellery.html">
       <span class="name-badge" style="background: #6d9eeb">Swellery</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -6956,7 +6979,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gahenna.html">
       <span class="name-badge" style="background: #efefef">Gahenna</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7006,7 +7029,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/shcherbaque.html">
       <span class="name-badge" style="background: #6d9eeb">Shcherbaque</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7056,7 +7079,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/hellxhere.html">
       <span class="name-badge" style="background: #6d9eeb">Hellxhere</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7106,7 +7129,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/myrinna.html">
       <span class="name-badge" style="background: #6d9eeb">Myrinna</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7156,7 +7179,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/kokichan.html">
       <span class="name-badge" style="background: #fff2cc">Kokichan</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #ff8000"
@@ -7206,7 +7229,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/themacepanda.html">
       <span class="name-badge" style="background: #f6b26b">Themacepanda</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7256,7 +7279,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tobbob.html">
       <span class="name-badge" style="background: #e2d3c9">Tobbob</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7306,7 +7329,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/littlewhitey.html">
       <span class="name-badge" style="background: #a4c2f4">Littlewhitey</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7356,7 +7379,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/wyzette.html">
       <span class="name-badge" style="background: #fff2cc">Wyzette</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7406,7 +7429,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/duhdoge.html">
       <span class="name-badge" style="background: #efefef">Duhdoge</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7456,7 +7479,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/loranoa.html">
       <span class="name-badge" style="background: #a4c2f4">Loranoa</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7506,7 +7529,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/joob.html">
       <span class="name-badge" style="background: #b4a7d6">Joob</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7556,7 +7579,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tassadarr.html">
       <span class="name-badge" style="background: #d5a6bd">Tassadarr</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7606,7 +7629,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tripletap.html">
       <span class="name-badge" style="background: #b4a7d6">Tripletap</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7656,7 +7679,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/legga.html">
       <span class="name-badge" style="background: #6d9eeb">Legga</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7706,7 +7729,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/nosaj.html">
       <span class="name-badge" style="background: #f6b26b">Nosaj</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7756,7 +7779,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bepcyc.html">
       <span class="name-badge" style="background: #a4c2f4">Bepcyc</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7806,7 +7829,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/leaina.html">
       <span class="name-badge" style="background: #f6b26b">Leaina</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7856,7 +7879,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/nevronthyme.html">
       <span class="name-badge" style="background: #b6d7a8">Nevronthyme</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7906,7 +7929,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/kryystal.html">
       <span class="name-badge" style="background: #6d9eeb">Kryystal</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -7956,7 +7979,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/inteettr-tt.html">
       <span class="name-badge" style="background: #6d9eeb">Inteetträtt</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -8006,7 +8029,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/puvat.html">
       <span class="name-badge" style="background: #f6b26b">Puvat</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -8056,7 +8079,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/klib.html">
       <span class="name-badge" style="background: #b4a7d6">Klib</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -8106,7 +8129,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/totemflex.html">
       <span class="name-badge" style="background: #6d9eeb">Totemflex</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -8156,7 +8179,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/markise.html">
       <span class="name-badge" style="background: #6d9eeb">Markise</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -8206,7 +8229,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/lorpdickles.html">
       <span class="name-badge" style="background: #b6d7a8">Lorpdickles</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -8256,7 +8279,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badabuum.html">
       <span class="name-badge" style="background: #a4c2f4">Badabuum</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -8306,7 +8329,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badabuille.html">
       <span class="name-badge" style="background: #e2d3c9">Badabuille</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -8356,7 +8379,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bendersnetch.html">
       <span class="name-badge" style="background: #6d9eeb">Bendersnetch</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -8406,7 +8429,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/aethorien.html">
       <span class="name-badge" style="background: #d5a6bd">Aethorien</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -8456,7 +8479,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/nexiun.html">
       <span class="name-badge" style="background: #fff2cc">Nexiun</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -8506,7 +8529,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/silviel.html">
       <span class="name-badge" style="background: #f6b26b">Silviel</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -8556,7 +8579,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/baldameld.html">
       <span class="name-badge" style="background: #b6d7a8">Baldameld</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -8606,7 +8629,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/hornydevil.html">
       <span class="name-badge" style="background: #d5a6bd">Hornydevil</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -8656,7 +8679,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/handr-kkari.html">
       <span class="name-badge" style="background: #e2d3c9">Handrökkari</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -8706,7 +8729,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/aravind.html">
       <span class="name-badge" style="background: #b6d7a8">Aravind</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -8756,7 +8779,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/chokladbulle.html">
       <span class="name-badge" style="background: #6d9eeb">Chokladbulle</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -8806,7 +8829,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/drazhu.html">
       <span class="name-badge" style="background: #a4c2f4">Drazhu</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -8856,7 +8879,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/halqifibrax.html">
       <span class="name-badge" style="background: #6d9eeb">Halqifibrax</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -8906,7 +8929,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/richieroo.html">
       <span class="name-badge" style="background: #fff2cc">Richieroo</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -8956,7 +8979,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/castratos.html">
       <span class="name-badge" style="background: #b4a7d6">Castratos</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -9006,7 +9029,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/prevaraa.html">
       <span class="name-badge" style="background: #b6d7a8">Prevaraa</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -9056,7 +9079,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/vykola.html">
       <span class="name-badge" style="background: #6d9eeb">Vykola</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -9106,7 +9129,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/jonetter.html">
       <span class="name-badge" style="background: #b4a7d6">Jonetter</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -9156,7 +9179,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/cthulha.html">
       <span class="name-badge" style="background: #a4c2f4">Cthulha</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -9206,7 +9229,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/naincapacit.html">
       <span class="name-badge" style="background: #b6d7a8">Naincapacité</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -9256,7 +9279,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/cauror.html">
       <span class="name-badge" style="background: #fff2cc">Cauror</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -9305,7 +9328,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/shantalos.html">
       <span class="name-badge" style="background: #a4c2f4">Shantalos</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -9355,7 +9378,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/foxx.html">
       <span class="name-badge" style="background: #b6d7a8">Foxx</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -9405,7 +9428,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/moungrym.html">
       <span class="name-badge" style="background: #e2d3c9">Moungrym</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -9455,7 +9478,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/rabiati.html">
       <span class="name-badge" style="background: #d5a6bd">Rabiati</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -9505,7 +9528,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/hanor.html">
       <span class="name-badge" style="background: #fff2cc">Hanor</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -9555,7 +9578,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/alexzed.html">
       <span class="name-badge" style="background: #d5a6bd">Alexzed</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -9605,7 +9628,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/minicharbear.html">
       <span class="name-badge" style="background: #a4c2f4">Minicharbear</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -9655,7 +9678,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/ellektra.html">
       <span class="name-badge" style="background: #6d9eeb">Ellektra</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -9705,7 +9728,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/mythraeil.html">
       <span class="name-badge" style="background: #e2d3c9">Mythraeil</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -9755,7 +9778,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/myshamain.html">
       <span class="name-badge" style="background: #6d9eeb">Myshamain</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -9805,7 +9828,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tinnui.html">
       <span class="name-badge" style="background: #b4a7d6">Tinnui</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -9855,7 +9878,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/paradigmh.html">
       <span class="name-badge" style="background: #b6d7a8">Paradigmh</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -9905,7 +9928,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/diarrheoe.html">
       <span class="name-badge" style="background: #e2d3c9">Diarrheoe</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -9955,7 +9978,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/argio.html">
       <span class="name-badge" style="background: #b4a7d6">Argio</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -10005,7 +10028,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/zor-a.html">
       <span class="name-badge" style="background: #e2d3c9">Zorÿa</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -10055,7 +10078,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tarmour.html">
       <span class="name-badge" style="background: #e2d3c9">Tarmour</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -10105,7 +10128,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/toblock.html">
       <span class="name-badge" style="background: #b4a7d6">Toblock</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -10155,7 +10178,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/atenn.html">
       <span class="name-badge" style="background: #a4c2f4">Atenn</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -10205,7 +10228,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bitis.html">
       <span class="name-badge" style="background: #b4a7d6">Bitis</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -10255,7 +10278,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/alditalk.html">
       <span class="name-badge" style="background: #d5a6bd">Alditalk</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -10305,7 +10328,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badabonks.html">
       <span class="name-badge" style="background: #6d9eeb">Badabonks</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -10355,7 +10378,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tr-gger.html">
       <span class="name-badge" style="background: #b6d7a8">Trígger</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -10405,7 +10428,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/msx.html">
       <span class="name-badge" style="background: #b6d7a8">Msx</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -10455,7 +10478,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/melaena.html">
       <span class="name-badge" style="background: #b6d7a8">Melaena</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -10505,7 +10528,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/auroraeriz.html">
       <span class="name-badge" style="background: #d5a6bd">Auroraeriz</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -10555,7 +10578,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/vanturaz.html">
       <span class="name-badge" style="background: #e2d3c9">Vanturaz</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -10605,7 +10628,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/morettison.html">
       <span class="name-badge" style="background: #e2d3c9">Morettison</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -10655,7 +10678,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/starboyjude.html">
       <span class="name-badge" style="background: #f6b26b">Starboyjude</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -10705,7 +10728,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/praevus.html">
       <span class="name-badge" style="background: #b4a7d6">Praevus</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -10755,7 +10778,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/xgurl.html">
       <span class="name-badge" style="background: #f6b26b">Xgurl</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -10805,7 +10828,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/madepe.html">
       <span class="name-badge" style="background: #e2d3c9">Madepe</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -10855,7 +10878,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/menop-uschen.html">
       <span class="name-badge" style="background: #b4a7d6">Menopäuschen</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -10905,7 +10928,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/m-on.html">
       <span class="name-badge" style="background: #e2d3c9">Móon</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -10955,7 +10978,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/medef.html">
       <span class="name-badge" style="background: #fff2cc">Medef</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -11005,7 +11028,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gand-rf.html">
       <span class="name-badge" style="background: #a4c2f4">Gandörf</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -11055,7 +11078,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/lunivara.html">
       <span class="name-badge" style="background: #efefef">Lunivara</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -11105,7 +11128,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/robinl-t.html">
       <span class="name-badge" style="background: #b6d7a8">Robinløøt</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -11155,7 +11178,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/stonexqt.html">
       <span class="name-badge" style="background: #fff2cc">Stonexqt</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -11205,7 +11228,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/lekiyo.html">
       <span class="name-badge" style="background: #6d9eeb">Lekiyo</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -11255,7 +11278,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/erandia.html">
       <span class="name-badge" style="background: #b4a7d6">Erandia</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -11305,7 +11328,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tacergal.html">
       <span class="name-badge" style="background: #6d9eeb">Tacergal</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -11354,7 +11377,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/szmul.html">
       <span class="name-badge" style="background: #efefef">Szmul</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -11404,7 +11427,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/atsar.html">
       <span class="name-badge" style="background: #b4a7d6">Atsar</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -11454,7 +11477,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/moraelinn.html">
       <span class="name-badge" style="background: #f6b26b">Moraelinn</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -11504,7 +11527,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/smiethy.html">
       <span class="name-badge" style="background: #fff2cc">Smiethy</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -11554,7 +11577,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/moorit.html">
       <span class="name-badge" style="background: #fff2cc">Moorit</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -11604,7 +11627,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/loronoa.html">
       <span class="name-badge" style="background: #e2d3c9">Loronoa</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -11654,7 +11677,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gryzmon.html">
       <span class="name-badge" style="background: #f6b26b">Gryzmon</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -11704,7 +11727,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/zialla.html">
       <span class="name-badge" style="background: #a4c2f4">Zialla</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -11754,7 +11777,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/hausy.html">
       <span class="name-badge" style="background: #b6d7a8">Hausy</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -11804,7 +11827,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/woodwind.html">
       <span class="name-badge" style="background: #6d9eeb">Woodwind</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -11854,7 +11877,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/shamenna.html">
       <span class="name-badge" style="background: #6d9eeb">Shamenna</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -11904,7 +11927,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/doloraa.html">
       <span class="name-badge" style="background: #b4a7d6">Doloraa</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -11954,7 +11977,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/blindstep.html">
       <span class="name-badge" style="background: #fff2cc">Blindstep</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -12004,7 +12027,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/xurioz.html">
       <span class="name-badge" style="background: #efefef">Xurioz</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -12054,7 +12077,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/zanoa.html">
       <span class="name-badge" style="background: #b6d7a8">Zanoa</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -12104,7 +12127,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/kianne.html">
       <span class="name-badge" style="background: #f6b26b">Kianne</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -12154,7 +12177,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tunaak.html">
       <span class="name-badge" style="background: #6d9eeb">Tunaak</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -12204,7 +12227,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/silvertejp.html">
       <span class="name-badge" style="background: #f6b26b">Silvertejp</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -12254,7 +12277,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/inshadowz.html">
       <span class="name-badge" style="background: #efefef">Inshadowz</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -12304,7 +12327,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/sispimat.html">
       <span class="name-badge" style="background: #efefef">Sispimat</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -12350,7 +12373,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badadudu.html">
       <span class="name-badge" style="background: #f6b26b">Badadudu</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -12400,7 +12423,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/roarwind.html">
       <span class="name-badge" style="background: #f6b26b">Roarwind</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -12449,7 +12472,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/myanthes.html">
       <span class="name-badge" style="background: #f6b26b">Myanthes</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -12491,7 +12514,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/samyigouprot.html">
       <span class="name-badge" style="background: #d5a6bd">Samyigouprot</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -12532,7 +12555,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/mammutbaum.html">
       <span class="name-badge" style="background: #f6b26b">Mammutbaum</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -12582,7 +12605,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gunothewolf.html">
       <span class="name-badge" style="background: #6d9eeb">Gunothewolf</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -12632,7 +12655,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/togekiss.html">
       <span class="name-badge" style="background: #b4a7d6">Togekiss</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -12682,7 +12705,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/pa-nk-ller.html">
       <span class="name-badge" style="background: #efefef">Paínkíller</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -12732,7 +12755,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/aurafarma.html">
       <span class="name-badge" style="background: #d5a6bd">Aurafarma</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -12782,7 +12805,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/ennobling.html">
       <span class="name-badge" style="background: #b4a7d6">Ennobling</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -12831,7 +12854,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/dipstick.html">
       <span class="name-badge" style="background: #b4a7d6">Dipstick</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -12881,7 +12904,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/sipahi.html">
       <span class="name-badge" style="background: #e2d3c9">Sipahi</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -12931,7 +12954,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/saniqt.html">
       <span class="name-badge" style="background: #e2d3c9">Saniqt</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -12981,7 +13004,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/stealgar.html">
       <span class="name-badge" style="background: #fff2cc">Stealgar</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -13031,7 +13054,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gahanna.html">
       <span class="name-badge" style="background: #6d9eeb">Gahanna</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -13081,7 +13104,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/f-anturi.html">
       <span class="name-badge" style="background: #a4c2f4">Fëanturi</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -13131,7 +13154,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/slotto.html">
       <span class="name-badge" style="background: #e2d3c9">Slotto</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -13180,7 +13203,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/huugue.html">
       <span class="name-badge" style="background: #b6d7a8">Huugue</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -13230,7 +13253,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/turboshtorm.html">
       <span class="name-badge" style="background: #6d9eeb">Turboshtorm</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -13280,7 +13303,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/maevh.html">
       <span class="name-badge" style="background: #f6b26b">Maevh</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -13330,7 +13353,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/nugg-ts.html">
       <span class="name-badge" style="background: #f6b26b">Nuggëts</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -13380,7 +13403,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bearfo-t.html">
       <span class="name-badge" style="background: #f6b26b">Bearfoöt</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -13430,7 +13453,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/elisar.html">
       <span class="name-badge" style="background: #a4c2f4">Elisar</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -13480,7 +13503,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bruand.html">
       <span class="name-badge" style="background: #d5a6bd">Bruand</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -13530,7 +13553,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/heironymo.html">
       <span class="name-badge" style="background: #b6d7a8">Heironymo</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -13580,7 +13603,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/awedal.html">
       <span class="name-badge" style="background: #fff2cc">Awedal</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -13630,7 +13653,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/turnum.html">
       <span class="name-badge" style="background: #a4c2f4">Æturnum</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -13680,7 +13703,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/knirpzz.html">
       <span class="name-badge" style="background: #e2d3c9">Knirpzz</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -13730,7 +13753,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/prevaara.html">
       <span class="name-badge" style="background: #e2d3c9">Prevaara</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -13780,7 +13803,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tobber.html">
       <span class="name-badge" style="background: #f6b26b">Tobber</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -13824,7 +13847,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/remyfox.html">
       <span class="name-badge" style="background: #e2d3c9">Remyfox</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -13874,7 +13897,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/nathox.html">
       <span class="name-badge" style="background: #f6b26b">Nathox</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -13921,7 +13944,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/linkross.html">
       <span class="name-badge" style="background: #b4a7d6">Linkross</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -13971,7 +13994,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/plastankann.html">
       <span class="name-badge" style="background: #6d9eeb">Plastankann</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -14021,7 +14044,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/seidruna.html">
       <span class="name-badge" style="background: #6d9eeb">Seidruna</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -14071,7 +14094,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/asharial.html">
       <span class="name-badge" style="background: #b6d7a8">Asharial</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -14115,7 +14138,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/justinbeaver.html">
       <span class="name-badge" style="background: #f6b26b">Justinbeaver</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -14156,7 +14179,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/hei-getr-nk.html">
       <span class="name-badge" style="background: #b4a7d6">Heißgetränk</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -14206,7 +14229,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/g-cci.html">
       <span class="name-badge" style="background: #a4c2f4">Gúcci</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -14256,7 +14279,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/elwish.html">
       <span class="name-badge" style="background: #f6b26b">Elwish</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -14306,7 +14329,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/col-nferal.html">
       <span class="name-badge" style="background: #f6b26b">Colïnferal</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -14350,7 +14373,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/boofing.html">
       <span class="name-badge" style="background: #a4c2f4">Boofing</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -14398,7 +14421,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/znney.html">
       <span class="name-badge" style="background: #efefef">Znney</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -14447,7 +14470,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/kedelig.html">
       <span class="name-badge" style="background: #efefef">Kedelig</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -14493,7 +14516,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tooshay.html">
       <span class="name-badge" style="background: #a4c2f4">Tooshay</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -14543,7 +14566,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/hallad.html">
       <span class="name-badge" style="background: #6d9eeb">Hallad</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -14588,7 +14611,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/honorik.html">
       <span class="name-badge" style="background: #e2d3c9">Honorik</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -14638,7 +14661,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/malfori.html">
       <span class="name-badge" style="background: #d5a6bd">Malfori</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -14688,7 +14711,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/myxel.html">
       <span class="name-badge" style="background: #f6b26b">Myxel</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -14738,7 +14761,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/blueyheeler.html">
       <span class="name-badge" style="background: #6d9eeb">Blueyheeler</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -14779,7 +14802,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/s-ntos.html">
       <span class="name-badge" style="background: #f6b26b">Sântos</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -14829,7 +14852,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/frzxd.html">
       <span class="name-badge" style="background: #a4c2f4">Frzxd</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -14879,7 +14902,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/thanerin.html">
       <span class="name-badge" style="background: #d5a6bd">Thanerin</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -14926,14 +14949,14 @@ nav.site a.active { background: var(--card); color: var(--ink);
 <div class="panel" style="overflow-x:auto">
 <table class="data">
   <tr>
-    <th>Player</th><th>Role</th>
+    <th>Player</th><th class="rolecol">Role</th>
     <th class="mid" title="Hydross the Unstable">Hydross</th><th class="mid" title="The Lurker Below">Lurker</th><th class="mid" title="Leotheras the Blind">Leotheras</th><th class="mid" title="Fathom-Lord Karathress">Karathress</th><th class="mid" title="Morogrim Tidewalker">Morogrim</th><th class="mid" title="Lady Vashj">Vashj</th><th class="mid" title="Al&#39;ar">Al&#39;ar</th><th class="mid" title="Void Reaver">Void Reaver</th><th class="mid" title="High Astromancer Solarian">Solarian</th><th class="mid" title="Kael&#39;thas Sunstrider">Kael&#39;thas</th>
-    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp./raid</th>
-    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks/raid</th>
+    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp.</th>
+    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks</th>
     <th class="num" title="WCL Best Perf. Avg: average of the per-boss bests, excluding Vashj &amp; Kael'thas (no All Star points this phase)">Best Ø</th>
   </tr>
   <tr>
-    <td class="dim" style="font-size:11px">Top hps</td><td></td>
+    <td class="dim" style="font-size:11px">Top hps</td><td class="rolecol"></td>
     
     
     <td class="mid"><span style="color: var(--gold-soft)"
@@ -14991,7 +15014,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/aracticide.html">
       <span class="name-badge" style="background: #d5a6bd">Aracticide</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #ff8000"
@@ -15041,7 +15064,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/skrapper.html">
       <span class="name-badge" style="background: #d5a6bd">Skrapper</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b class="best-pct" style="color: #ff8000"
@@ -15091,7 +15114,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/jomezka.html">
       <span class="name-badge" style="background: #6d9eeb">Jomezka</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -15141,7 +15164,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bruand.html">
       <span class="name-badge" style="background: #d5a6bd">Bruand</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -15191,7 +15214,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/toastersha.html">
       <span class="name-badge" style="background: #6d9eeb">Toastersha</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -15241,7 +15264,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/kedelig.html">
       <span class="name-badge" style="background: #efefef">Kedelig</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -15291,7 +15314,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bigp.html">
       <span class="name-badge" style="background: #efefef">Bigp</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -15341,7 +15364,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gunothewolf.html">
       <span class="name-badge" style="background: #6d9eeb">Gunothewolf</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #ff8000"
@@ -15391,7 +15414,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/harmxny.html">
       <span class="name-badge" style="background: #d5a6bd">Harmxny</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -15441,7 +15464,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/woodwind.html">
       <span class="name-badge" style="background: #6d9eeb">Woodwind</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -15491,7 +15514,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/toasterp.html">
       <span class="name-badge" style="background: #d5a6bd">Toasterp</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -15541,7 +15564,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gahenna.html">
       <span class="name-badge" style="background: #efefef">Gahenna</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -15591,7 +15614,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/blueyheeler.html">
       <span class="name-badge" style="background: #6d9eeb">Blueyheeler</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -15641,7 +15664,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/cadavru.html">
       <span class="name-badge" style="background: #efefef">Cadavru</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -15691,7 +15714,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/yumiia.html">
       <span class="name-badge" style="background: #efefef">Yumiia</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -15741,7 +15764,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/novvu.html">
       <span class="name-badge" style="background: #efefef">Novvu</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -15791,7 +15814,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/lifebloomz.html">
       <span class="name-badge" style="background: #f6b26b">Lifebloomz</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -15841,7 +15864,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/min-u.html">
       <span class="name-badge" style="background: #efefef">Minøu</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #ff8000"
@@ -15891,7 +15914,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/balagoat.html">
       <span class="name-badge" style="background: #6d9eeb">Balagoat</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -15941,7 +15964,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/neyandis.html">
       <span class="name-badge" style="background: #efefef">Neyandis</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -15991,7 +16014,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/merilinn.html">
       <span class="name-badge" style="background: #f6b26b">Merilinn</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -16041,7 +16064,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/irontoe.html">
       <span class="name-badge" style="background: #d5a6bd">Irontoe</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -16091,7 +16114,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/ugi.html">
       <span class="name-badge" style="background: #efefef">Ugi</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -16141,7 +16164,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tobber.html">
       <span class="name-badge" style="background: #f6b26b">Tobber</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -16191,7 +16214,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/shammrive.html">
       <span class="name-badge" style="background: #6d9eeb">Shammrive</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -16241,7 +16264,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/snney.html">
       <span class="name-badge" style="background: #efefef">Snney</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -16291,7 +16314,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/nosaj.html">
       <span class="name-badge" style="background: #f6b26b">Nosaj</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #ff8000"
@@ -16341,7 +16364,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/hextaco.html">
       <span class="name-badge" style="background: #6d9eeb">Hextaco</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -16391,7 +16414,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/pious.html">
       <span class="name-badge" style="background: #d5a6bd">Pious</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -16441,7 +16464,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/vykola.html">
       <span class="name-badge" style="background: #6d9eeb">Vykola</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -16491,7 +16514,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/myanthes.html">
       <span class="name-badge" style="background: #f6b26b">Myanthes</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -16541,7 +16564,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/leonke.html">
       <span class="name-badge" style="background: #6d9eeb">Leonke</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -16591,7 +16614,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/hallad.html">
       <span class="name-badge" style="background: #6d9eeb">Hallad</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -16641,7 +16664,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/hellxhere.html">
       <span class="name-badge" style="background: #6d9eeb">Hellxhere</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -16691,7 +16714,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/malfori.html">
       <span class="name-badge" style="background: #d5a6bd">Malfori</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -16741,7 +16764,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bruanp.html">
       <span class="name-badge" style="background: #efefef">Bruanp</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -16791,7 +16814,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/epichealz.html">
       <span class="name-badge" style="background: #efefef">Epichealz</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -16841,7 +16864,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/jeanlouisdav.html">
       <span class="name-badge" style="background: #6d9eeb">Jeanlouisdav</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -16891,7 +16914,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/glenfiddisch.html">
       <span class="name-badge" style="background: #efefef">Glenfiddisch</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -16941,7 +16964,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/inteettr-tt.html">
       <span class="name-badge" style="background: #6d9eeb">Inteetträtt</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -16982,7 +17005,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bendersnetch.html">
       <span class="name-badge" style="background: #6d9eeb">Bendersnetch</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -17032,7 +17055,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/sigtryggr.html">
       <span class="name-badge" style="background: #efefef">Sigtryggr</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -17082,7 +17105,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/shamenna.html">
       <span class="name-badge" style="background: #6d9eeb">Shamenna</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -17126,7 +17149,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/farmour.html">
       <span class="name-badge" style="background: #f6b26b">Farmour</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -17176,7 +17199,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/mizucci.html">
       <span class="name-badge" style="background: #efefef">Mizucci</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -17226,7 +17249,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/justinbeaver.html">
       <span class="name-badge" style="background: #f6b26b">Justinbeaver</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -17276,7 +17299,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/col-nferal.html">
       <span class="name-badge" style="background: #f6b26b">Colïnferal</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -17326,7 +17349,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/molliee.html">
       <span class="name-badge" style="background: #f6b26b">Molliee</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -17376,7 +17399,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/jonette.html">
       <span class="name-badge" style="background: #d5a6bd">Jonette</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -17418,7 +17441,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/themacepanda.html">
       <span class="name-badge" style="background: #f6b26b">Themacepanda</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -17463,7 +17486,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gabuterimon.html">
       <span class="name-badge" style="background: #6d9eeb">Gabuterimon</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -17513,7 +17536,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/maevh.html">
       <span class="name-badge" style="background: #f6b26b">Maevh</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -17563,7 +17586,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/shieldyou.html">
       <span class="name-badge" style="background: #efefef">Shieldyou</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -17613,7 +17636,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/aurafarma.html">
       <span class="name-badge" style="background: #d5a6bd">Aurafarma</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -17657,7 +17680,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/znney.html">
       <span class="name-badge" style="background: #efefef">Znney</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -17701,7 +17724,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/myxuling.html">
       <span class="name-badge" style="background: #d5a6bd">Myxuling</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -17750,7 +17773,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/nathox.html">
       <span class="name-badge" style="background: #f6b26b">Nathox</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -17796,7 +17819,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tunaak.html">
       <span class="name-badge" style="background: #6d9eeb">Tunaak</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -17842,7 +17865,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/mammutbaum.html">
       <span class="name-badge" style="background: #f6b26b">Mammutbaum</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -17886,7 +17909,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/dryadea.html">
       <span class="name-badge" style="background: #f6b26b">Dryadea</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -17936,7 +17959,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/thanerin.html">
       <span class="name-badge" style="background: #d5a6bd">Thanerin</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -17977,7 +18000,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/xurioz.html">
       <span class="name-badge" style="background: #efefef">Xurioz</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -18021,7 +18044,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gialla.html">
       <span class="name-badge" style="background: #efefef">Gialla</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -18071,7 +18094,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/seysh.html">
       <span class="name-badge" style="background: #f6b26b">Seysh</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -18115,7 +18138,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/loraladina.html">
       <span class="name-badge" style="background: #d5a6bd">Loraladina</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -18164,7 +18187,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/swellery.html">
       <span class="name-badge" style="background: #6d9eeb">Swellery</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -18205,7 +18228,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/pa-nk-ller.html">
       <span class="name-badge" style="background: #efefef">Paínkíller</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -18255,7 +18278,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/reggiehobbes.html">
       <span class="name-badge" style="background: #d5a6bd">Reggiehobbes</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -18296,7 +18319,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/szmul.html">
       <span class="name-badge" style="background: #efefef">Szmul</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><span class="dim">·</span></td>

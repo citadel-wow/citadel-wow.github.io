@@ -80,6 +80,29 @@ nav.site a.active { background: var(--card); color: var(--ink);
 <style>
 .best-pct { background: rgba(227,198,128,.13); border-radius: 4px;
   padding: 0 4px; box-shadow: inset 0 0 0 1px rgba(227,198,128,.4); }
+/* a full tier is up to 14 boss columns — give the boards the window and
+   keep the cells compact so nothing scrolls sideways on a laptop */
+main { max-width: min(1760px, 98vw); }
+table.data th, table.data td { padding: 5px 5px; }
+table.data td.mid, table.data th.mid { padding-left: 3px; padding-right: 3px; }
+table.data td.mid b { font-size: 12.5px; }
+.name-badge { font-size: 12px; padding: 1px 6px; }
+/* narrow laptops: shed the class column (the name badge is already
+   class-coloured) and tighten everything so 14 bosses still fit */
+@media (max-width: 1200px) {
+  main { padding-left: 10px; padding-right: 10px; }
+  .panel { padding: 12px 8px; }
+  table.data { font-size: 11.5px; }
+  table.data th, table.data td { padding: 4px 3px; }
+  table.data td.mid, table.data th.mid { padding-left: 2px; padding-right: 2px; }
+  .rolecol { display: none; }
+  .panel { padding: 12px 10px; }
+}
+@media (max-width: 900px) {
+  .panel { padding: 8px; }
+  table.data { font-size: 11px; }
+  table.data td.mid b { font-size: 11px; }
+}
 </style></head>
 <body>
 
@@ -125,14 +148,14 @@ nav.site a.active { background: var(--card); color: var(--ink);
 <div class="panel" style="overflow-x:auto">
 <table class="data">
   <tr>
-    <th>Player</th><th>Role</th>
+    <th>Player</th><th class="rolecol">Role</th>
     <th class="mid" title="Rage Winterchill">Winterchill</th><th class="mid" title="Anetheron">Anetheron</th><th class="mid" title="Kaz&#39;rogal">Kaz&#39;rogal</th><th class="mid" title="Azgalor">Azgalor</th><th class="mid" title="Archimonde">Archimonde</th><th class="mid" title="High Warlord Naj&#39;entus">Naj&#39;entus</th><th class="mid" title="Supremus">Supremus</th><th class="mid" title="Shade of Akama">Akama</th><th class="mid" title="Teron Gorefiend">Teron</th><th class="mid" title="Gurtogg Bloodboil">Gurtogg</th><th class="mid" title="Reliquary of Souls">Reliquary</th><th class="mid" title="Mother Shahraz">Shahraz</th><th class="mid" title="The Illidari Council">Council</th><th class="mid" title="Illidan Stormrage">Illidan</th>
-    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp./raid</th>
-    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks/raid</th>
+    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp.</th>
+    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks</th>
     <th class="num" title="WCL Best Perf. Avg: average of the per-boss bests, excluding Vashj &amp; Kael'thas (no All Star points this phase)">Best Ø</th>
   </tr>
   <tr>
-    <td class="dim" style="font-size:11px">Top dps</td><td></td>
+    <td class="dim" style="font-size:11px">Top dps</td><td class="rolecol"></td>
     
     
     <td class="mid"><span style="color: var(--gold-soft)"
@@ -206,7 +229,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/madef.html">
       <span class="name-badge" style="background: #e2d3c9">Madef</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -270,7 +293,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/honorik.html">
       <span class="name-badge" style="background: #e2d3c9">Honorik</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -328,7 +351,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/jonette.html">
       <span class="name-badge" style="background: #d5a6bd">Jonette</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b class="best-pct" style="color: #a335ee"
@@ -389,7 +412,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/thanerin.html">
       <span class="name-badge" style="background: #d5a6bd">Thanerin</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -452,7 +475,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/roarwind.html">
       <span class="name-badge" style="background: #f6b26b">Roarwind</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -512,14 +535,14 @@ nav.site a.active { background: var(--card); color: var(--ink);
 <div class="panel" style="overflow-x:auto">
 <table class="data">
   <tr>
-    <th>Player</th><th>Role</th>
+    <th>Player</th><th class="rolecol">Role</th>
     <th class="mid" title="Rage Winterchill">Winterchill</th><th class="mid" title="Anetheron">Anetheron</th><th class="mid" title="Kaz&#39;rogal">Kaz&#39;rogal</th><th class="mid" title="Azgalor">Azgalor</th><th class="mid" title="Archimonde">Archimonde</th><th class="mid" title="High Warlord Naj&#39;entus">Naj&#39;entus</th><th class="mid" title="Supremus">Supremus</th><th class="mid" title="Shade of Akama">Akama</th><th class="mid" title="Teron Gorefiend">Teron</th><th class="mid" title="Gurtogg Bloodboil">Gurtogg</th><th class="mid" title="Reliquary of Souls">Reliquary</th><th class="mid" title="Mother Shahraz">Shahraz</th><th class="mid" title="The Illidari Council">Council</th><th class="mid" title="Illidan Stormrage">Illidan</th>
-    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp./raid</th>
-    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks/raid</th>
+    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp.</th>
+    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks</th>
     <th class="num" title="WCL Best Perf. Avg: average of the per-boss bests, excluding Vashj &amp; Kael'thas (no All Star points this phase)">Best Ø</th>
   </tr>
   <tr>
-    <td class="dim" style="font-size:11px">Top dps</td><td></td>
+    <td class="dim" style="font-size:11px">Top dps</td><td class="rolecol"></td>
     
     
     <td class="mid"><span style="color: var(--gold-soft)"
@@ -593,7 +616,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gahenna.html">
       <span class="name-badge" style="background: #efefef">Gahenna</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b class="best-pct" style="color: #a335ee"
@@ -649,7 +672,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badabonks.html">
       <span class="name-badge" style="background: #6d9eeb">Badabonks</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -706,7 +729,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/klib.html">
       <span class="name-badge" style="background: #b4a7d6">Klib</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -770,7 +793,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/lorpdickles.html">
       <span class="name-badge" style="background: #b6d7a8">Lorpdickles</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -827,7 +850,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/swellery.html">
       <span class="name-badge" style="background: #6d9eeb">Swellery</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -891,7 +914,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badabuum.html">
       <span class="name-badge" style="background: #a4c2f4">Badabuum</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -955,7 +978,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/cthulha.html">
       <span class="name-badge" style="background: #a4c2f4">Cthulha</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -1019,7 +1042,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bepcyc.html">
       <span class="name-badge" style="background: #a4c2f4">Bepcyc</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -1076,7 +1099,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badabuille.html">
       <span class="name-badge" style="background: #e2d3c9">Badabuille</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -1138,7 +1161,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/prevaraa.html">
       <span class="name-badge" style="background: #b6d7a8">Prevaraa</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -1202,7 +1225,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/shcherbaque.html">
       <span class="name-badge" style="background: #6d9eeb">Shcherbaque</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -1266,7 +1289,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/woodwind.html">
       <span class="name-badge" style="background: #6d9eeb">Woodwind</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -1323,7 +1346,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/nugg-ts.html">
       <span class="name-badge" style="background: #f6b26b">Nuggëts</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -1380,7 +1403,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/medef.html">
       <span class="name-badge" style="background: #fff2cc">Medef</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -1437,7 +1460,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/karrell.html">
       <span class="name-badge" style="background: #b4a7d6">Karrell</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -1501,7 +1524,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/paradigmh.html">
       <span class="name-badge" style="background: #b6d7a8">Paradigmh</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -1562,7 +1585,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/jonetter.html">
       <span class="name-badge" style="background: #b4a7d6">Jonetter</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -1625,7 +1648,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tr-gger.html">
       <span class="name-badge" style="background: #b6d7a8">Trígger</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -1689,7 +1712,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/loronoa.html">
       <span class="name-badge" style="background: #e2d3c9">Loronoa</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -1746,7 +1769,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gahanna.html">
       <span class="name-badge" style="background: #6d9eeb">Gahanna</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -1803,7 +1826,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/naincapacit.html">
       <span class="name-badge" style="background: #b6d7a8">Naincapacité</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -1867,7 +1890,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badadudu.html">
       <span class="name-badge" style="background: #f6b26b">Badadudu</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -1930,7 +1953,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/castratos.html">
       <span class="name-badge" style="background: #b4a7d6">Castratos</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -1994,7 +2017,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/loranoa.html">
       <span class="name-badge" style="background: #a4c2f4">Loranoa</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2058,7 +2081,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/moungrym.html">
       <span class="name-badge" style="background: #e2d3c9">Moungrym</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2122,7 +2145,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tarmour.html">
       <span class="name-badge" style="background: #e2d3c9">Tarmour</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2186,7 +2209,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/littlewhitey.html">
       <span class="name-badge" style="background: #a4c2f4">Littlewhitey</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2247,7 +2270,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/alexzed.html">
       <span class="name-badge" style="background: #d5a6bd">Alexzed</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -2311,7 +2334,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/roarwind.html">
       <span class="name-badge" style="background: #f6b26b">Roarwind</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2371,7 +2394,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/kianne.html">
       <span class="name-badge" style="background: #f6b26b">Kianne</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -2435,7 +2458,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/prevaara.html">
       <span class="name-badge" style="background: #e2d3c9">Prevaara</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -2492,7 +2515,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/f-anturi.html">
       <span class="name-badge" style="background: #a4c2f4">Fëanturi</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -2545,7 +2568,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/honorik.html">
       <span class="name-badge" style="background: #e2d3c9">Honorik</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -2605,14 +2628,14 @@ nav.site a.active { background: var(--card); color: var(--ink);
 <div class="panel" style="overflow-x:auto">
 <table class="data">
   <tr>
-    <th>Player</th><th>Role</th>
+    <th>Player</th><th class="rolecol">Role</th>
     <th class="mid" title="Rage Winterchill">Winterchill</th><th class="mid" title="Anetheron">Anetheron</th><th class="mid" title="Kaz&#39;rogal">Kaz&#39;rogal</th><th class="mid" title="Azgalor">Azgalor</th><th class="mid" title="Archimonde">Archimonde</th><th class="mid" title="High Warlord Naj&#39;entus">Naj&#39;entus</th><th class="mid" title="Supremus">Supremus</th><th class="mid" title="Shade of Akama">Akama</th><th class="mid" title="Teron Gorefiend">Teron</th><th class="mid" title="Gurtogg Bloodboil">Gurtogg</th><th class="mid" title="Reliquary of Souls">Reliquary</th><th class="mid" title="Mother Shahraz">Shahraz</th><th class="mid" title="The Illidari Council">Council</th><th class="mid" title="Illidan Stormrage">Illidan</th>
-    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp./raid</th>
-    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks/raid</th>
+    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp.</th>
+    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks</th>
     <th class="num" title="WCL Best Perf. Avg: average of the per-boss bests, excluding Vashj &amp; Kael'thas (no All Star points this phase)">Best Ø</th>
   </tr>
   <tr>
-    <td class="dim" style="font-size:11px">Top hps</td><td></td>
+    <td class="dim" style="font-size:11px">Top hps</td><td class="rolecol"></td>
     
     
     <td class="mid"><span style="color: var(--gold-soft)"
@@ -2690,7 +2713,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gahenna.html">
       <span class="name-badge" style="background: #efefef">Gahenna</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -2750,7 +2773,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bruand.html">
       <span class="name-badge" style="background: #d5a6bd">Bruand</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -2814,7 +2837,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/toastersha.html">
       <span class="name-badge" style="background: #6d9eeb">Toastersha</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -2878,7 +2901,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/jomezka.html">
       <span class="name-badge" style="background: #6d9eeb">Jomezka</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b class="best-pct" style="color: #a335ee"
@@ -2944,7 +2967,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/thanerin.html">
       <span class="name-badge" style="background: #d5a6bd">Thanerin</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -2997,7 +3020,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/woodwind.html">
       <span class="name-badge" style="background: #6d9eeb">Woodwind</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -3051,7 +3074,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/jonette.html">
       <span class="name-badge" style="background: #d5a6bd">Jonette</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -3104,66 +3127,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
   </tr>
   
   <tr>
-    <td><a class="player-link" href="players/malfori.html">
-      <span class="name-badge" style="background: #d5a6bd">Malfori</span></a></td>
-    <td class="dim">Paladin</td>
-    
-    
-    <td class="mid"><b style="color: #9d9d9d"
-           title="Rage Winterchill — best parse 18.6 (Holy, Aug 28) · highest hps 267">18.6</b><br><span class="dim" style="font-size:10px">267</span></td>
-    
-    
-    <td class="mid"><b style="color: #3f8fd8"
-           title="Anetheron — best parse 62.0 (Holy, Aug 28) · highest hps 694">62.0</b><br><span class="dim" style="font-size:10px">694</span></td>
-    
-    
-    <td class="mid"><b style="color: #1eff00"
-           title="Kaz&#39;rogal — best parse 47.0 (Holy, Aug 28) · highest hps 338">47.0</b><br><span class="dim" style="font-size:10px">338</span></td>
-    
-    
-    <td class="mid"><b style="color: #3f8fd8"
-           title="Azgalor — best parse 74.3 (Holy, Aug 28) · highest hps 594">74.3</b><br><span class="dim" style="font-size:10px">594</span></td>
-    
-    
-    <td class="mid"><b style="color: #3f8fd8"
-           title="Archimonde — best parse 55.9 (Holy, Aug 28) · highest hps 442">55.9</b><br><span class="dim" style="font-size:10px">442</span></td>
-    
-    
-    <td class="mid"><span class="dim">·</span></td>
-    
-    
-    <td class="mid"><span class="dim">·</span></td>
-    
-    
-    <td class="mid"><span class="dim">·</span></td>
-    
-    
-    <td class="mid"><span class="dim">·</span></td>
-    
-    
-    <td class="mid"><span class="dim">·</span></td>
-    
-    
-    <td class="mid"><span class="dim">·</span></td>
-    
-    
-    <td class="mid"><span class="dim">·</span></td>
-    
-    
-    <td class="mid"><span class="dim">·</span></td>
-    
-    
-    <td class="mid"><span class="dim">·</span></td>
-    
-    <td class="num"><span title="dispelled: Hammer of Justice ×6, Silence ×5, Poison Bolt ×4, Deadly Poison VII ×2, Shadow Word: Pain ×2, Earthbind ×1, Expose Weakness ×1, Faerie Fire ×1, Flame Buffet ×1, Freezing Trap Effect ×1, Rampant Infection ×1 — 25 over 11 raids">2.3</span></td>
-    <td class="num"><span class="dim">·</span></td>
-    <td class="num"><b style="color: #3f8fd8">51.6</b></td>
-  </tr>
-  
-  <tr>
     <td><a class="player-link" href="players/toasterp.html">
       <span class="name-badge" style="background: #d5a6bd">Toasterp</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -3218,9 +3184,69 @@ nav.site a.active { background: var(--card); color: var(--ink);
   </tr>
   
   <tr>
+    <td><a class="player-link" href="players/malfori.html">
+      <span class="name-badge" style="background: #d5a6bd">Malfori</span></a></td>
+    <td class="dim rolecol">Paladin</td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Rage Winterchill — best parse 18.6 (Holy, Aug 28) · highest hps 267">18.6</b><br><span class="dim" style="font-size:10px">267</span></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Anetheron — best parse 62.0 (Holy, Aug 28) · highest hps 694">62.0</b><br><span class="dim" style="font-size:10px">694</span></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kaz&#39;rogal — best parse 47.0 (Holy, Aug 28) · highest hps 338">47.0</b><br><span class="dim" style="font-size:10px">338</span></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Azgalor — best parse 74.3 (Holy, Aug 28) · highest hps 594">74.3</b><br><span class="dim" style="font-size:10px">594</span></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Archimonde — best parse 55.9 (Holy, Aug 28) · highest hps 442">55.9</b><br><span class="dim" style="font-size:10px">442</span></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Warlord Naj&#39;entus — best parse 39.9 (Holy, Aug 30) · highest hps 763">39.9</b><br><span class="dim" style="font-size:10px">763</span></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Supremus — best parse 1.5 (Holy, Aug 30) · highest hps 102">1.5</b><br><span class="dim" style="font-size:10px">102</span></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Shade of Akama — best parse 55.2 (Holy, Aug 30) · highest hps 619">55.2</b><br><span class="dim" style="font-size:10px">619</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><span title="dispelled: Hammer of Justice ×6, Silence ×5, Poison Bolt ×4, Deadly Poison VII ×2, Shadow Word: Pain ×2, Earthbind ×1, Expose Weakness ×1, Faerie Fire ×1, Flame Buffet ×1, Freezing Trap Effect ×1, Rampant Infection ×1 — 25 over 11 raids">2.3</span></td>
+    <td class="num"><span class="dim">·</span></td>
+    <td class="num"><b style="color: #1eff00">44.3</b></td>
+  </tr>
+  
+  <tr>
     <td><a class="player-link" href="players/roarwind.html">
       <span class="name-badge" style="background: #f6b26b">Roarwind</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -3286,14 +3312,14 @@ nav.site a.active { background: var(--card); color: var(--ink);
 <div class="panel" style="overflow-x:auto">
 <table class="data">
   <tr>
-    <th>Player</th><th>Role</th>
+    <th>Player</th><th class="rolecol">Role</th>
     <th class="mid" title="Rage Winterchill">Winterchill</th><th class="mid" title="Anetheron">Anetheron</th><th class="mid" title="Kaz&#39;rogal">Kaz&#39;rogal</th><th class="mid" title="Azgalor">Azgalor</th><th class="mid" title="Archimonde">Archimonde</th><th class="mid" title="High Warlord Naj&#39;entus">Naj&#39;entus</th><th class="mid" title="Supremus">Supremus</th><th class="mid" title="Shade of Akama">Akama</th><th class="mid" title="Teron Gorefiend">Teron</th><th class="mid" title="Gurtogg Bloodboil">Gurtogg</th><th class="mid" title="Reliquary of Souls">Reliquary</th><th class="mid" title="Mother Shahraz">Shahraz</th><th class="mid" title="The Illidari Council">Council</th><th class="mid" title="Illidan Stormrage">Illidan</th>
-    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp./raid</th>
-    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks/raid</th>
+    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp.</th>
+    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks</th>
     <th class="num" title="WCL Best Perf. Avg: average of the per-boss bests, excluding Vashj &amp; Kael'thas (no All Star points this phase)">Best Ø</th>
   </tr>
   <tr>
-    <td class="dim" style="font-size:11px">Top dps</td><td></td>
+    <td class="dim" style="font-size:11px">Top dps</td><td class="rolecol"></td>
     
     
     <td class="mid"><span style="color: var(--gold-soft)"
@@ -3367,7 +3393,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/diarrheoe.html">
       <span class="name-badge" style="background: #e2d3c9">Diarrheoe</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -3424,7 +3450,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/madef.html">
       <span class="name-badge" style="background: #e2d3c9">Madef</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -3488,7 +3514,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/honorik.html">
       <span class="name-badge" style="background: #e2d3c9">Honorik</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -3546,7 +3572,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/remyfox.html">
       <span class="name-badge" style="background: #e2d3c9">Remyfox</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -3605,7 +3631,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/jonette.html">
       <span class="name-badge" style="background: #d5a6bd">Jonette</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b class="best-pct" style="color: #a335ee"
@@ -3666,7 +3692,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/thanerin.html">
       <span class="name-badge" style="background: #d5a6bd">Thanerin</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -3729,7 +3755,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/moraelinn.html">
       <span class="name-badge" style="background: #f6b26b">Moraelinn</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -3786,7 +3812,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/reggiehobbes.html">
       <span class="name-badge" style="background: #d5a6bd">Reggiehobbes</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -3848,7 +3874,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/roarwind.html">
       <span class="name-badge" style="background: #f6b26b">Roarwind</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -3908,14 +3934,14 @@ nav.site a.active { background: var(--card); color: var(--ink);
 <div class="panel" style="overflow-x:auto">
 <table class="data">
   <tr>
-    <th>Player</th><th>Role</th>
+    <th>Player</th><th class="rolecol">Role</th>
     <th class="mid" title="Rage Winterchill">Winterchill</th><th class="mid" title="Anetheron">Anetheron</th><th class="mid" title="Kaz&#39;rogal">Kaz&#39;rogal</th><th class="mid" title="Azgalor">Azgalor</th><th class="mid" title="Archimonde">Archimonde</th><th class="mid" title="High Warlord Naj&#39;entus">Naj&#39;entus</th><th class="mid" title="Supremus">Supremus</th><th class="mid" title="Shade of Akama">Akama</th><th class="mid" title="Teron Gorefiend">Teron</th><th class="mid" title="Gurtogg Bloodboil">Gurtogg</th><th class="mid" title="Reliquary of Souls">Reliquary</th><th class="mid" title="Mother Shahraz">Shahraz</th><th class="mid" title="The Illidari Council">Council</th><th class="mid" title="Illidan Stormrage">Illidan</th>
-    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp./raid</th>
-    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks/raid</th>
+    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp.</th>
+    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks</th>
     <th class="num" title="WCL Best Perf. Avg: average of the per-boss bests, excluding Vashj &amp; Kael'thas (no All Star points this phase)">Best Ø</th>
   </tr>
   <tr>
-    <td class="dim" style="font-size:11px">Top dps</td><td></td>
+    <td class="dim" style="font-size:11px">Top dps</td><td class="rolecol"></td>
     
     
     <td class="mid"><span style="color: var(--gold-soft)"
@@ -3993,7 +4019,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gahenna.html">
       <span class="name-badge" style="background: #efefef">Gahenna</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -4049,7 +4075,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/legga.html">
       <span class="name-badge" style="background: #6d9eeb">Legga</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b class="best-pct" style="color: #a335ee"
@@ -4112,7 +4138,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/kryystal.html">
       <span class="name-badge" style="background: #6d9eeb">Kryystal</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -4175,7 +4201,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/hellxhere.html">
       <span class="name-badge" style="background: #6d9eeb">Hellxhere</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -4236,7 +4262,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/mirrogue.html">
       <span class="name-badge" style="background: #fff2cc">Mirrogue</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -4300,7 +4326,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/silverpump.html">
       <span class="name-badge" style="background: #b6d7a8">Silverpump</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -4364,7 +4390,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/duhdoge.html">
       <span class="name-badge" style="background: #efefef">Duhdoge</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -4427,7 +4453,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badabonks.html">
       <span class="name-badge" style="background: #6d9eeb">Badabonks</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -4484,7 +4510,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/klib.html">
       <span class="name-badge" style="background: #b4a7d6">Klib</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -4548,7 +4574,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/lorpdickles.html">
       <span class="name-badge" style="background: #b6d7a8">Lorpdickles</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -4605,7 +4631,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/anik.html">
       <span class="name-badge" style="background: #efefef">Anik</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -4667,7 +4693,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/swellery.html">
       <span class="name-badge" style="background: #6d9eeb">Swellery</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -4731,7 +4757,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/myrinna.html">
       <span class="name-badge" style="background: #6d9eeb">Myrinna</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -4788,7 +4814,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/themacepanda.html">
       <span class="name-badge" style="background: #f6b26b">Themacepanda</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -4845,7 +4871,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/dachaus.html">
       <span class="name-badge" style="background: #e2d3c9">Dachaus</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -4907,7 +4933,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/inteettr-tt.html">
       <span class="name-badge" style="background: #6d9eeb">Inteetträtt</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -4964,7 +4990,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badabuum.html">
       <span class="name-badge" style="background: #a4c2f4">Badabuum</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -5028,7 +5054,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/hornydevil.html">
       <span class="name-badge" style="background: #d5a6bd">Hornydevil</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5085,7 +5111,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/foxx.html">
       <span class="name-badge" style="background: #b6d7a8">Foxx</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5142,7 +5168,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/joob.html">
       <span class="name-badge" style="background: #b4a7d6">Joob</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -5205,7 +5231,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bendersnetch.html">
       <span class="name-badge" style="background: #6d9eeb">Bendersnetch</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -5262,7 +5288,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/rabiati.html">
       <span class="name-badge" style="background: #d5a6bd">Rabiati</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5325,7 +5351,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/cthulha.html">
       <span class="name-badge" style="background: #a4c2f4">Cthulha</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5389,7 +5415,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/silviel.html">
       <span class="name-badge" style="background: #f6b26b">Silviel</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -5452,7 +5478,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/praevus.html">
       <span class="name-badge" style="background: #b4a7d6">Praevus</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -5515,7 +5541,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bepcyc.html">
       <span class="name-badge" style="background: #a4c2f4">Bepcyc</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5572,7 +5598,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/mythraeil.html">
       <span class="name-badge" style="background: #e2d3c9">Mythraeil</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5627,7 +5653,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/shantalos.html">
       <span class="name-badge" style="background: #a4c2f4">Shantalos</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5690,7 +5716,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badabuille.html">
       <span class="name-badge" style="background: #e2d3c9">Badabuille</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5752,7 +5778,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/awedal.html">
       <span class="name-badge" style="background: #fff2cc">Awedal</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -5809,7 +5835,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/prevaraa.html">
       <span class="name-badge" style="background: #b6d7a8">Prevaraa</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5873,7 +5899,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/shcherbaque.html">
       <span class="name-badge" style="background: #6d9eeb">Shcherbaque</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -5937,7 +5963,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tassadarr.html">
       <span class="name-badge" style="background: #d5a6bd">Tassadarr</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -5994,7 +6020,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/halqifibrax.html">
       <span class="name-badge" style="background: #6d9eeb">Halqifibrax</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -6053,7 +6079,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/woodwind.html">
       <span class="name-badge" style="background: #6d9eeb">Woodwind</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -6110,7 +6136,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/mammutbaum.html">
       <span class="name-badge" style="background: #f6b26b">Mammutbaum</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -6165,7 +6191,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/hanor.html">
       <span class="name-badge" style="background: #fff2cc">Hanor</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -6225,7 +6251,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/nugg-ts.html">
       <span class="name-badge" style="background: #f6b26b">Nuggëts</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -6282,7 +6308,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/vanturaz.html">
       <span class="name-badge" style="background: #e2d3c9">Vanturaz</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -6339,7 +6365,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/medef.html">
       <span class="name-badge" style="background: #fff2cc">Medef</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -6396,7 +6422,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gryzmon.html">
       <span class="name-badge" style="background: #f6b26b">Gryzmon</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -6453,7 +6479,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/karrell.html">
       <span class="name-badge" style="background: #b4a7d6">Karrell</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -6517,7 +6543,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/paradigmh.html">
       <span class="name-badge" style="background: #b6d7a8">Paradigmh</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -6578,7 +6604,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/hausy.html">
       <span class="name-badge" style="background: #b6d7a8">Hausy</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -6633,7 +6659,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/jonetter.html">
       <span class="name-badge" style="background: #b4a7d6">Jonetter</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -6696,7 +6722,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tr-gger.html">
       <span class="name-badge" style="background: #b6d7a8">Trígger</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -6760,7 +6786,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/loronoa.html">
       <span class="name-badge" style="background: #e2d3c9">Loronoa</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -6817,7 +6843,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/totemflex.html">
       <span class="name-badge" style="background: #6d9eeb">Totemflex</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -6880,7 +6906,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gahanna.html">
       <span class="name-badge" style="background: #6d9eeb">Gahanna</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -6935,9 +6961,66 @@ nav.site a.active { background: var(--card); color: var(--ink);
   </tr>
   
   <tr>
+    <td><a class="player-link" href="players/leaina.html">
+      <span class="name-badge" style="background: #f6b26b">Leaina</span></a></td>
+    <td class="dim rolecol">Druid</td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Rage Winterchill — best parse 40.7 (Feral, Aug 30) · highest dps 1056">40.7</b><br><span class="dim" style="font-size:10px">1056</span></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Anetheron — best parse 13.6 (Feral, Aug 30) · highest dps 139">13.6</b><br><span class="dim" style="font-size:10px">139</span></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kaz&#39;rogal — best parse 32.0 (Feral, Aug 30) · highest dps 675">32.0</b><br><span class="dim" style="font-size:10px">675</span></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Azgalor — best parse 74.5 (Feral, Aug 30) · highest dps 1439">74.5</b><br><span class="dim" style="font-size:10px">1439</span></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Archimonde — best parse 58.9 (Feral, Aug 30) · highest dps 1375">58.9</b><br><span class="dim" style="font-size:10px">1375</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><span class="dim">·</span></td>
+    <td class="num"><span class="dim">·</span></td>
+    <td class="num"><b style="color: #1eff00">43.9</b></td>
+  </tr>
+  
+  <tr>
     <td><a class="player-link" href="players/chokladbulle.html">
       <span class="name-badge" style="background: #6d9eeb">Chokladbulle</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -6993,7 +7076,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/aravind.html">
       <span class="name-badge" style="background: #b6d7a8">Aravind</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -7050,7 +7133,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/m-on.html">
       <span class="name-badge" style="background: #e2d3c9">Móon</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -7113,7 +7196,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/naincapacit.html">
       <span class="name-badge" style="background: #b6d7a8">Naincapacité</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -7177,7 +7260,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tunaak.html">
       <span class="name-badge" style="background: #6d9eeb">Tunaak</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -7233,7 +7316,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/badadudu.html">
       <span class="name-badge" style="background: #f6b26b">Badadudu</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -7296,7 +7379,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/zor-a.html">
       <span class="name-badge" style="background: #e2d3c9">Zorÿa</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -7359,7 +7442,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/castratos.html">
       <span class="name-badge" style="background: #b4a7d6">Castratos</span></a></td>
-    <td class="dim">Warlock</td>
+    <td class="dim rolecol">Warlock</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -7423,7 +7506,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/blindstep.html">
       <span class="name-badge" style="background: #fff2cc">Blindstep</span></a></td>
-    <td class="dim">Rogue</td>
+    <td class="dim rolecol">Rogue</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -7486,7 +7569,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/loranoa.html">
       <span class="name-badge" style="background: #a4c2f4">Loranoa</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -7550,7 +7633,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/xurioz.html">
       <span class="name-badge" style="background: #efefef">Xurioz</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -7608,7 +7691,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/moungrym.html">
       <span class="name-badge" style="background: #e2d3c9">Moungrym</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -7672,7 +7755,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/remyfox.html">
       <span class="name-badge" style="background: #e2d3c9">Remyfox</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -7728,7 +7811,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tarmour.html">
       <span class="name-badge" style="background: #e2d3c9">Tarmour</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -7792,7 +7875,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/littlewhitey.html">
       <span class="name-badge" style="background: #a4c2f4">Littlewhitey</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -7853,7 +7936,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/alexzed.html">
       <span class="name-badge" style="background: #d5a6bd">Alexzed</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -7917,7 +8000,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/roarwind.html">
       <span class="name-badge" style="background: #f6b26b">Roarwind</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -7977,7 +8060,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/turboshtorm.html">
       <span class="name-badge" style="background: #6d9eeb">Turboshtorm</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -8032,7 +8115,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/kianne.html">
       <span class="name-badge" style="background: #f6b26b">Kianne</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -8096,7 +8179,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tooshay.html">
       <span class="name-badge" style="background: #a4c2f4">Tooshay</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -8153,7 +8236,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/zanoa.html">
       <span class="name-badge" style="background: #b6d7a8">Zanoa</span></a></td>
-    <td class="dim">Hunter</td>
+    <td class="dim rolecol">Hunter</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -8216,7 +8299,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/ellektra.html">
       <span class="name-badge" style="background: #6d9eeb">Ellektra</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -8273,7 +8356,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/prevaara.html">
       <span class="name-badge" style="background: #e2d3c9">Prevaara</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -8330,7 +8413,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/shamenna.html">
       <span class="name-badge" style="background: #6d9eeb">Shamenna</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -8393,7 +8476,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/minicharbear.html">
       <span class="name-badge" style="background: #a4c2f4">Minicharbear</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -8456,7 +8539,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/lunivara.html">
       <span class="name-badge" style="background: #efefef">Lunivara</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -8513,7 +8596,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/moraelinn.html">
       <span class="name-badge" style="background: #f6b26b">Moraelinn</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -8571,7 +8654,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/f-anturi.html">
       <span class="name-badge" style="background: #a4c2f4">Fëanturi</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -8624,7 +8707,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/frzxd.html">
       <span class="name-badge" style="background: #a4c2f4">Frzxd</span></a></td>
-    <td class="dim">Mage</td>
+    <td class="dim rolecol">Mage</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -8682,7 +8765,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/honorik.html">
       <span class="name-badge" style="background: #e2d3c9">Honorik</span></a></td>
-    <td class="dim">Warrior</td>
+    <td class="dim rolecol">Warrior</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -8742,14 +8825,14 @@ nav.site a.active { background: var(--card); color: var(--ink);
 <div class="panel" style="overflow-x:auto">
 <table class="data">
   <tr>
-    <th>Player</th><th>Role</th>
+    <th>Player</th><th class="rolecol">Role</th>
     <th class="mid" title="Rage Winterchill">Winterchill</th><th class="mid" title="Anetheron">Anetheron</th><th class="mid" title="Kaz&#39;rogal">Kaz&#39;rogal</th><th class="mid" title="Azgalor">Azgalor</th><th class="mid" title="Archimonde">Archimonde</th><th class="mid" title="High Warlord Naj&#39;entus">Naj&#39;entus</th><th class="mid" title="Supremus">Supremus</th><th class="mid" title="Shade of Akama">Akama</th><th class="mid" title="Teron Gorefiend">Teron</th><th class="mid" title="Gurtogg Bloodboil">Gurtogg</th><th class="mid" title="Reliquary of Souls">Reliquary</th><th class="mid" title="Mother Shahraz">Shahraz</th><th class="mid" title="The Illidari Council">Council</th><th class="mid" title="Illidan Stormrage">Illidan</th>
-    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp./raid</th>
-    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks/raid</th>
+    <th class="num" title="dispels per raid night attended — hover a value for the breakdown">Disp.</th>
+    <th class="num" title="interrupts per raid night attended — hover a value for the breakdown">Kicks</th>
     <th class="num" title="WCL Best Perf. Avg: average of the per-boss bests, excluding Vashj &amp; Kael'thas (no All Star points this phase)">Best Ø</th>
   </tr>
   <tr>
-    <td class="dim" style="font-size:11px">Top hps</td><td></td>
+    <td class="dim" style="font-size:11px">Top hps</td><td class="rolecol"></td>
     
     
     <td class="mid"><span style="color: var(--gold-soft)"
@@ -8763,8 +8846,8 @@ nav.site a.active { background: var(--card); color: var(--ink);
     
     
     <td class="mid"><span style="color: var(--gold-soft)"
-              title="Kaz&#39;rogal — Epichealz: 773 hps (Holy, Aug 28)">773<br><span
-              class="dim" style="font-size:9.5px; font-weight:400">Epichealz</span></span></td>
+              title="Kaz&#39;rogal — Mizucci: 874 hps (Holy, Aug 30)">874<br><span
+              class="dim" style="font-size:9.5px; font-weight:400">Mizucci</span></span></td>
     
     
     <td class="mid"><span style="color: var(--gold-soft)"
@@ -8827,7 +8910,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gahenna.html">
       <span class="name-badge" style="background: #efefef">Gahenna</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -8887,7 +8970,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/harmxny.html">
       <span class="name-badge" style="background: #d5a6bd">Harmxny</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -8950,7 +9033,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bruand.html">
       <span class="name-badge" style="background: #d5a6bd">Bruand</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -9014,7 +9097,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/gunothewolf.html">
       <span class="name-badge" style="background: #6d9eeb">Gunothewolf</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b class="best-pct" style="color: #a335ee"
@@ -9077,7 +9160,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/toastersha.html">
       <span class="name-badge" style="background: #6d9eeb">Toastersha</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -9141,7 +9224,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/jomezka.html">
       <span class="name-badge" style="background: #6d9eeb">Jomezka</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #a335ee"
@@ -9207,7 +9290,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/leonke.html">
       <span class="name-badge" style="background: #6d9eeb">Leonke</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -9261,9 +9344,64 @@ nav.site a.active { background: var(--card); color: var(--ink);
   </tr>
   
   <tr>
+    <td><a class="player-link" href="players/mizucci.html">
+      <span class="name-badge" style="background: #efefef">Mizucci</span></a></td>
+    <td class="dim rolecol">Priest</td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Rage Winterchill — best parse 54.5 (Holy, Aug 30) · highest hps 716">54.5</b><br><span class="dim" style="font-size:10px">716</span></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Anetheron — best parse 61.6 (Holy, Aug 30) · highest hps 970">61.6</b><br><span class="dim" style="font-size:10px">970</span></td>
+    
+    
+    <td class="mid"><b style="color: #a335ee"
+           title="Kaz&#39;rogal — best parse 82.1 (Holy, Aug 30) · highest hps 874">82.1</b><br><span class="dim" style="font-size:10px">874</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><span class="dim">·</span></td>
+    <td class="num"><span class="dim">·</span></td>
+    <td class="num"><b style="color: #3f8fd8">66.0</b></td>
+  </tr>
+  
+  <tr>
     <td><a class="player-link" href="players/dryadea.html">
       <span class="name-badge" style="background: #f6b26b">Dryadea</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -9318,7 +9456,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/thanerin.html">
       <span class="name-badge" style="background: #d5a6bd">Thanerin</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -9371,7 +9509,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/irontoe.html">
       <span class="name-badge" style="background: #d5a6bd">Irontoe</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -9431,7 +9569,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/woodwind.html">
       <span class="name-badge" style="background: #6d9eeb">Woodwind</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -9485,7 +9623,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/balagoat.html">
       <span class="name-badge" style="background: #6d9eeb">Balagoat</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -9542,7 +9680,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/yumiia.html">
       <span class="name-badge" style="background: #efefef">Yumiia</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #3f8fd8"
@@ -9599,7 +9737,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/jonette.html">
       <span class="name-badge" style="background: #d5a6bd">Jonette</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -9654,7 +9792,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/merilinn.html">
       <span class="name-badge" style="background: #f6b26b">Merilinn</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -9709,66 +9847,9 @@ nav.site a.active { background: var(--card); color: var(--ink);
   </tr>
   
   <tr>
-    <td><a class="player-link" href="players/malfori.html">
-      <span class="name-badge" style="background: #d5a6bd">Malfori</span></a></td>
-    <td class="dim">Paladin</td>
-    
-    
-    <td class="mid"><b style="color: #9d9d9d"
-           title="Rage Winterchill — best parse 18.6 (Holy, Aug 28) · highest hps 267">18.6</b><br><span class="dim" style="font-size:10px">267</span></td>
-    
-    
-    <td class="mid"><b style="color: #3f8fd8"
-           title="Anetheron — best parse 62.0 (Holy, Aug 28) · highest hps 694">62.0</b><br><span class="dim" style="font-size:10px">694</span></td>
-    
-    
-    <td class="mid"><b style="color: #1eff00"
-           title="Kaz&#39;rogal — best parse 47.0 (Holy, Aug 28) · highest hps 338">47.0</b><br><span class="dim" style="font-size:10px">338</span></td>
-    
-    
-    <td class="mid"><b style="color: #3f8fd8"
-           title="Azgalor — best parse 74.3 (Holy, Aug 28) · highest hps 594">74.3</b><br><span class="dim" style="font-size:10px">594</span></td>
-    
-    
-    <td class="mid"><b style="color: #3f8fd8"
-           title="Archimonde — best parse 55.9 (Holy, Aug 28) · highest hps 442">55.9</b><br><span class="dim" style="font-size:10px">442</span></td>
-    
-    
-    <td class="mid"><span class="dim">·</span></td>
-    
-    
-    <td class="mid"><span class="dim">·</span></td>
-    
-    
-    <td class="mid"><span class="dim">·</span></td>
-    
-    
-    <td class="mid"><span class="dim">·</span></td>
-    
-    
-    <td class="mid"><span class="dim">·</span></td>
-    
-    
-    <td class="mid"><span class="dim">·</span></td>
-    
-    
-    <td class="mid"><span class="dim">·</span></td>
-    
-    
-    <td class="mid"><span class="dim">·</span></td>
-    
-    
-    <td class="mid"><span class="dim">·</span></td>
-    
-    <td class="num"><span title="dispelled: Hammer of Justice ×6, Silence ×5, Poison Bolt ×4, Deadly Poison VII ×2, Shadow Word: Pain ×2, Earthbind ×1, Expose Weakness ×1, Faerie Fire ×1, Flame Buffet ×1, Freezing Trap Effect ×1, Rampant Infection ×1 — 25 over 11 raids">2.3</span></td>
-    <td class="num"><span class="dim">·</span></td>
-    <td class="num"><b style="color: #3f8fd8">51.6</b></td>
-  </tr>
-  
-  <tr>
     <td><a class="player-link" href="players/jeanlouisdav.html">
       <span class="name-badge" style="background: #6d9eeb">Jeanlouisdav</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -9825,7 +9906,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/myrinna.html">
       <span class="name-badge" style="background: #6d9eeb">Myrinna</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -9880,7 +9961,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/novvu.html">
       <span class="name-badge" style="background: #efefef">Novvu</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -9937,7 +10018,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/epichealz.html">
       <span class="name-badge" style="background: #efefef">Epichealz</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -9994,7 +10075,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/neyandis.html">
       <span class="name-badge" style="background: #efefef">Neyandis</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -10057,7 +10138,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/toasterp.html">
       <span class="name-badge" style="background: #d5a6bd">Toasterp</span></a></td>
-    <td class="dim">Paladin</td>
+    <td class="dim rolecol">Paladin</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -10112,9 +10193,69 @@ nav.site a.active { background: var(--card); color: var(--ink);
   </tr>
   
   <tr>
+    <td><a class="player-link" href="players/malfori.html">
+      <span class="name-badge" style="background: #d5a6bd">Malfori</span></a></td>
+    <td class="dim rolecol">Paladin</td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Rage Winterchill — best parse 18.6 (Holy, Aug 28) · highest hps 267">18.6</b><br><span class="dim" style="font-size:10px">267</span></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Anetheron — best parse 62.0 (Holy, Aug 28) · highest hps 694">62.0</b><br><span class="dim" style="font-size:10px">694</span></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="Kaz&#39;rogal — best parse 47.0 (Holy, Aug 28) · highest hps 338">47.0</b><br><span class="dim" style="font-size:10px">338</span></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Azgalor — best parse 74.3 (Holy, Aug 28) · highest hps 594">74.3</b><br><span class="dim" style="font-size:10px">594</span></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Archimonde — best parse 55.9 (Holy, Aug 28) · highest hps 442">55.9</b><br><span class="dim" style="font-size:10px">442</span></td>
+    
+    
+    <td class="mid"><b style="color: #1eff00"
+           title="High Warlord Naj&#39;entus — best parse 39.9 (Holy, Aug 30) · highest hps 763">39.9</b><br><span class="dim" style="font-size:10px">763</span></td>
+    
+    
+    <td class="mid"><b style="color: #9d9d9d"
+           title="Supremus — best parse 1.5 (Holy, Aug 30) · highest hps 102">1.5</b><br><span class="dim" style="font-size:10px">102</span></td>
+    
+    
+    <td class="mid"><b style="color: #3f8fd8"
+           title="Shade of Akama — best parse 55.2 (Holy, Aug 30) · highest hps 619">55.2</b><br><span class="dim" style="font-size:10px">619</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    
+    <td class="mid"><span class="dim">·</span></td>
+    
+    <td class="num"><span title="dispelled: Hammer of Justice ×6, Silence ×5, Poison Bolt ×4, Deadly Poison VII ×2, Shadow Word: Pain ×2, Earthbind ×1, Expose Weakness ×1, Faerie Fire ×1, Flame Buffet ×1, Freezing Trap Effect ×1, Rampant Infection ×1 — 25 over 11 raids">2.3</span></td>
+    <td class="num"><span class="dim">·</span></td>
+    <td class="num"><b style="color: #1eff00">44.3</b></td>
+  </tr>
+  
+  <tr>
     <td><a class="player-link" href="players/bendersnetch.html">
       <span class="name-badge" style="background: #6d9eeb">Bendersnetch</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -10172,7 +10313,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/bruanp.html">
       <span class="name-badge" style="background: #efefef">Bruanp</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -10229,7 +10370,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/roarwind.html">
       <span class="name-badge" style="background: #f6b26b">Roarwind</span></a></td>
-    <td class="dim">Druid</td>
+    <td class="dim rolecol">Druid</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -10283,7 +10424,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/tunaak.html">
       <span class="name-badge" style="background: #6d9eeb">Tunaak</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -10340,7 +10481,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/hallad.html">
       <span class="name-badge" style="background: #6d9eeb">Hallad</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #1eff00"
@@ -10397,7 +10538,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/blueyheeler.html">
       <span class="name-badge" style="background: #6d9eeb">Blueyheeler</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><b style="color: #9d9d9d"
@@ -10463,7 +10604,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/glenfiddisch.html">
       <span class="name-badge" style="background: #efefef">Glenfiddisch</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -10521,7 +10662,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/xurioz.html">
       <span class="name-badge" style="background: #efefef">Xurioz</span></a></td>
-    <td class="dim">Priest</td>
+    <td class="dim rolecol">Priest</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
@@ -10576,7 +10717,7 @@ nav.site a.active { background: var(--card); color: var(--ink);
   <tr>
     <td><a class="player-link" href="players/turboshtorm.html">
       <span class="name-badge" style="background: #6d9eeb">Turboshtorm</span></a></td>
-    <td class="dim">Shaman</td>
+    <td class="dim rolecol">Shaman</td>
     
     
     <td class="mid"><span class="dim">·</span></td>
