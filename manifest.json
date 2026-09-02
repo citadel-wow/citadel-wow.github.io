@@ -394,5 +394,16 @@
   "kills": 3,
   "wipes": 12,
   "players": 28
+ },
+ "y72WdYvntcZbJKTP": {
+  "report_id": "y72WdYvntcZbJKTP",
+  "title": "Hyjal (MH in 1:35:02)",
+  "zone": "MH",
+  "date": "September 02, 2026 20:09:56",
+  "start_ms": 1788376196391,
+  "raid": 1,
+  "kills": 5,
+  "wipes": 1,
+  "players": 40
  }
 }
