@@ -416,5 +416,16 @@
   "kills": 7,
   "wipes": 6,
   "players": 30
+ },
+ "CLDz8jhfHZxbX26k": {
+  "report_id": "CLDz8jhfHZxbX26k",
+  "title": "BT Council and Illidan tries (BT in 3:10:27)",
+  "zone": "BT",
+  "date": "September 07, 2026 19:53:03",
+  "start_ms": 1788807183749,
+  "raid": 1,
+  "kills": 1,
+  "wipes": 16,
+  "players": 29
  }
 }
