@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Council &amp; Illidan · 7 September 2026 — Citadel — Raid Reports</title>
+<meta property="og:title" content="Council &amp; Illidan · 7 September 2026 — Citadel — Raid Reports">
+<meta name="theme-color" content="#c9a24b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 90 20v30c0 25-18 38-40 45C28 88 10 75 10 50V20z' fill='%23c9a24b'/%3E%3Cpath d='M50 14 82 26v24c0 20-14 30-32 36-18-6-32-16-32-36V26z' fill='%231a222c'/%3E%3Cpath d='M50 26v48M34 40h32' stroke='%23c9a24b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #10161c; --panel: #161e26; --card: #1c2630; --card-hover: #223040;
+  --line: #2b3a48; --ink: #e8edf2; --ink-dim: #8fa1b3;
+  --gold: #c9a24b; --gold-soft: #e3c680; --accent: #5d7f9d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Helvetica Neue", Arial, "Segoe UI", sans-serif;
+  background: radial-gradient(1100px 380px at 50% -80px, #223140 0%, transparent 70%), var(--bg);
+  color: var(--ink); min-height: 100vh;
+}
+header { padding: 30px 24px 14px; text-align: center; }
+h1 { font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; }
+h1 a { color: var(--ink); text-decoration: none; }
+h1 .dash { color: var(--gold); }
+.rule { width: 140px; height: 2px; margin: 14px auto 0;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+main { max-width: 1150px; margin: 0 auto; padding: 18px 24px 70px; }
+h2 { font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase;
+     color: var(--gold-soft); margin: 26px 0 12px; }
+.panel { background: var(--card); border: 1px solid var(--line);
+         border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }
+table.data { border-collapse: collapse; width: 100%; font-size: 13px; }
+table.data th { text-align: left; color: var(--ink-dim); font-weight: 600;
+  font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line);
+  white-space: nowrap; }
+table.data td { padding: 6px 8px; border-bottom: 1px solid #212d38; }
+table.data tr:hover td { background: var(--card-hover); }
+td.num, th.num,
+table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mid, th.mid,
+table.data th.mid, table.data td.mid { text-align: center; }
+.name-badge { display: inline-block; padding: 1px 8px; border-radius: 5px;
+  color: #1a222c; font-weight: 650; font-size: 12.5px; }
+a.player-link { text-decoration: none; }
+.dim { color: var(--ink-dim); }
+footer { text-align: center; color: #4d6070; font-size: 12px; padding: 26px; }
+nav.site {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 14px 0 4px;
+}
+nav.site a {
+  color: var(--ink-dim); text-decoration: none; font-size: 13px;
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 14px;
+}
+nav.site a:hover { color: var(--gold-soft); border-color: var(--gold); }
+nav.site a.active { background: var(--card); color: var(--ink);
+                    border-color: var(--gold); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+         gap: 12px; margin-bottom: 16px; }
+.tile { background: var(--card); border: 1px solid var(--line);
+        border-radius: 10px; padding: 14px 16px; text-align: center; }
+.tile .v { font-size: 24px; font-weight: 700; }
+.tile .k { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+           color: var(--ink-dim); margin-top: 4px; }
+.chart-note { font-size: 11px; color: var(--ink-dim); margin-top: 6px; }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-dim);
+          margin-bottom: 6px; }
+.legend .sw { display: inline-block; width: 9px; height: 9px;
+              border-radius: 50%; margin-right: 5px; }
+.zone-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.zone-chip { border: 1px solid var(--line); background: var(--panel);
+  padding: 8px 16px; border-radius: 10px; font-size: 14px; }
+.zone-chip b { color: var(--gold-soft); }
+.ok { color: #7fc98b; } .bad { color: #d98a8a; }
+</style>
+
+<meta name="description" content="Stabilize the Council opening, reduce avoidable deaths, and survive Illidan’s first Eye Blast. A review of all 17 boss pulls with evidence and priorities for next raid.">
+<meta name="robots" content="noindex">
+<style>
+.review { max-width: 1040px; font-size: 16px; line-height: 1.65; overflow-wrap: anywhere; }
+.review a { color: var(--gold-soft); text-underline-offset: 4px; }
+.review h2 { font-size: clamp(26px, 4vw, 36px); letter-spacing: 0; text-transform: none; margin: 6px 0; }
+.review h3 { font-size: 23px; line-height: 1.35; color: var(--gold-soft); margin: 38px 0 16px; scroll-margin-top: 20px; }
+.review p, .review ul, .review ol { margin-bottom: 18px; }
+.review ul, .review ol { padding-left: 24px; }
+.review li + li { margin-top: 10px; }
+.review-meta { color: var(--ink-dim); font-size: 14px; }
+.review-body { padding: clamp(18px, 4vw, 36px); }
+.review-toc { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 24px 0; font-size: 14px; }
+.review-table { max-width: 100%; overflow-x: auto; margin: 24px 0; border: 1px solid var(--line); border-radius: 8px; }
+.review table { border-collapse: collapse; width: 100%; min-width: 650px; font-size: 15px; }
+.review th, .review td { text-align: left; vertical-align: top; padding: 14px; border-bottom: 1px solid var(--line); }
+.review th { color: var(--gold-soft); background: var(--panel); }
+.review td:first-child { min-width: 125px; }
+.review tr:last-child td { border-bottom: 0; }
+.review :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+@media (max-width: 600px) { .review { padding: 18px 12px 50px; } .review h3 { font-size: 21px; } }
+@media print {
+  body { background: white; color: black; }
+  header, footer, .review-toc, .review-back { display: none; }
+  .review { max-width: none; padding: 0; }
+  .review-body { background: white; border: none; padding: 0; }
+  .review h2, .review h3, .review a, .review th { color: black; }
+  .review-table { overflow: visible; }
+  .review table { min-width: 0; font-size: 11px; }
+  .review tr { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="../index.html">Citadel <span class="dash">—</span> Raid Reports</a></h1>
+  <nav class="site">
+
+    <a href="../index.html">Logs</a>
+
+    <a href="../attendance.html" class="">Attendance</a>
+    <a href="../parses.html" class="">Parses</a>
+    <a href="../deaths.html" class="">Deaths</a>
+    <a href="../reviews.html" class="active">Raid Reviews</a>
+    <a href="../consumables.html" class="">Consumables</a>
+
+    <a href="../progress.html" class="">Progression</a>
+    <a href="../trends.html" class="">Trends</a>
+  </nav>
+  <div class="rule"></div>
+</header>
+
+<main class="review">
+  <p class="review-back"><a href="../reviews.html">← All raid reviews</a></p>
+  <p class="review-meta"><time datetime="2026-09-07">7 September 2026</time> · Black Temple</p>
+  <h2>Council &amp; Illidan</h2>
+  <nav class="review-toc" aria-label="Review sections">
+    <a href="#illidan">Illidan</a>
+    <a href="#council-opening">Council opening</a>
+    <a href="#council-survival">Survival</a>
+    <a href="#interrupts">Interrupts</a>
+    <a href="#pulls">Every pull</a>
+    <a href="#next-raid">Next raid</a>
+  </nav>
+  <article class="panel review-body" aria-label="Raid analysis">
+<p><strong>The biggest gains are a stable Council opening and safe movement during Illidan&#x27;s first Eye Blast.</strong> Council also needs better poison coverage, control of Veras after Vanish, and less damage taken from ground effects and Reflective Shield. These pulls point to survival and encounter control as the immediate priorities.</p>
+
+<p>Reviewed: <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k">BT Council and Illidan tries</a>, the newest log in the guild site&#x27;s archive. Council died on attempt 14 after 13 wipes; all three Illidan attempts ended in the air phase. Times below are <strong>elapsed time within the pull</strong>, and WCL fight numbers are provided to make every example easy to find.</p>
+
+<p>The archived website summary stopped midway through fight 16. This review instead uses the complete per-fight death tables for all 17 boss pulls, detailed combat events, and targeted tank-healing timelines. The tables contain 309 Council and 72 Illidan death entries. These include wipe cleanup, Divine Intervention, and some extra priest death records; they are not a count of independent mistakes. Later deaths after a tank falls are treated as consequences unless there is separate evidence of an earlier problem. The log does not record voice calls, so it cannot establish when a wipe was called or why a player made a particular movement.</p>
+
+<h3 id="illidan">1. Illidan: fix Eye Blast before changing the damage plan</h3>
+
+<div class="review-table" role="region" aria-label="1. Illidan: fix Eye Blast before changing the damage plan" tabindex="0"><table><thead><tr><th scope="col">Attempt</th><th scope="col">First deaths</th><th scope="col">What followed</th></tr></thead><tbody><tr><td><a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=31&amp;type=deaths">1 — fight 31</a></td><td>Roarwind, the Flame tank, died to Eye Blast at <strong>2:21.9</strong>. Virtuálskill followed at <strong>2:23.9</strong>.</td><td>A Flame meleed Swellery at 2:28; at 2:31 a Flame Blast hit ten players. The first Uncaged Wrath appeared at 2:32.5, after the tank death.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=32&amp;type=deaths">2 — fight 32</a></td><td>Eye Blast killed <strong>Bruand and Æturnum at 1:57.5</strong>, then <strong>Toastersha and Kianne at 1:58.5</strong>.</td><td>Two healers were lost almost simultaneously. At 2:08.3 a Flame Blast hit ten players while both Flame tanks were still alive. Another cone hit seven players at 2:17.2. Facing and raid positioning therefore still needed correction after the beam.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=33&amp;type=deaths">3 — fight 33</a></td><td>Roarwind died to Eye Blast at <strong>1:57.1</strong>.</td><td>At 2:00.6 a Flame Blast hit nine players, killing Xurioz and Badabuille. Blaze and melee deaths followed. Uncaged Wrath appeared at 2:07.9.</td></tr></tbody></table></div>
+
+<p><strong>Seven Eye Blast deaths; Eye Blast caused the first loss on all three attempts.</strong> The late enrage, melee, and fire deaths should not obscure that opening failure. Roarwind&#x27;s two lethal beam impacts were approximately 20,000 damage including overkill; topping him up alone would not have saved him.</p>
+
+<p>For next raid:</p>
+
+<ul>
+<li>Mark the two Flame tank routes and ranged/healer positions before pulling. Walk through how everyone moves for a beam.</li>
+<li>Assign one caller to announce the beam&#x27;s observed path and the required movement. Tanks move early enough to keep their Flame facing away from the raid; melee back away when the position becomes unsafe.</li>
+<li>Keep each Flame near its glaive and avoid fleeing to the room&#x27;s edge. Separate the ranged/healer groups while preserving healer reach.</li>
+<li>Give the two Flame tanks explicit healer assignments and a backup for a healer who must move or dies.</li>
+</ul>
+
+<p>These positioning requirements follow the <a href="https://www.wowhead.com/tbc/guide/illidan-stormrage-black-temple-bt-strategy-burning-crusade-classic">Illidan encounter mechanics</a>. The observed initial failure was the beam, rather than an early Uncaged Wrath.</p>
+
+<p>There is also a useful positive: <strong>all three attempts reached the air phase without a player death</strong>. Draw Soul hit only Madef in the recorded damage events, and there were no Shear debuff applications. Preserve that phase-one execution and spend the next learning attempts on surviving the first beam with both Flame tanks alive.</p>
+
+<h3 id="council-opening">2. Council: secure the opening tank assignments and healing</h3>
+
+<p>Five of the 13 Council wipes began with a tank death: Madef three times, Roarwind once, and Jonette once. Four of those first deaths happened within 20 seconds.</p>
+
+<ul>
+<li><strong>Madef, fight 8, 0:09.5:</strong> the final 3.7-second death window contained about 23.5k damage including overkill and only 4.4k healing. The healing events in that window were Prayer of Mending, Renew, Earth Shield, and Leader of the Pack; no direct cast heal landed. This is an opening healing-coverage failure to address with explicit assignments and precasting. <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=8&amp;type=deaths">Fight 8</a></li>
+<li><strong>Madef, fight 9, 0:47.7:</strong> his last effective heal landed at 0:42.4, approximately <strong>5.3 seconds before death</strong>. The two final melee swings alone dealt about 15.4k including overkill, with Judgment of Blood adding pressure. He needs continuous coverage while healers reposition. <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=9&amp;type=deaths">Fight 9</a></li>
+<li><strong>Madef, fight 11, 0:19.2:</strong> a 5.7k Judgment of Command landed between melee swings. No Spell Reflection application was recorded before this death. Pair reliable reflection timing with sustained healing; neither replaces the other. <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=11&amp;type=deaths">Fight 11</a></li>
+<li><strong>Roarwind, fight 12, 0:06.4:</strong> Dire Bear Form was removed at <strong>0:05.78</strong>, while Veras was actively attacking. The subsequent damage events show armor dropping from <strong>31,764 to 7,626</strong> before the lethal blow. This is a specific, preventable loss of mitigation. Check any shift/consumable macro used there; remain in Bear Form while receiving boss swings. The log does not reveal why the form was cancelled. <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=12&amp;type=deaths">Fight 12</a></li>
+<li><strong>Jonette, fight 29, 0:07.9:</strong> Veras was attacking her when Zerevor&#x27;s Arcane Bolt landed for approximately <strong>13.2k including overkill</strong>. Loranoa was alive and had Dampen Magic. This was a wrong-target bolt during the opening, not evidence that Jonette lacked ordinary tank healing or that Loranoa had forgotten the buff. Confirm Zerevor is securely on the mage before the group commits. <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=29&amp;type=deaths">Fight 29</a></li>
+</ul>
+
+<p>Use the same countdown, boss marks, hunter-to-tank Misdirection assignments, and named healing assignments on each pull. Confirm all four bosses are controlled before full damage begins. There are Misdirection events in the log; the action is to coordinate the existing tools, not simply add more hunters.</p>
+
+<h3 id="council-survival">3. Council: stop losing players while the pull is still recoverable</h3>
+
+<p><strong>Poison needs planned burst healing.</strong> Xurioz was the first death on fight 14 at 0:53.3 to Envenom; Kianne followed at 1:55.8 to Deadly Poison. On the eventual kill, Æturnum still died to Envenom at 0:40.6 and Swellery at 5:51.0. Assign a healer to react to Deadly Poison immediately and keep the target healthy through its final burst. Players should use an available survival consumable early and avoid adding self-damage when already threatened. Do not label this as a missed dispel based only on the poison&#x27;s name.</p>
+
+<p><strong>Repeated ground-effect ticks are costing players, not just healer mana.</strong> Xurioz died on fight 10 after Shadow Word: Death followed by two Blizzard hits. Malfori took the initial Flamestrike and two later ticks before dying on fight 9. On fight 20, Virtuálskill died after three Blizzard hits at 3:30.5, 3:32.5, and 3:34.5; Roarwind then died to Empowered Smite at 3:45.0. Losing a main interrupter made the subsequent situation harder, although the log alone does not prove every Smite could have been covered. Prioritize leaving the effect over finishing a cast or maintaining melee uptime.</p>
+
+<p><strong>Keep Veras off damage dealers after Vanish.</strong> Castratos was the first death on fight 17 at 1:03.2 to a Veras melee hit, and Swellery was first on fight 20 at 1:57.1 after two Veras swings. Fight 18 lost Prevaraa, Shcherbaque, and Tarmour to Veras before the tank deaths. Assign a return caller and pickup assistance, with the tank ready for whichever immunity buff Veras has. Exact threat errors or tank positioning cannot be determined from these death sequences alone.</p>
+
+<p><strong>Control damage into Reflective Shield.</strong> Cthulha died directly to it on fight 13 at 1:14.0 and fight 14 at 3:27.4. On the kill, two reflections of about 3.6k each were followed by a lethal Arcane Explosion at 1:19.7. Avoid uncontrolled burst into the shield; any deliberate shield damage needs coordinated healing. Keep Zerevor&#x27;s nearby area clear.</p>
+
+<p><strong>Protect the mage tank&#x27;s healer coverage.</strong> On fight 15, Loranoa was the first death at 1:55.6. Dampen Magic remained active until death. An Arcane Bolt and Arcane Explosion landed during a <strong>9.4-second interval between heals</strong>, followed by only a 1.4k heal before the lethal bolt. Swellery died to an unmitigated bolt four seconds later and other healers followed. The improvement here is keeping the mage and healer safely connected, with backup coverage during movement. <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=15&amp;type=deaths">Fight 15</a></p>
+
+<p>The poison burst, Veras return, reflection, mage isolation, and physical/magical interrupt requirements are described in the <a href="https://www.wowhead.com/tbc/guide/illidari-council-black-temple-bt-strategy-burning-crusade-classic">Council encounter guide</a>. The examples and priorities above come from this raid&#x27;s events.</p>
+
+<h3 id="interrupts">4. Council: retain the interrupt team, add dependable backup</h3>
+
+<p>Virtuálskill and Swellery did most of the interrupt work. On the successful pull they interrupted <strong>16 Circle of Healing casts between them</strong>: 11 and 5 respectively. Two casts still completed, at <strong>3:44.1 and 5:58.5</strong>. This is a concrete cleanup target even after the kill.</p>
+
+<p>Have a named physical interrupter, magical interrupter, and backup, with a clear handoff when someone moves, dies, or cannot act through an immunity. Protect Circle of Healing coverage first. Do not use raw damage rankings to criticize players assigned to this job. <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=30&amp;type=casts&amp;hostility=1">Successful Council pull</a></p>
+
+<h3 id="pulls">Pull-by-pull reference</h3>
+
+<p>These are the important preceding losses and collapse points, not an assertion that every first death made the pull unwinnable.</p>
+
+<div class="review-table" role="region" aria-label="Pull-by-pull reference" tabindex="0"><table><thead><tr><th scope="col">Council attempt / WCL fight</th><th scope="col">Result</th><th scope="col">Main evidence to review</th></tr></thead><tbody><tr><td>1 / <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=8&amp;type=deaths">8</a></td><td>Wipe, 0:40</td><td>Madef dies 0:09.5 with very little healing; Gathios then kills damage dealers.</td></tr><tr><td>2 / <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=9&amp;type=deaths">9</a></td><td>Wipe, 1:17</td><td>Madef dies 0:47.7 after a healing gap; Malfori dies 0:48.9 after repeated Flamestrike damage.</td></tr><tr><td>3 / <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=10&amp;type=deaths">10</a></td><td>Wipe, 3:01</td><td>Xurioz dies 0:41 to Blizzard; Tarmour dies to Veras at 1:48.9; Madef falls at 1:54.9 after Flamestrike, Judgment, and melee.</td></tr><tr><td>4 / <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=11&amp;type=deaths">11</a></td><td>Wipe, 1:09</td><td>Madef dies 0:19.2 to Judgment of Command plus melee; Gathios runs through the raid.</td></tr><tr><td>5 / <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=12&amp;type=deaths">12</a></td><td>Wipe, 1:03</td><td>Roarwind leaves Bear Form under attack and dies 0:06.4; Veras then attacks damage dealers.</td></tr><tr><td>6 / <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=13&amp;type=deaths">13</a></td><td>Wipe, 6:08</td><td>Shcherbaque dies to an Envenom/Flamestrike overlap at 0:51.7; Cthulha to reflection at 1:14; Malfori to Blizzard at 1:41.6. Continued attrition precedes Madef&#x27;s death at 5:37.6.</td></tr><tr><td>7 / <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=14&amp;type=deaths">14</a></td><td>Wipe, 6:05</td><td>Poison kills Xurioz and Kianne; reflection kills Cthulha; Jonette dies to consecutive Smites at 4:22.6.</td></tr><tr><td>8 / <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=15&amp;type=deaths">15</a></td><td>Wipe, 2:48</td><td>Loranoa dies first at 1:55.6 despite retaining Dampen Magic; lethal Arcane Bolts spread to the raid.</td></tr><tr><td>9 / <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=16&amp;type=deaths">16</a></td><td>Wipe, 3:25</td><td>Early lethal Arcane Explosion damage on Gahenna; subsequent ground/poison losses, including Swellery to Arcane Explosion at 1:59.5. Madef falls at 3:08.</td></tr><tr><td>10 / <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=17&amp;type=deaths">17</a></td><td>Wipe, 4:49</td><td>Veras kills Castratos at 1:03.2; Æturnum dies to poison plus Blizzard at 2:16.4; Madef&#x27;s 4:04.6 death begins the Gathios collapse.</td></tr><tr><td>11 / <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=18&amp;type=deaths">18</a></td><td>Wipe, 2:07</td><td>Gathios kills Naincapacité at 0:16.2 and Klib at 0:21.1 while Madef is alive; later Veras kills multiple damage dealers before tanks fall. Review boss control throughout.</td></tr><tr><td>12 / <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=20&amp;type=deaths">20</a></td><td>Wipe, 4:36</td><td>Veras kills Swellery at 1:57.1; Blizzard kills Virtuálskill at 3:34.5; Roarwind dies to Smites at 3:45.0. Both principal interrupters were lost before the tank.</td></tr><tr><td>13 / <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=29&amp;type=deaths">29</a></td><td>Wipe, 0:45</td><td>Zerevor bolts Jonette while she tanks Veras; she dies at 0:07.9 and Veras attacks the raid.</td></tr><tr><td>14 / <a href="https://classic.warcraftlogs.com/reports/CLDz8jhfHZxbX26k#fight=30&amp;type=deaths">30</a></td><td><strong>Kill, 6:46</strong></td><td>Four death entries: Æturnum to poison, Cthulha to reflection plus Arcane Explosion, Tarmour to Veras, Swellery to poison. All four boss tanks survive.</td></tr></tbody></table></div>
+
+<h3 id="next-raid">Make the evening smoother</h3>
+
+<p>From the first Council pull to the kill took <strong>2:18:22</strong>, including <strong>44:48 in Council combat</strong> and <strong>1:33:35 between attempts</strong>. The median gap between attempts was <strong>5:42</strong>. Those gaps include recovery, discussion, and logged trash re-clears; they cannot all be classified as avoidable delay.</p>
+
+<p>After a wipe, have one person identify the first meaningful failure, choose one correction, then start the ready check once resurrection, assignments, buffs, food, and mana are complete. Give repair/reagent checks a fixed place in the reset routine. Saving one minute across each of the 13 Council resets would create roughly 13 additional minutes for Illidan practice; that is a proposed improvement, not a measured amount of wasted time.</p>
+
+<p>For the next run, track five simple outcomes:</p>
+
+<ol>
+<li>No tank deaths in Council&#x27;s opening 30 seconds.</li>
+<li>No uncontrolled boss swings or Arcane Bolts on the wrong players.</li>
+<li>No deaths to repeated ground ticks or uncontrolled reflection damage.</li>
+<li>No completed Circle of Healing casts.</li>
+<li>Both Flame tanks and the full raid survive Illidan&#x27;s first Eye Blast without a Flame Blast hitting the raid.</li>
+</ol>
+
+<p>The Council kill already demonstrates that the group can sustain the encounter. Repeating that control and surviving Illidan&#x27;s beam should buy more progress than optimizing personal damage numbers first.</p>
+  </article>
+</main>
+
+<footer>generated with WarcraftLogs data · raidstats</footer>
+
+</body>
+</html>
