@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Illidan: from Flames to 20.5% · 8 September 2026 — Citadel — Raid Reports</title>
+<meta property="og:title" content="Illidan: from Flames to 20.5% · 8 September 2026 — Citadel — Raid Reports">
+<meta name="theme-color" content="#c9a24b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 90 20v30c0 25-18 38-40 45C28 88 10 75 10 50V20z' fill='%23c9a24b'/%3E%3Cpath d='M50 14 82 26v24c0 20-14 30-32 36-18-6-32-16-32-36V26z' fill='%231a222c'/%3E%3Cpath d='M50 26v48M34 40h32' stroke='%23c9a24b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #10161c; --panel: #161e26; --card: #1c2630; --card-hover: #223040;
+  --line: #2b3a48; --ink: #e8edf2; --ink-dim: #8fa1b3;
+  --gold: #c9a24b; --gold-soft: #e3c680; --accent: #5d7f9d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Helvetica Neue", Arial, "Segoe UI", sans-serif;
+  background: radial-gradient(1100px 380px at 50% -80px, #223140 0%, transparent 70%), var(--bg);
+  color: var(--ink); min-height: 100vh;
+}
+header { padding: 30px 24px 14px; text-align: center; }
+h1 { font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; }
+h1 a { color: var(--ink); text-decoration: none; }
+h1 .dash { color: var(--gold); }
+.rule { width: 140px; height: 2px; margin: 14px auto 0;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+main { max-width: 1150px; margin: 0 auto; padding: 18px 24px 70px; }
+h2 { font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase;
+     color: var(--gold-soft); margin: 26px 0 12px; }
+.panel { background: var(--card); border: 1px solid var(--line);
+         border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }
+table.data { border-collapse: collapse; width: 100%; font-size: 13px; }
+table.data th { text-align: left; color: var(--ink-dim); font-weight: 600;
+  font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line);
+  white-space: nowrap; }
+table.data td { padding: 6px 8px; border-bottom: 1px solid #212d38; }
+table.data tr:hover td { background: var(--card-hover); }
+td.num, th.num,
+table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mid, th.mid,
+table.data th.mid, table.data td.mid { text-align: center; }
+.name-badge { display: inline-block; padding: 1px 8px; border-radius: 5px;
+  color: #1a222c; font-weight: 650; font-size: 12.5px; }
+a.player-link { text-decoration: none; }
+.dim { color: var(--ink-dim); }
+footer { text-align: center; color: #4d6070; font-size: 12px; padding: 26px; }
+nav.site {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 14px 0 4px;
+}
+nav.site a {
+  color: var(--ink-dim); text-decoration: none; font-size: 13px;
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 14px;
+}
+nav.site a:hover { color: var(--gold-soft); border-color: var(--gold); }
+nav.site a.active { background: var(--card); color: var(--ink);
+                    border-color: var(--gold); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+         gap: 12px; margin-bottom: 16px; }
+.tile { background: var(--card); border: 1px solid var(--line);
+        border-radius: 10px; padding: 14px 16px; text-align: center; }
+.tile .v { font-size: 24px; font-weight: 700; }
+.tile .k { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+           color: var(--ink-dim); margin-top: 4px; }
+.chart-note { font-size: 11px; color: var(--ink-dim); margin-top: 6px; }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-dim);
+          margin-bottom: 6px; }
+.legend .sw { display: inline-block; width: 9px; height: 9px;
+              border-radius: 50%; margin-right: 5px; }
+.zone-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.zone-chip { border: 1px solid var(--line); background: var(--panel);
+  padding: 8px 16px; border-radius: 10px; font-size: 14px; }
+.zone-chip b { color: var(--gold-soft); }
+.ok { color: #7fc98b; } .bad { color: #d98a8a; }
+</style>
+
+<meta name="description" content="Nine wipes, three clears of the air phase, and a best pull to 20.52%. Flame control, Barrage healing, landing assignments, later-phase spacing, and the Frenzy response—with evidence from every attempt.">
+<meta name="robots" content="noindex">
+<style>
+.review { max-width: 1040px; font-size: 16px; line-height: 1.65; overflow-wrap: anywhere; }
+.review a { color: var(--gold-soft); text-underline-offset: 4px; }
+.review h2 { font-size: clamp(26px, 4vw, 36px); letter-spacing: 0; text-transform: none; margin: 6px 0; }
+.review h3 { font-size: 23px; line-height: 1.35; color: var(--gold-soft); margin: 38px 0 16px; scroll-margin-top: 20px; }
+.review p, .review ul, .review ol { margin-bottom: 18px; }
+.review ul, .review ol { padding-left: 24px; }
+.review li + li { margin-top: 10px; }
+.review-meta { color: var(--ink-dim); font-size: 14px; }
+.review-body { padding: clamp(18px, 4vw, 36px); }
+.review-toc { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 24px 0; font-size: 14px; }
+.review-table { max-width: 100%; overflow-x: auto; margin: 24px 0; border: 1px solid var(--line); border-radius: 8px; }
+.review table { border-collapse: collapse; width: 100%; min-width: 650px; font-size: 15px; }
+.review th, .review td { text-align: left; vertical-align: top; padding: 14px; border-bottom: 1px solid var(--line); }
+.review th { color: var(--gold-soft); background: var(--panel); }
+.review td:first-child { min-width: 125px; }
+.review tr:last-child td { border-bottom: 0; }
+.review :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+@media (max-width: 600px) { .review { padding: 18px 12px 50px; } .review h3 { font-size: 21px; } }
+@media print {
+  body { background: white; color: black; }
+  header, footer, .review-toc, .review-back { display: none; }
+  .review { max-width: none; padding: 0; }
+  .review-body { background: white; border: none; padding: 0; }
+  .review h2, .review h3, .review a, .review th { color: black; }
+  .review-table { overflow: visible; }
+  .review table { min-width: 0; font-size: 11px; }
+  .review tr { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="../index.html">Citadel <span class="dash">—</span> Raid Reports</a></h1>
+  <nav class="site">
+
+    <a href="../index.html">Logs</a>
+
+    <a href="../attendance.html" class="">Attendance</a>
+    <a href="../parses.html" class="">Parses</a>
+    <a href="../deaths.html" class="">Deaths</a>
+    <a href="../reviews.html" class="active">Raid Reviews</a>
+    <a href="../consumables.html" class="">Consumables</a>
+
+    <a href="../progress.html" class="">Progression</a>
+    <a href="../trends.html" class="">Trends</a>
+  </nav>
+  <div class="rule"></div>
+</header>
+
+<main class="review">
+  <p class="review-back"><a href="../reviews.html">← All raid reviews</a></p>
+  <p class="review-meta"><time datetime="2026-09-08">8 September 2026</time> · Black Temple</p>
+  <h2>Illidan: from Flames to 20.5%</h2>
+  <nav class="review-toc" aria-label="Review sections">
+    <a href="#flames">Flames</a>
+    <a href="#healing">Healing &amp; landing</a>
+    <a href="#later-phases">Later phases</a>
+    <a href="#best-pull">The best pull</a>
+    <a href="#pulls">Every pull</a>
+    <a href="#next-raid">Next raid</a>
+  </nav>
+  <article class="panel review-body" aria-label="Raid analysis">
+<p>8 September 2026 · Raid 1 · <a href="https://classic.warcraftlogs.com/reports/rwqYpRmbvyftJDBM">Warcraft Logs report</a></p>
+
+<p><strong>Nine Illidan attempts, nine wipes, three clears of the air phase, and a best result of 20.52% remaining.</strong> This is meaningful progress from September 7, when all three Illidan attempts ended during the first air phase. The next gains come from keeping people alive through the Flames, arriving at the landing with healing assignments intact, and preparing the later-phase positioning and tank cooldowns.</p>
+
+<p>The report is titled “BT / Hyjal,” but its nine boss pulls are all Illidan. There are about 40 minutes of boss combat. Attempt numbers below are chronological; Warcraft Logs skips fight 7 because it is a trash segment. All timestamps are elapsed from the relevant pull. Damage figures exclude overkill unless explicitly stated.</p>
+
+<p>This review uses the deaths from each individual pull, incoming-damage events, healing received, casts, and aura changes. The 224 death-table entries include wipe cleanup, repeat deaths after resurrection, and Spirit of Redemption bookkeeping. They are not 224 independent mistakes. The analysis below follows the first losses and the subsequent collapse; the log alone cannot establish voice calls, assignments, or why a player moved.</p>
+
+<h3 id="flames">Flames: control the facing and leave the fire</h3>
+
+<p><strong>Two early attempts lost large parts of the raid to Flame Blast while both Flame tanks were still alive.</strong> These deserve more attention than the much larger pile of melee deaths after the tanks fell.</p>
+
+<ul>
+<li><strong>Attempt 1, 2:20–2:23:</strong> Roarwind’s Flame switched to Badabuille, who died at 2:20.9. At 2:22.8, that Flame’s cone hit <strong>13 players</strong> and killed five immediately. Roarwind was still alive. Roarwind had used Growl at 2:14.7, and Badabuille continued attacking through the target change. This is strong evidence of a threat/control problem followed by a disastrous facing change; the events do not establish the exact threat values or positions. <a href="https://classic.warcraftlogs.com/reports/rwqYpRmbvyftJDBM#fight=1&amp;type=deaths">Attempt 1 deaths</a>.</li>
+<li><strong>Attempt 2, 2:35–3:12:</strong> Virtuálskill and Badabuille died to repeated Blaze ticks at 2:35.8 and 2:41.8. One Flame died at 2:50, but the surviving Flame then hit <strong>eight players</strong> with Flame Blast at 3:09.1. Caeliya and Paramedicin took lethal damage in that hit; several more players died to Fireballs within seconds. Neither Flame tank had died yet. Paramedicin’s death-table entry is delayed by Spirit of Redemption. <a href="https://classic.warcraftlogs.com/reports/rwqYpRmbvyftJDBM#fight=2&amp;type=deaths">Attempt 2 deaths</a>.</li>
+<li><strong>Attempt 4, 2:29–2:37:</strong> Roarwind accumulated Blaze, residual Demon Fire, Flame Blast, and melee damage before dying at 2:37.2. Healing was landing, including HoTs and a shield, but no direct heal landed after 2:32.8. The final seconds combined floor damage with heavy melee. His form disappeared at death, which does <strong>not</strong> establish the earlier night’s premature Bear Form cancellation. <a href="https://classic.warcraftlogs.com/reports/rwqYpRmbvyftJDBM#fight=4&amp;type=deaths">Attempt 4 deaths</a>.</li>
+</ul>
+
+<p><strong>Next raid:</strong> give each Flame tank a clear route, keep its frontal cone away from the raid throughout turns, and have melee stop attacking when threat or footing becomes unsafe. Move off Blaze promptly; do not trade a death for a few extra swings. Keep Flames near their glaives and use separated ranged groups, roughly 11 yards apart, to limit Fireball splash. These positioning constraints are described in the <a href="https://www.wowhead.com/tbc/guide/illidan-stormrage-black-temple-bt-strategy-burning-crusade-classic">Illidan encounter guide</a>.</p>
+
+<p>Eye Blast still ended two attempts: Jonette was the first death at <strong>1:58.1 on attempt 5</strong>, and Roarwind died to it at <strong>2:34.3 on attempt 9</strong>, after Kalinak had already died. Assign one beam-direction caller and rehearse the tanks’ escape routes. The five simultaneous beam deaths on attempt 6 happened after Jonette had fallen; they were additional losses, not that pull’s opening failure.</p>
+
+<h3 id="healing">Healing: Barrage needs an owner, and landing needs a handoff</h3>
+
+<p><strong>Dark Barrage repeatedly went without enough immediate healing.</strong> Its sustained single-target damage needs a named responder and backup, especially when the target is already tanking. The ability deals approximately 3,000 shadow damage per second for ten seconds. <a href="https://www.wowhead.com/tbc/guide/illidan-stormrage-black-temple-bt-strategy-burning-crusade-classic">Mechanic reference</a>.</p>
+
+<p>On <strong>attempt 6</strong>, Jonette was tanking the remaining Flame when Barrage began around 3:19. He also took Blaze and melee damage. His last health-restoring heal landed at <strong>3:18.6</strong>; a Power Word: Shield absorbed 2,412 at 3:21.8, but he died to melee moments later. The response must cover the Barrage without dropping the underlying tank assignment. <a href="https://classic.warcraftlogs.com/reports/rwqYpRmbvyftJDBM#fight=6&amp;type=deaths">Attempt 6 deaths</a>.</p>
+
+<p>On the <strong>best pull, attempt 8</strong>, Shcherbaque received no effective healing during the Barrage that killed him at <strong>3:23.3</strong>. Bruand died to a later Barrage at <strong>4:10.1</strong>; his only healing during that channel was his own 1,979 Holy Shock. The channel began just after the second Flame died. <strong>Keep the Barrage assignment active through the transition.</strong> Losing healers here makes every later mechanic harder even if the raid survives the air phase. <a href="https://classic.warcraftlogs.com/reports/rwqYpRmbvyftJDBM#fight=9&amp;type=deaths">Best-pull deaths</a>.</p>
+
+<p>On <strong>attempt 7</strong>, both Flames were dead by 4:02.6, but Madef died at <strong>4:23.8</strong>, shortly after Illidan landed. In his final eight seconds, only <strong>1,975 effective healing</strong> landed: two Regrowth ticks and one Earth Shield heal. Four melee hits in the final four seconds removed 20,589 health, with further overkill on the last. This is a clear gap in healing received; the log does not reveal whether range, movement, lost healers, or assignment confusion caused it. <a href="https://classic.warcraftlogs.com/reports/rwqYpRmbvyftJDBM#fight=8&amp;type=deaths">Attempt 7 deaths</a>.</p>
+
+<p><strong>Next raid:</strong> explicitly call “ground-tank healers back on Madef” before the landing, with a named backup if either assigned healer is dead or moving. Keep existing Barrage targets covered until their debuff ends. Tank healers should agree who can move and who is casting during Flame repositioning, rather than discovering the gap after a death.</p>
+
+<h3 id="later-phases">Later phases: spread before the damage arrives</h3>
+
+<p>The air-phase grouping must end before the raid resumes the ground fight. On <strong>attempt 3</strong>, the Agonizing Flames cast at <strong>4:38.5</strong> applied the debuff to five players together: Bruand, Klib, Magicmamba, Gahenna, and Aleksov. On <strong>attempt 8</strong>, the cast at <strong>4:48.4</strong> applied it to <strong>11 players</strong>. That creates prolonged healing pressure from a single positioning error. The later periodic ticks should not be counted as eleven new mistakes every five seconds.</p>
+
+<p><strong>Pre-spread for Agonizing Flames</strong>, whose initial hit affects players within five yards. Do this before the cast rather than waiting for the debuff warning. The encounter’s spacing requirements are covered in the <a href="https://www.wowhead.com/tbc/guide/illidan-stormrage-black-temple-bt-strategy-burning-crusade-classic">mechanic guide</a>.</p>
+
+<p>The first demon phase on <strong>attempt 3</strong> exposed a separate positioning problem. At <strong>5:36.5</strong>, the first Shadow Blast hit <strong>seven players</strong>. Klib took 2,520 after mitigation, while the other six took roughly 5,400–10,900 each. Klib was alive and receiving the intended attack: the raid was also in the blast area. Another blast dealt lethal damage to Paramedicin at 5:39.8, while Agonizing Flames and Flame Burst contributed further losses. <a href="https://classic.warcraftlogs.com/reports/rwqYpRmbvyftJDBM#fight=3&amp;type=damage-taken">Attempt 3 damage taken</a>.</p>
+
+<p>Mark Klib’s demon-tank position and clear its <strong>20-yard Shadow Blast splash radius</strong> before the transformation finishes. Give melee an explicit retreat destination that does not overlap Klib or the rest of the raid. Maintain personal spacing for Flame Burst and assign ranged players to kill Shadow Demons promptly. <a href="https://www.wowhead.com/tbc/guide/illidan-stormrage-black-temple-bt-strategy-burning-crusade-classic">Demon-phase mechanics</a>.</p>
+
+<p>Seven Consume Soul deaths followed on that attempt, but several people had already fallen. Fixing the earlier spread and splash failures preserves the players needed to handle the demons. Demon targeting still needs an assignment; the death total alone does not measure how good that assignment was.</p>
+
+<p>One additional avoidable loss on the best pull: <strong>Gahenna died to his own Shadow Word: Death at 5:29.2</strong>, less than a second after taking 3,583 from Agonizing Flames. The recoil removed his remaining 2,526 health and overkilled him by 482. Avoid that cast when a periodic tick has left insufficient health for its recoil.</p>
+
+<h3 id="best-pull">The best pull: prepare the Frenzy response</h3>
+
+<p><strong>Attempt 8 reached Maiev’s phase, then lost Madef 4.6 seconds into Frenzy.</strong> Shadow Prison marked the phase transition at 6:01.2. Earlier deaths had already reduced the raid, but this tank death was the decisive final collapse.</p>
+
+<p>Illidan gained <strong>Frenzy at 7:18.5</strong>. At 7:20.2, two melee hits removed 14,380 health. Madef used Shield Block at 7:21.5, and multiple healers were healing him. At 7:23.1, another pair of melee hits removed <strong>17,534 health, plus 863 overkill</strong>. He died immediately afterward. No Shield Wall, Last Stand, or successful Caged effect was recorded in this pull. This was not the same healing gap as attempt 7: healing was arriving, but the burst still killed him. <a href="https://classic.warcraftlogs.com/reports/rwqYpRmbvyftJDBM#fight=9&amp;type=damage-taken">Best-pull damage taken</a>.</p>
+
+<p><strong>Agree the response before reaching 30%:</strong> identify a usable Maiev trap, call the movement early, and reserve a major tank cooldown for an uncaged Frenzy. Illidan’s final-phase enrage increases damage and attack speed; Maiev’s traps can stop him during it. Shield Block remains useful, but did not provide enough protection here. <a href="https://www.wowhead.com/tbc/guide/illidan-stormrage-black-temple-bt-strategy-burning-crusade-classic">Final-phase mechanics</a>.</p>
+
+<p>Also review the boss target at <strong>6:47.4</strong>, when Klib died to Illidan’s melee while Madef was alive. Klib’s Hand of Protection had expired five seconds earlier. This warrants a threat and positioning check; it does not prove that the protection’s expiration caused the target switch. Set a clear threat check when returning to normal attacks and before protection expires.</p>
+
+<p>There are positives to retain: <strong>no Shear debuff was recorded on Madef across the nine attempts</strong>, and Draw Soul damage was confined to Madef before the tank losses. The large multi-player Draw Soul hits on attempts 7 and 8 came after those collapses. They are not evidence that routine boss facing was the main problem all night.</p>
+
+<h3 id="pulls">Every pull: what failed and what to change</h3>
+
+<p>The health column is the percentage recorded at the end of the attempt, not a guaranteed lowest health. Attempt 7 cleared both Flames despite ending above 65%; a late Draw Soul hit nine players after Madef died, so the ending percentage is a poor description of that pull’s progress.</p>
+
+<div class="review-table" role="region" aria-label="Every pull: what failed and what to change" tabindex="0"><table><thead><tr><th scope="col">Attempt / WCL fight</th><th scope="col">Duration / end HP</th><th scope="col">Opening losses and decisive failure</th><th scope="col">Next-pull adjustment</th></tr></thead><tbody><tr><td><a href="https://classic.warcraftlogs.com/reports/rwqYpRmbvyftJDBM#fight=1&amp;type=deaths">1 / fight 1</a></td><td>2:49 / 65.08%</td><td>Badabuille takes Flame melee at 2:20.9; the cone hits 13 and kills five at 2:22.8 while both tanks live.</td><td>Stabilize threat; stop damage during a target change; keep the cone away from the raid.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/rwqYpRmbvyftJDBM#fight=2&amp;type=deaths">2 / fight 2</a></td><td>4:16 / 65.20%</td><td>Blaze kills Virtuálskill and Badabuille; an eight-player cone at 3:09 is followed by Fireball deaths.</td><td>Melee leave fire; preserve safe facing and separated groups after the first Flame dies.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/rwqYpRmbvyftJDBM#fight=3&amp;type=deaths">3 / fight 3</a></td><td>6:51 / 36.82%</td><td>Three air-phase deaths; clustered Agonizing Flames, then seven players hit by the first Shadow Blast. Demon kills follow.</td><td>Land spread, clear Klib’s area before transformation, and assign demon targets.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/rwqYpRmbvyftJDBM#fight=4&amp;type=deaths">4 / fight 4</a></td><td>2:58 / 65.03%</td><td>Badabuille dies to Illidan at 0:00.9, is resurrected; Roarwind’s fire-plus-melee death at 2:37 starts the air-phase collapse.</td><td>Wait for confirmed opening threat; coordinate Flame movement with direct-heal coverage.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/rwqYpRmbvyftJDBM#fight=5&amp;type=deaths">5 / fight 5</a></td><td>2:24 / 65.18%</td><td>Jonette is the first death to Eye Blast at 1:58; the loose Flame kills the raid.</td><td>Pre-plan the beam escape route and call its direction.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/rwqYpRmbvyftJDBM#fight=6&amp;type=deaths">6 / fight 6</a></td><td>4:17 / 65.07%</td><td>Jonette dies under Barrage, Blaze, and melee at 3:21.8; five beam deaths follow at 3:33.3.</td><td>Immediate Barrage coverage on top of tank healing; keep following beam calls during recovery.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/rwqYpRmbvyftJDBM#fight=8&amp;type=deaths">7 / fight 8</a></td><td>5:14 / 71.25%</td><td>Prevaraa and Paramedicin take lethal air-phase damage; both Flames die, then Madef receives very little healing and dies at 4:23.8.</td><td>Reassign dead healers’ targets and confirm ground-tank coverage before landing.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/rwqYpRmbvyftJDBM#fight=9&amp;type=deaths">8 / fight 9</a></td><td>8:13 / 20.52%</td><td>Two Barrage deaths; eleven-player Agonizing Flames; Gahenna’s recoil death and Klib’s melee death; Madef dies 4.6 seconds into Frenzy.</td><td>Preserve the roster through Barrage, spread before casts, then execute the trap/cooldown plan.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/rwqYpRmbvyftJDBM#fight=10&amp;type=deaths">9 / fight 10</a></td><td>3:01 / 64.91%</td><td>Kalinak dies to Blaze/Flame Blast at 2:04.2; Roarwind dies to Eye Blast at 2:34.3 and the Flame runs through the raid.</td><td>Safe melee footing and a rehearsed tank escape route.</td></tr></tbody></table></div>
+
+<h3 id="next-raid">Next raid: five calls to agree before pulling</h3>
+
+<ol>
+<li><strong>Flame movement and threat:</strong> each tank names the route; one player calls beams; melee stop when the Flame turns or footing becomes unsafe.</li>
+<li><strong>Barrage target and backup healer:</strong> call the name immediately, with extra coverage for a tank target. Continue healing the channel through the landing.</li>
+<li><strong>Landing handoff:</strong> confirm Madef’s healers before the second Flame dies and replace any dead assigned healer.</li>
+<li><strong>Spread and demon positions:</strong> move out of the air-phase groups before Agonizing Flames, mark Klib’s clear area, and name the Shadow Demon damage assignments.</li>
+<li><strong>Frenzy plan:</strong> name the trap caller and reserve Madef’s major defensive response before entering Maiev’s phase.</li>
+</ol>
+
+<p>Between boss attempts, the median gap was about <strong>5:24</strong>. Keep recovery parallel: one person gives a short cause-and-fix call while resurrection, rebuffing, and reassignment happen. Judge the next run by fewer losses before the landing and successful later-phase transitions, rather than by raw death totals or damage rankings on pulls already lost.</p>
+  </article>
+</main>
+
+<footer>generated with WarcraftLogs data · raidstats</footer>
+
+</body>
+</html>
