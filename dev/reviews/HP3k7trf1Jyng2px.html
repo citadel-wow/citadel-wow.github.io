@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stop the first deaths on Archimonde · 10 September 2026 — Citadel — Raid Reports</title>
+<meta property="og:title" content="Stop the first deaths on Archimonde · 10 September 2026 — Citadel — Raid Reports">
+<meta name="theme-color" content="#c9a24b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 90 20v30c0 25-18 38-40 45C28 88 10 75 10 50V20z' fill='%23c9a24b'/%3E%3Cpath d='M50 14 82 26v24c0 20-14 30-32 36-18-6-32-16-32-36V26z' fill='%231a222c'/%3E%3Cpath d='M50 26v48M34 40h32' stroke='%23c9a24b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #10161c; --panel: #161e26; --card: #1c2630; --card-hover: #223040;
+  --line: #2b3a48; --ink: #e8edf2; --ink-dim: #8fa1b3;
+  --gold: #c9a24b; --gold-soft: #e3c680; --accent: #5d7f9d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Helvetica Neue", Arial, "Segoe UI", sans-serif;
+  background: radial-gradient(1100px 380px at 50% -80px, #223140 0%, transparent 70%), var(--bg);
+  color: var(--ink); min-height: 100vh;
+}
+header { padding: 30px 24px 14px; text-align: center; }
+h1 { font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; }
+h1 a { color: var(--ink); text-decoration: none; }
+h1 .dash { color: var(--gold); }
+.rule { width: 140px; height: 2px; margin: 14px auto 0;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+main { max-width: 1150px; margin: 0 auto; padding: 18px 24px 70px; }
+h2 { font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase;
+     color: var(--gold-soft); margin: 26px 0 12px; }
+.panel { background: var(--card); border: 1px solid var(--line);
+         border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }
+table.data { border-collapse: collapse; width: 100%; font-size: 13px; }
+table.data th { text-align: left; color: var(--ink-dim); font-weight: 600;
+  font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line);
+  white-space: nowrap; }
+table.data td { padding: 6px 8px; border-bottom: 1px solid #212d38; }
+table.data tr:hover td { background: var(--card-hover); }
+td.num, th.num,
+table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mid, th.mid,
+table.data th.mid, table.data td.mid { text-align: center; }
+.name-badge { display: inline-block; padding: 1px 8px; border-radius: 5px;
+  color: #1a222c; font-weight: 650; font-size: 12.5px; }
+a.player-link { text-decoration: none; }
+.dim { color: var(--ink-dim); }
+footer { text-align: center; color: #4d6070; font-size: 12px; padding: 26px; }
+nav.site {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 14px 0 4px;
+}
+nav.site a {
+  color: var(--ink-dim); text-decoration: none; font-size: 13px;
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 14px;
+}
+nav.site a:hover { color: var(--gold-soft); border-color: var(--gold); }
+nav.site a.active { background: var(--card); color: var(--ink);
+                    border-color: var(--gold); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+         gap: 12px; margin-bottom: 16px; }
+.tile { background: var(--card); border: 1px solid var(--line);
+        border-radius: 10px; padding: 14px 16px; text-align: center; }
+.tile .v { font-size: 24px; font-weight: 700; }
+.tile .k { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+           color: var(--ink-dim); margin-top: 4px; }
+.chart-note { font-size: 11px; color: var(--ink-dim); margin-top: 6px; }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-dim);
+          margin-bottom: 6px; }
+.legend .sw { display: inline-block; width: 9px; height: 9px;
+              border-radius: 50%; margin-right: 5px; }
+.zone-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.zone-chip { border: 1px solid var(--line); background: var(--panel);
+  padding: 8px 16px; border-radius: 10px; font-size: 14px; }
+.zone-chip b { color: var(--gold-soft); }
+.ok { color: #7fc98b; } .bad { color: #d98a8a; }
+</style>
+
+<meta name="description" content="Reanalysed September 15: the actual Archimonde death chains, delayed curse removal, Air Burst landings, Shade add-tank healing, and a Naj’entus shield-break check.">
+<meta name="robots" content="noindex">
+<style>
+.review { max-width: 1040px; font-size: 16px; line-height: 1.65; overflow-wrap: anywhere; }
+.review a { color: var(--gold-soft); text-underline-offset: 4px; }
+.review h2 { font-size: clamp(26px, 4vw, 36px); letter-spacing: 0; text-transform: none; margin: 6px 0; }
+.review h3 { font-size: 23px; line-height: 1.35; color: var(--gold-soft); margin: 38px 0 16px; scroll-margin-top: 20px; }
+.review p, .review ul, .review ol { margin-bottom: 18px; }
+.review ul, .review ol { padding-left: 24px; }
+.review li + li { margin-top: 10px; }
+.review-meta { color: var(--ink-dim); font-size: 14px; }
+.review-body { padding: clamp(18px, 4vw, 36px); }
+.review-toc { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 24px 0; font-size: 14px; }
+.review-table { max-width: 100%; overflow-x: auto; margin: 24px 0; border: 1px solid var(--line); border-radius: 8px; }
+.review table { border-collapse: collapse; width: 100%; min-width: 650px; font-size: 15px; }
+.review th, .review td { text-align: left; vertical-align: top; padding: 14px; border-bottom: 1px solid var(--line); }
+.review th { color: var(--gold-soft); background: var(--panel); }
+.review td:first-child { min-width: 125px; }
+.review tr:last-child td { border-bottom: 0; }
+.review :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+@media (max-width: 600px) { .review { padding: 18px 12px 50px; } .review h3 { font-size: 21px; } }
+@media print {
+  body { background: white; color: black; }
+  header, footer, .review-toc, .review-back { display: none; }
+  .review { max-width: none; padding: 0; }
+  .review-body { background: white; border: none; padding: 0; }
+  .review h2, .review h3, .review a, .review th { color: black; }
+  .review-table { overflow: visible; }
+  .review table { min-width: 0; font-size: 11px; }
+  .review tr { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="../index.html">Citadel <span class="dash">—</span> Raid Reports</a></h1>
+  <nav class="site">
+
+    <a href="../index.html">Logs</a>
+
+    <a href="../attendance.html" class="">Attendance</a>
+    <a href="../parses.html" class="">Parses</a>
+    <a href="../deaths.html" class="">Deaths</a>
+    <a href="../reviews.html" class="active">Raid Reviews</a>
+    <a href="../consumables.html" class="">Consumables</a>
+
+    <a href="../progress.html" class="">Progression</a>
+    <a href="../trends.html" class="">Trends</a>
+  </nav>
+  <div class="rule"></div>
+</header>
+
+<main class="review">
+  <p class="review-back"><a href="../reviews.html">← All raid reviews</a></p>
+  <p class="review-meta"><time datetime="2026-09-10">10 September 2026</time> · Hyjal &amp; Black Temple</p>
+  <h2>Stop the first deaths on Archimonde</h2>
+  <nav class="review-toc" aria-label="Review sections">
+    <a href="#archimonde">Archimonde</a>
+    <a href="#landing">Air Burst</a>
+    <a href="#shade">Shade of Akama</a>
+    <a href="#pulls">Every wipe</a>
+    <a href="#other">Other improvements</a>
+    <a href="#next-raid">Next raid</a>
+  </nav>
+  <article class="panel review-body" aria-label="Raid analysis">
+<p><strong>Eight kills and four wipes: three on Archimonde, one on Shade of Akama.</strong> The main improvements are faster curse removal and healing after Doomfire, reliable Air Burst landings, and keeping Jonette covered while he holds the Shade adds. The eventual Archimonde and Shade kills had no player deaths, so the night already contains examples of successful execution.</p>
+
+<p>Reanalysed on September 15 from <a href="https://classic.warcraftlogs.com/reports/HP3k7trf1Jyng2px" target="_blank" rel="noopener noreferrer">report HP3k7trf1Jyng2px</a>. Times below are elapsed from each pull. The night contains 120 death-table entries, including 97 on wipes. These include cleanup and repeat deaths; they are not a count of mistakes. Every wipe was checked in chronological order against damage, healing, and relevant auras. A log does not timestamp the voice call to wipe, so later deaths are described as the collapse rather than assigned an invented call time.</p>
+
+<h3 id="archimonde">Archimonde: the first two wipes began before the tank died</h3>
+
+<p><strong>First wipe — fight 42, 47.02% remaining.</strong> Roarwind was the first death at <strong>0:53.8</strong>, to Doomfire after a long overlap with Grip of the Legion. The curse was applied at <strong>0:35.6</strong> and removed by Kianne at <strong>0:51.4</strong>: almost sixteen seconds later, after seven ticks of 2,479 damage. Fear was active from 0:48.4 until the death. Roarwind&#x27;s last effective heal was his own Healing Touch at 0:46.8. This was a curse, fire, fear, and healing overlap; calling it simply a tank death misses the actionable sequence.</p>
+
+<p>Bruand then died to <strong>Falling at 1:26.6</strong>, following Air Burst at 1:20.9. Prevaraa and Trígger died to Doomfire at 1:37.5 and 1:39.2. By the time Jonette died to Soul Charge at 1:55.3 and Madef died to melee at 1:55.6, the raid was already deep into a death chain. <strong>The old review&#x27;s claim that one death&#x27;s charge took the tank omitted several earlier losses.</strong> <a href="https://classic.warcraftlogs.com/reports/HP3k7trf1Jyng2px#fight=42&amp;type=deaths" target="_blank" rel="noopener noreferrer">Fight 42 deaths</a>.</p>
+
+<p><strong>Second wipe — fight 43, 59.76% remaining.</strong> Dipstick died to Doomfire at <strong>1:05.5</strong>, followed by Klib at <strong>1:09.7</strong> and Toastersha at <strong>1:13.8</strong>. Dipstick used a healing potion at 0:58.8, but had no other healing in his final eight seconds. Klib used a healthstone, then took a 4,500 Soul Charge hit alongside the burn. Toastersha had no healing in his final eight seconds. These were players who needed help after the initial fire contact, not evidence that the tank started the wipe.</p>
+
+<p>Madef died at <strong>1:38.7 as the fifteenth death-table entry</strong>. His melee death was a consequence of a raid already losing people and healing capacity. The old statement that he was the first death on this pull is incorrect. <a href="https://classic.warcraftlogs.com/reports/HP3k7trf1Jyng2px#fight=43&amp;type=deaths" target="_blank" rel="noopener noreferrer">Fight 43 deaths</a>.</p>
+
+<p><strong>Next time:</strong> assign curse coverage by area, including a backup when the assigned player is moving or feared. Call Doomfire targets for healing until their burn ends. The lingering burn continues after leaving the fire, so repeated periodic ticks alone do not prove someone kept standing in it. Keep a safe path and fear response ready before the next Fear. Each death enables another Soul Charge, which makes preventing the first loss especially valuable. <a href="https://www.wowhead.com/tbc/guide/archimonde-hyjal-summit-strategy-burning-crusade-classic" target="_blank" rel="noopener noreferrer">Archimonde mechanics</a>.</p>
+
+<h3 id="landing">Archimonde: the third wipe includes a clear landing failure</h3>
+
+<p><strong>Third wipe — fight 44, 22.71% remaining.</strong> Toastersha died to Doomfire at <strong>2:02.2</strong>, and Nosaj died to Doomfire at <strong>2:25.3</strong>. Madef was then hit by Air Burst at <strong>2:22.4</strong> and died to <strong>19,074 falling damage at 2:28.1</strong>. Healing had continued during the flight, including several overheals just before landing. More healing would not have solved that fall. No successful slow-fall effect is recorded in the checked landing window; that establishes the failed protection, not whether the item was missing, mistimed, or failed to activate. <a href="https://classic.warcraftlogs.com/reports/HP3k7trf1Jyng2px#fight=44&amp;type=deaths" target="_blank" rel="noopener noreferrer">Fight 44 deaths</a>.</p>
+
+<p><strong>Next time:</strong> include Madef in the Tears check and landing call. Everyone needs an accessible Tears of the Goddess keybind and should use it close enough to landing that its protection remains active. Bruand&#x27;s earlier falling death shows this is a raid-wide check. Keep healers moving out of Doomfire before they finish a cast; losing Toastersha and Nosaj also reduced the raid&#x27;s recovery options on this attempt. <a href="https://www.wowhead.com/tbc/guide/archimonde-hyjal-summit-strategy-burning-crusade-classic" target="_blank" rel="noopener noreferrer">Air Burst and Tears</a>.</p>
+
+<p>The next attempt, <strong>fight 45</strong>, was a <strong>3:09 kill with no deaths</strong>. Keep the same survival priorities even when damage uptime drops during movement.</p>
+
+<h3 id="shade">Shade of Akama: add pressure exceeded the healing on Jonette</h3>
+
+<p><strong>Fight 80, 51.17% remaining.</strong> Jonette was the first death at <strong>1:04.3</strong>. His final four seconds contained damage from a rogue, an elementalist, and <strong>two separate spiritbinders</strong>. Those enemies dealt 13,894 effective damage from 1:00.0 through the death, including Debilitating Poison. The last direct heal landed at <strong>1:00.7</strong>; only a Renew tick followed before he died.</p>
+
+<p>The 305-damage Spiritbinder melee that finished him is not an explanation by itself. This was accumulated add pressure and a gap in direct healing. Afterward, rogues and other adds reached Nosaj, Swellery, and Toastersha. Moungrym also took three Rain of Fire hits at 1:05.5, 1:07.5, and 1:09.5, with the last killing him. Those later losses fit the tank-loss collapse; they should not all be presented as independent pull-ending mistakes. <a href="https://classic.warcraftlogs.com/reports/HP3k7trf1Jyng2px#fight=80&amp;type=deaths" target="_blank" rel="noopener noreferrer">Fight 80 deaths</a>.</p>
+
+<p><strong>Next time:</strong> name Jonette&#x27;s healer and backup, call when multiple waves accumulate, and control or kill excess adds before their pressure becomes unmanageable. Keep healing the add tanks when damage dealers switch to Shade. The encounter&#x27;s tanks handle the adds while Akama handles the Shade itself. <a href="https://www.wowhead.com/tbc/guide/shade-of-akama-black-temple-bt-strategy-burning-crusade-classic" target="_blank" rel="noopener noreferrer">Shade strategy</a>.</p>
+
+<p>The follow-up, <strong>fight 82</strong>, was a <strong>1:27 kill with no deaths</strong>.</p>
+
+<h3 id="pulls">Every wipe on September 10</h3>
+
+<div class="review-table" role="region" aria-label="Every wipe on September 10" tabindex="0"><table><thead><tr><th scope="col">WCL fight</th><th scope="col">Duration / end health</th><th scope="col">What began the losses</th><th scope="col">Highest-value adjustment</th></tr></thead><tbody><tr><td><a href="https://classic.warcraftlogs.com/reports/HP3k7trf1Jyng2px#fight=42&amp;type=deaths" target="_blank" rel="noopener noreferrer">42 — Archimonde</a></td><td>2:19 / 47.02%</td><td>Roarwind&#x27;s curse/fire/fear overlap at 0:53.8; Bruand&#x27;s falling death at 1:26.6; more Doomfire deaths precede the tank losses.</td><td>Faster decurse, continued burn healing, reliable Tears use.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/HP3k7trf1Jyng2px#fight=43&amp;type=deaths" target="_blank" rel="noopener noreferrer">43 — Archimonde</a></td><td>1:58 / 59.76%</td><td>Dipstick, Klib, and Toastersha die to Doomfire; Soul Charges amplify the losses long before Madef falls.</td><td>Keep burned players in healing range and covered after they leave the fire.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/HP3k7trf1Jyng2px#fight=44&amp;type=deaths" target="_blank" rel="noopener noreferrer">44 — Archimonde</a></td><td>3:09 / 22.71%</td><td>Two healer deaths to Doomfire, then Madef&#x27;s unprotected Air Burst landing.</td><td>Healer survival and a Tears/landing check that includes the main tank.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/HP3k7trf1Jyng2px#fight=80&amp;type=deaths" target="_blank" rel="noopener noreferrer">80 — Shade of Akama</a></td><td>1:58 / 51.17%</td><td>Jonette dies while multiple adds are hitting him; loose adds then reach the raid.</td><td>Add control and continuous healing on the tank holding the waves.</td></tr></tbody></table></div>
+
+<h3 id="other">Other changes that would make the clear smoother</h3>
+
+<p><strong>Naj&#x27;entus deserves a shield-break health check even though he died.</strong> At <strong>1:01.1 in fight 55</strong>, six players died simultaneously to Tidal Burst: Moungrym, Littlewhitey, Toastersha, Tunaak, Paradigmh, and Loranoa. Make the next shield break follow a raid-health confirmation. This is a useful recovery and execution improvement that a kills-only summary would hide. <a href="https://classic.warcraftlogs.com/reports/HP3k7trf1Jyng2px#fight=55&amp;type=deaths" target="_blank" rel="noopener noreferrer">Naj&#x27;entus deaths</a>.</p>
+
+<p>The eight successful pulls still contain <strong>23 death-table entries</strong>. Azgalor includes encounter-driven deaths, so these cannot all be labelled avoidable. Likewise, Roarwind&#x27;s roster-level “Tank” label does not mean he was the active tank on Archimonde: he was casting heals during the relevant windows. Review the actual assignment and incoming attacks for each boss.</p>
+
+<h3 id="next-raid">Before the next raid</h3>
+
+<ol>
+<li><strong>Archimonde decurse:</strong> name area coverage and a backup, and call any curse that survives the first response.</li>
+<li><strong>Archimonde survival:</strong> confirm Tears keybinds, fear coverage, safe movement, and continued healing on Doomfire burns.</li>
+<li><strong>Shade adds:</strong> keep Jonette&#x27;s healing assignment active through the damage switch; call accumulating waves before the tank is overwhelmed.</li>
+<li><strong>Naj&#x27;entus shields:</strong> one caller confirms raid health before the shield is broken.</li>
+</ol>
+  </article>
+</main>
+
+<footer>generated with WarcraftLogs data · raidstats</footer>
+
+</body>
+</html>

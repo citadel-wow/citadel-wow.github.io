@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Healing handoffs, Fatal Attraction &amp; Council · 14 September 2026 — Citadel — Raid Reports</title>
+<meta property="og:title" content="Healing handoffs, Fatal Attraction &amp; Council · 14 September 2026 — Citadel — Raid Reports">
+<meta name="theme-color" content="#c9a24b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 90 20v30c0 25-18 38-40 45C28 88 10 75 10 50V20z' fill='%23c9a24b'/%3E%3Cpath d='M50 14 82 26v24c0 20-14 30-32 36-18-6-32-16-32-36V26z' fill='%231a222c'/%3E%3Cpath d='M50 26v48M34 40h32' stroke='%23c9a24b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #10161c; --panel: #161e26; --card: #1c2630; --card-hover: #223040;
+  --line: #2b3a48; --ink: #e8edf2; --ink-dim: #8fa1b3;
+  --gold: #c9a24b; --gold-soft: #e3c680; --accent: #5d7f9d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Helvetica Neue", Arial, "Segoe UI", sans-serif;
+  background: radial-gradient(1100px 380px at 50% -80px, #223140 0%, transparent 70%), var(--bg);
+  color: var(--ink); min-height: 100vh;
+}
+header { padding: 30px 24px 14px; text-align: center; }
+h1 { font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; }
+h1 a { color: var(--ink); text-decoration: none; }
+h1 .dash { color: var(--gold); }
+.rule { width: 140px; height: 2px; margin: 14px auto 0;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+main { max-width: 1150px; margin: 0 auto; padding: 18px 24px 70px; }
+h2 { font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase;
+     color: var(--gold-soft); margin: 26px 0 12px; }
+.panel { background: var(--card); border: 1px solid var(--line);
+         border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }
+table.data { border-collapse: collapse; width: 100%; font-size: 13px; }
+table.data th { text-align: left; color: var(--ink-dim); font-weight: 600;
+  font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line);
+  white-space: nowrap; }
+table.data td { padding: 6px 8px; border-bottom: 1px solid #212d38; }
+table.data tr:hover td { background: var(--card-hover); }
+td.num, th.num,
+table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mid, th.mid,
+table.data th.mid, table.data td.mid { text-align: center; }
+.name-badge { display: inline-block; padding: 1px 8px; border-radius: 5px;
+  color: #1a222c; font-weight: 650; font-size: 12.5px; }
+a.player-link { text-decoration: none; }
+.dim { color: var(--ink-dim); }
+footer { text-align: center; color: #4d6070; font-size: 12px; padding: 26px; }
+nav.site {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 14px 0 4px;
+}
+nav.site a {
+  color: var(--ink-dim); text-decoration: none; font-size: 13px;
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 14px;
+}
+nav.site a:hover { color: var(--gold-soft); border-color: var(--gold); }
+nav.site a.active { background: var(--card); color: var(--ink);
+                    border-color: var(--gold); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+         gap: 12px; margin-bottom: 16px; }
+.tile { background: var(--card); border: 1px solid var(--line);
+        border-radius: 10px; padding: 14px 16px; text-align: center; }
+.tile .v { font-size: 24px; font-weight: 700; }
+.tile .k { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+           color: var(--ink-dim); margin-top: 4px; }
+.chart-note { font-size: 11px; color: var(--ink-dim); margin-top: 6px; }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-dim);
+          margin-bottom: 6px; }
+.legend .sw { display: inline-block; width: 9px; height: 9px;
+              border-radius: 50%; margin-right: 5px; }
+.zone-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.zone-chip { border: 1px solid var(--line); background: var(--panel);
+  padding: 8px 16px; border-radius: 10px; font-size: 14px; }
+.zone-chip b { color: var(--gold-soft); }
+.ok { color: #7fc98b; } .bad { color: #d98a8a; }
+</style>
+
+<meta name="description" content="Reanalysed September 15: nine substantive wipes, including the Bloodboil pull previously excluded as a reset. Verified healing gaps, Saber Lash sharing, and Council interrupts.">
+<meta name="robots" content="noindex">
+<style>
+.review { max-width: 1040px; font-size: 16px; line-height: 1.65; overflow-wrap: anywhere; }
+.review a { color: var(--gold-soft); text-underline-offset: 4px; }
+.review h2 { font-size: clamp(26px, 4vw, 36px); letter-spacing: 0; text-transform: none; margin: 6px 0; }
+.review h3 { font-size: 23px; line-height: 1.35; color: var(--gold-soft); margin: 38px 0 16px; scroll-margin-top: 20px; }
+.review p, .review ul, .review ol { margin-bottom: 18px; }
+.review ul, .review ol { padding-left: 24px; }
+.review li + li { margin-top: 10px; }
+.review-meta { color: var(--ink-dim); font-size: 14px; }
+.review-body { padding: clamp(18px, 4vw, 36px); }
+.review-toc { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 24px 0; font-size: 14px; }
+.review-table { max-width: 100%; overflow-x: auto; margin: 24px 0; border: 1px solid var(--line); border-radius: 8px; }
+.review table { border-collapse: collapse; width: 100%; min-width: 650px; font-size: 15px; }
+.review th, .review td { text-align: left; vertical-align: top; padding: 14px; border-bottom: 1px solid var(--line); }
+.review th { color: var(--gold-soft); background: var(--panel); }
+.review td:first-child { min-width: 125px; }
+.review tr:last-child td { border-bottom: 0; }
+.review :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+@media (max-width: 600px) { .review { padding: 18px 12px 50px; } .review h3 { font-size: 21px; } }
+@media print {
+  body { background: white; color: black; }
+  header, footer, .review-toc, .review-back { display: none; }
+  .review { max-width: none; padding: 0; }
+  .review-body { background: white; border: none; padding: 0; }
+  .review h2, .review h3, .review a, .review th { color: black; }
+  .review-table { overflow: visible; }
+  .review table { min-width: 0; font-size: 11px; }
+  .review tr { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="../index.html">Citadel <span class="dash">—</span> Raid Reports</a></h1>
+  <nav class="site">
+
+    <a href="../index.html">Logs</a>
+
+    <a href="../attendance.html" class="">Attendance</a>
+    <a href="../parses.html" class="">Parses</a>
+    <a href="../deaths.html" class="">Deaths</a>
+    <a href="../reviews.html" class="active">Raid Reviews</a>
+    <a href="../consumables.html" class="">Consumables</a>
+
+    <a href="../progress.html" class="">Progression</a>
+    <a href="../trends.html" class="">Trends</a>
+  </nav>
+  <div class="rule"></div>
+</header>
+
+<main class="review">
+  <p class="review-back"><a href="../reviews.html">← All raid reviews</a></p>
+  <p class="review-meta"><time datetime="2026-09-14">14 September 2026</time> · Black Temple</p>
+  <h2>Healing handoffs, Fatal Attraction &amp; Council</h2>
+  <nav class="review-toc" aria-label="Review sections">
+    <a href="#bloodboil">Bloodboil</a>
+    <a href="#mother">Mother Shahraz</a>
+    <a href="#council">Council</a>
+    <a href="#pulls">Every attempt</a>
+    <a href="#other">Successful pulls</a>
+    <a href="#next-raid">Next raid</a>
+  </nav>
+  <article class="panel review-body" aria-label="Raid analysis">
+<p><strong>Four kills, nine substantive wipes, and two short reset segments.</strong> Bloodboil reached 0.41%, Mother Shahraz 4.52%, and Council 5.68% remaining. Those near-kills had different failure sequences. The main improvements are prepared healing when a tank takes over, preserving Bloodboil and Fel Rage coverage at the same time, faster Fatal Attraction separation, and moving the Council group out of floor effects.</p>
+
+<p>Reanalysed on September 15 from <a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K" target="_blank" rel="noopener noreferrer">report 4VNhyAkFw1RtgH9K</a>. The report records eleven non-kill boss segments; two are short resets with no player death-table entries. <strong>The 3:32 Bloodboil pull remains a real attempt even though its recorded ending health is 100%.</strong> It had tank deaths and sustained combat before the reset. The night has 213 death-table entries, including cleanup, resurrection repeats, and Spirit of Redemption bookkeeping. A voice wipe call cannot be inferred exactly from a death cluster.</p>
+
+<h3 id="bloodboil">Bloodboil: cover the tank taking over before the hits land</h3>
+
+<p><strong>First wipe — fight 24, 59.90% remaining.</strong> Klib, Swellery, and Prevaraa died at <strong>0:56.4, 0:56.7, and 0:58.1</strong>, all with Bloodboil as the final damage. This happened immediately after the Fel Rage transition at 0:54.8. Klib and Swellery also took Fel Geyser damage just before their deaths. Klib had two Bloodboil stacks; Swellery and Prevaraa had one. This is an overlap of existing raid damage and the new phase, not three identical stack mistakes.</p>
+
+<p>Roarwind then died at <strong>1:01.7</strong> with <strong>13 Acidic Wound stacks</strong>. He took an 8,454 melee hit, followed half a second later by the lethal Acidic Wound tick. Madef died at 1:15.4, and the melee group then took Fel-Acid Breath losses. <strong>Keep a healer on the tank&#x27;s remaining wound damage and keep the Bloodboil groups covered when attention switches to Fel Rage.</strong> The earlier three deaths matter as well as the tank loss. <a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=24&amp;type=deaths" target="_blank" rel="noopener noreferrer">Fight 24 deaths</a>.</p>
+
+<p><strong>Second wipe — fight 25, 0.41% remaining.</strong> Madef began taking damaging melee hits at <strong>0:31.6</strong> and died at <strong>0:34.7</strong>. No healing landed during that sequence. His Acidic Wound only reached two stacks. This is evidence for a failed healing handoff when he became the target; it is not evidence that a high stack count killed him. Prepare the incoming tank&#x27;s healing and mitigation before the target changes.</p>
+
+<p>The raid continued for almost four more minutes, which is why cutting the analysis at the first tank death would discard important information. Alexzed died to boss melee at 2:02.9. Toastersha died to Fel Geyser at 2:25.9, then <strong>Trígger, Naincapacité, and Prevaraa died to Bloodboil at 2:28.6–2:31.5</strong>. All three hunters had <strong>one stack</strong>. In their final eight seconds, Trígger received only a small Leader of the Pack heal, Naincapacité received no healing, and Prevaraa received one 2,484 Flash of Light. The old claim that these were “three melee” killed by an overloaded stack rotation was wrong.</p>
+
+<p>Klib, the Fel Rage target, died at <strong>2:51.0</strong>, before the boss&#x27;s Fel Rage buff ended. Later, the raid lost several melee players and another Fel Rage target, Wizzlev, at 3:53.7. Roarwind and Jonette died at 3:58.6 and 4:01.4. The 0.41% result was reached after substantial attrition. <strong>Maintain raid healing during Fel Rage and give its target an explicit survival assignment; do not abandon the existing damage-over-time targets.</strong> <a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=25&amp;type=deaths" target="_blank" rel="noopener noreferrer">Fight 25 deaths</a>.</p>
+
+<p><strong>Third wipe — fight 26, ending health not useful for progress.</strong> Madef again died early, at <strong>0:29.3</strong>, after damaging melee hits began at 0:26.3. No heal landed during those hits; his last was a 711 Chain Heal at 0:22.2. Acidic Wound reached only three stacks. This repeats the incoming-tank coverage problem.</p>
+
+<p>Dipstick then died while he was the Fel Rage target at <strong>1:22.7</strong>. Roarwind died <strong>2.1 seconds later</strong>, while the boss&#x27;s Fel Rage buff was still active. Jonette survived until 2:20.8 before the remaining raid fell. The pull lasted 3:32 and contained 22 death-table entries; a final reset to full health does not erase these failures. <a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=26&amp;type=deaths" target="_blank" rel="noopener noreferrer">Fight 26 deaths</a>.</p>
+
+<p><strong>Assignments to agree:</strong> one healer owns the tank about to take over, another maintains remaining Acidic Wound coverage, raid healers retain their Bloodboil targets, and a named pair respond to Fel Rage. Adjust the exact allocation to the available healers. Bloodboil targets the farthest players and can stack; Fel Rage is a separate, heavy single-target survival job. <a href="https://www.wowhead.com/tbc/guide/gurtogg-bloodboil-black-temple-bt-strategy-burning-crusade-classic" target="_blank" rel="noopener noreferrer">Bloodboil mechanics</a>.</p>
+
+<h3 id="mother">Mother Shahraz: Fatal Attraction losses and tank burst are separate problems</h3>
+
+<p><strong>First wipe — fight 44, 28.89% remaining.</strong> Fatal Attraction selected Nosaj, Kianne, and Tarmour at <strong>0:30.8</strong>. Nosaj died to Sinful Beam at 0:33.5 after attraction damage; Kianne and Tarmour died to Fatal Attraction at 0:34.8. Cross-damage between the linked players was still occurring just before they died. Further attraction deaths followed at <strong>1:14.6, 1:42.8, and 2:15.8</strong>. Roarwind&#x27;s tank death at 2:25.3 came well after those losses. The initial problem was the attraction response and the damage overlap, not the first tank death. <a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=44&amp;type=deaths" target="_blank" rel="noopener noreferrer">Fight 44 deaths</a>.</p>
+
+<p><strong>Second substantive wipe — fight 46, 53.74% remaining.</strong> Madef was the first death at <strong>1:14.8</strong>, taking <strong>6,889 melee damage and then a lethal Saber Lash about 20 milliseconds later</strong>. The full Saber Lash event includes Madef, Jonette, and Roarwind; the latter two have zero-damage outcomes. The old conclusion that the soakers were absent is unsupported. The relevant problem is surviving the melee-plus-lash burst with enough health and mitigation, while keeping direct healing ready. Roarwind then died at 1:22.0 and boss melee reached the raid. <a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=46&amp;type=deaths" target="_blank" rel="noopener noreferrer">Fight 46 deaths</a>.</p>
+
+<p><strong>Third substantive wipe — fight 47, 4.52% remaining.</strong> Gahenna died to Fatal Attraction at <strong>1:02.9</strong>, Wizzlev to Vile Beam at 1:14.1, and Nosaj to Fatal Attraction at <strong>1:52.3</strong>. Gahenna&#x27;s later no-damage death-table entry is Spirit of Redemption bookkeeping, not another independent mistake.</p>
+
+<p>Madef died at <strong>2:09.5</strong>, taking <strong>7,862 melee damage followed about 20 milliseconds later by Saber Lash</strong>. Jonette appears in that lash event with a zero-damage outcome, and Roarwind takes 6,995. Again, all three tanks are represented. Madef had received Lay on Hands at 2:01.6, but that earlier recovery did not keep him safe through the later burst. Nosaj&#x27;s earlier death had already reduced healing capacity. <a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=47&amp;type=deaths" target="_blank" rel="noopener noreferrer">Fight 47 deaths</a>.</p>
+
+<p>The later Sinful Beam deaths span roughly eighteen seconds. They do not, by themselves, prove the single clumping error claimed in the old review. Their context includes lost healers, prior damage, and a tank already dead. Keep them separate from the first attraction failures and Madef&#x27;s lethal burst.</p>
+
+<p><strong>Next time:</strong> rehearse three different escape directions for Fatal Attraction, call the affected names immediately, and preserve a healer who can cover the tank if another is teleported or dies. Keep all three tanks in the agreed lash position, but plan health and defensives for the melee/lash overlap even when the share targets are present. Fatal Attraction requires separation; Saber Lash requires shared frontal coverage. <a href="https://www.wowhead.com/tbc/guide/mother-shahraz-black-temple-bt-strategy-burning-crusade-classic" target="_blank" rel="noopener noreferrer">Mother Shahraz mechanics</a>.</p>
+
+<p>The kill, <strong>fight 48</strong>, took 3:10 with only two death-table entries, both Vile Beam deaths at 2:39.6. That shows a much cleaner attraction and tank-survival result than the earlier attempts.</p>
+
+<h3 id="council">Council: movement and recovery are the main gains</h3>
+
+<p><strong>First wipe — fight 55, 69.25% remaining.</strong> Ácker died to Gathios melee at <strong>0:09.7</strong>, but the raid recovered enough to continue. The next sequence is more important: Tunaak died to Divine Wrath at <strong>1:49.3</strong>, Kianne to Blizzard at <strong>1:49.7</strong>, and Malfori to Blizzard at <strong>1:53.7</strong>. Madef then died at <strong>1:58.4</strong> after melee plus Judgment of Blood. Only a 1,977 Prayer of Mending heal restored health to him during his final eight seconds; earlier HoT ticks in that window were overhealing. Review both floor movement and who was still covering Madef after those player losses. <a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=55&amp;type=deaths" target="_blank" rel="noopener noreferrer">Fight 55 deaths</a>.</p>
+
+<p><strong>Second wipe — fight 56, 82.64% remaining.</strong> Madef was the first death at <strong>1:00.2</strong>, but “melee” hides a major contributor. He took <strong>two 4,233 Blizzard ticks at 0:57.1 and 0:59.1</strong>, between Gathios melee swings. Moungrym also remained in the Blizzard and died at 1:01.1. This is a concrete reason to move the tank and melee group promptly, not simply ask for more tank healing. <a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=56&amp;type=deaths" target="_blank" rel="noopener noreferrer">Fight 56 deaths</a>.</p>
+
+<p><strong>Third wipe — fight 57, 5.68% remaining.</strong> Attrition began much earlier than the old review&#x27;s excerpt suggested. Kianne died at <strong>0:21.6</strong> after Flamestrike and Consecration. Malfori died at <strong>0:33.4</strong> from Blizzard plus the Deadly Poison/Envenom sequence. Tarmour was killed by Veras melee at <strong>0:55.8</strong>, which warrants a pickup/target-control check rather than treating all boss melee as ordinary tank damage.</p>
+
+<p>Naincapacité died to Blizzard at <strong>1:44.8</strong>. At <strong>2:55.6</strong>, Badabuille, Alexzed, and Shcherbaque died together to Blizzard; Wizzlev and Prevaraa later died to Flamestrike at <strong>4:30.6 and 5:28.5</strong>. These losses happened well before Madef fell at <strong>7:02.0</strong>. Move as a group on the first ground-effect warning, keep an escape lane open, and stop attacks or casts to leave a damaging area. <a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=57&amp;type=deaths" target="_blank" rel="noopener noreferrer">Fight 57 deaths</a>.</p>
+
+<p>There are two additional recovery priorities. Nosaj took Deadly Poison and a 5,287 Envenom hit, then died to Divine Wrath at <strong>6:30.0</strong> with only 2,147 health remaining. Poison targets need to be healed for the finishing burst and the next mechanic. Swellery later died to two Reflective Shield hits at <strong>6:45.3–6:45.9</strong>. Damage into Malande&#x27;s shield needs restraint, especially when health is already low.</p>
+
+<p><strong>Keep the successful interrupt work.</strong> On the longest pull, all <strong>22 Circle of Healing casts were interrupted</strong>: 14 by Swellery and eight by Ivrisa. None completed. The completed heals on the first two wipes occurred after Madef died. Healing prevention was therefore not the demonstrated reason the 5.68% pull failed. Preserve that rotation, add clear coverage for Divine Wrath, and prioritise survival and Veras pickup. Malande needs both physical and magical interrupt coverage because her protections change. <a href="https://www.wowhead.com/tbc/guide/illidari-council-black-temple-bt-strategy-burning-crusade-classic" target="_blank" rel="noopener noreferrer">Council mechanics</a>.</p>
+
+<h3 id="pulls">Every non-kill segment on September 14</h3>
+
+<div class="review-table" role="region" aria-label="Every non-kill segment on September 14" tabindex="0"><table><thead><tr><th scope="col">WCL fight</th><th scope="col">Result</th><th scope="col">Main sequence and adjustment</th></tr></thead><tbody><tr><td><a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=17&amp;type=deaths" target="_blank" rel="noopener noreferrer">17 — Reliquary</a></td><td>0:38 short reset; no player deaths</td><td>Keep separate from substantive wipes; no lethal sequence to diagnose.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=24&amp;type=deaths" target="_blank" rel="noopener noreferrer">24 — Bloodboil</a></td><td>2:04 / 59.90%</td><td>Three raid deaths at the Fel Rage transition, then Roarwind with 13 wounds. Maintain existing raid and wound healing during the transition.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=25&amp;type=deaths" target="_blank" rel="noopener noreferrer">25 — Bloodboil</a></td><td>4:25 / 0.41%</td><td>Madef&#x27;s uncovered takeover, later single-stack hunter deaths, and failed Fel Rage survival. Assign simultaneous tank, raid, and rage coverage.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=26&amp;type=deaths" target="_blank" rel="noopener noreferrer">26 — Bloodboil</a></td><td>3:32 / reset to 100%</td><td>Real wipe: Madef at 0:29.3; Fel Rage target Dipstick at 1:22.7; Roarwind immediately afterward. Fix the repeated handoff and rage survival.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=44&amp;type=deaths" target="_blank" rel="noopener noreferrer">44 — Mother</a></td><td>2:51 / 28.89%</td><td>Three early attraction-group losses, followed by repeated attraction deaths. Rehearse separation and healing coverage.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=45&amp;type=deaths" target="_blank" rel="noopener noreferrer">45 — Mother</a></td><td>0:15 short reset; no player deaths</td><td>Keep separate from substantive wipes.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=46&amp;type=deaths" target="_blank" rel="noopener noreferrer">46 — Mother</a></td><td>1:47 / 53.74%</td><td>Madef dies to a melee/lash pair with all three share targets recorded. Prepare healing and defensive headroom.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=47&amp;type=deaths" target="_blank" rel="noopener noreferrer">47 — Mother</a></td><td>3:34 / 4.52%</td><td>Early attraction/healer losses, then another lethal melee/lash pair. Protect healer survival and assign a tank-healing backup.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=55&amp;type=deaths" target="_blank" rel="noopener noreferrer">55 — Council</a></td><td>2:37 / 69.25%</td><td>Early Gathios target loss; later Wrath/Blizzard deaths precede Madef&#x27;s death. Restore tank healing after losses and move out of the floor effects.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=56&amp;type=deaths" target="_blank" rel="noopener noreferrer">56 — Council</a></td><td>1:40 / 82.64%</td><td>Madef takes Blizzard between melee swings; Moungrym dies to the same area. Move the tank/melee group promptly.</td></tr><tr><td><a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=57&amp;type=deaths" target="_blank" rel="noopener noreferrer">57 — Council</a></td><td>7:36 / 5.68%</td><td>Long attrition from floor effects, poison overlaps, Veras melee, and reflected damage. Keep the successful heal-interrupt rotation and preserve players.</td></tr></tbody></table></div>
+
+<h3 id="other">Successful pulls still show useful warning signs</h3>
+
+<p><strong>Bloodboil&#x27;s kill still had four deaths</strong>, including Jonette at 2:11.9 and Madef to Acidic Wound at 2:55.9. Tank survival through the end of the fight remains worth improving even when the boss dies. <a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=27&amp;type=deaths" target="_blank" rel="noopener noreferrer">Fight 27 deaths</a>.</p>
+
+<p><strong>Reliquary&#x27;s kill had twelve death-table entries</strong>, with eight in its final twenty seconds. Preserve resources and healing for the final phase, and review the earlier losses separately. The old statement that phase two has no tank was incorrect; do not use it to drop that phase&#x27;s tank assignment. <a href="https://classic.warcraftlogs.com/reports/4VNhyAkFw1RtgH9K#fight=31&amp;type=deaths" target="_blank" rel="noopener noreferrer">Reliquary deaths</a> and <a href="https://www.wowhead.com/tbc/guide/reliquary-of-souls-black-temple-bt-strategy-burning-crusade-classic" target="_blank" rel="noopener noreferrer">encounter mechanics</a>.</p>
+
+<h3 id="next-raid">Before the next raid</h3>
+
+<ol>
+<li><strong>Bloodboil takeover:</strong> call the next tank early; their healer prepares before the boss switches.</li>
+<li><strong>Bloodboil transition:</strong> name Fel Rage responders while retaining wound and raid-debuff healing.</li>
+<li><strong>Mother:</strong> rehearse attraction escape directions and name a backup for Madef&#x27;s healer; prepare for melee/lash bursts even with correct share targets.</li>
+<li><strong>Council movement:</strong> one clear direction for the tank/melee group when Blizzard, Flamestrike, or Consecration appears.</li>
+<li><strong>Council control:</strong> keep Swellery/Ivrisa&#x27;s heal-interrupt coverage, add Wrath coverage, confirm Veras pickup, and heal poison targets through the finishing burst.</li>
+</ol>
+  </article>
+</main>
+
+<footer>generated with WarcraftLogs data · raidstats</footer>
+
+</body>
+</html>
