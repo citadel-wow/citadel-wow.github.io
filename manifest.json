@@ -486,5 +486,31 @@
   "kills": 1,
   "wipes": 1,
   "players": 25
+ },
+ "6BFJ4mcCZ2WzbYvM": {
+  "report_id": "6BFJ4mcCZ2WzbYvM",
+  "title": "BT / Hyjal (BT in 1:03:48)",
+  "zone": "BT",
+  "date": "September 21, 2026 20:00:30",
+  "start_ms": 1790017230583,
+  "raid": 1,
+  "kills": 1,
+  "wipes": 3,
+  "players": 25,
+  "combined_reports": [
+   "6BFJ4mcCZ2WzbYvM",
+   "wt94BnCmHPk8rZ3z"
+  ]
+ },
+ "wt94BnCmHPk8rZ3z": {
+  "report_id": "wt94BnCmHPk8rZ3z",
+  "title": "BT / Hyjal (BT in 0:42:17)",
+  "zone": "BT",
+  "date": "September 21, 2026 21:20:47",
+  "start_ms": 1790022047114,
+  "raid": 1,
+  "kills": 1,
+  "wipes": 3,
+  "players": 25
  }
 }
