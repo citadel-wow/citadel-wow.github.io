@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fix the tank handoffs before Council · 24 September 2026 — Citadel — Raid Reports</title>
+<meta property="og:title" content="Fix the tank handoffs before Council · 24 September 2026 — Citadel — Raid Reports">
+<meta name="theme-color" content="#c9a24b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 90 20v30c0 25-18 38-40 45C28 88 10 75 10 50V20z' fill='%23c9a24b'/%3E%3Cpath d='M50 14 82 26v24c0 20-14 30-32 36-18-6-32-16-32-36V26z' fill='%231a222c'/%3E%3Cpath d='M50 26v48M34 40h32' stroke='%23c9a24b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #10161c; --panel: #161e26; --card: #1c2630; --card-hover: #223040;
+  --line: #2b3a48; --ink: #e8edf2; --ink-dim: #8fa1b3;
+  --gold: #c9a24b; --gold-soft: #e3c680; --accent: #5d7f9d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Helvetica Neue", Arial, "Segoe UI", sans-serif;
+  background: radial-gradient(1100px 380px at 50% -80px, #223140 0%, transparent 70%), var(--bg);
+  color: var(--ink); min-height: 100vh;
+}
+header { padding: 30px 24px 14px; text-align: center; }
+h1 { font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; }
+h1 a { color: var(--ink); text-decoration: none; }
+h1 .dash { color: var(--gold); }
+.rule { width: 140px; height: 2px; margin: 14px auto 0;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+main { max-width: 1150px; margin: 0 auto; padding: 18px 24px 70px; }
+h2 { font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase;
+     color: var(--gold-soft); margin: 26px 0 12px; }
+.panel { background: var(--card); border: 1px solid var(--line);
+         border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }
+table.data { border-collapse: collapse; width: 100%; font-size: 13px; }
+table.data th { text-align: left; color: var(--ink-dim); font-weight: 600;
+  font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line);
+  white-space: nowrap; }
+table.data td { padding: 6px 8px; border-bottom: 1px solid #212d38; }
+table.data tr:hover td { background: var(--card-hover); }
+td.num, th.num,
+table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mid, th.mid,
+table.data th.mid, table.data td.mid { text-align: center; }
+.name-badge { display: inline-block; padding: 1px 8px; border-radius: 5px;
+  color: #1a222c; font-weight: 650; font-size: 12.5px; }
+a.player-link { text-decoration: none; }
+.dim { color: var(--ink-dim); }
+footer { text-align: center; color: #4d6070; font-size: 12px; padding: 26px; }
+nav.site {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 14px 0 4px;
+}
+nav.site a {
+  color: var(--ink-dim); text-decoration: none; font-size: 13px;
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 14px;
+}
+nav.site a:hover { color: var(--gold-soft); border-color: var(--gold); }
+nav.site a.active { background: var(--card); color: var(--ink);
+                    border-color: var(--gold); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+         gap: 12px; margin-bottom: 16px; }
+.tile { background: var(--card); border: 1px solid var(--line);
+        border-radius: 10px; padding: 14px 16px; text-align: center; }
+.tile .v { font-size: 24px; font-weight: 700; }
+.tile .k { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+           color: var(--ink-dim); margin-top: 4px; }
+.chart-note { font-size: 11px; color: var(--ink-dim); margin-top: 6px; }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-dim);
+          margin-bottom: 6px; }
+.legend .sw { display: inline-block; width: 9px; height: 9px;
+              border-radius: 50%; margin-right: 5px; }
+.zone-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.zone-chip { border: 1px solid var(--line); background: var(--panel);
+  padding: 8px 16px; border-radius: 10px; font-size: 14px; }
+.zone-chip b { color: var(--gold-soft); }
+.ok { color: #7fc98b; } .bad { color: #d98a8a; }
+</style>
+
+<meta name="description" content="Five wipes: a Bloodboil swap exposed the raid to Arcing Smash, while four Council attempts repeatedly lost Gathios after Madef died. Includes the floor-damage and Veras attrition that weakened the longer pulls.">
+<meta name="robots" content="noindex">
+<style>
+.review { max-width: 1040px; font-size: 16px; line-height: 1.65; overflow-wrap: anywhere; }
+.review a { color: var(--gold-soft); text-underline-offset: 4px; }
+.review h2 { font-size: clamp(26px, 4vw, 36px); letter-spacing: 0; text-transform: none; margin: 6px 0; }
+.review h3 { font-size: 23px; line-height: 1.35; color: var(--gold-soft); margin: 38px 0 16px; scroll-margin-top: 20px; }
+.review p, .review ul, .review ol { margin-bottom: 18px; }
+.review ul, .review ol { padding-left: 24px; }
+.review li + li { margin-top: 10px; }
+.review-meta { color: var(--ink-dim); font-size: 14px; }
+.review-body { padding: clamp(18px, 4vw, 36px); }
+.review-toc { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 24px 0; font-size: 14px; }
+.review-table { max-width: 100%; overflow-x: auto; margin: 24px 0; border: 1px solid var(--line); border-radius: 8px; }
+.review table { border-collapse: collapse; width: 100%; min-width: 650px; font-size: 15px; }
+.review th, .review td { text-align: left; vertical-align: top; padding: 14px; border-bottom: 1px solid var(--line); }
+.review th { color: var(--gold-soft); background: var(--panel); }
+.review td:first-child { min-width: 125px; }
+.review tr:last-child td { border-bottom: 0; }
+.review :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+@media (max-width: 600px) { .review { padding: 18px 12px 50px; } .review h3 { font-size: 21px; } }
+@media print {
+  body { background: white; color: black; }
+  header, footer, .review-toc, .review-back { display: none; }
+  .review { max-width: none; padding: 0; }
+  .review-body { background: white; border: none; padding: 0; }
+  .review h2, .review h3, .review a, .review th { color: black; }
+  .review-table { overflow: visible; }
+  .review table { min-width: 0; font-size: 11px; }
+  .review tr { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="../index.html">Citadel <span class="dash">—</span> Raid Reports</a></h1>
+  <nav class="site">
+
+    <a href="../index.html">Logs</a>
+
+    <a href="../attendance.html" class="">Attendance</a>
+    <a href="../parses.html" class="">Parses</a>
+    <a href="../deaths.html" class="">Deaths</a>
+    <a href="../reviews.html" class="active">Raid Reviews</a>
+    <a href="../consumables.html" class="">Consumables</a>
+
+    <a href="../progress.html" class="">Progression</a>
+    <a href="../trends.html" class="">Trends</a>
+  </nav>
+  <div class="rule"></div>
+</header>
+
+<main class="review">
+  <p class="review-back"><a href="../reviews.html">← All raid reviews</a></p>
+  <p class="review-meta"><time datetime="2026-09-24">24 September 2026</time> · Black Temple</p>
+  <h2>Fix the tank handoffs before Council</h2>
+  <nav class="review-toc" aria-label="Review sections">
+    <a href="#bloodboil">Bloodboil</a>
+    <a href="#council-handoff">Gathios handoff</a>
+    <a href="#council-attrition">Council attrition</a>
+    <a href="#pulls">Every wipe</a>
+    <a href="#next-raid">Next raid</a>
+  </nav>
+  <article class="panel review-body" aria-label="Raid analysis">
+<p>24 September 2026 · Raid 1 · <a href="https://classic.warcraftlogs.com/reports/VgrCYZXWbTLadPAn" target="_blank" rel="noopener noreferrer">Warcraft Logs report</a></p>
+
+<p><strong>Seven kills and five wipes: one on Gurtogg Bloodboil and four on the Illidari Council.</strong> Both bosses exposed the same operational weakness: after the active tank lost control or died, the next tank did not have the boss immediately. On Bloodboil that turned a frontal attack into five instant deaths. On Council it left Gathios free to walk through the raid after Madef died.</p>
+
+<p>This review reads the deaths chronologically and checks damage, healing, casts, interrupts, buffs and debuffs around the decisive events. The 100 death-table rows across the five wipes include cleanup and repeat deaths after resurrection; they are not 100 independent mistakes. The log cannot reveal voice calls or healer assignments, so the conclusions below stay with observable events.</p>
+
+<h3 id="bloodboil">Bloodboil: the swap failed, then the frontal hit the raid</h3>
+
+<p><strong>Fight 50, 1:45, 71.27% remaining.</strong> Roarwind received Bewildering Strike at <strong>0:48.544</strong>. The next recorded boss melee targeted Naincapacité at <strong>0:51.769</strong>; no Taunt or Growl appears between those events. Twenty-four milliseconds later, Arcing Smash hit six players. Naincapacité, Dipstick, Lurkmisses, Loranoa and Swellery died immediately. Bruand survived the Smash but died to the next Bloodboil tick at 0:52.188. <a href="https://classic.warcraftlogs.com/reports/VgrCYZXWbTLadPAn#fight=50&amp;type=deaths" target="_blank" rel="noopener noreferrer">Fight 50 deaths</a>.</p>
+
+<p>Madef acquired the boss by 0:55.011, but the recovery was already six players down. He took a 10,323 melee hit, received one 911 Earth Shield heal, and died to a second melee hit 0.835 seconds later. A 2,033 Prayer of Mending at 0:53.600 was the only other effective healing on him in the preceding two seconds.</p>
+
+<p><strong>Next pull:</strong> call each Bewildering Strike and confirm the next tank before damage resumes. The backup must already be in position and high on threat; the raid must remain outside the tank lane even during a target change. If the boss faces a non-tank, stop damage and move away from the frontal until control is restored. Healers should switch to the incoming tank before the first swing, not after it.</p>
+
+<h3 id="council-handoff">Council: Gathios repeatedly had no second tank</h3>
+
+<p>Madef tanked Gathios through the meaningful part of all four attempts. Once Madef died, Gathios had no prompt replacement:</p>
+
+<ul>
+<li><strong>Fight 74:</strong> Madef was the first death at 0:28. Gathios then killed 15 other raiders. Roarwind died to Gathios at 0:59 without establishing a surviving pickup.</li>
+<li><strong>Fight 75:</strong> Madef died at 7:07. Gathios killed five raiders over the next 21 seconds before Roarwind finally held him for 23 seconds. This was the only successful backup pickup.</li>
+<li><strong>Fight 77:</strong> Madef died at 0:09. Jonette was killed by Gathios at 0:34; the boss never settled on a surviving tank.</li>
+<li><strong>Fight 78:</strong> Madef died at 3:03. Gathios killed five players before the pull ended 19 seconds later, with no replacement tank recorded.</li>
+</ul>
+
+<p><strong>The assignment needs a real contingency.</strong> Name one backup for Gathios who maintains enough threat and stands close enough to take him immediately. Give that player a dedicated healer and a clear call when Madef is in danger. A tank whom Gathios kills on contact has not completed the handoff.</p>
+
+<p>Madef’s deaths also show two avoidable overlaps. On fight 77, nine seconds into the pull, a 7,344 Gathios melee, 720 Seal of Blood and 1,987 Flamestrike damage landed in the same sequence; only one 724 Earth Shield heal restored health. On fight 75, Madef’s final window included two 4,344 Blizzard ticks followed by Gathios melee. <strong>Keep Zerevor’s Blizzard and Flamestrike away from the Gathios position.</strong> Fight 78 ended with two Gathios swings around a 2,010 Consecration tick, with 4,678 healing in the death window; that tank needed stronger direct coverage before the second swing.</p>
+
+<h3 id="council-attrition">Council: reduce the losses before the tank falls</h3>
+
+<p>The longest pull reached <strong>33.19%</strong>, but it lost 13 players before Madef died: seven to Veras, five to Zerevor, and one opening death to Gathios. The sequence included Envenom deaths at 0:56, 1:01, 3:09, 6:42 and 6:47; Flamestrike deaths at 1:07 and 2:45; and Blizzard deaths at 1:53, 6:16 and 6:24. This was prolonged attrition, not a single final healing failure.</p>
+
+<p>Fight 78 showed the same pattern on a shorter clock. Tunaak died to Blizzard at 0:20 and Patbutchers to Flamestrike at 0:27. After a resurrection, Tunaak died again to Envenom at 2:02; Nosaj followed to Envenom at 2:12, then Leeane to Blizzard at 2:50. Those five losses happened before Madef’s death at 3:03.</p>
+
+<p><strong>Movement and poison response are the largest gains.</strong> Treat Blizzard and Flamestrike as immediate move calls, including for the Gathios group. Give Veras targets fast direct healing through Deadly Poison and Envenom rather than relying on raid healing. The interrupt work should be preserved: fight 78 recorded 20 interrupts and no completed Circle of Healing cast. On fight 75, 18 Circle of Healing casts were interrupted and three completed; missed Council healing was not the main cause of the 13 earlier deaths.</p>
+
+<h3 id="pulls">Every wipe</h3>
+
+<div class="review-table" role="region" aria-label="Every wipe on September 24" tabindex="0"><table><thead><tr><th scope="col">WCL fight</th><th scope="col">Result</th><th scope="col">What broke</th><th scope="col">Adjustment</th></tr></thead><tbody>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/VgrCYZXWbTLadPAn#fight=50&amp;type=deaths" target="_blank" rel="noopener noreferrer">50 — Bloodboil</a></td><td>1:45 / 71.27%</td><td>After Bewildering Strike, the boss targeted a hunter and Arcing Smash hit six players, killing five immediately. Madef’s late pickup then died in two swings.</td><td>Pre-position the next tank, call the swap, protect the tank lane, and move healing before the first swing.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/VgrCYZXWbTLadPAn#fight=74&amp;type=deaths" target="_blank" rel="noopener noreferrer">74 — Council</a></td><td>1:35 / 94.77%</td><td>Madef was first down at 0:28; Gathios remained loose and killed 15 more players.</td><td>Immediate backup on Gathios with a named healer.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/VgrCYZXWbTLadPAn#fight=75&amp;type=deaths" target="_blank" rel="noopener noreferrer">75 — Council</a></td><td>7:55 / 33.19%</td><td>Thirteen deaths to Veras/Zerevor attrition before Madef died; Gathios then ran loose for 21 seconds.</td><td>Faster floor movement and poison healing; preserve interrupts; execute the backup handoff immediately.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/VgrCYZXWbTLadPAn#fight=77&amp;type=deaths" target="_blank" rel="noopener noreferrer">77 — Council</a></td><td>0:48 / 98.11%</td><td>Madef died at 0:09 to Gathios damage plus Flamestrike with only 724 healing; no surviving pickup followed.</td><td>Separate the tank positions before pulling and have the backup ready from the opening second.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/VgrCYZXWbTLadPAn#fight=78&amp;type=deaths" target="_blank" rel="noopener noreferrer">78 — Council</a></td><td>3:22 / 57.93%</td><td>Five Blizzard, Flamestrike and Envenom deaths preceded Madef’s melee/Consecration death; Gathios then killed five more.</td><td>Clean movement and Veras coverage first, then instant backup and stronger direct tank healing.</td></tr>
+</tbody></table></div>
+
+<h3 id="next-raid">Next raid: four calls to agree before pulling</h3>
+
+<ol>
+<li><strong>Bloodboil swap:</strong> call Bewildering Strike, confirm the incoming tank, and stop damage if the boss turns. Nobody stands in the tank-facing lane.</li>
+<li><strong>Gathios backup:</strong> name the replacement tank and healer. The backup maintains threat and takes Gathios immediately if Madef dies.</li>
+<li><strong>Zerevor placement:</strong> keep Blizzard and Flamestrike away from Madef and move on the first visual or call.</li>
+<li><strong>Veras response:</strong> assign fast direct healing for poison targets while keeping the successful Malande interrupt rotation.</li>
+</ol>
+
+<p>The clearest sign of improvement is operational: no boss facing the raid during a Bloodboil swap, no Zerevor floor effect on the Gathios tank, and Gathios on a living backup within seconds of Madef’s loss. Those changes preserve enough players for the existing interrupt work and boss damage to matter.</p>
+  </article>
+</main>
+
+<footer>generated with WarcraftLogs data · raidstats</footer>
+
+</body>
+</html>
