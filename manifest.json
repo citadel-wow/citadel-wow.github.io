@@ -523,5 +523,16 @@
   "kills": 5,
   "wipes": 2,
   "players": 25
+ },
+ "VgrCYZXWbTLadPAn": {
+  "report_id": "VgrCYZXWbTLadPAn",
+  "title": "BT / Hyjal (BT in 3:02:26)",
+  "zone": "BT",
+  "date": "September 24, 2026 19:55:09",
+  "start_ms": 1790276109799,
+  "raid": 1,
+  "kills": 7,
+  "wipes": 5,
+  "players": 25
  }
 }
