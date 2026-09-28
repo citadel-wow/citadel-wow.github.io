@@ -534,5 +534,16 @@
   "kills": 7,
   "wipes": 5,
   "players": 25
+ },
+ "6kwCb1rT9aycRdAp": {
+  "report_id": "6kwCb1rT9aycRdAp",
+  "title": "BT+MH (BT in 1:17:34, MH in 1:49:01)",
+  "zone": "BT / MH",
+  "date": "September 28, 2026 20:03:52",
+  "start_ms": 1790622232812,
+  "raid": 1,
+  "kills": 7,
+  "wipes": 9,
+  "players": 29
  }
 }
