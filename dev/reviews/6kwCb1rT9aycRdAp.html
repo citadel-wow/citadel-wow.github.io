@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cleaner pickups, safer Flames and reliable landings · 28 September 2026 — Citadel — Raid Reports</title>
+<meta property="og:title" content="Cleaner pickups, safer Flames and reliable landings · 28 September 2026 — Citadel — Raid Reports">
+<meta name="theme-color" content="#c9a24b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 90 20v30c0 25-18 38-40 45C28 88 10 75 10 50V20z' fill='%23c9a24b'/%3E%3Cpath d='M50 14 82 26v24c0 20-14 30-32 36-18-6-32-16-32-36V26z' fill='%231a222c'/%3E%3Cpath d='M50 26v48M34 40h32' stroke='%23c9a24b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #10161c; --panel: #161e26; --card: #1c2630; --card-hover: #223040;
+  --line: #2b3a48; --ink: #e8edf2; --ink-dim: #8fa1b3;
+  --gold: #c9a24b; --gold-soft: #e3c680; --accent: #5d7f9d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Helvetica Neue", Arial, "Segoe UI", sans-serif;
+  background: radial-gradient(1100px 380px at 50% -80px, #223140 0%, transparent 70%), var(--bg);
+  color: var(--ink); min-height: 100vh;
+}
+header { padding: 30px 24px 14px; text-align: center; }
+h1 { font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; }
+h1 a { color: var(--ink); text-decoration: none; }
+h1 .dash { color: var(--gold); }
+.rule { width: 140px; height: 2px; margin: 14px auto 0;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+main { max-width: 1150px; margin: 0 auto; padding: 18px 24px 70px; }
+h2 { font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase;
+     color: var(--gold-soft); margin: 26px 0 12px; }
+.panel { background: var(--card); border: 1px solid var(--line);
+         border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }
+table.data { border-collapse: collapse; width: 100%; font-size: 13px; }
+table.data th { text-align: left; color: var(--ink-dim); font-weight: 600;
+  font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line);
+  white-space: nowrap; }
+table.data td { padding: 6px 8px; border-bottom: 1px solid #212d38; }
+table.data tr:hover td { background: var(--card-hover); }
+td.num, th.num,
+table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mid, th.mid,
+table.data th.mid, table.data td.mid { text-align: center; }
+.name-badge { display: inline-block; padding: 1px 8px; border-radius: 5px;
+  color: #1a222c; font-weight: 650; font-size: 12.5px; }
+a.player-link { text-decoration: none; }
+.dim { color: var(--ink-dim); }
+footer { text-align: center; color: #4d6070; font-size: 12px; padding: 26px; }
+nav.site {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 14px 0 4px;
+}
+nav.site a {
+  color: var(--ink-dim); text-decoration: none; font-size: 13px;
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 14px;
+}
+nav.site a:hover { color: var(--gold-soft); border-color: var(--gold); }
+nav.site a.active { background: var(--card); color: var(--ink);
+                    border-color: var(--gold); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+         gap: 12px; margin-bottom: 16px; }
+.tile { background: var(--card); border: 1px solid var(--line);
+        border-radius: 10px; padding: 14px 16px; text-align: center; }
+.tile .v { font-size: 24px; font-weight: 700; }
+.tile .k { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+           color: var(--ink-dim); margin-top: 4px; }
+.chart-note { font-size: 11px; color: var(--ink-dim); margin-top: 6px; }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-dim);
+          margin-bottom: 6px; }
+.legend .sw { display: inline-block; width: 9px; height: 9px;
+              border-radius: 50%; margin-right: 5px; }
+.zone-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.zone-chip { border: 1px solid var(--line); background: var(--panel);
+  padding: 8px 16px; border-radius: 10px; font-size: 14px; }
+.zone-chip b { color: var(--gold-soft); }
+.ok { color: #7fc98b; } .bad { color: #d98a8a; }
+</style>
+
+<meta name="description" content="Nine wipes before seven kills: Council opening control, Illidan Flame positioning and late-phase survival, and Archimonde Doomfire and Air Burst landings. Evidence and practical changes for every wipe.">
+<meta name="robots" content="noindex">
+<style>
+.review { max-width: 1040px; font-size: 16px; line-height: 1.65; overflow-wrap: anywhere; }
+.review a { color: var(--gold-soft); text-underline-offset: 4px; }
+.review h2 { font-size: clamp(26px, 4vw, 36px); letter-spacing: 0; text-transform: none; margin: 6px 0; }
+.review h3 { font-size: 23px; line-height: 1.35; color: var(--gold-soft); margin: 38px 0 16px; scroll-margin-top: 20px; }
+.review p, .review ul, .review ol { margin-bottom: 18px; }
+.review ul, .review ol { padding-left: 24px; }
+.review li + li { margin-top: 10px; }
+.review-meta { color: var(--ink-dim); font-size: 14px; }
+.review-body { padding: clamp(18px, 4vw, 36px); }
+.review-toc { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 24px 0; font-size: 14px; }
+.review-table { max-width: 100%; overflow-x: auto; margin: 24px 0; border: 1px solid var(--line); border-radius: 8px; }
+.review table { border-collapse: collapse; width: 100%; min-width: 650px; font-size: 15px; }
+.review th, .review td { text-align: left; vertical-align: top; padding: 14px; border-bottom: 1px solid var(--line); }
+.review th { color: var(--gold-soft); background: var(--panel); }
+.review td:first-child { min-width: 125px; }
+.review tr:last-child td { border-bottom: 0; }
+.review :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+@media (max-width: 600px) { .review { padding: 18px 12px 50px; } .review h3 { font-size: 21px; } }
+@media print {
+  body { background: white; color: black; }
+  header, footer, .review-toc, .review-back { display: none; }
+  .review { max-width: none; padding: 0; }
+  .review-body { background: white; border: none; padding: 0; }
+  .review h2, .review h3, .review a, .review th { color: black; }
+  .review-table { overflow: visible; }
+  .review table { min-width: 0; font-size: 11px; }
+  .review tr { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="../index.html">Citadel <span class="dash">—</span> Raid Reports</a></h1>
+  <nav class="site">
+
+    <a href="../index.html">Logs</a>
+
+    <a href="../attendance.html" class="">Attendance</a>
+    <a href="../parses.html" class="">Parses</a>
+    <a href="../deaths.html" class="">Deaths</a>
+    <a href="../reviews.html" class="active">Raid Reviews</a>
+    <a href="../consumables.html" class="">Consumables</a>
+
+    <a href="../progress.html" class="">Progression</a>
+    <a href="../trends.html" class="">Trends</a>
+  </nav>
+  <div class="rule"></div>
+</header>
+
+<main class="review">
+  <p class="review-back"><a href="../reviews.html">← All raid reviews</a></p>
+  <p class="review-meta"><time datetime="2026-09-28">28 September 2026</time> · Black Temple &amp; Hyjal</p>
+  <h2>Cleaner pickups, safer Flames and reliable landings</h2>
+  <nav class="review-toc" aria-label="Review sections">
+    <a href="#council">Council</a>
+    <a href="#illidan-air">Illidan air phase</a>
+    <a href="#illidan-late">Illidan late phases</a>
+    <a href="#archimonde">Archimonde</a>
+    <a href="#pulls">Every wipe</a>
+    <a href="#next-raid">Next raid</a>
+  </nav>
+  <article class="panel review-body" aria-label="Raid analysis">
+<p>28 September 2026 · Raid 1 · <a href="https://classic.warcraftlogs.com/reports/6kwCb1rT9aycRdAp">Warcraft Logs report</a></p>
+<p><strong>Seven kills, nine wipes, and an eventual kill of every boss attempted.</strong> Council needed one recovery pull; Illidan and Archimonde each took four wipes before the kill. The main opportunities are cleaner boss pickups, safer movement, and explicit healing for dangerous debuffs and tank burst windows.</p>
+<p>This review checks each wipe’s chronological deaths against damage, healing, casts and aura events. Times below are relative to the pull. Later cleanup and deaths after resurrection are not separate causes of a wipe. The log shows damage and target changes; it cannot establish voice calls, intended assignments or the exact movement mistake without replay evidence.</p>
+
+<h3 id="council">Council: secure Zerevor before the raid commits</h3>
+<p><strong>Fight 5 ended after 47 seconds; Madef died at 0:08.5.</strong> Zerevor first cast Arcane Bolt at Jonette, then at Madef. At 0:08.453, Madef took 6,919 Gathios melee damage; 50 milliseconds later, Arcane Bolt dealt 8,882 effective damage with another 3,404 overkill. His death-table window contains only 2,834 healing over 2.064 seconds. Gathios then killed Moungrym at 0:10.5, and the pull unravelled.</p>
+<p>Loranoa’s first recorded Spellsteal was at 0:08.714, after Madef had died; later Arcane Bolts targeted Loranoa. <strong>Confirm the mage tank has Zerevor and the required protection before committing damage and settling the other tanks.</strong> More healing alone is an unreliable answer to two bosses hitting the same tank. Council died on the next pull, fight 6.</p>
+
+<h3 id="illidan-air">Illidan: protect the raid from Flames and Blaze</h3>
+<p><strong>Fight 7:</strong> a Flame hit Snney at 3:03.1, then killed Roarwind with a 17,334 melee hit at 3:05.3. At 3:06.5, Flame Blast killed nine players almost simultaneously. This was loss of Flame control and raid exposure to the frontal. The observed target sequence matters; the available events do not prove a particular tether or enrage trigger. Keep both Flame targets controlled, their fronts clear of the raid, and call immediately if either starts hitting a healer.</p>
+<p><strong>Fight 10:</strong> Bruand, Swellery, Kianne, Dipstick and Klib all took repeated Blaze ticks from 2:00.3 and died together at 2:02.3. Initial ticks were up to 5,000 per second. Roarwind died at 2:09.3 after Flame melee, Fireball, Flame Blast and Demon Fire overlapped. <strong>Move the whole affected group immediately when the ground becomes unsafe; do not wait for healing to cover consecutive ticks.</strong> Flame tanks need a clear route that avoids Demon Fire while keeping the frontal away from the raid.</p>
+<p><strong>Fight 8 also lost Alexzed to Dark Barrage at 3:03.2.</strong> The debuff began at 2:58.2; damage ticked every second, with a shield and Prayer of Mending providing some protection but no sustained recovery. Assign a healer to react directly to the Barrage target and maintain coverage for its duration.</p>
+
+<h3 id="illidan-late">Illidan: a 3.66% pull lost too many players on the way</h3>
+<p><strong>Fight 8 reached 3.66% remaining.</strong> Kalinak died to melee immediately on the pull. After the air phase, Tooshay died at 4:47.5 with Agonizing Flames and Parasitic Shadowfiend damage overlapping. Cthulha, Prevaraa, Swellery and Kianne then died to Agonizing Flames between 5:07.5 and 5:15.2. At 4:42.4, eight players took the same Agonizing Flames tick; several later ticks reached 4,800 before resistance. Spread for applications and explicitly track everyone carrying the growing damage-over-time effect. Keep parasite targets isolated and give add control a named owner.</p>
+<p>At 6:51.0, Draw Soul killed Kalinak and Moungrym together; near the end, Shadow Blast killed six players together at 7:23.1. These are concrete reasons to clear Illidan’s front and maintain separation around the demon-phase tank. The late Shadow Blast cluster was the end of an already weakened pull, not its only cause.</p>
+<p><strong>Fight 9 had no deaths until 5:39.8.</strong> After Shadow Prison at 5:03.0, Illidan killed Badabuille, Shcherbaque and Tunaak with melee before his next recorded melee on Madef at 5:48.1; Klib also died to melee at 5:54.6. Confirm tank control as combat resumes and delay damage until that pickup is stable.</p>
+<p>Illidan gained Frenzy at 6:20.2. Madef died at 6:27.6 after rapidly spaced melee hits, with a 3,375 Flame Crash tick in the same final sequence. The death table records 11,637 healing over 3.016 seconds, so this was substantial incoming burst despite healing. <strong>Agree the Frenzy response before pulling: tank defensive, direct-healing coverage, and the planned trap response when available; also step out of Flame Crash.</strong> The next attempt, fight 10, regressed to air-phase movement; fight 11 secured the kill.</p>
+
+<h3 id="archimonde">Archimonde: prevent the first death and the Soul Charge chain</h3>
+<p><strong>Fight 52 began its collapse with Snney’s Doomfire death at 0:50.5.</strong> Four ticks landed in roughly three seconds with no effective heal in that window. Soul Charge deaths followed at 0:54.0 and a much larger cluster at 1:06.9. Prioritize an escape route and immediate direct healing for anyone touched by Doomfire; it continues to hurt after the initial contact.</p>
+<p><strong>Four deaths were recorded as Falling after Air Burst:</strong> Kianne at 2:16.9 and Snney at 2:44.5 in fight 53; Jonette at 1:05.2 in fight 54; and Prevaraa at 2:53.9 in fight 55. Each followed the Air Burst hit by approximately 5.3–5.6 seconds. Verify that every player has Tears of the Goddess available and knows the activation timing before the next pull. These deaths establish an unsuccessful landing, but do not establish whether the item was absent, mistimed or not used.</p>
+<p>Fight 54 lost Jonette first, then accumulated Doomfire deaths long before Madef fell at 2:23.7. Fight 55 began with Gahenna being hit by boss melee at 0:05.4; Kalinak and Snney later died to Doomfire at 1:37.0 and 1:39.3. Those losses preceded the later Soul Charge chain and Madef’s death at 3:34.3. <strong>Secure the opening, keep movement lanes clear, and preserve tank healing while healers move.</strong> The raid eventually killed Archimonde in fight 56, so the aim is to reproduce that survival earlier.</p>
+
+<h3 id="pulls">Every wipe</h3>
+<div class="review-table" role="region" aria-label="Every wipe on September 28" tabindex="0"><table><thead><tr><th>Fight</th><th>Duration / health left</th><th>Decisive sequence</th><th>Next-pull adjustment</th></tr></thead><tbody>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/6kwCb1rT9aycRdAp#fight=5&amp;type=deaths">5 · Council</a></td><td>0:47 / 98.17%</td><td>Madef takes Gathios melee and Zerevor Arcane Bolt together at 0:08.5.</td><td>Confirm Zerevor’s mage pickup before committing.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/6kwCb1rT9aycRdAp#fight=7&amp;type=deaths">7 · Illidan</a></td><td>3:29 / 64.71%</td><td>Flame hits healer, Roarwind dies, then nine die to Flame Blast.</td><td>Control both Flames and keep their fronts clear.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/6kwCb1rT9aycRdAp#fight=8&amp;type=deaths">8 · Illidan</a></td><td>7:27 / 3.66%</td><td>Opening death, Barrage loss, then parasite/Agonizing Flames attrition and late frontal/splash deaths.</td><td>Dedicated debuff healing, spacing and parasite control.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/6kwCb1rT9aycRdAp#fight=9&amp;type=deaths">9 · Illidan</a></td><td>7:13 / 25.43%</td><td>Four melee deaths after Shadow Prison; Madef later falls during Frenzy with Flame Crash overlap.</td><td>Confirm the pickup and schedule the Frenzy response.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/6kwCb1rT9aycRdAp#fight=10&amp;type=deaths">10 · Illidan</a></td><td>2:53 / 64.63%</td><td>Five die together to repeated Blaze ticks at 2:02.3.</td><td>Immediate group movement and a safe Flame tank route.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/6kwCb1rT9aycRdAp#fight=52&amp;type=deaths">52 · Archimonde</a></td><td>1:13 / 100% reported</td><td>Snney’s Doomfire death starts a Soul Charge cascade.</td><td>Earlier escape and direct Doomfire healing.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/6kwCb1rT9aycRdAp#fight=53&amp;type=deaths">53 · Archimonde</a></td><td>3:27 / 23.03%</td><td>Kianne and Snney die on Air Burst landings; Madef falls shortly after Snney.</td><td>Reliable Tears use and uninterrupted tank coverage.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/6kwCb1rT9aycRdAp#fight=54&amp;type=deaths">54 · Archimonde</a></td><td>2:45 / 40.06%</td><td>Jonette’s falling death is followed by sustained Doomfire attrition.</td><td>Fix landing execution and movement lanes.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/6kwCb1rT9aycRdAp#fight=55&amp;type=deaths">55 · Archimonde</a></td><td>4:09 / 20.20%</td><td>Opening healer melee death, two Doomfire losses, then a falling death and Soul Charge chain.</td><td>Safe opening plus the same movement/landing discipline.</td></tr>
+</tbody></table></div>
+
+<h3 id="next-raid">Next raid: agree these assignments before pulling</h3>
+<ol><li><strong>Boss pickups:</strong> mage confirms Zerevor; Madef confirms Illidan after Shadow Prison; everyone respects the tank’s opening.</li><li><strong>Illidan air phase:</strong> Flame tanks call loss of control, keep frontals clear, and move along safe ground. The raid moves immediately out of Blaze.</li><li><strong>Illidan healing:</strong> name coverage for Dark Barrage and Agonizing Flames; plan the Frenzy response and give parasites an add-control owner.</li><li><strong>Archimonde:</strong> check Tears availability and timing, establish Doomfire escape lanes, and preserve direct tank healing during movement.</li></ol>
+<p>Measure progress by reaching Illidan’s late phase with more players alive, keeping non-tanks out of boss melee, and completing Archimonde without falling deaths. All three bosses died this night; consistent execution should remove several repeat pulls.</p>
+  </article>
+</main>
+
+<footer>generated with WarcraftLogs data · raidstats</footer>
+
+</body>
+</html>
