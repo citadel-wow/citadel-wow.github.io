@@ -1,5 +1,5 @@
 {
- "_comment": "CITADEL roster from the WCL guild characters page (https://fresh.warcraftlogs.com/guild/characters/821643, synced 2026-07-24, new members added 2026-10-20). Officers: edit this list to add/remove members — non-listed players are hidden on the parses page unless the 'include players outside CITADEL' box is ticked.",
+ "_comment": "CITADEL roster from the WCL guild characters page (https://fresh.warcraftlogs.com/guild/characters/821643, synced 2026-07-24; the autopublish adds new WCL guild members since 2026-10-20 and never removes anyone — remove leavers here by hand). Officers: edit this list to add/remove members — non-listed players are hidden on the parses page unless the 'include players outside CITADEL' box is ticked.",
  "members": [
   "Aethorien",
   "Alexzed",
@@ -82,7 +82,6 @@
   "Stealgar",
   "Swellery",
   "Tarmour",
-  "Thanerin",
   "Thebaffan",
   "Thunderzaar",
   "Toasterp",
@@ -93,7 +92,6 @@
   "Tunaak",
   "Virtuálskill",
   "Vykola",
-  "Woodwind",
   "Yamdef",
   "Znney",
   "Æturnum"
