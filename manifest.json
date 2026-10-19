@@ -589,5 +589,16 @@
   "kills": 9,
   "wipes": 1,
   "players": 25
+ },
+ "PKHGwQzfdcqWR1xp": {
+  "report_id": "PKHGwQzfdcqWR1xp",
+  "title": "BT / Hyjal (MH in 1:10:15)",
+  "zone": "MH",
+  "date": "October 19, 2026 20:05:35",
+  "start_ms": 1792436735880,
+  "raid": 1,
+  "kills": 5,
+  "wipes": 0,
+  "players": 25
  }
 }
