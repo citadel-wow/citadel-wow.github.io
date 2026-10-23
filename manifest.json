@@ -589,5 +589,16 @@
   "kills": 5,
   "wipes": 0,
   "players": 25
+ },
+ "qGbHJ3z9DZkyajfw": {
+  "report_id": "qGbHJ3z9DZkyajfw",
+  "title": "BT (BT in 3:05:03)",
+  "zone": "BT",
+  "date": "October 22, 2026 19:54:34",
+  "start_ms": 1792695274352,
+  "raid": 1,
+  "kills": 9,
+  "wipes": 4,
+  "players": 25
  }
 }
