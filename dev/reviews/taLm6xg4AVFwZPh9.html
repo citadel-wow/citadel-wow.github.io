@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Azgalor: protect the tank through the opening and Howl · 26 October 2026 — Citadel — Raid Reports</title>
+<meta property="og:title" content="Azgalor: protect the tank through the opening and Howl · 26 October 2026 — Citadel — Raid Reports">
+<meta name="theme-color" content="#c9a24b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 90 20v30c0 25-18 38-40 45C28 88 10 75 10 50V20z' fill='%23c9a24b'/%3E%3Cpath d='M50 14 82 26v24c0 20-14 30-32 36-18-6-32-16-32-36V26z' fill='%231a222c'/%3E%3Cpath d='M50 26v48M34 40h32' stroke='%23c9a24b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #10161c; --panel: #161e26; --card: #1c2630; --card-hover: #223040;
+  --line: #2b3a48; --ink: #e8edf2; --ink-dim: #8fa1b3;
+  --gold: #c9a24b; --gold-soft: #e3c680; --accent: #5d7f9d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Helvetica Neue", Arial, "Segoe UI", sans-serif;
+  background: radial-gradient(1100px 380px at 50% -80px, #223140 0%, transparent 70%), var(--bg);
+  color: var(--ink); min-height: 100vh;
+}
+header { padding: 30px 24px 14px; text-align: center; }
+h1 { font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; }
+h1 a { color: var(--ink); text-decoration: none; }
+h1 .dash { color: var(--gold); }
+.rule { width: 140px; height: 2px; margin: 14px auto 0;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+main { max-width: 1150px; margin: 0 auto; padding: 18px 24px 70px; }
+h2 { font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase;
+     color: var(--gold-soft); margin: 26px 0 12px; }
+.panel { background: var(--card); border: 1px solid var(--line);
+         border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }
+table.data { border-collapse: collapse; width: 100%; font-size: 13px; }
+table.data th { text-align: left; color: var(--ink-dim); font-weight: 600;
+  font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line);
+  white-space: nowrap; }
+table.data td { padding: 6px 8px; border-bottom: 1px solid #212d38; }
+table.data tr:hover td { background: var(--card-hover); }
+td.num, th.num,
+table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mid, th.mid,
+table.data th.mid, table.data td.mid { text-align: center; }
+.name-badge { display: inline-block; padding: 1px 8px; border-radius: 5px;
+  color: #1a222c; font-weight: 650; font-size: 12.5px; }
+a.player-link { text-decoration: none; }
+.dim { color: var(--ink-dim); }
+footer { text-align: center; color: #4d6070; font-size: 12px; padding: 26px; }
+nav.site {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 14px 0 4px;
+}
+nav.site a {
+  color: var(--ink-dim); text-decoration: none; font-size: 13px;
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 14px;
+}
+nav.site a:hover { color: var(--gold-soft); border-color: var(--gold); }
+nav.site a.active { background: var(--card); color: var(--ink);
+                    border-color: var(--gold); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+         gap: 12px; margin-bottom: 16px; }
+.tile { background: var(--card); border: 1px solid var(--line);
+        border-radius: 10px; padding: 14px 16px; text-align: center; }
+.tile .v { font-size: 24px; font-weight: 700; }
+.tile .k { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+           color: var(--ink-dim); margin-top: 4px; }
+.chart-note { font-size: 11px; color: var(--ink-dim); margin-top: 6px; }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-dim);
+          margin-bottom: 6px; }
+.legend .sw { display: inline-block; width: 9px; height: 9px;
+              border-radius: 50%; margin-right: 5px; }
+.zone-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.zone-chip { border: 1px solid var(--line); background: var(--panel);
+  padding: 8px 16px; border-radius: 10px; font-size: 14px; }
+.zone-chip b { color: var(--gold-soft); }
+.ok { color: #7fc98b; } .bad { color: #d98a8a; }
+</style>
+
+<meta name="description" content="Three Azgalor wipes compared with the last three Hyjal runs: missing opening heals, Howl silence windows, fire overlap and absent tank-protection debuffs. Includes what changed on the kill and the Archimonde wipe.">
+<meta name="robots" content="noindex">
+<style>
+.review { max-width: 1040px; font-size: 16px; line-height: 1.65; overflow-wrap: anywhere; }
+.review a { color: var(--gold-soft); text-underline-offset: 4px; }
+.review h2 { font-size: clamp(26px, 4vw, 36px); letter-spacing: 0; text-transform: none; margin: 6px 0; }
+.review h3 { font-size: 23px; line-height: 1.35; color: var(--gold-soft); margin: 38px 0 16px; scroll-margin-top: 20px; }
+.review p, .review ul, .review ol { margin-bottom: 18px; }
+.review ul, .review ol { padding-left: 24px; }
+.review li + li { margin-top: 10px; }
+.review-meta { color: var(--ink-dim); font-size: 14px; }
+.review-body { padding: clamp(18px, 4vw, 36px); }
+.review-toc { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 24px 0; font-size: 14px; }
+.review-table { max-width: 100%; overflow-x: auto; margin: 24px 0; border: 1px solid var(--line); border-radius: 8px; }
+.review table { border-collapse: collapse; width: 100%; min-width: 650px; font-size: 15px; }
+.review th, .review td { text-align: left; vertical-align: top; padding: 14px; border-bottom: 1px solid var(--line); }
+.review th { color: var(--gold-soft); background: var(--panel); }
+.review td:first-child { min-width: 125px; }
+.review tr:last-child td { border-bottom: 0; }
+.review :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+@media (max-width: 600px) { .review { padding: 18px 12px 50px; } .review h3 { font-size: 21px; } }
+@media print {
+  body { background: white; color: black; }
+  header, footer, .review-toc, .review-back { display: none; }
+  .review { max-width: none; padding: 0; }
+  .review-body { background: white; border: none; padding: 0; }
+  .review h2, .review h3, .review a, .review th { color: black; }
+  .review-table { overflow: visible; }
+  .review table { min-width: 0; font-size: 11px; }
+  .review tr { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="../index.html">Citadel <span class="dash">—</span> Raid Reports</a></h1>
+  <nav class="site">
+
+    <a href="../index.html">Logs</a>
+
+    <a href="../attendance.html" class="">Attendance</a>
+    <a href="../parses.html" class="">Parses</a>
+    <a href="../deaths.html" class="">Deaths</a>
+    <a href="../rankings.html" class="">Rankings</a>
+    <a href="../reviews.html" class="active">Raid Reviews</a>
+    <a href="../consumables.html" class="">Consumables</a>
+
+    <a href="../progress.html" class="">Progression</a>
+    <a href="../trends.html" class="">Trends</a>
+  </nav>
+  <div class="rule"></div>
+</header>
+
+<main class="review">
+  <p class="review-back"><a href="../reviews.html">← All raid reviews</a></p>
+  <p class="review-meta"><time datetime="2026-10-26">26 October 2026</time> · Mount Hyjal</p>
+  <h2>Azgalor: protect the tank through the opening and Howl</h2>
+  <nav class="review-toc" aria-label="Review sections">
+    <a href="#comparison">Previous runs</a>
+    <a href="#wipe-one">Wipe 1</a>
+    <a href="#wipe-two">Wipe 2</a>
+    <a href="#wipe-three">Wipe 3</a>
+    <a href="#kill">What changed</a>
+    <a href="#archimonde">Archimonde</a>
+    <a href="#next-raid">Next raid</a>
+  </nav>
+  <article class="panel review-body" aria-label="Raid analysis">
+<p>26 October 2026 · Raid 1 · <a href="https://classic.warcraftlogs.com/reports/taLm6xg4AVFwZPh9">Warcraft Logs report</a></p>
+<p><strong>Azgalor’s three wipes were tank-survival failures: an unprotected opening, then two collapses around Howl of Azgalor.</strong> The boss was eventually killed with seven healers after three attempts with five. Earlier Hyjal runs killed him with five, including Jonette tanking on October 19. The useful lesson is to restore reliable tank coverage and boss damage-reduction debuffs, rather than treat seven healers as a permanent requirement.</p>
+<p>This report contains five boss kills and four wipes: three Azgalor and one Archimonde. Kaz’rogal and the waves leading to him had no deaths. Comparisons below use the three most recent earlier archived Hyjal runs: October 19, October 5 and September 28. Times are measured from each boss pull. The review checks damage, effective healing, absorbs, casts and aura timing; it does not infer assignments, player intent or healer range from missing heals alone.</p>
+
+<h3 id="comparison">What changed from the previous Hyjal runs?</h3>
+<div class="review-table" role="region" aria-label="Azgalor comparison across four raid nights" tabindex="0"><table><thead><tr><th>Run</th><th>Azgalor outcome</th><th>Main player tank</th><th>Healers</th><th>Key comparison</th></tr></thead><tbody>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/6kwCb1rT9aycRdAp#fight=50">September 28</a></td><td>First-pull kill · 2:21.7</td><td>Madef</td><td>5</td><td>Tank survived. Thunder Clap and Demoralizing Shout were applied early and refreshed during the fight.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/cAVBgYh36vPdbw1x#fight=38">October 5</a></td><td>First-pull kill · 2:30.1</td><td>Madef</td><td>5</td><td>Tank survived despite several raid losses; both physical-damage debuffs were applied during the fight.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/PKHGwQzfdcqWR1xp#fight=37">October 19</a></td><td>First-pull kill · 2:31.3</td><td>Jonette</td><td>5</td><td>Same player tank as two new wipes and the eventual kill. A different healing team kept Jonette alive.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/taLm6xg4AVFwZPh9#fight=71">October 26</a></td><td>3 wipes, then kill · 3:10.1</td><td>Jonette / Badadudu on wipe 3</td><td>5 on wipes → 7 on kill</td><td>Tank died at 0:06, 1:14 and 1:52. The kill restored early debuffs, added healing and kept Jonette alive.</td></tr>
+</tbody></table></div>
+<p><strong>Healer count was initially unchanged, but the team and coverage changed.</strong> October 19 used Miilena, Bruand, Shandazaar, Nosaj and Quelva. The October 26 wipes used Snney, Bruand, Borodine, Dreadshamie and Quelva. On the kill, Gahenna switched from Shadow to Discipline and Roarwind joined as Restoration; Stealgar was no longer in that pull’s roster. There was no restoration druid among the five healers on the wipe attempts.</p>
+<p>The eventual kill was about 39 seconds longer than October 19’s, yet Jonette survived. That makes faster damage a secondary improvement: the immediate problem was surviving tank damage while healing was interrupted. Differences in roster, debuffs, positioning and healing all changed together, so the kill cannot prove that adding two healers alone fixed the encounter.</p>
+
+<h3 id="wipe-one">Wipe 1 — the opening was not ready</h3>
+<p><strong>Fight 40: 1:15 total, 91.28% boss health remaining. Jonette died at 0:06.218.</strong> Three landed melee hits at 0:02.817, 0:04.183 and 0:06.202 dealt 5,683, 7,848 and 8,224 effective damage, with another 1,613 overkill on the last hit.</p>
+<p>Before the death, the recorded effective heals on Jonette were Prayer of Mending (2,142), Earth Shield (969) and Renew (957): <strong>4,068 healing, plus 2,377 absorption recorded in the death window.</strong> No direct healing spell landed on Jonette before the death. One healer was still casting Brilliant Mana Oil at 0:00.881. This supports a readiness and opening-coverage failure; it does not identify why each healer lacked a landing heal.</p>
+<p>Howl had not caused this opening death. After Jonette died, Azgalor hit other players and Cleave spread the losses. <strong>Before pulling, finish preparation, confirm the tank’s healers are ready and in position, and have a direct heal already timed for the first incoming swings.</strong> A tank death six seconds in should trigger an immediate correction to the pull setup.</p>
+
+<h3 id="wipe-two">Wipe 2 — Rain of Fire plus a Howl healing gap</h3>
+<p><strong>Fight 50: 2:55 total, 28.46% remaining. Jonette died at 1:14.225.</strong> Badadudu’s earlier death at 1:06.1 followed Doom applied at 0:46.1. That was a Doom expiry, not evidence that Badadudu caused the wipe.</p>
+<p>Jonette was hit by Rain of Fire at 1:06.475 and then took Unquenchable Flames ticks through 1:11.473. Howl silenced Snney, Dreadshamie, Bruand and Quelva at approximately 1:07.7; their recorded silence removals were 1:12.1–1:12.7. <strong>Jonette then took 9,137 melee damage at 1:12.207 and a lethal 6,928 at 1:14.210.</strong></p>
+<p>Only 3,666 effective healing landed in the final 6.733-second death window, from Renew ticks and Earth Shield. No direct heal landed after the silence ended before the lethal swing. Neither Thunder Clap nor Demoralizing Shout was active on Azgalor at this death; the first recorded Demoralizing Shout came at 1:19.8, after Jonette was already dead.</p>
+<p><strong>Plan the silence window:</strong> top the tank before Howl, refresh available heals over time, shields and reactive heals beforehand, keep physical-damage debuffs active, and have a direct heal ready immediately on silence expiry. Move out of Rain of Fire without exposing the raid to Cleave. The fire damage consumed health that was needed to survive the next two swings.</p>
+
+<h3 id="wipe-three">Wipe 3 — changing tanks did not fix the Howl gap</h3>
+<p><strong>Fight 61: 3:25 total, 7.88% remaining. Badadudu was the active boss tank and died at 1:51.972.</strong> Loranoa’s earlier death at 1:07.9 was Doom expiring after its application at 0:47.9; it should not be treated as an avoidable opening death.</p>
+<p>At 1:45.6, Howl silenced Dreadshamie, Bruand, Borodine and Quelva until approximately 1:50.6. Badadudu took two 6,622 melee hits, a 4,960 Cleave, and a lethal 6,519 melee hit between 1:47.5 and 1:52.0. The final hit had another 1,667 overkill. The death window records <strong>6,051 effective healing plus 2,395 absorption over 4.422 seconds</strong>; the healing came from Prayer of Mending, Renew and Earth Shield rather than a landed direct heal.</p>
+<p>Demoralizing Shout had expired at 1:25.2 and Thunder Clap was not applied until 2:45.1, long after Badadudu died. Shokstar then died to boss melee at 1:53.7. Prevaara took two boss swings and died at 1:58.1, receiving only a 938 Earth Shield heal between them. A backup pickup without immediate healing did not stabilize the fight.</p>
+<p><strong>The 7.88% ending health hides an earlier collapse.</strong> The tank was dead more than 90 seconds before the attempt ended. Fix the survival window and backup coverage before interpreting this as simply needing another few percent of damage.</p>
+
+<h3 id="kill">What was different on the kill?</h3>
+<ul>
+<li><strong>Seven healers, including a restoration druid:</strong> Gahenna’s Discipline healing and Roarwind’s Restoration healing added coverage. Roarwind alone supplied 18,695 effective healing to Jonette in the first minute. This is evidence of additional tank support, not a claim that prior healers lacked the ability to do the job.</li>
+<li><strong>Earlier boss debuffs:</strong> Insect Swarm appeared at 0:05.4, Demoralizing Shout at 0:08.9 and Thunder Clap at 0:17.2. Their uptime was still imperfect, especially Thunder Clap later in the fight; keep a named owner on each rather than treating the kill as flawless.</li>
+<li><strong>Stable boss tank:</strong> Jonette survived through the 3:10 kill. All recorded Azgalor melee events targeting players in that pull targeted Jonette. No raid-wide boss-melee cleanup followed a tank loss.</li>
+<li><strong>There were still losses:</strong> the death table has five rows, including repeat deaths. Trígger died to fire after a Doom death, and Snney and Roarwind died around 2:10. The kill demonstrates that the tank could survive despite later disruption; it does not remove the need for clean fire and Doomguard handling.</li>
+</ul>
+<p>October 19 already demonstrates that Jonette can tank this encounter with five healers. Keep the added coverage while stabilizing the plan, then consider reducing healers only when the opening and Howl windows are consistently safe.</p>
+
+<h3 id="archimonde">The other wipe: Archimonde</h3>
+<p><strong>Fight 73: 2:19.6, 41.16% remaining.</strong> Gahenna was the first death at 1:10.1, killed by Air Burst damage while already carrying Doomfire. In the preceding 1.2 seconds, Shadow Word: Death recoil dealt 2,552 and Doomfire dealt 1,950 before Air Burst landed for 2,959 effective damage plus 41 overkill. This was an Air Burst impact death, not a failed landing.</p>
+<p>Bruand died to Doomfire at 1:17.9, then Borodine to Soul Charge at 1:18.6. More Doomfire losses followed before Badadudu’s tank death at 1:45.4. Gandörf’s Falling death at 1:59.2 was later in the collapse. <strong>Protect players carrying Doomfire, avoid Shadow Word: Death recoil when health is unsafe, and preserve tank coverage as healers move.</strong> Archimonde died on the next pull, fight 74, with one death-table entry.</p>
+
+<h3 id="next-raid">Next raid: a concrete Azgalor plan</h3>
+<ol>
+<li><strong>Ready check for the pull:</strong> finish oils and buffs, confirm tank-healer positions, and time the first direct heals for the opening swings.</li>
+<li><strong>Assign boss debuffs:</strong> name who maintains Thunder Clap and Demoralizing Shout or the agreed equivalent. Verify they remain on Azgalor, not only on the Doomguards.</li>
+<li><strong>Call Howl ahead of the silence:</strong> top the tank, refresh ongoing protection, agree suitable defensives, and queue the first direct heal for silence expiry.</li>
+<li><strong>Keep the tank out of fire:</strong> define a short movement route that preserves healer access and keeps Cleave away from the raid.</li>
+<li><strong>Give the backup tank a healer:</strong> the pickup and the healing switch need to happen together. Keep Doom handling separate; expected Doom deaths are not automatically mistakes.</li>
+</ol>
+<p><a href="https://classic.warcraftlogs.com/reports/taLm6xg4AVFwZPh9#fight=40&amp;type=deaths">Wipe 1 deaths</a> · <a href="https://classic.warcraftlogs.com/reports/taLm6xg4AVFwZPh9#fight=50&amp;type=deaths">Wipe 2 deaths</a> · <a href="https://classic.warcraftlogs.com/reports/taLm6xg4AVFwZPh9#fight=61&amp;type=deaths">Wipe 3 deaths</a> · <a href="https://classic.warcraftlogs.com/reports/taLm6xg4AVFwZPh9#fight=71&amp;type=deaths">Azgalor kill</a></p>
+  </article>
+</main>
+
+<footer>generated with WarcraftLogs data · raidstats</footer>
+
+</body>
+</html>
