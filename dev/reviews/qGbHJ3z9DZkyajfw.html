@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Four wipes: openings, tank burst and Flame control · 22 October 2026 — Citadel — Raid Reports</title>
+<meta property="og:title" content="Four wipes: openings, tank burst and Flame control · 22 October 2026 — Citadel — Raid Reports">
+<meta name="theme-color" content="#c9a24b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 90 20v30c0 25-18 38-40 45C28 88 10 75 10 50V20z' fill='%23c9a24b'/%3E%3Cpath d='M50 14 82 26v24c0 20-14 30-32 36-18-6-32-16-32-36V26z' fill='%231a222c'/%3E%3Cpath d='M50 26v48M34 40h32' stroke='%23c9a24b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #10161c; --panel: #161e26; --card: #1c2630; --card-hover: #223040;
+  --line: #2b3a48; --ink: #e8edf2; --ink-dim: #8fa1b3;
+  --gold: #c9a24b; --gold-soft: #e3c680; --accent: #5d7f9d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Helvetica Neue", Arial, "Segoe UI", sans-serif;
+  background: radial-gradient(1100px 380px at 50% -80px, #223140 0%, transparent 70%), var(--bg);
+  color: var(--ink); min-height: 100vh;
+}
+header { padding: 30px 24px 14px; text-align: center; }
+h1 { font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; }
+h1 a { color: var(--ink); text-decoration: none; }
+h1 .dash { color: var(--gold); }
+.rule { width: 140px; height: 2px; margin: 14px auto 0;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+main { max-width: 1150px; margin: 0 auto; padding: 18px 24px 70px; }
+h2 { font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase;
+     color: var(--gold-soft); margin: 26px 0 12px; }
+.panel { background: var(--card); border: 1px solid var(--line);
+         border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }
+table.data { border-collapse: collapse; width: 100%; font-size: 13px; }
+table.data th { text-align: left; color: var(--ink-dim); font-weight: 600;
+  font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line);
+  white-space: nowrap; }
+table.data td { padding: 6px 8px; border-bottom: 1px solid #212d38; }
+table.data tr:hover td { background: var(--card-hover); }
+td.num, th.num,
+table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mid, th.mid,
+table.data th.mid, table.data td.mid { text-align: center; }
+.name-badge { display: inline-block; padding: 1px 8px; border-radius: 5px;
+  color: #1a222c; font-weight: 650; font-size: 12.5px; }
+a.player-link { text-decoration: none; }
+.dim { color: var(--ink-dim); }
+footer { text-align: center; color: #4d6070; font-size: 12px; padding: 26px; }
+nav.site {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 14px 0 4px;
+}
+nav.site a {
+  color: var(--ink-dim); text-decoration: none; font-size: 13px;
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 14px;
+}
+nav.site a:hover { color: var(--gold-soft); border-color: var(--gold); }
+nav.site a.active { background: var(--card); color: var(--ink);
+                    border-color: var(--gold); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+         gap: 12px; margin-bottom: 16px; }
+.tile { background: var(--card); border: 1px solid var(--line);
+        border-radius: 10px; padding: 14px 16px; text-align: center; }
+.tile .v { font-size: 24px; font-weight: 700; }
+.tile .k { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+           color: var(--ink-dim); margin-top: 4px; }
+.chart-note { font-size: 11px; color: var(--ink-dim); margin-top: 6px; }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-dim);
+          margin-bottom: 6px; }
+.legend .sw { display: inline-block; width: 9px; height: 9px;
+              border-radius: 50%; margin-right: 5px; }
+.zone-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.zone-chip { border: 1px solid var(--line); background: var(--panel);
+  padding: 8px 16px; border-radius: 10px; font-size: 14px; }
+.zone-chip b { color: var(--gold-soft); }
+.ok { color: #7fc98b; } .bad { color: #d98a8a; }
+</style>
+
+<meta name="description" content="Four Black Temple wipes traced to Bloodboil tank burst, a short Mother opening, Council target control and mage survival, and Illidan air-phase deaths.">
+<meta name="robots" content="noindex">
+<style>
+.review { max-width: 1040px; font-size: 16px; line-height: 1.65; overflow-wrap: anywhere; }
+.review a { color: var(--gold-soft); text-underline-offset: 4px; }
+.review h2 { font-size: clamp(26px, 4vw, 36px); letter-spacing: 0; text-transform: none; margin: 6px 0; }
+.review h3 { font-size: 23px; line-height: 1.35; color: var(--gold-soft); margin: 38px 0 16px; scroll-margin-top: 20px; }
+.review p, .review ul, .review ol { margin-bottom: 18px; }
+.review ul, .review ol { padding-left: 24px; }
+.review li + li { margin-top: 10px; }
+.review-meta { color: var(--ink-dim); font-size: 14px; }
+.review-body { padding: clamp(18px, 4vw, 36px); }
+.review-toc { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 24px 0; font-size: 14px; }
+.review-table { max-width: 100%; overflow-x: auto; margin: 24px 0; border: 1px solid var(--line); border-radius: 8px; }
+.review table { border-collapse: collapse; width: 100%; min-width: 650px; font-size: 15px; }
+.review th, .review td { text-align: left; vertical-align: top; padding: 14px; border-bottom: 1px solid var(--line); }
+.review th { color: var(--gold-soft); background: var(--panel); }
+.review td:first-child { min-width: 125px; }
+.review tr:last-child td { border-bottom: 0; }
+.review :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+@media (max-width: 600px) { .review { padding: 18px 12px 50px; } .review h3 { font-size: 21px; } }
+@media print {
+  body { background: white; color: black; }
+  header, footer, .review-toc, .review-back { display: none; }
+  .review { max-width: none; padding: 0; }
+  .review-body { background: white; border: none; padding: 0; }
+  .review h2, .review h3, .review a, .review th { color: black; }
+  .review-table { overflow: visible; }
+  .review table { min-width: 0; font-size: 11px; }
+  .review tr { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="../index.html">Citadel <span class="dash">—</span> Raid Reports</a></h1>
+  <nav class="site">
+
+    <a href="../index.html">Logs</a>
+
+    <a href="../attendance.html" class="">Attendance</a>
+    <a href="../parses.html" class="">Parses</a>
+    <a href="../deaths.html" class="">Deaths</a>
+    <a href="../rankings.html" class="">Rankings</a>
+    <a href="../reviews.html" class="active">Raid Reviews</a>
+    <a href="../consumables.html" class="">Consumables</a>
+
+    <a href="../progress.html" class="">Progression</a>
+    <a href="../trends.html" class="">Trends</a>
+  </nav>
+  <div class="rule"></div>
+</header>
+
+<main class="review">
+  <p class="review-back"><a href="../reviews.html">← All raid reviews</a></p>
+  <p class="review-meta"><time datetime="2026-10-22">22 October 2026</time> · Black Temple</p>
+  <h2>Four wipes: openings, tank burst and Flame control</h2>
+  <nav class="review-toc" aria-label="Review sections">
+    <a href="#bloodboil">Bloodboil</a>
+    <a href="#mother">Mother</a>
+    <a href="#council">Council</a>
+    <a href="#illidan">Illidan</a>
+    <a href="#pulls">Every wipe</a>
+    <a href="#next-raid">Next raid</a>
+  </nav>
+  <article class="panel review-body" aria-label="Raid analysis">
+<p>22 October 2026 · Raid 1 · <a href="https://classic.warcraftlogs.com/reports/qGbHJ3z9DZkyajfw">Warcraft Logs report</a></p>
+<p><strong>Nine kills and four wipes: one each on Bloodboil, Mother Shahraz, Council and Illidan.</strong> Each failed pull was followed by a kill. The repeatable improvements are opening target control, tank burst coverage, mage survival and safe Flame positioning. <a href="DRkvpTfNCF72caY6.html">The October 29 review compares these problems with the next Black Temple raid.</a></p>
+<p>Rechecked October 31 using chronological per-pull deaths, damage, healing, auras and casts. Times are relative to the pull; healing figures from death tables include absorption. Cleanup and repeat deaths after resurrection are not separate root causes.</p>
+<h3 id="bloodboil">Bloodboil: tank burst followed by a failed handoff</h3>
+<p><strong>Fight 51: 4:19, 9.71% remaining.</strong> Madef died first at 0:42.1 with four Acidic Wound stacks. Three melee hits and Arcing Smash landed in a 1.805-second death window, with 5,640 healing/absorption. This was a rapid burst, not a high-stack limit by itself.</p>
+<p>Roarwind received Bewildering Strike at 0:48.6. Kalinak died to melee at 0:49.6, Trígger to Arcing Smash at 0:51.8, and Naincapacité to melee at 0:52.4. Snney then became the Fel Rage target at 0:53.5. The tank loss and subsequent target change had already exposed the raid before that mechanic began.</p>
+<p><strong>Have the next tank and healer ready before the handoff.</strong> Keep the raid clear of the frontal during target changes, use protection for burst windows, and switch direct healing to Fel Rage immediately. Do not call this simply a 9.71% damage shortfall: the first tank died more than three minutes before the pull ended. The next pull killed Bloodboil in 3:22, but still recorded seven deaths.</p>
+<h3 id="mother">Mother Shahraz: a short failed opening</h3>
+<p><strong>Fight 65: 0:26, 99.48% remaining.</strong> Shokstar died to boss melee at 0:04.9 and Naincapacité at 0:09.7. At 0:21.4, Saber Lash recorded only Madef as a damaged target and killed him. There is no reason to attribute this pull to Fatal Attraction.</p>
+<p>Confirm that the boss is on the intended tank and that the Saber Lash group is in position before damage begins. The log does not show whether the opening was accidental or a planned reset, so this is recorded as a short failed opening rather than a normal sustained attempt.</p>
+<h3 id="council">Council: non-tank melee early, then the mage falls</h3>
+<p><strong>Fight 72: 2:27, 72.31% remaining.</strong> Gathios killed Tunaak at 0:17.4, Naincapacité at 0:21.1, Shokstar at 0:23.6 and Shcherbaque at 0:38.3, before Madef’s later death. Confirm boss control during the opening and avoid overtaking the assigned tank.</p>
+<p>Gandörf acquired Dampen Magic at 0:01.2 but died to Arcane Bolt at 1:37.5 after only 874 healing/absorption in the final 6.239 seconds. His protection was still recorded until the death; the evidence does not establish a buff-expiry failure here. Arcane Bolts then killed Quelva and Gahenna. Keep the mage’s health covered and have a surviving backup ready if Zerevor changes target.</p>
+<p>Malande completed one Circle of Healing while five were interrupted. The successful pull completed two while 14 were interrupted, but still had 12 death-table entries. The deaths point to opening control and mage survival; interrupt counts alone do not explain the wipe.</p>
+<h3 id="illidan">Illidan: Flame control fails before Eye Blast cleanup</h3>
+<p><strong>Fight 74: 2:24, 64.86% remaining.</strong> Kianne died to Flame melee at 1:50.9. Alexzed died at 1:52.1 after Flame Blast and Fireball overlapped. Moungrym and Kalinak then died to Blaze at 1:56.5 and 1:57.5. Swellery’s Eye Blast death at 2:05.0 happened after those initial losses.</p>
+<p>Keep Flames facing away from the raid, react as soon as a Flame attacks a non-tank, and move promptly out of Blaze while maintaining safe Eye Blast routes. The next pull killed Illidan in 6:39 with only one death, showing that a clean execution was already within reach.</p>
+<h3 id="pulls">Every wipe</h3>
+<ul><li><a href="https://classic.warcraftlogs.com/reports/qGbHJ3z9DZkyajfw#fight=51&amp;type=deaths">Fight 51 · Bloodboil</a>: tank burst at 0:42, then raid exposure during the next handoff.</li><li><a href="https://classic.warcraftlogs.com/reports/qGbHJ3z9DZkyajfw#fight=65&amp;type=deaths">Fight 65 · Mother Shahraz</a>: non-tank melee in the opening and a lethal single-target Saber Lash.</li><li><a href="https://classic.warcraftlogs.com/reports/qGbHJ3z9DZkyajfw#fight=72&amp;type=deaths">Fight 72 · Council</a>: early Gathios deaths followed by mage loss and uncontrolled Arcane Bolts.</li><li><a href="https://classic.warcraftlogs.com/reports/qGbHJ3z9DZkyajfw#fight=74&amp;type=deaths">Fight 74 · Illidan</a>: Flame melee/frontals and Blaze before later Eye Blast deaths.</li></ul>
+<h3 id="next-raid">Next-raid priorities</h3>
+<ol><li>Confirm boss targets and tank/healer readiness before committing damage.</li><li>Prepare Bloodboil handoffs and direct Fel Rage coverage.</li><li>Keep Council’s mage alive; do not equate acquiring Dampen Magic with having enough healing.</li><li>Reproduce the clean Illidan kill’s Flame control and movement.</li></ol>
+  </article>
+</main>
+
+<footer>generated with WarcraftLogs data · raidstats</footer>
+
+</body>
+</html>

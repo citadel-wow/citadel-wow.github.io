@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nine wipes: Council protection, Reliquary reflection and Flames · 29 October 2026 — Citadel — Raid Reports</title>
+<meta property="og:title" content="Nine wipes: Council protection, Reliquary reflection and Flames · 29 October 2026 — Citadel — Raid Reports">
+<meta name="theme-color" content="#c9a24b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5 90 20v30c0 25-18 38-40 45C28 88 10 75 10 50V20z' fill='%23c9a24b'/%3E%3Cpath d='M50 14 82 26v24c0 20-14 30-32 36-18-6-32-16-32-36V26z' fill='%231a222c'/%3E%3Cpath d='M50 26v48M34 40h32' stroke='%23c9a24b' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root {
+  --bg: #10161c; --panel: #161e26; --card: #1c2630; --card-hover: #223040;
+  --line: #2b3a48; --ink: #e8edf2; --ink-dim: #8fa1b3;
+  --gold: #c9a24b; --gold-soft: #e3c680; --accent: #5d7f9d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Helvetica Neue", Arial, "Segoe UI", sans-serif;
+  background: radial-gradient(1100px 380px at 50% -80px, #223140 0%, transparent 70%), var(--bg);
+  color: var(--ink); min-height: 100vh;
+}
+header { padding: 30px 24px 14px; text-align: center; }
+h1 { font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; }
+h1 a { color: var(--ink); text-decoration: none; }
+h1 .dash { color: var(--gold); }
+.rule { width: 140px; height: 2px; margin: 14px auto 0;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+main { max-width: 1150px; margin: 0 auto; padding: 18px 24px 70px; }
+h2 { font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase;
+     color: var(--gold-soft); margin: 26px 0 12px; }
+.panel { background: var(--card); border: 1px solid var(--line);
+         border-radius: 10px; padding: 16px 18px; margin-bottom: 16px; }
+table.data { border-collapse: collapse; width: 100%; font-size: 13px; }
+table.data th { text-align: left; color: var(--ink-dim); font-weight: 600;
+  font-size: 12px; padding: 6px 8px; border-bottom: 1px solid var(--line);
+  white-space: nowrap; }
+table.data td { padding: 6px 8px; border-bottom: 1px solid #212d38; }
+table.data tr:hover td { background: var(--card-hover); }
+td.num, th.num,
+table.data th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mid, th.mid,
+table.data th.mid, table.data td.mid { text-align: center; }
+.name-badge { display: inline-block; padding: 1px 8px; border-radius: 5px;
+  color: #1a222c; font-weight: 650; font-size: 12.5px; }
+a.player-link { text-decoration: none; }
+.dim { color: var(--ink-dim); }
+footer { text-align: center; color: #4d6070; font-size: 12px; padding: 26px; }
+nav.site {
+  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+  padding: 14px 0 4px;
+}
+nav.site a {
+  color: var(--ink-dim); text-decoration: none; font-size: 13px;
+  padding: 5px 14px; border: 1px solid var(--line); border-radius: 14px;
+}
+nav.site a:hover { color: var(--gold-soft); border-color: var(--gold); }
+nav.site a.active { background: var(--card); color: var(--ink);
+                    border-color: var(--gold); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+         gap: 12px; margin-bottom: 16px; }
+.tile { background: var(--card); border: 1px solid var(--line);
+        border-radius: 10px; padding: 14px 16px; text-align: center; }
+.tile .v { font-size: 24px; font-weight: 700; }
+.tile .k { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+           color: var(--ink-dim); margin-top: 4px; }
+.chart-note { font-size: 11px; color: var(--ink-dim); margin-top: 6px; }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--ink-dim);
+          margin-bottom: 6px; }
+.legend .sw { display: inline-block; width: 9px; height: 9px;
+              border-radius: 50%; margin-right: 5px; }
+.zone-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.zone-chip { border: 1px solid var(--line); background: var(--panel);
+  padding: 8px 16px; border-radius: 10px; font-size: 14px; }
+.zone-chip b { color: var(--gold-soft); }
+.ok { color: #7fc98b; } .bad { color: #d98a8a; }
+</style>
+
+<meta name="description" content="A comparison of the last three raids, with all nine October 29 wipes: Council mage protection and floor damage, Reliquary reflection and interrupts, Bloodboil burst, and Illidan Eye Blast/Uncaged Wrath.">
+<meta name="robots" content="noindex">
+<style>
+.review { max-width: 1040px; font-size: 16px; line-height: 1.65; overflow-wrap: anywhere; }
+.review a { color: var(--gold-soft); text-underline-offset: 4px; }
+.review h2 { font-size: clamp(26px, 4vw, 36px); letter-spacing: 0; text-transform: none; margin: 6px 0; }
+.review h3 { font-size: 23px; line-height: 1.35; color: var(--gold-soft); margin: 38px 0 16px; scroll-margin-top: 20px; }
+.review p, .review ul, .review ol { margin-bottom: 18px; }
+.review ul, .review ol { padding-left: 24px; }
+.review li + li { margin-top: 10px; }
+.review-meta { color: var(--ink-dim); font-size: 14px; }
+.review-body { padding: clamp(18px, 4vw, 36px); }
+.review-toc { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 24px 0; font-size: 14px; }
+.review-table { max-width: 100%; overflow-x: auto; margin: 24px 0; border: 1px solid var(--line); border-radius: 8px; }
+.review table { border-collapse: collapse; width: 100%; min-width: 650px; font-size: 15px; }
+.review th, .review td { text-align: left; vertical-align: top; padding: 14px; border-bottom: 1px solid var(--line); }
+.review th { color: var(--gold-soft); background: var(--panel); }
+.review td:first-child { min-width: 125px; }
+.review tr:last-child td { border-bottom: 0; }
+.review :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+@media (max-width: 600px) { .review { padding: 18px 12px 50px; } .review h3 { font-size: 21px; } }
+@media print {
+  body { background: white; color: black; }
+  header, footer, .review-toc, .review-back { display: none; }
+  .review { max-width: none; padding: 0; }
+  .review-body { background: white; border: none; padding: 0; }
+  .review h2, .review h3, .review a, .review th { color: black; }
+  .review-table { overflow: visible; }
+  .review table { min-width: 0; font-size: 11px; }
+  .review tr { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><a href="../index.html">Citadel <span class="dash">—</span> Raid Reports</a></h1>
+  <nav class="site">
+
+    <a href="../index.html">Logs</a>
+
+    <a href="../attendance.html" class="">Attendance</a>
+    <a href="../parses.html" class="">Parses</a>
+    <a href="../deaths.html" class="">Deaths</a>
+    <a href="../rankings.html" class="">Rankings</a>
+    <a href="../reviews.html" class="active">Raid Reviews</a>
+    <a href="../consumables.html" class="">Consumables</a>
+
+    <a href="../progress.html" class="">Progression</a>
+    <a href="../trends.html" class="">Trends</a>
+  </nav>
+  <div class="rule"></div>
+</header>
+
+<main class="review">
+  <p class="review-back"><a href="../reviews.html">← All raid reviews</a></p>
+  <p class="review-meta"><time datetime="2026-10-29">29 October 2026</time> · Black Temple</p>
+  <h2>Nine wipes: Council protection, Reliquary reflection and Flames</h2>
+  <nav class="review-toc" aria-label="Review sections">
+    <a href="#comparison">Recent raids</a>
+    <a href="#bloodboil">Bloodboil</a>
+    <a href="#reliquary">Reliquary</a>
+    <a href="#council">Council</a>
+    <a href="#illidan">Illidan</a>
+    <a href="#pulls">Every wipe</a>
+    <a href="#next-raid">Next raid</a>
+  </nav>
+  <article class="panel review-body" aria-label="Raid analysis">
+<p>29 October 2026 · Raid 1 · <a href="https://classic.warcraftlogs.com/reports/DRkvpTfNCF72caY6">Warcraft Logs report</a></p>
+<p><strong>Nine kills, nine wipes: Bloodboil once, Reliquary twice, Council four times and Illidan twice.</strong> The largest gains are a reliable Council opening and mage protection, controlled damage during Reliquary’s reflection phase, and safe Flame tank movement on Illidan. These are distinct failures; assigning all nine wipes to healing or damage output would miss the evidence.</p>
+<h3 id="comparison">The last three raids</h3>
+<div class="review-table" role="region" aria-label="Recent raid comparison" tabindex="0"><table><thead><tr><th>Raid</th><th>Result</th><th>Where the pulls failed</th></tr></thead><tbody>
+<tr><td><a href="qGbHJ3z9DZkyajfw.html">October 22 · Black Temple</a></td><td>9 kills / 4 wipes</td><td>One each on Bloodboil, Mother, Council and Illidan. Tank burst, failed openings, mage survival and air-phase control.</td></tr>
+<tr><td><a href="jgNH6tfzpM3V9GCv.html">October 26 · Hyjal</a></td><td>5 kills / 4 wipes</td><td>Three Azgalor tank deaths around the opening/Howl, then one Archimonde death chain. See the previously verified review.</td></tr>
+<tr><td>October 29 · Black Temple</td><td>9 kills / 9 wipes</td><td>Council grew from one wipe to four; Reliquary added two; Illidan grew from one to two. Mother was a first-pull kill.</td></tr>
+</tbody></table></div>
+<p>The two Black Temple raids are the direct comparison. Hyjal reinforces the need for planned tank coverage, but its mechanics are different. October 26 uses the earlier verified analysis: its replacement report now rejects API access, so it was not freshly rechecked. This review freshly checks October 22 and 29 per-pull deaths and paginated damage, healing, aura, cast and interrupt events, including the matching kills. Death counts include cleanup and repeat deaths after resurrection, not independent mistakes. Times are relative to each pull.</p>
+
+<h3 id="bloodboil">Bloodboil: a dangerous stack and damage overlap</h3>
+<p><strong>Fight 56: 2:01, 54.08% remaining.</strong> Madef was the first death at 0:54.3. Acidic Wound reached 12 stacks immediately before he died, with melee, Arcing Smash and Fel-Acid Breath contributing to the final window. The death table records 21,482 healing/absorption over 10.51 seconds; this was not a complete absence of healing. Madef had received Bewildering Strike at 0:25.9 and later resumed taking stacks without the earlier stack having cleared.</p>
+<p>Fel Rage went onto Littlewhitey at 0:55.1. Gonnadietoo then died to Bloodboil at 0:57.3, Quelva to Fel Arcing Smash at 1:04.8, and Littlewhitey at 1:13.9 during Fel Rage. The raid was losing its tank and healing resources before the later frontal deaths.</p>
+<p><strong>Plan the handoff and healing escalation before the current tank becomes unsafe.</strong> Keep the next tank ready, track the stack and damage together, and immediately assign direct healing to the Fel Rage target. Do not invent a universal 12-stack failure rule: Madef reached 13 stacks on the next pull and survived the kill. That kill took 2:59 with only two death-table entries; the preceding week’s Bloodboil kill had seven.</p>
+
+<h3 id="reliquary">Reliquary: clear the approach, then control reflected damage</h3>
+<p><strong>Fight 60: 0:54, 57.38% encounter health remaining.</strong> The first five deaths—Trígger, Cthulha, Kianne, Glimmerdusk and Jonette—were killing blows from Suffering or Hungering Soul Fragments. Essence of Suffering was already active, casting Aura of Suffering at 0:03.2. Approach trash was still attacking players after the encounter began. Clear and collect those fragments before triggering the boss. The zero-healing death windows in this phase should not be treated as normal healer inactivity.</p>
+<p><strong>Fight 63: 6:26, 0.55% encounter health remaining.</strong> Five players died to Aura of Desire: Gahenna at 2:16.5, Littlewhitey at 2:19.0, Loranoa at 2:21.2, Kalinak at 2:26.7 and Glimmerdusk at 2:52.9. Deaden was applied to the boss at 2:13.6, immediately before the first cluster. Gahenna also took 4,234 Shadow Word: Death recoil in the fatal sequence. This is a reason to coordinate damage with health and healing during reflection, especially when using reflected Deaden.</p>
+<p>Six Spirit Shock casts completed on the wipe. The first at 2:35.4 disoriented Madef; Shcherbaque then died to boss melee at 2:37.5. Later, Essence of Anger gained Seethe at 5:08.7 and Madef died at 5:11.3 to rapid melee plus Aura of Anger, despite 7,127 healing/absorption in the final 1.603-second window. The ending percentage hides substantial earlier losses.</p>
+<p><strong>The kill gives a practical model:</strong> fight 66 had zero Aura of Desire deaths, one completed Spirit Shock, and three interrupted Deaden casts, with no Deaden application to the boss. It finished in 5:15 with two deaths. Use a clear interrupt rotation with a backup, and choose the safer Deaden approach until reflection survival is repeatable. If deliberately reflecting Deaden, call the damage increase and adjust casting to player health; do not keep bursting through lethal self-damage.</p>
+
+<h3 id="council">Council: four wipes, three different problems</h3>
+<p><strong>Fight 86: mage protection was not established.</strong> Loranoa died to Arcane Bolt at 0:04.2. The first recorded successful Spellsteal/Dampen Magic acquisition was Littlewhitey’s at 0:09.7, after that death. Gonnadietoo died to another Bolt at 0:13.1. Confirm the intended mage has protection and boss control before the raid commits.</p>
+<p><strong>Fight 87: floor damage and reflection caused the early losses.</strong> Kianne died after two seconds of Blizzard damage at 0:52.6; Thunderzaar died to Reflective Shield at 0:52.8. After resurrection, Thunderzaar died to Blizzard again at 1:20.6. Littlewhitey’s Envenom death also included Blizzard damage; Gahenna and Bruand then died to Blizzard at 1:33.5 and 1:35.5. The full death table contains seven Blizzard and eleven Flamestrike killing blows, including later cleanup. Move immediately and stop attacks that are returning lethal Reflective Shield damage.</p>
+<p><strong>Fight 88: protection and target control were separate issues.</strong> Loranoa successfully acquired Dampen Magic at 0:00.4, but Zerevor’s Arcane Bolt hit Jonette. Jonette died at 0:07.3 after Arcane Bolt and Malande’s Empowered Smite overlapped, with only 957 healing in the 2.603-second death window. A successful Spellsteal does not by itself prove that every boss is attacking the assigned tank. Later Divine Intervention deaths are reset/cleanup actions, not new execution failures.</p>
+<p><strong>Fight 89: a gap in the mage’s protection preceded the collapse.</strong> Loranoa’s Dampen Magic expired at 2:00.874. Zerevor cast Arcane Bolt at Loranoa at 2:05.045. Loranoa reacquired Dampen Magic at 2:06.214, but the Bolt still killed him at 2:07.0. Several earlier Spellsteal casts did not produce a recorded successful refresh. Track the actual buff and successful steal, not just the button press. Once Loranoa died, Arcane Bolts killed Gahenna, Quelva and Snney; Madef’s death window also included Arcane Bolt damage alongside Gathios melee.</p>
+<p>Fight 91 then killed Council in 5:02 with only one death, to Flamestrike. Malande completed one Circle of Healing while 13 were interrupted; the longer wipes completed one and two respectively. Preserve the interrupt rotation, but the chronological failures point first to mage survival, boss targeting and movement. Council’s October 22 kill had 12 death-table entries: the latest successful pull was substantially cleaner.</p>
+
+<h3 id="illidan">Illidan: Eye Blast and an enraged Flame</h3>
+<p><strong>Fight 92:</strong> Thunderzaar died to repeated Fireballs at 1:40.6 with no healing in the final 14.664-second death window. The decisive tank loss followed: Jonette died to Eye Blast at 1:59.5. Flame melee and Blaze deaths spread afterward. Uncaged Wrath appears only later, around 2:16–2:17, after the collapse was underway. Do not mistake that late buff for the first cause.</p>
+<p><strong>Fight 93:</strong> Tunaak died to Flame melee at 1:58.1. At 1:59.212, the Flame attacking Roarwind gained Uncaged Wrath. It then hit Roarwind for 17,311 melee damage at 2:00.913, followed by lethal Flame Blast at 2:01.245. Only a 1,037 Earth Shield heal landed between them. Jonette died at 2:12.0; Flame Blast then killed Shcherbaque, Badabuille and Moungrym together.</p>
+<p><strong>Rehearse the two Flame tank routes around Eye Blast and keep Flame/glaive positioning controlled.</strong> Call a lost Flame target or Uncaged Wrath immediately. Healers must cover the raid’s Fireball damage as well as the tanks. The exact movement that triggered Wrath requires replay review; the log establishes the buff and lethal burst, not a specific player’s route. The kill, fight 94, had no Uncaged Wrath application, but still had eight deaths versus one in October 22’s kill.</p>
+
+<h3 id="pulls">Every October 29 wipe</h3>
+<div class="review-table" role="region" aria-label="October 29 wipe list" tabindex="0"><table><thead><tr><th>Fight</th><th>Duration / health remaining</th><th>First actionable failure</th></tr></thead><tbody>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/DRkvpTfNCF72caY6#fight=56&amp;type=deaths">56 · Bloodboil</a></td><td>2:01 / 54.08%</td><td>Tank dies with 12 Acidic Wound stacks and overlapping damage before Fel Rage.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/DRkvpTfNCF72caY6#fight=60&amp;type=deaths">60 · Reliquary</a></td><td>0:54 / 57.38%</td><td>Soul-fragment trash is still killing players after Suffering starts.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/DRkvpTfNCF72caY6#fight=63&amp;type=deaths">63 · Reliquary</a></td><td>6:26 / 0.55%</td><td>Desire reflection deaths and completed Spirit Shocks weaken the raid before Anger.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/DRkvpTfNCF72caY6#fight=86&amp;type=deaths">86 · Council</a></td><td>0:37 / 98.12%</td><td>Loranoa dies before the first successful protection steal.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/DRkvpTfNCF72caY6#fight=87&amp;type=deaths">87 · Council</a></td><td>2:16 / 70.24%</td><td>Blizzard and Reflective Shield deaths, then poison and floor attrition.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/DRkvpTfNCF72caY6#fight=88&amp;type=deaths">88 · Council</a></td><td>0:55 / 96.80%</td><td>Arcane Bolt and Empowered Smite hit Jonette while the protected mage survives.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/DRkvpTfNCF72caY6#fight=89&amp;type=deaths">89 · Council</a></td><td>3:05 / 55.21%</td><td>Mage protection gap, lethal Bolt, then uncontrolled Bolts through the raid.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/DRkvpTfNCF72caY6#fight=92&amp;type=deaths">92 · Illidan</a></td><td>2:24 / 64.43%</td><td>Unhealed Fireball loss, then Jonette dies to Eye Blast.</td></tr>
+<tr><td><a href="https://classic.warcraftlogs.com/reports/DRkvpTfNCF72caY6#fight=93&amp;type=deaths">93 · Illidan</a></td><td>2:26 / 64.45%</td><td>Flame target loss and Uncaged Wrath precede tank burst and raid frontals.</td></tr>
+</tbody></table></div>
+
+<h3 id="next-raid">Before the next raid</h3>
+<ol><li><strong>Council:</strong> confirm all four targets, the mage’s actual Dampen Magic buff, and the backup steal plan. Move out of floor effects immediately; stop lethal reflected damage.</li><li><strong>Reliquary:</strong> clear approach trash, name a Spirit Shock backup, and use a deliberate Deaden plan with damage throttled to health during reflection.</li><li><strong>Illidan:</strong> agree both Flame routes and Eye Blast calls; check the Wrath trigger in replay and protect Fireball targets as well as tanks.</li><li><strong>Bloodboil:</strong> coordinate tank handoffs and cooldowns using stacks plus incoming damage, and assign immediate Fel Rage healing.</li></ol>
+  </article>
+</main>
+
+<footer>generated with WarcraftLogs data · raidstats</footer>
+
+</body>
+</html>
