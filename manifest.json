@@ -622,5 +622,16 @@
   "kills": 9,
   "wipes": 9,
   "players": 25
+ },
+ "h1WQ86XpqRTMnPr2": {
+  "report_id": "h1WQ86XpqRTMnPr2",
+  "title": "BT / Hyjal (MH in 1:24:48, Gruul's Lair in 0:19:52)",
+  "zone": "MH / Gruul's Lair",
+  "date": "November 02, 2026 20:57:23",
+  "start_ms": 1793649443073,
+  "raid": 1,
+  "kills": 7,
+  "wipes": 1,
+  "players": 31
  }
 }
